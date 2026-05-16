@@ -1,0 +1,22 @@
+# BasicCardSymbolListFlow
+
+main: kit: flow: BasicCardSymbolListFlow:
+{
+  entity: "card_symbol_list",
+  kind: "basic",
+  name: "BasicCardSymbolListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "card_symbol_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCardSymbolListFlow"
+}

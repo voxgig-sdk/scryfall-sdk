@@ -1,0 +1,85 @@
+# Entity: mana_cost
+
+main: kit: entity: mana_cost: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cmc"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "color"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "colorless"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "cost"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "monocolored"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "multicolored"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "object"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "mana_cost"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "{2}{U}{U}"
+                kind: "query"
+                name: "cost"
+                orig: "cost"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/symbology/parse-mana"
+          parts: [
+            "symbology"
+            "parse-mana"
+          ]
+          select: {
+            exist: [
+              "cost"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

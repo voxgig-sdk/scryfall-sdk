@@ -1,0 +1,126 @@
+<?php
+declare(strict_types=1);
+
+// CardList entity test
+
+require_once __DIR__ . '/../scryfall_sdk.php';
+require_once __DIR__ . '/Runner.php';
+
+use PHPUnit\Framework\TestCase;
+use Voxgig\Struct\Struct as Vs;
+
+class CardListEntityTest extends TestCase
+{
+    public function test_create_instance(): void
+    {
+        $testsdk = ScryfallSDK::test(null, null);
+        $ent = $testsdk->CardList(null);
+        $this->assertNotNull($ent);
+    }
+
+    public function test_basic_flow(): void
+    {
+        $setup = card_list_basic_setup(null);
+        // Per-op sdk-test-control.json skip.
+        $_live = !empty($setup["live"]);
+        foreach (["create", "list"] as $_op) {
+            [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "card_list." . $_op, $_live ? "live" : "unit");
+            if ($_shouldSkip) {
+                $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
+                return;
+            }
+        }
+        // The basic flow consumes synthetic IDs from the fixture. In live mode
+        // without an *_ENTID env override, those IDs hit the live API and 4xx.
+        if (!empty($setup["synthetic_only"])) {
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set SCRYFALL_TEST_CARD_LIST_ENTID JSON to run live");
+            return;
+        }
+        $client = $setup["client"];
+
+        // CREATE
+        $card_list_ref01_ent = $client->CardList(null);
+        $card_list_ref01_data = Helpers::to_map(Vs::getprop(
+            Vs::getpath($setup["data"], "new.card_list"), "card_list_ref01"));
+
+        [$card_list_ref01_data_result, $err] = $card_list_ref01_ent->create($card_list_ref01_data, null);
+        $this->assertNull($err);
+        $card_list_ref01_data = Helpers::to_map($card_list_ref01_data_result);
+        $this->assertNotNull($card_list_ref01_data);
+        $this->assertNotNull($card_list_ref01_data["id"]);
+
+        // LIST
+        $card_list_ref01_match = [];
+
+        [$card_list_ref01_list_result, $err] = $card_list_ref01_ent->list($card_list_ref01_match, null);
+        $this->assertNull($err);
+        $this->assertIsArray($card_list_ref01_list_result);
+
+        $found_item = sdk_select(
+            Runner::entity_list_to_data($card_list_ref01_list_result),
+            ["id" => $card_list_ref01_data["id"]]);
+        $this->assertNotEmpty($found_item);
+
+    }
+}
+
+function card_list_basic_setup($extra)
+{
+    Runner::load_env_local();
+
+    $entity_data_file = __DIR__ . '/../../.sdk/test/entity/card_list/CardListTestData.json';
+    $entity_data_source = file_get_contents($entity_data_file);
+    $entity_data = json_decode($entity_data_source, true);
+
+    $options = [];
+    $options["entity"] = $entity_data["existing"];
+
+    $client = ScryfallSDK::test($options, $extra);
+
+    // Generate idmap.
+    $idmap = [];
+    foreach (["card_list01", "card_list02", "card_list03"] as $k) {
+        $idmap[$k] = strtoupper($k);
+    }
+
+    // Detect ENTID env override before envOverride consumes it. When live
+    // mode is on without a real override, the basic test runs against synthetic
+    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    $entid_env_raw = getenv("SCRYFALL_TEST_CARD_LIST_ENTID");
+    $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
+
+    $env = Runner::env_override([
+        "SCRYFALL_TEST_CARD_LIST_ENTID" => $idmap,
+        "SCRYFALL_TEST_LIVE" => "FALSE",
+        "SCRYFALL_TEST_EXPLAIN" => "FALSE",
+        "SCRYFALL_APIKEY" => "NONE",
+    ]);
+
+    $idmap_resolved = Helpers::to_map(
+        $env["SCRYFALL_TEST_CARD_LIST_ENTID"]);
+    if ($idmap_resolved === null) {
+        $idmap_resolved = Helpers::to_map($idmap);
+    }
+
+    if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
+        $merged_opts = Vs::merge([
+            [
+                "apikey" => $env["SCRYFALL_APIKEY"],
+            ],
+            $extra ?? [],
+        ]);
+        $client = new ScryfallSDK(Helpers::to_map($merged_opts));
+    }
+
+    $live = $env["SCRYFALL_TEST_LIVE"] === "TRUE";
+    return [
+        "client" => $client,
+        "data" => $entity_data,
+        "idmap" => $idmap_resolved,
+        "env" => $env,
+        "explain" => $env["SCRYFALL_TEST_EXPLAIN"] === "TRUE",
+        "live" => $live,
+        "synthetic_only" => $live && !$idmap_overridden,
+        "now" => (int)(microtime(true) * 1000),
+    ];
+}

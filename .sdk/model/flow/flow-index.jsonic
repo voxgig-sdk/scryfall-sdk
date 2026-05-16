@@ -1,0 +1,11 @@
+# Flows
+
+@"BasicBulkDataFlow.jsonic"
+@"BasicCardFlow.jsonic"
+@"BasicCardListFlow.jsonic"
+@"BasicCardSymbolListFlow.jsonic"
+@"BasicCatalogFlow.jsonic"
+@"BasicManaCostFlow.jsonic"
+@"BasicMigrationFlow.jsonic"
+@"BasicRulingFlow.jsonic"
+@"BasicSetFlow.jsonic"

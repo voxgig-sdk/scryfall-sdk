@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "migration": {
+      "MIGRATION00": {
+        "id": "MIGRATION00",
+        "migration_strategy": "s47",
+        "new_scryfall_id": "NEW_SCRYFALL01",
+        "object": "s49",
+        "old_scryfall_id": "OLD_SCRYFALL01",
+        "performed_at": "s4b",
+        "uri": "s4c"
+      },
+      "MIGRATION01": {
+        "id": "MIGRATION01",
+        "migration_strategy": "s8d",
+        "new_scryfall_id": "NEW_SCRYFALL01",
+        "object": "s8f",
+        "old_scryfall_id": "OLD_SCRYFALL01",
+        "performed_at": "s91",
+        "uri": "s92"
+      },
+      "MIGRATION02": {
+        "id": "MIGRATION02",
+        "migration_strategy": "sd3",
+        "new_scryfall_id": "NEW_SCRYFALL01",
+        "object": "sd5",
+        "old_scryfall_id": "OLD_SCRYFALL01",
+        "performed_at": "sd7",
+        "uri": "sd8"
+      }
+    }
+  },
+  "new": {
+    "migration": {
+      "migration_ref01": {
+        "migration_strategy": "s119",
+        "new_scryfall_id": "NEW_SCRYFALL01",
+        "object": "s11b",
+        "old_scryfall_id": "OLD_SCRYFALL01",
+        "performed_at": "s11d",
+        "uri": "s11e"
+      }
+    }
+  }
+}

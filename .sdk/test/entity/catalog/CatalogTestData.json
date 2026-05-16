@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "catalog": {
+      "CATALOG00": {
+        "data": [],
+        "object": "s29",
+        "total_value": "s2a",
+        "uri": "s2b"
+      },
+      "CATALOG01": {
+        "data": [],
+        "object": "s51",
+        "total_value": "s52",
+        "uri": "s53"
+      },
+      "CATALOG02": {
+        "data": [],
+        "object": "s79",
+        "total_value": "s7a",
+        "uri": "s7b"
+      }
+    }
+  },
+  "new": {
+    "catalog": {
+      "catalog_ref01": {
+        "data": [],
+        "object": "sa1",
+        "total_value": "sa2",
+        "uri": "sa3"
+      }
+    }
+  }
+}

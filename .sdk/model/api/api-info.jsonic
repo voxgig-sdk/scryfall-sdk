@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Scryfall Support"
+        url: "https://scryfall.com/contact"
+      }
+      description: "Scryfall provides a REST-like API for accessing Magic: The Gathering card data programmatically. It offers endpoints to retrieve cards, sets, images, and other related data in an easy-to-consume format."
+      servers: [
+        {
+          description: "Production API Server"
+          url: "https://api.scryfall.com"
+        }
+      ]
+      termsOfService: "https://scryfall.com/docs/terms"
+      title: "Scryfall API"
+      version: "1.0.0"
+      "x-logo": {
+        url: "https://scryfall.com/favicon.ico"
+      }
+    }
+  }
+}
+
+}

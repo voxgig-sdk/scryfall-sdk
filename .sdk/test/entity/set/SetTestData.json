@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "set": {
+      "SET00": {
+        "card_count": "s6e",
+        "code": "s6f",
+        "digital": true,
+        "icon_svg_uri": "s71",
+        "id": "SET00",
+        "name": "s73",
+        "released_at": "s74",
+        "scryfall_uri": "s75",
+        "search_uri": "s76",
+        "set_type": "s77",
+        "uri": "s78"
+      },
+      "SET01": {
+        "card_count": "sdc",
+        "code": "sdd",
+        "digital": true,
+        "icon_svg_uri": "sdf",
+        "id": "SET01",
+        "name": "se1",
+        "released_at": "se2",
+        "scryfall_uri": "se3",
+        "search_uri": "se4",
+        "set_type": "se5",
+        "uri": "se6"
+      },
+      "SET02": {
+        "card_count": "s14a",
+        "code": "s14b",
+        "digital": true,
+        "icon_svg_uri": "s14d",
+        "id": "SET02",
+        "name": "s14f",
+        "released_at": "s150",
+        "scryfall_uri": "s151",
+        "search_uri": "s152",
+        "set_type": "s153",
+        "uri": "s154"
+      }
+    }
+  },
+  "new": {
+    "set": {
+      "set_ref01": {
+        "card_count": "s1b8",
+        "code": "s1b9",
+        "digital": true,
+        "icon_svg_uri": "s1bb",
+        "name": "s1bd",
+        "released_at": "s1be",
+        "scryfall_uri": "s1bf",
+        "search_uri": "s1c0",
+        "set_type": "s1c1",
+        "uri": "s1c2"
+      }
+    }
+  }
+}

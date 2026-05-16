@@ -1,0 +1,30 @@
+# BasicCardListFlow
+
+main: kit: flow: BasicCardListFlow:
+{
+  entity: "card_list",
+  kind: "basic",
+  name: "BasicCardListFlow",
+  step: [
+    {
+      input: {
+        ref: "card_list_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "card_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCardListFlow"
+}

@@ -1,0 +1,26 @@
+# BasicRulingFlow
+
+main: kit: flow: BasicRulingFlow:
+{
+  entity: "ruling",
+  kind: "basic",
+  name: "BasicRulingFlow",
+  step: [
+    {
+      match: {
+        card_id: "card01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ruling_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRulingFlow"
+}

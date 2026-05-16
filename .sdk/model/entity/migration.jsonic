@@ -1,0 +1,89 @@
+# Entity: migration
+
+main: kit: entity: migration: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "migration_strategy"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "new_scryfall_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "object"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "old_scryfall_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "performed_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "uri"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "migration"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/migrations"
+          parts: [
+            "migrations"
+          ]
+          select: {
+            exist: [
+              "page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

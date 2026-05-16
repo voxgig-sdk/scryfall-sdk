@@ -1,0 +1,44 @@
+# BasicBulkDataFlow
+
+main: kit: flow: BasicBulkDataFlow:
+{
+  entity: "bulk_data",
+  kind: "basic",
+  name: "BasicBulkDataFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "bulk_data_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "bulk_data_ref01",
+        srcdatavar: "bulk_data_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "bulk_data01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-bulk_data_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBulkDataFlow"
+}

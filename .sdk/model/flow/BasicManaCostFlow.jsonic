@@ -1,0 +1,22 @@
+# BasicManaCostFlow
+
+main: kit: flow: BasicManaCostFlow:
+{
+  entity: "mana_cost",
+  kind: "basic",
+  name: "BasicManaCostFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "mana_cost_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicManaCostFlow"
+}

@@ -1,0 +1,1633 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Scryfall API",
+    "description": "Scryfall provides a REST-like API for accessing Magic: The Gathering card data programmatically. It offers endpoints to retrieve cards, sets, images, and other related data in an easy-to-consume format.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Scryfall Support",
+      "url": "https://scryfall.com/contact"
+    },
+    "termsOfService": "https://scryfall.com/docs/terms",
+    "x-logo": {
+      "url": "https://scryfall.com/favicon.ico"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.scryfall.com",
+      "description": "Production API Server"
+    }
+  ],
+  "paths": {
+    "/cards/search": {
+      "get": {
+        "summary": "Search for cards",
+        "description": "Returns a List object containing Cards found using a fulltext search string. This search string supports the same fulltext search system that the main site uses.",
+        "operationId": "searchCards",
+        "tags": [
+          "Cards"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The fulltext search query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "c:red pow:3"
+          },
+          {
+            "name": "unique",
+            "in": "query",
+            "description": "The strategy for omitting similar cards",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cards",
+                "art",
+                "prints"
+              ],
+              "default": "cards"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The method to sort returned cards",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "name",
+                "set",
+                "released",
+                "rarity",
+                "color",
+                "usd",
+                "tix",
+                "eur",
+                "cmc",
+                "power",
+                "toughness",
+                "edhrec",
+                "artist"
+              ],
+              "default": "name"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "description": "The direction to sort cards",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "auto",
+                "asc",
+                "desc"
+              ],
+              "default": "auto"
+            }
+          },
+          {
+            "name": "include_extras",
+            "in": "query",
+            "description": "If true, extra cards (tokens, planes, etc) will be included",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid search query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/named": {
+      "get": {
+        "summary": "Get a card by name",
+        "description": "Returns a Card based on a name search string. This method is designed for autocomplete and will return the best fuzzy match.",
+        "operationId": "getCardByName",
+        "tags": [
+          "Cards"
+        ],
+        "parameters": [
+          {
+            "name": "exact",
+            "in": "query",
+            "description": "The exact card name to search for",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Lightning Bolt"
+          },
+          {
+            "name": "fuzzy",
+            "in": "query",
+            "description": "A fuzzy card name to search for",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "aust com"
+          },
+          {
+            "name": "set",
+            "in": "query",
+            "description": "A set code to limit the search to one set",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "m19"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Card found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Card"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "get": {
+        "summary": "Get a card by ID",
+        "description": "Returns a single card with the given Scryfall ID",
+        "operationId": "getCardById",
+        "tags": [
+          "Cards"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Scryfall ID of the card",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "example": "683a5707-cddb-494d-9b41-51b4584ded69"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Card found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Card"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/random": {
+      "get": {
+        "summary": "Get a random card",
+        "description": "Returns a single random Card object",
+        "operationId": "getRandomCard",
+        "tags": [
+          "Cards"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "An optional fulltext search query to filter the pool of random cards",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Random card",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Card"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/collection": {
+      "post": {
+        "summary": "Get a collection of cards by ID",
+        "description": "Returns a List object containing the collection of requested cards",
+        "operationId": "getCardCollection",
+        "tags": [
+          "Cards"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "identifiers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "set": {
+                          "type": "string"
+                        },
+                        "collector_number": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "maxItems": 75
+                  }
+                },
+                "required": [
+                  "identifiers"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Collection of cards",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sets": {
+      "get": {
+        "summary": "Get all sets",
+        "description": "Returns a List object containing all Set objects",
+        "operationId": "getAllSets",
+        "tags": [
+          "Sets"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all sets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetList"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sets/{code}": {
+      "get": {
+        "summary": "Get a set by code",
+        "description": "Returns a Set with the given set code",
+        "operationId": "getSetByCode",
+        "tags": [
+          "Sets"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The three to five-letter set code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "m19"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Set found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Set"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Set not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sets/{id}": {
+      "get": {
+        "summary": "Get a set by ID",
+        "description": "Returns a Set with the given Scryfall ID",
+        "operationId": "getSetById",
+        "tags": [
+          "Sets"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Scryfall ID of the set",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Set found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Set"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Set not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/{id}/rulings": {
+      "get": {
+        "summary": "Get rulings for a card",
+        "description": "Returns a List object containing all Rulings for the card with the given Scryfall ID",
+        "operationId": "getCardRulings",
+        "tags": [
+          "Rulings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Scryfall ID of the card",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of rulings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RulingList"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/symbology": {
+      "get": {
+        "summary": "Get all card symbols",
+        "description": "Returns a List object containing all CardSymbol objects",
+        "operationId": "getAllSymbols",
+        "tags": [
+          "Card Symbols"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all card symbols",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardSymbolList"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/symbology/parse-mana": {
+      "get": {
+        "summary": "Parse mana cost",
+        "description": "Parses the given mana cost parameter and returns Scryfall's interpretation",
+        "operationId": "parseManaCost",
+        "tags": [
+          "Card Symbols"
+        ],
+        "parameters": [
+          {
+            "name": "cost",
+            "in": "query",
+            "description": "The mana cost string to parse",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "{2}{U}{U}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Parsed mana cost",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManaCost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid mana cost",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalog/{catalog_name}": {
+      "get": {
+        "summary": "Get catalog values",
+        "description": "Returns a Catalog object containing an array of all possible values for the requested catalog type",
+        "operationId": "getCatalog",
+        "tags": [
+          "Catalogs"
+        ],
+        "parameters": [
+          {
+            "name": "catalog_name",
+            "in": "path",
+            "description": "The catalog type to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "card-names",
+                "artist-names",
+                "word-bank",
+                "creature-types",
+                "planeswalker-types",
+                "land-types",
+                "artifact-types",
+                "enchantment-types",
+                "spell-types",
+                "powers",
+                "toughnesses",
+                "loyalties",
+                "watermarks",
+                "keyword-abilities",
+                "keyword-actions",
+                "ability-words"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Catalog values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Catalog"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Catalog not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bulk-data": {
+      "get": {
+        "summary": "Get bulk data information",
+        "description": "Returns a List object containing information about all available bulk data files",
+        "operationId": "getBulkData",
+        "tags": [
+          "Bulk Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of bulk data files",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkDataList"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bulk-data/{id}": {
+      "get": {
+        "summary": "Get bulk data file by ID",
+        "description": "Returns a single BulkData object with the given ID",
+        "operationId": "getBulkDataById",
+        "tags": [
+          "Bulk Data"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Scryfall ID of the bulk data file",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bulk data file information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkData"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bulk data file not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/migrations": {
+      "get": {
+        "summary": "Get card migrations",
+        "description": "Returns a List of Card Migrations",
+        "operationId": "getCardMigrations",
+        "tags": [
+          "Card Migrations"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of card migrations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MigrationList"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Card": {
+        "type": "object",
+        "description": "Card objects represent individual Magic: The Gathering cards",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A unique ID for this card in Scryfall's database"
+          },
+          "oracle_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A unique ID for this card's oracle identity"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this card"
+          },
+          "lang": {
+            "type": "string",
+            "description": "The language code for this printing"
+          },
+          "released_at": {
+            "type": "string",
+            "format": "date",
+            "description": "The date this card was first released"
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to this card object on Scryfall's API"
+          },
+          "scryfall_uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to this card's page on Scryfall's website"
+          },
+          "layout": {
+            "type": "string",
+            "description": "A code for this card's layout"
+          },
+          "mana_cost": {
+            "type": "string",
+            "description": "The mana cost for this card"
+          },
+          "cmc": {
+            "type": "number",
+            "description": "The card's converted mana cost"
+          },
+          "type_line": {
+            "type": "string",
+            "description": "The type line of this card"
+          },
+          "oracle_text": {
+            "type": "string",
+            "description": "The Oracle text for this card"
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "This card's colors"
+          },
+          "color_identity": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "This card's color identity"
+          },
+          "set": {
+            "type": "string",
+            "description": "This card's set code"
+          },
+          "set_name": {
+            "type": "string",
+            "description": "This card's full set name"
+          },
+          "collector_number": {
+            "type": "string",
+            "description": "This card's collector number"
+          },
+          "rarity": {
+            "type": "string",
+            "enum": [
+              "common",
+              "uncommon",
+              "rare",
+              "mythic",
+              "special",
+              "bonus"
+            ],
+            "description": "This card's rarity"
+          },
+          "artist": {
+            "type": "string",
+            "description": "The name of the illustrator of this card"
+          },
+          "image_uris": {
+            "type": "object",
+            "description": "An object containing URIs to this card's imagery",
+            "properties": {
+              "small": {
+                "type": "string",
+                "format": "uri"
+              },
+              "normal": {
+                "type": "string",
+                "format": "uri"
+              },
+              "large": {
+                "type": "string",
+                "format": "uri"
+              },
+              "png": {
+                "type": "string",
+                "format": "uri"
+              },
+              "art_crop": {
+                "type": "string",
+                "format": "uri"
+              },
+              "border_crop": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "prices": {
+            "type": "object",
+            "description": "An object containing daily price information for this card",
+            "properties": {
+              "usd": {
+                "type": "string",
+                "nullable": true
+              },
+              "usd_foil": {
+                "type": "string",
+                "nullable": true
+              },
+              "eur": {
+                "type": "string",
+                "nullable": true
+              },
+              "tix": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "legalities": {
+            "type": "object",
+            "description": "An object describing the legality of this card",
+            "additionalProperties": {
+              "type": "string",
+              "enum": [
+                "legal",
+                "not_legal",
+                "restricted",
+                "banned"
+              ]
+            }
+          },
+          "power": {
+            "type": "string",
+            "description": "This card's power (for creatures)"
+          },
+          "toughness": {
+            "type": "string",
+            "description": "This card's toughness (for creatures)"
+          },
+          "loyalty": {
+            "type": "string",
+            "description": "This card's loyalty (for planeswalkers)"
+          }
+        }
+      },
+      "CardList": {
+        "type": "object",
+        "description": "A List object containing Card objects",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The object type"
+          },
+          "total_cards": {
+            "type": "integer",
+            "description": "The total number of cards found"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "True if this list is paginated and has more pages"
+          },
+          "next_page": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "description": "The URL for the next page of results"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            },
+            "description": "An array of the requested objects"
+          }
+        }
+      },
+      "Set": {
+        "type": "object",
+        "description": "A Set object represents a group of related Magic cards",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A unique ID for this set"
+          },
+          "code": {
+            "type": "string",
+            "description": "The unique three to five-letter code for this set"
+          },
+          "name": {
+            "type": "string",
+            "description": "The English name of the set"
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to this set object on Scryfall's API"
+          },
+          "scryfall_uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to this set's page on Scryfall's website"
+          },
+          "search_uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to search for cards in this set on Scryfall's API"
+          },
+          "released_at": {
+            "type": "string",
+            "format": "date",
+            "description": "The date the set was released"
+          },
+          "set_type": {
+            "type": "string",
+            "description": "The type of set"
+          },
+          "card_count": {
+            "type": "integer",
+            "description": "The number of cards in this set"
+          },
+          "digital": {
+            "type": "boolean",
+            "description": "True if this set is only available digitally"
+          },
+          "icon_svg_uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A URI to an SVG file for this set's icon"
+          }
+        }
+      },
+      "SetList": {
+        "type": "object",
+        "description": "A List object containing Set objects",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The object type"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "True if this list is paginated and has more pages"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Set"
+            },
+            "description": "An array of Set objects"
+          }
+        }
+      },
+      "Ruling": {
+        "type": "object",
+        "description": "Rulings represent Oracle rulings and errata issued by Wizards of the Coast",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "ruling"
+            ],
+            "description": "The object type"
+          },
+          "oracle_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The Oracle ID of the card this ruling applies to"
+          },
+          "source": {
+            "type": "string",
+            "description": "The source of this ruling"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date",
+            "description": "The date this ruling was published"
+          },
+          "comment": {
+            "type": "string",
+            "description": "The text of the ruling"
+          }
+        }
+      },
+      "RulingList": {
+        "type": "object",
+        "description": "A List object containing Ruling objects",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The object type"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "True if this list is paginated and has more pages"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ruling"
+            },
+            "description": "An array of Ruling objects"
+          }
+        }
+      },
+      "CardSymbol": {
+        "type": "object",
+        "description": "A Card Symbol object represents a illustrated symbol that may appear in card's mana cost or Oracle text",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "card_symbol"
+            ],
+            "description": "The object type"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "The plaintext symbol"
+          },
+          "loose_variant": {
+            "type": "string",
+            "nullable": true,
+            "description": "An alternate version of this symbol"
+          },
+          "english": {
+            "type": "string",
+            "description": "An English textual description of the symbol"
+          },
+          "transposable": {
+            "type": "boolean",
+            "description": "True if it's possible to write this symbol backwards"
+          },
+          "represents_mana": {
+            "type": "boolean",
+            "description": "True if this is a mana symbol"
+          },
+          "cmc": {
+            "type": "number",
+            "nullable": true,
+            "description": "The converted mana cost represented by this symbol"
+          },
+          "appears_in_mana_costs": {
+            "type": "boolean",
+            "description": "True if this symbol appears in mana costs"
+          },
+          "funny": {
+            "type": "boolean",
+            "description": "True if this symbol is only used on funny cards"
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The colors of this symbol"
+          },
+          "svg_uri": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "description": "A URI to an SVG image for this symbol"
+          }
+        }
+      },
+      "CardSymbolList": {
+        "type": "object",
+        "description": "A List object containing CardSymbol objects",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The object type"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "True if this list is paginated and has more pages"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardSymbol"
+            },
+            "description": "An array of CardSymbol objects"
+          }
+        }
+      },
+      "ManaCost": {
+        "type": "object",
+        "description": "A ManaCost object represents a parsed mana cost",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "mana_cost"
+            ],
+            "description": "The object type"
+          },
+          "cost": {
+            "type": "string",
+            "description": "The normalized cost"
+          },
+          "cmc": {
+            "type": "number",
+            "description": "The converted mana cost"
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The colors in this mana cost"
+          },
+          "colorless": {
+            "type": "boolean",
+            "description": "True if this mana cost is colorless"
+          },
+          "monocolored": {
+            "type": "boolean",
+            "description": "True if this mana cost is monocolored"
+          },
+          "multicolored": {
+            "type": "boolean",
+            "description": "True if this mana cost is multicolored"
+          }
+        }
+      },
+      "Catalog": {
+        "type": "object",
+        "description": "A Catalog object contains an array of Magic datapoints",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "catalog"
+            ],
+            "description": "The object type"
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to this catalog on Scryfall's API"
+          },
+          "total_values": {
+            "type": "integer",
+            "description": "The number of items in the data array"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of datapoints"
+          }
+        }
+      },
+      "BulkData": {
+        "type": "object",
+        "description": "A Bulk Data object contains information about a bulk data file",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "bulk_data"
+            ],
+            "description": "The object type"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A unique ID for this bulk data file"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of bulk data"
+          },
+          "name": {
+            "type": "string",
+            "description": "A human-readable name for this file"
+          },
+          "description": {
+            "type": "string",
+            "description": "A human-readable description for this file"
+          },
+          "download_uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URI that hosts this bulk file"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time this file was last updated"
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of this file in bytes"
+          },
+          "content_type": {
+            "type": "string",
+            "description": "The MIME type of this file"
+          },
+          "content_encoding": {
+            "type": "string",
+            "description": "The Content-Encoding encoding for this file"
+          }
+        }
+      },
+      "BulkDataList": {
+        "type": "object",
+        "description": "A List object containing BulkData objects",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The object type"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "True if this list is paginated and has more pages"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkData"
+            },
+            "description": "An array of BulkData objects"
+          }
+        }
+      },
+      "Migration": {
+        "type": "object",
+        "description": "A Migration object describes a change in Scryfall's database",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "migration"
+            ],
+            "description": "The object type"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "A unique ID for this migration"
+          },
+          "uri": {
+            "type": "string",
+            "format": "uri",
+            "description": "A link to this migration on Scryfall's API"
+          },
+          "performed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date this migration was performed"
+          },
+          "migration_strategy": {
+            "type": "string",
+            "description": "The type of migration strategy"
+          },
+          "old_scryfall_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The original Scryfall ID"
+          },
+          "new_scryfall_id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true,
+            "description": "The updated Scryfall ID"
+          }
+        }
+      },
+      "MigrationList": {
+        "type": "object",
+        "description": "A List object containing Migration objects",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "list"
+            ],
+            "description": "The object type"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "True if this list is paginated and has more pages"
+          },
+          "next_page": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "description": "The URL for the next page of results"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Migration"
+            },
+            "description": "An array of Migration objects"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "description": "An Error object represents a failure to complete an API request",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "error"
+            ],
+            "description": "The object type"
+          },
+          "status": {
+            "type": "integer",
+            "description": "An HTTP status code"
+          },
+          "code": {
+            "type": "string",
+            "description": "A computer-friendly error code"
+          },
+          "details": {
+            "type": "string",
+            "description": "A human-readable error message"
+          },
+          "type": {
+            "type": "string",
+            "description": "A classification of the error type"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Non-failure warnings"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "UserAgent": {
+        "name": "User-Agent",
+        "in": "header",
+        "required": true,
+        "description": "A user agent string identifying your application",
+        "schema": {
+          "type": "string"
+        },
+        "example": "MyMTGApp/1.0"
+      },
+      "Accept": {
+        "name": "Accept",
+        "in": "header",
+        "required": true,
+        "description": "The accepted content types",
+        "schema": {
+          "type": "string",
+          "default": "application/json"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Cards",
+      "description": "Endpoints for retrieving Magic card data"
+    },
+    {
+      "name": "Sets",
+      "description": "Endpoints for retrieving Magic set data"
+    },
+    {
+      "name": "Rulings",
+      "description": "Endpoints for retrieving Oracle rulings and errata"
+    },
+    {
+      "name": "Card Symbols",
+      "description": "Endpoints for retrieving symbology information"
+    },
+    {
+      "name": "Catalogs",
+      "description": "Endpoints for retrieving catalog data"
+    },
+    {
+      "name": "Bulk Data",
+      "description": "Endpoints for retrieving bulk data download information"
+    },
+    {
+      "name": "Card Migrations",
+      "description": "Endpoints for retrieving card ID migration information"
+    }
+  ],
+  "security": [],
+  "externalDocs": {
+    "description": "Scryfall API Documentation",
+    "url": "https://scryfall.com/docs/api"
+  }
+}

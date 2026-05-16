@@ -1,0 +1,734 @@
+# Scryfall PHP SDK Reference
+
+Complete API reference for the Scryfall PHP SDK.
+
+
+## ScryfallSDK
+
+### Constructor
+
+```php
+require_once __DIR__ . '/scryfall_sdk.php';
+
+$client = new ScryfallSDK($options);
+```
+
+Create a new SDK client instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `$options` | `array` | SDK configuration options. |
+| `$options["apikey"]` | `string` | API key for authentication. |
+| `$options["base"]` | `string` | Base URL for API requests. |
+| `$options["prefix"]` | `string` | URL prefix appended after base. |
+| `$options["suffix"]` | `string` | URL suffix appended after path. |
+| `$options["headers"]` | `array` | Custom headers for all requests. |
+| `$options["feature"]` | `array` | Feature configuration. |
+| `$options["system"]` | `array` | System overrides (e.g. custom fetch). |
+
+
+### Static Methods
+
+#### `ScryfallSDK::test($testopts = null, $sdkopts = null)`
+
+Create a test client with mock features active. Both arguments may be `null`.
+
+```php
+$client = ScryfallSDK::test();
+```
+
+
+### Instance Methods
+
+#### `BulkData($data = null)`
+
+Create a new `BulkDataEntity` instance. Pass `null` for no initial data.
+
+#### `Card($data = null)`
+
+Create a new `CardEntity` instance. Pass `null` for no initial data.
+
+#### `CardList($data = null)`
+
+Create a new `CardListEntity` instance. Pass `null` for no initial data.
+
+#### `CardSymbolList($data = null)`
+
+Create a new `CardSymbolListEntity` instance. Pass `null` for no initial data.
+
+#### `Catalog($data = null)`
+
+Create a new `CatalogEntity` instance. Pass `null` for no initial data.
+
+#### `ManaCost($data = null)`
+
+Create a new `ManaCostEntity` instance. Pass `null` for no initial data.
+
+#### `Migration($data = null)`
+
+Create a new `MigrationEntity` instance. Pass `null` for no initial data.
+
+#### `Ruling($data = null)`
+
+Create a new `RulingEntity` instance. Pass `null` for no initial data.
+
+#### `Set($data = null)`
+
+Create a new `SetEntity` instance. Pass `null` for no initial data.
+
+#### `optionsMap(): array`
+
+Return a deep copy of the current SDK options.
+
+#### `getUtility(): ProjectNameUtility`
+
+Return a copy of the SDK utility object.
+
+#### `direct(array $fetchargs = []): array`
+
+Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `$fetchargs["path"]` | `string` | URL path with optional `{param}` placeholders. |
+| `$fetchargs["method"]` | `string` | HTTP method (default: `"GET"`). |
+| `$fetchargs["params"]` | `array` | Path parameter values for `{param}` substitution. |
+| `$fetchargs["query"]` | `array` | Query string parameters. |
+| `$fetchargs["headers"]` | `array` | Request headers (merged with defaults). |
+| `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
+| `$fetchargs["ctrl"]` | `array` | Control options. |
+
+**Returns:** `array [$result, $err]`
+
+#### `prepare(array $fetchargs = []): array`
+
+Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+
+
+---
+
+## BulkDataEntity
+
+```php
+$bulk_data = $client->BulkData();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `content_encoding` | ``$STRING`` | No |  |
+| `content_type` | ``$STRING`` | No |  |
+| `description` | ``$STRING`` | No |  |
+| `download_uri` | ``$STRING`` | No |  |
+| `id` | ``$STRING`` | No |  |
+| `name` | ``$STRING`` | No |  |
+| `object` | ``$STRING`` | No |  |
+| `size` | ``$INTEGER`` | No |  |
+| `type` | ``$STRING`` | No |  |
+| `updated_at` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->BulkData()->list([]);
+```
+
+#### `load(array $reqmatch, ?array $ctrl = null): array`
+
+Load a single entity matching the given criteria.
+
+```php
+[$result, $err] = $client->BulkData()->load(["id" => "bulk_data_id"]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): BulkDataEntity`
+
+Create a new `BulkDataEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## CardEntity
+
+```php
+$card = $client->Card();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `artist` | ``$STRING`` | No |  |
+| `cmc` | ``$NUMBER`` | No |  |
+| `collector_number` | ``$STRING`` | No |  |
+| `color` | ``$ARRAY`` | No |  |
+| `color_identity` | ``$ARRAY`` | No |  |
+| `id` | ``$STRING`` | No |  |
+| `image_uri` | ``$OBJECT`` | No |  |
+| `lang` | ``$STRING`` | No |  |
+| `layout` | ``$STRING`` | No |  |
+| `legality` | ``$OBJECT`` | No |  |
+| `loyalty` | ``$STRING`` | No |  |
+| `mana_cost` | ``$STRING`` | No |  |
+| `name` | ``$STRING`` | No |  |
+| `oracle_id` | ``$STRING`` | No |  |
+| `oracle_text` | ``$STRING`` | No |  |
+| `power` | ``$STRING`` | No |  |
+| `price` | ``$OBJECT`` | No |  |
+| `rarity` | ``$STRING`` | No |  |
+| `released_at` | ``$STRING`` | No |  |
+| `scryfall_uri` | ``$STRING`` | No |  |
+| `set` | ``$STRING`` | No |  |
+| `set_name` | ``$STRING`` | No |  |
+| `toughness` | ``$STRING`` | No |  |
+| `type_line` | ``$STRING`` | No |  |
+| `uri` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->Card()->list([]);
+```
+
+#### `load(array $reqmatch, ?array $ctrl = null): array`
+
+Load a single entity matching the given criteria.
+
+```php
+[$result, $err] = $client->Card()->load(["id" => "card_id"]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): CardEntity`
+
+Create a new `CardEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## CardListEntity
+
+```php
+$card_list = $client->CardList();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `artist` | ``$STRING`` | No |  |
+| `cmc` | ``$NUMBER`` | No |  |
+| `collector_number` | ``$STRING`` | No |  |
+| `color` | ``$ARRAY`` | No |  |
+| `color_identity` | ``$ARRAY`` | No |  |
+| `data` | ``$ARRAY`` | No |  |
+| `has_more` | ``$BOOLEAN`` | No |  |
+| `id` | ``$STRING`` | No |  |
+| `identifier` | ``$ARRAY`` | Yes |  |
+| `image_uri` | ``$OBJECT`` | No |  |
+| `lang` | ``$STRING`` | No |  |
+| `layout` | ``$STRING`` | No |  |
+| `legality` | ``$OBJECT`` | No |  |
+| `loyalty` | ``$STRING`` | No |  |
+| `mana_cost` | ``$STRING`` | No |  |
+| `name` | ``$STRING`` | No |  |
+| `next_page` | ``$STRING`` | No |  |
+| `object` | ``$STRING`` | No |  |
+| `oracle_id` | ``$STRING`` | No |  |
+| `oracle_text` | ``$STRING`` | No |  |
+| `power` | ``$STRING`` | No |  |
+| `price` | ``$OBJECT`` | No |  |
+| `rarity` | ``$STRING`` | No |  |
+| `released_at` | ``$STRING`` | No |  |
+| `scryfall_uri` | ``$STRING`` | No |  |
+| `set` | ``$STRING`` | No |  |
+| `set_name` | ``$STRING`` | No |  |
+| `total_card` | ``$INTEGER`` | No |  |
+| `toughness` | ``$STRING`` | No |  |
+| `type_line` | ``$STRING`` | No |  |
+| `uri` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `create(array $reqdata, ?array $ctrl = null): array`
+
+Create a new entity with the given data.
+
+```php
+[$result, $err] = $client->CardList()->create([
+  "identifier" => /* `$ARRAY` */,
+]);
+```
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->CardList()->list([]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): CardListEntity`
+
+Create a new `CardListEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## CardSymbolListEntity
+
+```php
+$card_symbol_list = $client->CardSymbolList();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `appears_in_mana_cost` | ``$BOOLEAN`` | No |  |
+| `cmc` | ``$NUMBER`` | No |  |
+| `color` | ``$ARRAY`` | No |  |
+| `english` | ``$STRING`` | No |  |
+| `funny` | ``$BOOLEAN`` | No |  |
+| `loose_variant` | ``$STRING`` | No |  |
+| `object` | ``$STRING`` | No |  |
+| `represents_mana` | ``$BOOLEAN`` | No |  |
+| `svg_uri` | ``$STRING`` | No |  |
+| `symbol` | ``$STRING`` | No |  |
+| `transposable` | ``$BOOLEAN`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->CardSymbolList()->list([]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): CardSymbolListEntity`
+
+Create a new `CardSymbolListEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## CatalogEntity
+
+```php
+$catalog = $client->Catalog();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | ``$ARRAY`` | No |  |
+| `object` | ``$STRING`` | No |  |
+| `total_value` | ``$INTEGER`` | No |  |
+| `uri` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): array`
+
+Load a single entity matching the given criteria.
+
+```php
+[$result, $err] = $client->Catalog()->load(["id" => "catalog_id"]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): CatalogEntity`
+
+Create a new `CatalogEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## ManaCostEntity
+
+```php
+$mana_cost = $client->ManaCost();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `cmc` | ``$NUMBER`` | No |  |
+| `color` | ``$ARRAY`` | No |  |
+| `colorless` | ``$BOOLEAN`` | No |  |
+| `cost` | ``$STRING`` | No |  |
+| `monocolored` | ``$BOOLEAN`` | No |  |
+| `multicolored` | ``$BOOLEAN`` | No |  |
+| `object` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->ManaCost()->list([]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): ManaCostEntity`
+
+Create a new `ManaCostEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## MigrationEntity
+
+```php
+$migration = $client->Migration();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | ``$STRING`` | No |  |
+| `migration_strategy` | ``$STRING`` | No |  |
+| `new_scryfall_id` | ``$STRING`` | No |  |
+| `object` | ``$STRING`` | No |  |
+| `old_scryfall_id` | ``$STRING`` | No |  |
+| `performed_at` | ``$STRING`` | No |  |
+| `uri` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->Migration()->list([]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): MigrationEntity`
+
+Create a new `MigrationEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## RulingEntity
+
+```php
+$ruling = $client->Ruling();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `comment` | ``$STRING`` | No |  |
+| `object` | ``$STRING`` | No |  |
+| `oracle_id` | ``$STRING`` | No |  |
+| `published_at` | ``$STRING`` | No |  |
+| `source` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->Ruling()->list([]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): RulingEntity`
+
+Create a new `RulingEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## SetEntity
+
+```php
+$set = $client->Set();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `card_count` | ``$INTEGER`` | No |  |
+| `code` | ``$STRING`` | No |  |
+| `digital` | ``$BOOLEAN`` | No |  |
+| `icon_svg_uri` | ``$STRING`` | No |  |
+| `id` | ``$STRING`` | No |  |
+| `name` | ``$STRING`` | No |  |
+| `released_at` | ``$STRING`` | No |  |
+| `scryfall_uri` | ``$STRING`` | No |  |
+| `search_uri` | ``$STRING`` | No |  |
+| `set_type` | ``$STRING`` | No |  |
+| `uri` | ``$STRING`` | No |  |
+
+### Operations
+
+#### `list(array $reqmatch, ?array $ctrl = null): array`
+
+List entities matching the given criteria. Returns an array.
+
+```php
+[$results, $err] = $client->Set()->list([]);
+```
+
+#### `load(array $reqmatch, ?array $ctrl = null): array`
+
+Load a single entity matching the given criteria.
+
+```php
+[$result, $err] = $client->Set()->load(["id" => "set_id"]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): SetEntity`
+
+Create a new `SetEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## Features
+
+| Feature | Version | Description |
+| --- | --- | --- |
+| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
+
+
+Features are activated via the `feature` option:
+
+```php
+$client = new ScryfallSDK([
+  "feature" => [
+    "test" => ["active" => true],
+  ],
+]);
+```
+

@@ -1,0 +1,85 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 9
+  metrics: count: path: 15
+  metrics: count: method: 15
+
+  entity: bulk_data: {
+    path: "/bulk-data": {
+      op: list: method: *GET
+    }
+    path: "/bulk-data/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: card: {
+    path: "/cards/named": {
+      action: "named": {}
+      op: list: method: *GET
+    }
+    path: "/cards/random": {
+      action: "random": {}
+      op: list: method: *GET
+    }
+    path: "/cards/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: card_list: {
+    path: "/cards/collection": {
+      op: create: method: *POST
+    }
+    path: "/cards/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: card_symbol_list: {
+    path: "/symbology": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: catalog: {
+    path: "/catalog/{catalog_name}": {
+      rename: param: "catalog_name": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: mana_cost: {
+    path: "/symbology/parse-mana": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: migration: {
+    path: "/migrations": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: ruling: {
+    path: "/cards/{id}/rulings": {
+      rename: param: "id": *"card_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: set: {
+    path: "/sets": {
+      op: list: method: *GET
+    }
+    path: "/sets/{code}": {
+      rename: param: "code": *"id"
+      op: load: method: *GET
+    }
+    path: "/sets/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+}

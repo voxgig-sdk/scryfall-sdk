@@ -1,0 +1,272 @@
+# Entity: card_list
+
+main: kit: entity: card_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "artist"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "cmc"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "collector_number"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "color"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "color_identity"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "has_more"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "identifier"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "image_uri"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "lang"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "layout"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "legality"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "loyalty"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "mana_cost"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "next_page"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "object"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "oracle_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "oracle_text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "power"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "price"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "rarity"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "released_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "scryfall_uri"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "set"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "set_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "total_card"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "toughness"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type_line"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "uri"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "card_list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/cards/collection"
+          parts: [
+            "cards"
+            "collection"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "auto"
+                kind: "query"
+                name: "dir"
+                orig: "dir"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "include_extra"
+                orig: "include_extra"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "name"
+                kind: "query"
+                name: "order"
+                orig: "order"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "c:red pow:3"
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "cards"
+                kind: "query"
+                name: "unique"
+                orig: "unique"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/search"
+          parts: [
+            "cards"
+            "search"
+          ]
+          select: {
+            exist: [
+              "dir"
+              "include_extra"
+              "order"
+              "page"
+              "q"
+              "unique"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

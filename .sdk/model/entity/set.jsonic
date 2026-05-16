@@ -1,0 +1,159 @@
+# Entity: set
+
+main: kit: entity: set: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "card_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "digital"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "icon_svg_uri"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "released_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "scryfall_uri"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "search_uri"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "set_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "uri"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "set"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/sets"
+          parts: [
+            "sets"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "m19"
+                kind: "param"
+                name: "id"
+                orig: "code"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/sets/{code}"
+          parts: [
+            "sets"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              code: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/sets/{id}"
+          parts: [
+            "sets"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

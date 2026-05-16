@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "card_symbol_list": {
+      "CARD_SYMBOL_LIST00": {
+        "appears_in_mana_cost": true,
+        "cmc": 111,
+        "color": [],
+        "english": "s71",
+        "funny": true,
+        "loose_variant": "s73",
+        "object": "s74",
+        "represents_mana": false,
+        "svg_uri": "s76",
+        "symbol": "s77",
+        "transposable": true
+      },
+      "CARD_SYMBOL_LIST01": {
+        "appears_in_mana_cost": true,
+        "cmc": 221,
+        "color": [],
+        "english": "sdf",
+        "funny": true,
+        "loose_variant": "se1",
+        "object": "se2",
+        "represents_mana": false,
+        "svg_uri": "se4",
+        "symbol": "se5",
+        "transposable": true
+      },
+      "CARD_SYMBOL_LIST02": {
+        "appears_in_mana_cost": true,
+        "cmc": 331,
+        "color": [],
+        "english": "s14d",
+        "funny": true,
+        "loose_variant": "s14f",
+        "object": "s150",
+        "represents_mana": false,
+        "svg_uri": "s152",
+        "symbol": "s153",
+        "transposable": true
+      }
+    }
+  },
+  "new": {
+    "card_symbol_list": {
+      "card_symbol_list_ref01": {
+        "appears_in_mana_cost": true,
+        "cmc": 441,
+        "color": [],
+        "english": "s1bb",
+        "funny": true,
+        "loose_variant": "s1bd",
+        "object": "s1be",
+        "represents_mana": false,
+        "svg_uri": "s1c0",
+        "symbol": "s1c1",
+        "transposable": true
+      }
+    }
+  }
+}

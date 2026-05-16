@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "mana_cost": {
+      "MANA_COST00": {
+        "cmc": 70,
+        "color": [],
+        "colorless": true,
+        "cost": "s49",
+        "monocolored": true,
+        "multicolored": false,
+        "object": "s4c"
+      },
+      "MANA_COST01": {
+        "cmc": 140,
+        "color": [],
+        "colorless": true,
+        "cost": "s8f",
+        "monocolored": true,
+        "multicolored": false,
+        "object": "s92"
+      },
+      "MANA_COST02": {
+        "cmc": 210,
+        "color": [],
+        "colorless": true,
+        "cost": "sd5",
+        "monocolored": true,
+        "multicolored": false,
+        "object": "sd8"
+      }
+    }
+  },
+  "new": {
+    "mana_cost": {
+      "mana_cost_ref01": {
+        "cmc": 280,
+        "color": [],
+        "colorless": true,
+        "cost": "s11b",
+        "monocolored": true,
+        "multicolored": false,
+        "object": "s11e"
+      }
+    }
+  }
+}

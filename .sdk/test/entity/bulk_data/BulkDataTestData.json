@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "bulk_data": {
+      "BULK_DATA00": {
+        "content_encoding": "s64",
+        "content_type": "s65",
+        "description": "s66",
+        "download_uri": "s67",
+        "id": "BULK_DATA00",
+        "name": "s69",
+        "object": "s6a",
+        "size": "s6b",
+        "type": "s6c",
+        "updated_at": "s6d"
+      },
+      "BULK_DATA01": {
+        "content_encoding": "sc8",
+        "content_type": "sc9",
+        "description": "sca",
+        "download_uri": "scb",
+        "id": "BULK_DATA01",
+        "name": "scd",
+        "object": "sce",
+        "size": "scf",
+        "type": "sd0",
+        "updated_at": "sd1"
+      },
+      "BULK_DATA02": {
+        "content_encoding": "s12c",
+        "content_type": "s12d",
+        "description": "s12e",
+        "download_uri": "s12f",
+        "id": "BULK_DATA02",
+        "name": "s131",
+        "object": "s132",
+        "size": "s133",
+        "type": "s134",
+        "updated_at": "s135"
+      }
+    }
+  },
+  "new": {
+    "bulk_data": {
+      "bulk_data_ref01": {
+        "content_encoding": "s190",
+        "content_type": "s191",
+        "description": "s192",
+        "download_uri": "s193",
+        "name": "s195",
+        "object": "s196",
+        "size": "s197",
+        "type": "s198",
+        "updated_at": "s199"
+      }
+    }
+  }
+}

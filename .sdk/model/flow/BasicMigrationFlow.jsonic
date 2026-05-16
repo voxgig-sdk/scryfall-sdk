@@ -1,0 +1,22 @@
+# BasicMigrationFlow
+
+main: kit: flow: BasicMigrationFlow:
+{
+  entity: "migration",
+  kind: "basic",
+  name: "BasicMigrationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "migration_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMigrationFlow"
+}

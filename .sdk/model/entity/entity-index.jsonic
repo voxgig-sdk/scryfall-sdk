@@ -1,0 +1,11 @@
+# Entity Models
+
+@"bulk_data.jsonic"
+@"card.jsonic"
+@"card_list.jsonic"
+@"card_symbol_list.jsonic"
+@"catalog.jsonic"
+@"mana_cost.jsonic"
+@"migration.jsonic"
+@"ruling.jsonic"
+@"set.jsonic"

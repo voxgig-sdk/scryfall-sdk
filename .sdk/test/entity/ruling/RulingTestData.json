@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "ruling": {
+      "RULING00": {
+        "comment": "s32",
+        "object": "s33",
+        "oracle_id": "ORACLE01",
+        "published_at": "s35",
+        "source": "s36",
+        "card_id": "CARD01"
+      },
+      "RULING01": {
+        "comment": "s64",
+        "object": "s65",
+        "oracle_id": "ORACLE01",
+        "published_at": "s67",
+        "source": "s68",
+        "card_id": "CARD01"
+      },
+      "RULING02": {
+        "comment": "s96",
+        "object": "s97",
+        "oracle_id": "ORACLE01",
+        "published_at": "s99",
+        "source": "s9a",
+        "card_id": "CARD01"
+      }
+    }
+  },
+  "new": {
+    "ruling": {
+      "ruling_ref01": {
+        "comment": "sc8",
+        "object": "sc9",
+        "oracle_id": "ORACLE01",
+        "published_at": "scb",
+        "source": "scc"
+      }
+    }
+  }
+}

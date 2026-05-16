@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// Scryfall SDK base feature
+
+class ScryfallBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(ScryfallContext $ctx, array $options): void {}
+    public function PostConstruct(ScryfallContext $ctx): void {}
+    public function PostConstructEntity(ScryfallContext $ctx): void {}
+    public function SetData(ScryfallContext $ctx): void {}
+    public function GetData(ScryfallContext $ctx): void {}
+    public function GetMatch(ScryfallContext $ctx): void {}
+    public function SetMatch(ScryfallContext $ctx): void {}
+    public function PrePoint(ScryfallContext $ctx): void {}
+    public function PreSpec(ScryfallContext $ctx): void {}
+    public function PreRequest(ScryfallContext $ctx): void {}
+    public function PreResponse(ScryfallContext $ctx): void {}
+    public function PreResult(ScryfallContext $ctx): void {}
+    public function PreDone(ScryfallContext $ctx): void {}
+    public function PreUnexpected(ScryfallContext $ctx): void {}
+}

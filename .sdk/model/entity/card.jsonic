@@ -1,0 +1,262 @@
+# Entity: card
+
+main: kit: entity: card: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "artist"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "cmc"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "collector_number"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "color"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "color_identity"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image_uri"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "lang"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "layout"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "legality"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "loyalty"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "mana_cost"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "oracle_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "oracle_text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "power"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "price"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "rarity"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "released_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "scryfall_uri"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "set"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "set_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "toughness"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type_line"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "uri"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "card"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "Lightning Bolt"
+                kind: "query"
+                name: "exact"
+                orig: "exact"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "aust com"
+                kind: "query"
+                name: "fuzzy"
+                orig: "fuzzy"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "m19"
+                kind: "query"
+                name: "set"
+                orig: "set"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/named"
+          parts: [
+            "cards"
+            "named"
+          ]
+          select: {
+            "$action": "named"
+            exist: [
+              "exact"
+              "fuzzy"
+              "set"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "q"
+                orig: "q"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/random"
+          parts: [
+            "cards"
+            "random"
+          ]
+          select: {
+            "$action": "random"
+            exist: [
+              "q"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "683a5707-cddb-494d-9b41-51b4584ded69"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/{id}"
+          parts: [
+            "cards"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
