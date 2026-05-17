@@ -5,19 +5,22 @@
         "data": [],
         "object": "s29",
         "total_value": "s2a",
-        "uri": "s2b"
+        "uri": "s2b",
+        "id": "CATALOG00"
       },
       "CATALOG01": {
         "data": [],
         "object": "s51",
         "total_value": "s52",
-        "uri": "s53"
+        "uri": "s53",
+        "id": "CATALOG01"
       },
       "CATALOG02": {
         "data": [],
         "object": "s79",
         "total_value": "s7a",
-        "uri": "s7b"
+        "uri": "s7b",
+        "id": "CATALOG02"
       }
     }
   },

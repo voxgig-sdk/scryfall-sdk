@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/scryfall-sdk/core"
+	"github.com/voxgig-sdk/scryfall-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/scryfall-sdk/go/utility/struct"
 )
 
 type BulkDataEntity struct {

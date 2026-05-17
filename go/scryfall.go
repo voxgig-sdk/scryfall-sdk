@@ -1,10 +1,10 @@
 package voxgigscryfallsdk
 
 import (
-	"github.com/voxgig-sdk/scryfall-sdk/core"
-	"github.com/voxgig-sdk/scryfall-sdk/entity"
-	"github.com/voxgig-sdk/scryfall-sdk/feature"
-	_ "github.com/voxgig-sdk/scryfall-sdk/utility"
+	"github.com/voxgig-sdk/scryfall-sdk/go/core"
+	"github.com/voxgig-sdk/scryfall-sdk/go/entity"
+	"github.com/voxgig-sdk/scryfall-sdk/go/feature"
+	_ "github.com/voxgig-sdk/scryfall-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

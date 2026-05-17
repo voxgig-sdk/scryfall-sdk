@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/scryfall-sdk"
-	"github.com/voxgig-sdk/scryfall-sdk/core"
+	sdk "github.com/voxgig-sdk/scryfall-sdk/go"
+	"github.com/voxgig-sdk/scryfall-sdk/go/core"
 )
 
 func TestManaCostDirect(t *testing.T) {

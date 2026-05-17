@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/scryfall-sdk/core"
+	"github.com/voxgig-sdk/scryfall-sdk/go/core"
 )
 
 type LogFeature struct {

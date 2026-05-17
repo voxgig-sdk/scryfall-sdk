@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/scryfall-sdk/core"
+import "github.com/voxgig-sdk/scryfall-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

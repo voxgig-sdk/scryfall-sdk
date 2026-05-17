@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/scryfall-sdk"
-	"github.com/voxgig-sdk/scryfall-sdk/core"
+	sdk "github.com/voxgig-sdk/scryfall-sdk/go"
+	"github.com/voxgig-sdk/scryfall-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/scryfall-sdk/go/utility/struct"
 )
 
 func TestCardListEntity(t *testing.T) {
