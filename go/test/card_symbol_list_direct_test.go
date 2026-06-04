@@ -93,14 +93,12 @@ func card_symbol_listDirectSetup(mockres any) *card_symbol_listDirectSetupResult
 	env := envOverride(map[string]any{
 		"SCRYFALL_TEST_CARD_SYMBOL_LIST_ENTID": map[string]any{},
 		"SCRYFALL_TEST_LIVE":    "FALSE",
-		"SCRYFALL_APIKEY":       "NONE",
 	})
 
 	live := env["SCRYFALL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["SCRYFALL_APIKEY"],
 		}
 		client := sdk.NewScryfallSDK(mergedOpts)
 

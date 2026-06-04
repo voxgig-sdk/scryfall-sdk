@@ -21,7 +21,22 @@
         "version": "1.0.0",
         "x-logo": {
           "url": "https://scryfall.com/favicon.ico"
-        }
+        },
+        "tagline": "Query Magic: The Gathering cards, sets, rulings, and high-resolution card images over a JSON REST API",
+        "homepage": "https://scryfall.com",
+        "docs_url": "https://scryfall.com/docs/api",
+        "about_md": "[Scryfall](https://scryfall.com) is a community-run search engine and data service for [Magic: The Gathering](https://magic.wizards.com). The Scryfall API exposes the same card, set, and ruling data that powers the Scryfall website over a JSON REST interface at `https://api.scryfall.com`.\n\nThe API is organised around a few core resources: individual cards (with multiple lookup strategies such as by name, set/collector number, or Scryfall ID), set objects, rulings, card symbols and mana costs, plus bulk-data snapshots for downloading the full database as a single file.\n\nCORS is enabled so the API can be called directly from browser code. Scryfall publishes large daily bulk-data files for users who need the full corpus rather than per-card lookups.",
+        "entity_desc": {
+          "bulk_data": "Bulk-data snapshots of the entire Scryfall database (default cards, all cards, rulings, etc.) listed under `/bulk-data`.",
+          "card": "An individual Magic: The Gathering card, retrievable by Scryfall ID, name, set + collector number, or other identifiers under `/cards`.",
+          "card_list": "A paginated list of card objects returned by search and listing endpoints such as `/cards/search`.",
+          "card_symbol_list": "List of card symbols (mana symbols, tap, etc.) used in Magic card text, served from `/symbology`.",
+          "catalog": "Reference catalogues of known values (card names, creature types, keyword abilities, and similar) under `/catalog`.",
+          "mana_cost": "Parsed representation of a mana cost string, including converted mana cost and colours, via `/symbology/parse-mana`.",
+          "migration": "Records of card migrations and merges that change canonical Scryfall IDs over time, listed under `/migrations`.",
+          "set": "A Magic: The Gathering set (expansion, core set, supplemental product, etc.) accessible under `/sets`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -29,7 +44,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "bulk_data": {

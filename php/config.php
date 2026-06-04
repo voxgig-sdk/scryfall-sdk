@@ -20,9 +20,6 @@ class ScryfallConfig
             ],
             "options" => [
                 "base" => "https://api.scryfall.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

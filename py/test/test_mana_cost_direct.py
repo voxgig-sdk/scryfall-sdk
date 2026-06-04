@@ -61,14 +61,12 @@ def _mana_cost_direct_setup(mockres):
     env = runner.env_override({
         "SCRYFALL_TEST_MANA_COST_ENTID": {},
         "SCRYFALL_TEST_LIVE": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     live = env.get("SCRYFALL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("SCRYFALL_APIKEY"),
         }
         client = ScryfallSDK(merged_opts)
         return {

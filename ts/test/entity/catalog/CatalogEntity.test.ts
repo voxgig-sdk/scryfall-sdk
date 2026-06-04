@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'SCRYFALL_TEST_CATALOG_ENTID': idmap,
     'SCRYFALL_TEST_LIVE': 'FALSE',
     'SCRYFALL_TEST_EXPLAIN': 'FALSE',
-    'SCRYFALL_APIKEY': 'NONE',
   })
 
   idmap = env['SCRYFALL_TEST_CATALOG_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new ScryfallSDK(merge([
       {
-        apikey: env.SCRYFALL_APIKEY,
       },
       extra
     ]))

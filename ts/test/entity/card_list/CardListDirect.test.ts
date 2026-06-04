@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'SCRYFALL_TEST_CARD_LIST_ENTID': {},
     'SCRYFALL_TEST_LIVE': 'FALSE',
-    'SCRYFALL_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.SCRYFALL_TEST_LIVE
 
   if (live) {
     const client = new ScryfallSDK({
-      apikey: env.SCRYFALL_APIKEY,
     })
 
     let idmap: any = env['SCRYFALL_TEST_CARD_LIST_ENTID']
