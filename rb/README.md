@@ -10,13 +10,13 @@ The Ruby SDK for the Scryfall API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install scryfall-sdk
+gem install voxgig-sdk-scryfall
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "scryfall-sdk"
+gem "voxgig-sdk-scryfall"
 ```
 
 Then run:

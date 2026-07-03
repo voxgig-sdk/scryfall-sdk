@@ -10,7 +10,7 @@ The Lua SDK for the Scryfall API — an entity-oriented client using Lua convent
 
 ## Install
 ```bash
-luarocks install scryfall-sdk
+luarocks install voxgig-sdk-scryfall
 ```
 
 If the module is not yet published, add the source directory to

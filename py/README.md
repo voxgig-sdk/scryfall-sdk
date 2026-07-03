@@ -10,7 +10,7 @@ The Python SDK for the Scryfall API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install scryfall-sdk
+pip install voxgig-sdk-scryfall
 ```
 
 Or install from source:

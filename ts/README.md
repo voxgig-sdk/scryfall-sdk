@@ -10,7 +10,7 @@ The TypeScript SDK for the Scryfall API — a type-safe, entity-oriented client 
 
 ## Install
 ```bash
-npm install scryfall
+npm install @voxgig-sdk/scryfall
 ```
 ## Tutorial: your first API call
 

@@ -10,7 +10,7 @@ The PHP SDK for the Scryfall API — an entity-oriented client using PHP convent
 
 ## Install
 ```bash
-composer require voxgig/scryfall-sdk
+composer require voxgig-sdk/scryfall
 ```
 
 
