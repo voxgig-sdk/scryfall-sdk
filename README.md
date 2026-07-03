@@ -1,16 +1,8 @@
 # Scryfall SDK
 
-Query Magic: The Gathering cards, sets, rulings, and high-resolution card images over a JSON REST API
+Scryfall API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Scryfall API
-
-[Scryfall](https://scryfall.com) is a community-run search engine and data service for [Magic: The Gathering](https://magic.wizards.com). The Scryfall API exposes the same card, set, and ruling data that powers the Scryfall website over a JSON REST interface at `https://api.scryfall.com`.
-
-The API is organised around a few core resources: individual cards (with multiple lookup strategies such as by name, set/collector number, or Scryfall ID), set objects, rulings, card symbols and mana costs, plus bulk-data snapshots for downloading the full database as a single file.
-
-CORS is enabled so the API can be called directly from browser code. Scryfall publishes large daily bulk-data files for users who need the full corpus rather than per-card lookups.
 
 ## Try it
 
@@ -44,29 +36,31 @@ gem install scryfall-sdk
 luarocks install scryfall-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { ScryfallSDK } from 'scryfall'
 
-const client = new ScryfallSDK({})
+const client = new ScryfallSDK({
+  apikey: process.env.SCRYFALL_APIKEY,
+})
 
 // List all bulkdatas
 const bulkdatas = await client.BulkData().list()
+console.log(bulkdatas.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -96,15 +90,15 @@ The API exposes 9 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **BulkData** | Bulk-data snapshots of the entire Scryfall database (default cards, all cards, rulings, etc.) listed under `/bulk-data`. | `/bulk-data` |
-| **Card** | An individual Magic: The Gathering card, retrievable by Scryfall ID, name, set + collector number, or other identifiers under `/cards`. | `/cards/named` |
-| **CardList** | A paginated list of card objects returned by search and listing endpoints such as `/cards/search`. | `/cards/collection` |
-| **CardSymbolList** | List of card symbols (mana symbols, tap, etc.) used in Magic card text, served from `/symbology`. | `/symbology` |
-| **Catalog** | Reference catalogues of known values (card names, creature types, keyword abilities, and similar) under `/catalog`. | `/catalog/{catalog_name}` |
-| **ManaCost** | Parsed representation of a mana cost string, including converted mana cost and colours, via `/symbology/parse-mana`. | `/symbology/parse-mana` |
-| **Migration** | Records of card migrations and merges that change canonical Scryfall IDs over time, listed under `/migrations`. | `/migrations` |
+| **BulkData** |  | `/bulk-data` |
+| **Card** |  | `/cards/named` |
+| **CardList** |  | `/cards/collection` |
+| **CardSymbolList** |  | `/symbology` |
+| **Catalog** |  | `/catalog/{catalog_name}` |
+| **ManaCost** |  | `/symbology/parse-mana` |
+| **Migration** |  | `/migrations` |
 | **Ruling** |  | `/cards/{id}/rulings` |
-| **Set** | A Magic: The Gathering set (expansion, core set, supplemental product, etc.) accessible under `/sets`. | `/sets` |
+| **Set** |  | `/sets` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,17 +108,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from scryfall_sdk import ScryfallSDK
 
-client = ScryfallSDK({})
+client = ScryfallSDK({
+    "apikey": os.environ.get("SCRYFALL_APIKEY"),
+})
 
 # List all bulkdatas
-bulkdatas, err = client.BulkData(None).list(None, None)
+bulkdatas, err = client.BulkData().list()
+print(bulkdatas)
 
 # Load a specific bulkdata
-bulkdata, err = client.BulkData(None).load(
-    {"id": "example_id"}, None
-)
+bulkdata, err = client.BulkData().load({"id": "example_id"})
+print(bulkdata)
 ```
 
 ### PHP
@@ -133,15 +130,17 @@ bulkdata, err = client.BulkData(None).load(
 <?php
 require_once 'scryfall_sdk.php';
 
-$client = new ScryfallSDK([]);
+$client = new ScryfallSDK([
+    "apikey" => getenv("SCRYFALL_APIKEY"),
+]);
 
 // List all bulkdatas
-[$bulkdatas, $err] = $client->BulkData(null)->list(null, null);
+[$bulkdatas, $err] = $client->BulkData()->list();
+print_r($bulkdatas);
 
 // Load a specific bulkdata
-[$bulkdata, $err] = $client->BulkData(null)->load(
-    ["id" => "example_id"], null
-);
+[$bulkdata, $err] = $client->BulkData()->load(["id" => "example_id"]);
+print_r($bulkdata);
 ```
 
 ### Golang
@@ -149,10 +148,13 @@ $client = new ScryfallSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/scryfall-sdk/go"
 
-client := sdk.NewScryfallSDK(map[string]any{})
+client := sdk.NewScryfallSDK(map[string]any{
+    "apikey": os.Getenv("SCRYFALL_APIKEY"),
+})
 
 // List all bulkdatas
 bulkdatas, err := client.BulkData(nil).List(nil, nil)
+fmt.Println(bulkdatas)
 ```
 
 ### Ruby
@@ -160,15 +162,17 @@ bulkdatas, err := client.BulkData(nil).List(nil, nil)
 ```ruby
 require_relative "Scryfall_sdk"
 
-client = ScryfallSDK.new({})
+client = ScryfallSDK.new({
+  "apikey" => ENV["SCRYFALL_APIKEY"],
+})
 
 # List all bulkdatas
-bulkdatas, err = client.BulkData(nil).list(nil, nil)
+bulkdatas, err = client.BulkData().list
+puts bulkdatas
 
 # Load a specific bulkdata
-bulkdata, err = client.BulkData(nil).load(
-  { "id" => "example_id" }, nil
-)
+bulkdata, err = client.BulkData().load({ "id" => "example_id" })
+puts bulkdata
 ```
 
 ### Lua
@@ -176,15 +180,17 @@ bulkdata, err = client.BulkData(nil).load(
 ```lua
 local sdk = require("scryfall_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("SCRYFALL_APIKEY"),
+})
 
 -- List all bulkdatas
-local bulkdatas, err = client:BulkData(nil):list(nil, nil)
+local bulkdatas, err = client:BulkData():list()
+print(bulkdatas)
 
 -- Load a specific bulkdata
-local bulkdata, err = client:BulkData(nil):load(
-  { id = "example_id" }, nil
-)
+local bulkdata, err = client:BulkData():load({ id = "example_id" })
+print(bulkdata)
 ```
 
 ## Unit testing in offline mode
@@ -203,25 +209,21 @@ const result = await client.BulkData().load({ id: 'test01' })
 ### Python
 
 ```python
-client = ScryfallSDK.test(None, None)
-result, err = client.BulkData(None).load(
-    {"id": "test01"}, None
-)
+client = ScryfallSDK.test()
+result, err = client.BulkData().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = ScryfallSDK::test(null, null);
-[$result, $err] = $client->BulkData(null)->load(
-    ["id" => "test01"], null
-);
+$client = ScryfallSDK::test();
+[$result, $err] = $client->BulkData()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.BulkData(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -230,19 +232,15 @@ result, err := client.BulkData(nil).Load(
 ### Ruby
 
 ```ruby
-client = ScryfallSDK.test(nil, nil)
-result, err = client.BulkData(nil).load(
-  { "id" => "test01" }, nil
-)
+client = ScryfallSDK.test
+result, err = client.BulkData().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:BulkData(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:BulkData():load({ id = "test01" })
 ```
 
 ## How it works
@@ -346,11 +344,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Scryfall API
-
-- Upstream: [https://scryfall.com](https://scryfall.com)
-- API docs: [https://scryfall.com/docs/api](https://scryfall.com/docs/api)
 
 ---
 

@@ -135,6 +135,7 @@ func bulk_dataBasicSetup(extra map[string]any) *entityTestSetup {
 		"SCRYFALL_TEST_BULK_DATA_ENTID": idmap,
 		"SCRYFALL_TEST_LIVE":      "FALSE",
 		"SCRYFALL_TEST_EXPLAIN":   "FALSE",
+		"SCRYFALL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["SCRYFALL_TEST_BULK_DATA_ENTID"])
@@ -145,6 +146,7 @@ func bulk_dataBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["SCRYFALL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["SCRYFALL_APIKEY"],
 			},
 			extra,
 		})

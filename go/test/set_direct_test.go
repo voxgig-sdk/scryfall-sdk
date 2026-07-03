@@ -175,12 +175,14 @@ func setDirectSetup(mockres any) *setDirectSetupResult {
 	env := envOverride(map[string]any{
 		"SCRYFALL_TEST_SET_ENTID": map[string]any{},
 		"SCRYFALL_TEST_LIVE":    "FALSE",
+		"SCRYFALL_APIKEY":       "NONE",
 	})
 
 	live := env["SCRYFALL_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["SCRYFALL_APIKEY"],
 		}
 		client := sdk.NewScryfallSDK(mergedOpts)
 

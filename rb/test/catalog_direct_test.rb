@@ -71,12 +71,14 @@ def catalog_direct_setup(mockres)
   env = Runner.env_override({
     "SCRYFALL_TEST_CATALOG_ENTID" => {},
     "SCRYFALL_TEST_LIVE" => "FALSE",
+    "SCRYFALL_APIKEY" => "NONE",
   })
 
   live = env["SCRYFALL_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["SCRYFALL_APIKEY"],
     }
     client = ScryfallSDK.new(merged_opts)
     return {

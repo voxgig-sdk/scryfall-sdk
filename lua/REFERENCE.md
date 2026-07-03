@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -141,7 +141,7 @@ local bulk_data = client:BulkData(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:BulkData(nil):list(nil, nil)
+local results, err = client:BulkData():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -149,7 +149,7 @@ local results, err = client:BulkData(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:BulkData(nil):load({ id = "bulk_data_id" }, nil)
+local result, err = client:BulkData():load({ id = "bulk_data_id" })
 ```
 
 ### Common Methods
@@ -225,7 +225,7 @@ local card = client:Card(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Card(nil):list(nil, nil)
+local results, err = client:Card():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -233,7 +233,7 @@ local results, err = client:Card(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Card(nil):load({ id = "card_id" }, nil)
+local result, err = client:Card():load({ id = "card_id" })
 ```
 
 ### Common Methods
@@ -315,9 +315,9 @@ local card_list = client:CardList(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:CardList(nil):create({
+local result, err = client:CardList():create({
   identifier = --[[ `$ARRAY` ]],
-}, nil)
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -325,7 +325,7 @@ local result, err = client:CardList(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CardList(nil):list(nil, nil)
+local results, err = client:CardList():list()
 ```
 
 ### Common Methods
@@ -387,7 +387,7 @@ local card_symbol_list = client:CardSymbolList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CardSymbolList(nil):list(nil, nil)
+local results, err = client:CardSymbolList():list()
 ```
 
 ### Common Methods
@@ -442,7 +442,7 @@ local catalog = client:Catalog(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Catalog(nil):load({ id = "catalog_id" }, nil)
+local result, err = client:Catalog():load({ id = "catalog_id" })
 ```
 
 ### Common Methods
@@ -500,7 +500,7 @@ local mana_cost = client:ManaCost(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ManaCost(nil):list(nil, nil)
+local results, err = client:ManaCost():list()
 ```
 
 ### Common Methods
@@ -558,7 +558,7 @@ local migration = client:Migration(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Migration(nil):list(nil, nil)
+local results, err = client:Migration():list()
 ```
 
 ### Common Methods
@@ -614,7 +614,7 @@ local ruling = client:Ruling(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Ruling(nil):list(nil, nil)
+local results, err = client:Ruling():list()
 ```
 
 ### Common Methods
@@ -676,7 +676,7 @@ local set = client:Set(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Set(nil):list(nil, nil)
+local results, err = client:Set():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -684,7 +684,7 @@ local results, err = client:Set(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Set(nil):load({ id = "set_id" }, nil)
+local result, err = client:Set():load({ id = "set_id" })
 ```
 
 ### Common Methods

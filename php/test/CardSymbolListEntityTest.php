@@ -86,6 +86,7 @@ function card_symbol_list_basic_setup($extra)
         "SCRYFALL_TEST_CARD_SYMBOL_LIST_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
+        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function card_symbol_list_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);

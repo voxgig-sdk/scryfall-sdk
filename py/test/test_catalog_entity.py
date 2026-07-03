@@ -91,6 +91,7 @@ def _catalog_basic_setup(extra):
         "SCRYFALL_TEST_CATALOG_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
+        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _catalog_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

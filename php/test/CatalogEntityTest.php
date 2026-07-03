@@ -85,6 +85,7 @@ function catalog_basic_setup($extra)
         "SCRYFALL_TEST_CATALOG_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
+        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function catalog_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);
