@@ -43,8 +43,7 @@ class MigrationEntityTest < Minitest::Test
     migration_ref01_ent = client.Migration(nil)
     migration_ref01_match = {}
 
-    migration_ref01_list_result, err = migration_ref01_ent.list(migration_ref01_match, nil)
-    assert_nil err
+    migration_ref01_list_result = migration_ref01_ent.list(migration_ref01_match, nil)
     assert migration_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def migration_basic_setup(extra)
     "SCRYFALL_TEST_MIGRATION_ENTID" => idmap,
     "SCRYFALL_TEST_LIVE" => "FALSE",
     "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-    "SCRYFALL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def migration_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SCRYFALL_APIKEY"],
       },
       extra || {},
     ])

@@ -45,8 +45,7 @@ class RulingEntityTest < Minitest::Test
       "card_id" => setup[:idmap]["card01"],
     }
 
-    ruling_ref01_list_result, err = ruling_ref01_ent.list(ruling_ref01_match, nil)
-    assert_nil err
+    ruling_ref01_list_result = ruling_ref01_ent.list(ruling_ref01_match, nil)
     assert ruling_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def ruling_basic_setup(extra)
     "SCRYFALL_TEST_RULING_ENTID" => idmap,
     "SCRYFALL_TEST_LIVE" => "FALSE",
     "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-    "SCRYFALL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def ruling_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SCRYFALL_APIKEY"],
       },
       extra || {},
     ])

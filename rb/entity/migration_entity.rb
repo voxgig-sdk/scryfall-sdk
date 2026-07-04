@@ -45,6 +45,7 @@ class MigrationEntity
     end
   end
 
+  # @return [Migration, Hash] the current Migration data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class MigrationEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Migration fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class MigrationEntity
   
 
   
+  # List Migration items matching the given filter.
+  #
+  # @param reqmatch [MigrationListMatch, Hash, nil] match filter (any subset of Migration fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Migration>, Array] the matching Migration items; raises ScryfallError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -9,9 +9,12 @@ The TypeScript SDK for the Scryfall API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/scryfall
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/scryfall-sdk/releases](https://github.com/voxgig-sdk/scryfall-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ScryfallSDK } from 'scryfall'
+import { ScryfallSDK } from '@voxgig-sdk/scryfall'
 
-const client = new ScryfallSDK({
-  apikey: process.env.SCRYFALL_APIKEY,
-})
+const client = new ScryfallSDK()
 ```
 
 ### 2. List bulkdatas
 
 ```ts
-const result = await client.BulkData().list()
+const result = await client.bulkdata.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a bulkdata
 
 ```ts
-const result = await client.BulkData().load({ id: 'example_id' })
+const result = await client.bulkdata.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = ScryfallSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.bulkdata.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new ScryfallSDK({ apikey: '...' })
+const client = new ScryfallSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.bulkdata
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new ScryfallSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -146,7 +146,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SCRYFALL_TEST_LIVE=TRUE
-SCRYFALL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new ScryfallSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new ScryfallSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -468,7 +465,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `const bulk_data = client.BulkData()`
+Create an instance: `const bulk_data = client.bulk_data`
 
 #### Operations
 
@@ -495,19 +492,19 @@ Create an instance: `const bulk_data = client.BulkData()`
 #### Example: Load
 
 ```ts
-const bulk_data = await client.BulkData().load({ id: 'bulk_data_id' })
+const bulk_data = await client.bulk_data.load({ id: 'bulk_data_id' })
 ```
 
 #### Example: List
 
 ```ts
-const bulk_datas = await client.BulkData().list()
+const bulk_datas = await client.bulk_data.list()
 ```
 
 
 ### Card
 
-Create an instance: `const card = client.Card()`
+Create an instance: `const card = client.card`
 
 #### Operations
 
@@ -549,19 +546,19 @@ Create an instance: `const card = client.Card()`
 #### Example: Load
 
 ```ts
-const card = await client.Card().load({ id: 'card_id' })
+const card = await client.card.load({ id: 'card_id' })
 ```
 
 #### Example: List
 
 ```ts
-const cards = await client.Card().list()
+const cards = await client.card.list()
 ```
 
 
 ### CardList
 
-Create an instance: `const card_list = client.CardList()`
+Create an instance: `const card_list = client.card_list`
 
 #### Operations
 
@@ -609,13 +606,13 @@ Create an instance: `const card_list = client.CardList()`
 #### Example: List
 
 ```ts
-const card_lists = await client.CardList().list()
+const card_lists = await client.card_list.list()
 ```
 
 #### Example: Create
 
 ```ts
-const card_list = await client.CardList().create({
+const card_list = await client.card_list.create({
   identifier: /* `$ARRAY` */,
 })
 ```
@@ -623,7 +620,7 @@ const card_list = await client.CardList().create({
 
 ### CardSymbolList
 
-Create an instance: `const card_symbol_list = client.CardSymbolList()`
+Create an instance: `const card_symbol_list = client.card_symbol_list`
 
 #### Operations
 
@@ -650,13 +647,13 @@ Create an instance: `const card_symbol_list = client.CardSymbolList()`
 #### Example: List
 
 ```ts
-const card_symbol_lists = await client.CardSymbolList().list()
+const card_symbol_lists = await client.card_symbol_list.list()
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.Catalog()`
+Create an instance: `const catalog = client.catalog`
 
 #### Operations
 
@@ -676,13 +673,13 @@ Create an instance: `const catalog = client.Catalog()`
 #### Example: Load
 
 ```ts
-const catalog = await client.Catalog().load({ id: 'catalog_id' })
+const catalog = await client.catalog.load({ id: 'catalog_id' })
 ```
 
 
 ### ManaCost
 
-Create an instance: `const mana_cost = client.ManaCost()`
+Create an instance: `const mana_cost = client.mana_cost`
 
 #### Operations
 
@@ -705,13 +702,13 @@ Create an instance: `const mana_cost = client.ManaCost()`
 #### Example: List
 
 ```ts
-const mana_costs = await client.ManaCost().list()
+const mana_costs = await client.mana_cost.list()
 ```
 
 
 ### Migration
 
-Create an instance: `const migration = client.Migration()`
+Create an instance: `const migration = client.migration`
 
 #### Operations
 
@@ -734,13 +731,13 @@ Create an instance: `const migration = client.Migration()`
 #### Example: List
 
 ```ts
-const migrations = await client.Migration().list()
+const migrations = await client.migration.list()
 ```
 
 
 ### Ruling
 
-Create an instance: `const ruling = client.Ruling()`
+Create an instance: `const ruling = client.ruling`
 
 #### Operations
 
@@ -761,13 +758,13 @@ Create an instance: `const ruling = client.Ruling()`
 #### Example: List
 
 ```ts
-const rulings = await client.Ruling().list()
+const rulings = await client.ruling.list()
 ```
 
 
 ### Set
 
-Create an instance: `const set = client.Set()`
+Create an instance: `const set = client.set`
 
 #### Operations
 
@@ -795,13 +792,13 @@ Create an instance: `const set = client.Set()`
 #### Example: Load
 
 ```ts
-const set = await client.Set().load({ id: 'set_id' })
+const set = await client.set.load({ id: 'set_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sets = await client.Set().list()
+const sets = await client.set.list()
 ```
 
 
@@ -862,7 +859,7 @@ scryfall/
 Import the SDK from the package root:
 
 ```ts
-import { ScryfallSDK } from 'scryfall'
+import { ScryfallSDK } from '@voxgig-sdk/scryfall'
 ```
 
 ### Entity state
@@ -872,11 +869,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const bulkdata = client.bulkdata
+await bulkdata.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// bulkdata.data() now returns the loaded bulkdata data
+// bulkdata.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

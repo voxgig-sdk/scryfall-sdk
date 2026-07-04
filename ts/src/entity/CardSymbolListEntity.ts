@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CardSymbolList,
+  CardSymbolListListMatch,
+} from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class CardSymbolListEntity extends ScryfallEntityBase {
+class CardSymbolListEntity extends ScryfallEntityBase<CardSymbolList> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CardSymbolListEntity extends ScryfallEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CardSymbolListListMatch, ctrl?: Control): Promise<CardSymbolList[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CardSymbolListEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CardSymbolList[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

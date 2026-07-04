@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -116,7 +115,7 @@ same parameters as `direct()`.
 ## BulkDataEntity
 
 ```lua
-local bulk_data = client:BulkData(nil)
+local bulk_data = client:bulk_data(nil)
 ```
 
 ### Fields
@@ -141,7 +140,7 @@ local bulk_data = client:BulkData(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:BulkData():list()
+local results, err = client:bulk_data():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -149,7 +148,7 @@ local results, err = client:BulkData():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:BulkData():load({ id = "bulk_data_id" })
+local result, err = client:bulk_data():load({ id = "bulk_data_id" })
 ```
 
 ### Common Methods
@@ -185,7 +184,7 @@ Return the entity name.
 ## CardEntity
 
 ```lua
-local card = client:Card(nil)
+local card = client:card(nil)
 ```
 
 ### Fields
@@ -225,7 +224,7 @@ local card = client:Card(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Card():list()
+local results, err = client:card():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -233,7 +232,7 @@ local results, err = client:Card():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Card():load({ id = "card_id" })
+local result, err = client:card():load({ id = "card_id" })
 ```
 
 ### Common Methods
@@ -269,7 +268,7 @@ Return the entity name.
 ## CardListEntity
 
 ```lua
-local card_list = client:CardList(nil)
+local card_list = client:card_list(nil)
 ```
 
 ### Fields
@@ -315,7 +314,7 @@ local card_list = client:CardList(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:CardList():create({
+local result, err = client:card_list():create({
   identifier = --[[ `$ARRAY` ]],
 })
 ```
@@ -325,7 +324,7 @@ local result, err = client:CardList():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CardList():list()
+local results, err = client:card_list():list()
 ```
 
 ### Common Methods
@@ -361,7 +360,7 @@ Return the entity name.
 ## CardSymbolListEntity
 
 ```lua
-local card_symbol_list = client:CardSymbolList(nil)
+local card_symbol_list = client:card_symbol_list(nil)
 ```
 
 ### Fields
@@ -387,7 +386,7 @@ local card_symbol_list = client:CardSymbolList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CardSymbolList():list()
+local results, err = client:card_symbol_list():list()
 ```
 
 ### Common Methods
@@ -423,7 +422,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```lua
-local catalog = client:Catalog(nil)
+local catalog = client:catalog(nil)
 ```
 
 ### Fields
@@ -442,7 +441,7 @@ local catalog = client:Catalog(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Catalog():load({ id = "catalog_id" })
+local result, err = client:catalog():load({ id = "catalog_id" })
 ```
 
 ### Common Methods
@@ -478,7 +477,7 @@ Return the entity name.
 ## ManaCostEntity
 
 ```lua
-local mana_cost = client:ManaCost(nil)
+local mana_cost = client:mana_cost(nil)
 ```
 
 ### Fields
@@ -500,7 +499,7 @@ local mana_cost = client:ManaCost(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ManaCost():list()
+local results, err = client:mana_cost():list()
 ```
 
 ### Common Methods
@@ -536,7 +535,7 @@ Return the entity name.
 ## MigrationEntity
 
 ```lua
-local migration = client:Migration(nil)
+local migration = client:migration(nil)
 ```
 
 ### Fields
@@ -558,7 +557,7 @@ local migration = client:Migration(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Migration():list()
+local results, err = client:migration():list()
 ```
 
 ### Common Methods
@@ -594,7 +593,7 @@ Return the entity name.
 ## RulingEntity
 
 ```lua
-local ruling = client:Ruling(nil)
+local ruling = client:ruling(nil)
 ```
 
 ### Fields
@@ -614,7 +613,7 @@ local ruling = client:Ruling(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Ruling():list()
+local results, err = client:ruling():list()
 ```
 
 ### Common Methods
@@ -650,7 +649,7 @@ Return the entity name.
 ## SetEntity
 
 ```lua
-local set = client:Set(nil)
+local set = client:set(nil)
 ```
 
 ### Fields
@@ -676,7 +675,7 @@ local set = client:Set(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Set():list()
+local results, err = client:set():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -684,7 +683,7 @@ local results, err = client:Set():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Set():load({ id = "set_id" })
+local result, err = client:set():load({ id = "set_id" })
 ```
 
 ### Common Methods

@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  BulkData,
+  BulkDataLoadMatch,
+  BulkDataListMatch,
+} from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class BulkDataEntity extends ScryfallEntityBase {
+class BulkDataEntity extends ScryfallEntityBase<BulkData> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class BulkDataEntity extends ScryfallEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: BulkDataLoadMatch, ctrl?: Control): Promise<BulkData> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class BulkDataEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<BulkData> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: BulkDataListMatch, ctrl?: Control): Promise<BulkData[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class BulkDataEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<BulkData[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -50,8 +50,7 @@ class MigrationEntityTest extends TestCase
         $migration_ref01_ent = $client->Migration(null);
         $migration_ref01_match = [];
 
-        [$migration_ref01_list_result, $err] = $migration_ref01_ent->list($migration_ref01_match, null);
-        $this->assertNull($err);
+        $migration_ref01_list_result = $migration_ref01_ent->list($migration_ref01_match, null);
         $this->assertIsArray($migration_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function migration_basic_setup($extra)
         "SCRYFALL_TEST_MIGRATION_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function migration_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);

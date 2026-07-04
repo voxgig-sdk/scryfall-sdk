@@ -245,46 +245,73 @@ func (sdk *ScryfallSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// BulkData returns a BulkData entity bound to this client.
+// Idiomatic usage: client.BulkData(nil).List(nil, nil) or
+// client.BulkData(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) BulkData(data map[string]any) ScryfallEntity {
 	return NewBulkDataEntityFunc(sdk, data)
 }
 
 
+// Card returns a Card entity bound to this client.
+// Idiomatic usage: client.Card(nil).List(nil, nil) or
+// client.Card(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) Card(data map[string]any) ScryfallEntity {
 	return NewCardEntityFunc(sdk, data)
 }
 
 
+// CardList returns a CardList entity bound to this client.
+// Idiomatic usage: client.CardList(nil).List(nil, nil) or
+// client.CardList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) CardList(data map[string]any) ScryfallEntity {
 	return NewCardListEntityFunc(sdk, data)
 }
 
 
+// CardSymbolList returns a CardSymbolList entity bound to this client.
+// Idiomatic usage: client.CardSymbolList(nil).List(nil, nil) or
+// client.CardSymbolList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) CardSymbolList(data map[string]any) ScryfallEntity {
 	return NewCardSymbolListEntityFunc(sdk, data)
 }
 
 
+// Catalog returns a Catalog entity bound to this client.
+// Idiomatic usage: client.Catalog(nil).List(nil, nil) or
+// client.Catalog(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) Catalog(data map[string]any) ScryfallEntity {
 	return NewCatalogEntityFunc(sdk, data)
 }
 
 
+// ManaCost returns a ManaCost entity bound to this client.
+// Idiomatic usage: client.ManaCost(nil).List(nil, nil) or
+// client.ManaCost(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) ManaCost(data map[string]any) ScryfallEntity {
 	return NewManaCostEntityFunc(sdk, data)
 }
 
 
+// Migration returns a Migration entity bound to this client.
+// Idiomatic usage: client.Migration(nil).List(nil, nil) or
+// client.Migration(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) Migration(data map[string]any) ScryfallEntity {
 	return NewMigrationEntityFunc(sdk, data)
 }
 
 
+// Ruling returns a Ruling entity bound to this client.
+// Idiomatic usage: client.Ruling(nil).List(nil, nil) or
+// client.Ruling(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) Ruling(data map[string]any) ScryfallEntity {
 	return NewRulingEntityFunc(sdk, data)
 }
 
 
+// Set returns a Set entity bound to this client.
+// Idiomatic usage: client.Set(nil).List(nil, nil) or
+// client.Set(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *ScryfallSDK) Set(data map[string]any) ScryfallEntity {
 	return NewSetEntityFunc(sdk, data)
 }

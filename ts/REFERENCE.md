@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -206,7 +205,7 @@ Alias for `ScryfallSDK.test()`.
 ## BulkDataEntity
 
 ```ts
-const bulk_data = client.BulkData()
+const bulk_data = client.bulk_data
 ```
 
 ### Fields
@@ -231,7 +230,7 @@ const bulk_data = client.BulkData()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.BulkData().list()
+const results = await client.bulk_data.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -239,7 +238,7 @@ const results = await client.BulkData().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.BulkData().load({ id: 'bulk_data_id' })
+const result = await client.bulk_data.load({ id: 'bulk_data_id' })
 ```
 
 ### Common Methods
@@ -273,7 +272,7 @@ Return a copy of the entity options.
 ## CardEntity
 
 ```ts
-const card = client.Card()
+const card = client.card
 ```
 
 ### Fields
@@ -313,7 +312,7 @@ const card = client.Card()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Card().list()
+const results = await client.card.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -321,7 +320,7 @@ const results = await client.Card().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Card().load({ id: 'card_id' })
+const result = await client.card.load({ id: 'card_id' })
 ```
 
 ### Common Methods
@@ -355,7 +354,7 @@ Return a copy of the entity options.
 ## CardListEntity
 
 ```ts
-const card_list = client.CardList()
+const card_list = client.card_list
 ```
 
 ### Fields
@@ -401,7 +400,7 @@ const card_list = client.CardList()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.CardList().create({
+const result = await client.card_list.create({
   identifier: /* `$ARRAY` */,
 })
 ```
@@ -411,7 +410,7 @@ const result = await client.CardList().create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CardList().list()
+const results = await client.card_list.list()
 ```
 
 ### Common Methods
@@ -445,7 +444,7 @@ Return a copy of the entity options.
 ## CardSymbolListEntity
 
 ```ts
-const card_symbol_list = client.CardSymbolList()
+const card_symbol_list = client.card_symbol_list
 ```
 
 ### Fields
@@ -471,7 +470,7 @@ const card_symbol_list = client.CardSymbolList()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CardSymbolList().list()
+const results = await client.card_symbol_list.list()
 ```
 
 ### Common Methods
@@ -505,7 +504,7 @@ Return a copy of the entity options.
 ## CatalogEntity
 
 ```ts
-const catalog = client.Catalog()
+const catalog = client.catalog
 ```
 
 ### Fields
@@ -524,7 +523,7 @@ const catalog = client.Catalog()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Catalog().load({ id: 'catalog_id' })
+const result = await client.catalog.load({ id: 'catalog_id' })
 ```
 
 ### Common Methods
@@ -558,7 +557,7 @@ Return a copy of the entity options.
 ## ManaCostEntity
 
 ```ts
-const mana_cost = client.ManaCost()
+const mana_cost = client.mana_cost
 ```
 
 ### Fields
@@ -580,7 +579,7 @@ const mana_cost = client.ManaCost()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ManaCost().list()
+const results = await client.mana_cost.list()
 ```
 
 ### Common Methods
@@ -614,7 +613,7 @@ Return a copy of the entity options.
 ## MigrationEntity
 
 ```ts
-const migration = client.Migration()
+const migration = client.migration
 ```
 
 ### Fields
@@ -636,7 +635,7 @@ const migration = client.Migration()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Migration().list()
+const results = await client.migration.list()
 ```
 
 ### Common Methods
@@ -670,7 +669,7 @@ Return a copy of the entity options.
 ## RulingEntity
 
 ```ts
-const ruling = client.Ruling()
+const ruling = client.ruling
 ```
 
 ### Fields
@@ -690,7 +689,7 @@ const ruling = client.Ruling()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Ruling().list()
+const results = await client.ruling.list()
 ```
 
 ### Common Methods
@@ -724,7 +723,7 @@ Return a copy of the entity options.
 ## SetEntity
 
 ```ts
-const set = client.Set()
+const set = client.set
 ```
 
 ### Fields
@@ -750,7 +749,7 @@ const set = client.Set()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Set().list()
+const results = await client.set.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -758,7 +757,7 @@ const results = await client.Set().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Set().load({ id: 'set_id' })
+const result = await client.set.load({ id: 'set_id' })
 ```
 
 ### Common Methods

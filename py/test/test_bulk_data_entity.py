@@ -50,16 +50,14 @@ class TestBulkDataEntity:
         bulk_data_ref01_ent = client.BulkData(None)
         bulk_data_ref01_match = {}
 
-        bulk_data_ref01_list_result, err = bulk_data_ref01_ent.list(bulk_data_ref01_match, None)
-        assert err is None
+        bulk_data_ref01_list_result = bulk_data_ref01_ent.list(bulk_data_ref01_match, None)
         assert isinstance(bulk_data_ref01_list_result, list)
 
         # LOAD
         bulk_data_ref01_match_dt0 = {
             "id": bulk_data_ref01_data["id"],
         }
-        bulk_data_ref01_data_dt0_loaded, err = bulk_data_ref01_ent.load(bulk_data_ref01_match_dt0, None)
-        assert err is None
+        bulk_data_ref01_data_dt0_loaded = bulk_data_ref01_ent.load(bulk_data_ref01_match_dt0, None)
         bulk_data_ref01_data_dt0_load_result = helpers.to_map(bulk_data_ref01_data_dt0_loaded)
         assert bulk_data_ref01_data_dt0_load_result is not None
         assert bulk_data_ref01_data_dt0_load_result["id"] == bulk_data_ref01_data["id"]
@@ -102,7 +100,6 @@ def _bulk_data_basic_setup(extra):
         "SCRYFALL_TEST_BULK_DATA_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _bulk_data_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

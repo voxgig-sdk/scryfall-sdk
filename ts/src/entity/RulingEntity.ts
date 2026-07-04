@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Ruling,
+  RulingListMatch,
+} from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class RulingEntity extends ScryfallEntityBase {
+class RulingEntity extends ScryfallEntityBase<Ruling> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class RulingEntity extends ScryfallEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: RulingListMatch, ctrl?: Control): Promise<Ruling[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class RulingEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Ruling[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -42,8 +42,7 @@ class CatalogEntityTest < Minitest::Test
     # LOAD
     catalog_ref01_ent = client.Catalog(nil)
     catalog_ref01_match_dt0 = {}
-    catalog_ref01_data_dt0_loaded, err = catalog_ref01_ent.load(catalog_ref01_match_dt0, nil)
-    assert_nil err
+    catalog_ref01_data_dt0_loaded = catalog_ref01_ent.load(catalog_ref01_match_dt0, nil)
     assert !catalog_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def catalog_basic_setup(extra)
     "SCRYFALL_TEST_CATALOG_ENTID" => idmap,
     "SCRYFALL_TEST_LIVE" => "FALSE",
     "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-    "SCRYFALL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def catalog_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SCRYFALL_APIKEY"],
       },
       extra || {},
     ])

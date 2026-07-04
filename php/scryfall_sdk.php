@@ -103,7 +103,7 @@ class ScryfallSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class ScryfallSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class ScryfallSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,80 +216,179 @@ class ScryfallSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function BulkData($data = null)
+    private $_bulk_data = null;
+
+    // Idiomatic facade: $client->bulk_data()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias BulkData() (PHP method
+    // names are case-insensitive).
+    public function bulk_data($data = null)
     {
         require_once __DIR__ . '/entity/bulk_data_entity.php';
+        if ($data === null) {
+            if ($this->_bulk_data === null) {
+                $this->_bulk_data = new BulkDataEntity($this, null);
+            }
+            return $this->_bulk_data;
+        }
         return new BulkDataEntity($this, $data);
     }
 
 
-    public function Card($data = null)
+    private $_card = null;
+
+    // Idiomatic facade: $client->card()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Card() (PHP method
+    // names are case-insensitive).
+    public function card($data = null)
     {
         require_once __DIR__ . '/entity/card_entity.php';
+        if ($data === null) {
+            if ($this->_card === null) {
+                $this->_card = new CardEntity($this, null);
+            }
+            return $this->_card;
+        }
         return new CardEntity($this, $data);
     }
 
 
-    public function CardList($data = null)
+    private $_card_list = null;
+
+    // Idiomatic facade: $client->card_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CardList() (PHP method
+    // names are case-insensitive).
+    public function card_list($data = null)
     {
         require_once __DIR__ . '/entity/card_list_entity.php';
+        if ($data === null) {
+            if ($this->_card_list === null) {
+                $this->_card_list = new CardListEntity($this, null);
+            }
+            return $this->_card_list;
+        }
         return new CardListEntity($this, $data);
     }
 
 
-    public function CardSymbolList($data = null)
+    private $_card_symbol_list = null;
+
+    // Idiomatic facade: $client->card_symbol_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CardSymbolList() (PHP method
+    // names are case-insensitive).
+    public function card_symbol_list($data = null)
     {
         require_once __DIR__ . '/entity/card_symbol_list_entity.php';
+        if ($data === null) {
+            if ($this->_card_symbol_list === null) {
+                $this->_card_symbol_list = new CardSymbolListEntity($this, null);
+            }
+            return $this->_card_symbol_list;
+        }
         return new CardSymbolListEntity($this, $data);
     }
 
 
-    public function Catalog($data = null)
+    private $_catalog = null;
+
+    // Idiomatic facade: $client->catalog()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Catalog() (PHP method
+    // names are case-insensitive).
+    public function catalog($data = null)
     {
         require_once __DIR__ . '/entity/catalog_entity.php';
+        if ($data === null) {
+            if ($this->_catalog === null) {
+                $this->_catalog = new CatalogEntity($this, null);
+            }
+            return $this->_catalog;
+        }
         return new CatalogEntity($this, $data);
     }
 
 
-    public function ManaCost($data = null)
+    private $_mana_cost = null;
+
+    // Idiomatic facade: $client->mana_cost()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias ManaCost() (PHP method
+    // names are case-insensitive).
+    public function mana_cost($data = null)
     {
         require_once __DIR__ . '/entity/mana_cost_entity.php';
+        if ($data === null) {
+            if ($this->_mana_cost === null) {
+                $this->_mana_cost = new ManaCostEntity($this, null);
+            }
+            return $this->_mana_cost;
+        }
         return new ManaCostEntity($this, $data);
     }
 
 
-    public function Migration($data = null)
+    private $_migration = null;
+
+    // Idiomatic facade: $client->migration()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Migration() (PHP method
+    // names are case-insensitive).
+    public function migration($data = null)
     {
         require_once __DIR__ . '/entity/migration_entity.php';
+        if ($data === null) {
+            if ($this->_migration === null) {
+                $this->_migration = new MigrationEntity($this, null);
+            }
+            return $this->_migration;
+        }
         return new MigrationEntity($this, $data);
     }
 
 
-    public function Ruling($data = null)
+    private $_ruling = null;
+
+    // Idiomatic facade: $client->ruling()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Ruling() (PHP method
+    // names are case-insensitive).
+    public function ruling($data = null)
     {
         require_once __DIR__ . '/entity/ruling_entity.php';
+        if ($data === null) {
+            if ($this->_ruling === null) {
+                $this->_ruling = new RulingEntity($this, null);
+            }
+            return $this->_ruling;
+        }
         return new RulingEntity($this, $data);
     }
 
 
-    public function Set($data = null)
+    private $_set = null;
+
+    // Idiomatic facade: $client->set()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Set() (PHP method
+    // names are case-insensitive).
+    public function set($data = null)
     {
         require_once __DIR__ . '/entity/set_entity.php';
+        if ($data === null) {
+            if ($this->_set === null) {
+                $this->_set = new SetEntity($this, null);
+            }
+            return $this->_set;
+        }
         return new SetEntity($this, $data);
     }
 

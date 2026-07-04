@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Catalog,
+  CatalogLoadMatch,
+} from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class CatalogEntity extends ScryfallEntityBase {
+class CatalogEntity extends ScryfallEntityBase<Catalog> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class CatalogEntity extends ScryfallEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CatalogLoadMatch, ctrl?: Control): Promise<Catalog> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class CatalogEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Catalog> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

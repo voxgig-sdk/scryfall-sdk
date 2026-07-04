@@ -99,7 +99,6 @@ function card_list_basic_setup(extra)
     ["SCRYFALL_TEST_CARD_LIST_ENTID"] = idmap,
     ["SCRYFALL_TEST_LIVE"] = "FALSE",
     ["SCRYFALL_TEST_EXPLAIN"] = "FALSE",
-    ["SCRYFALL_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -111,7 +110,6 @@ function card_list_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["SCRYFALL_APIKEY"],
       },
       extra or {},
     })

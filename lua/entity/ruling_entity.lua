@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RulingListMatch
+---@param ctrl? table
+---@return Ruling[]
+---@return string? err
 function RulingEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

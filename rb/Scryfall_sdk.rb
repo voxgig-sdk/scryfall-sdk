@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Scryfall_types'
+
 
 class ScryfallSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class ScryfallSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class ScryfallSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue ScryfallError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = ScryfallHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class ScryfallSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,64 +198,127 @@ class ScryfallSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.bulk_data.list / client.bulk_data.load({ "id" => ... })
+  def bulk_data
+    require_relative 'entity/bulk_data_entity'
+    @bulk_data ||= BulkDataEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.bulk_data instead.
   def BulkData(data = nil)
     require_relative 'entity/bulk_data_entity'
     BulkDataEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.card.list / client.card.load({ "id" => ... })
+  def card
+    require_relative 'entity/card_entity'
+    @card ||= CardEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.card instead.
   def Card(data = nil)
     require_relative 'entity/card_entity'
     CardEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.card_list.list / client.card_list.load({ "id" => ... })
+  def card_list
+    require_relative 'entity/card_list_entity'
+    @card_list ||= CardListEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.card_list instead.
   def CardList(data = nil)
     require_relative 'entity/card_list_entity'
     CardListEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.card_symbol_list.list / client.card_symbol_list.load({ "id" => ... })
+  def card_symbol_list
+    require_relative 'entity/card_symbol_list_entity'
+    @card_symbol_list ||= CardSymbolListEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.card_symbol_list instead.
   def CardSymbolList(data = nil)
     require_relative 'entity/card_symbol_list_entity'
     CardSymbolListEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.catalog.list / client.catalog.load({ "id" => ... })
+  def catalog
+    require_relative 'entity/catalog_entity'
+    @catalog ||= CatalogEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.catalog instead.
   def Catalog(data = nil)
     require_relative 'entity/catalog_entity'
     CatalogEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.mana_cost.list / client.mana_cost.load({ "id" => ... })
+  def mana_cost
+    require_relative 'entity/mana_cost_entity'
+    @mana_cost ||= ManaCostEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.mana_cost instead.
   def ManaCost(data = nil)
     require_relative 'entity/mana_cost_entity'
     ManaCostEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.migration.list / client.migration.load({ "id" => ... })
+  def migration
+    require_relative 'entity/migration_entity'
+    @migration ||= MigrationEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.migration instead.
   def Migration(data = nil)
     require_relative 'entity/migration_entity'
     MigrationEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.ruling.list / client.ruling.load({ "id" => ... })
+  def ruling
+    require_relative 'entity/ruling_entity'
+    @ruling ||= RulingEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.ruling instead.
   def Ruling(data = nil)
     require_relative 'entity/ruling_entity'
     RulingEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.set.list / client.set.load({ "id" => ... })
+  def set
+    require_relative 'entity/set_entity'
+    @set ||= SetEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.set instead.
   def Set(data = nil)
     require_relative 'entity/set_entity'
     SetEntity.new(self, data)

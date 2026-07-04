@@ -36,8 +36,7 @@ class CardListEntityTest < Minitest::Test
     card_list_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.card_list"), "card_list_ref01"))
 
-    card_list_ref01_data_result, err = card_list_ref01_ent.create(card_list_ref01_data, nil)
-    assert_nil err
+    card_list_ref01_data_result = card_list_ref01_ent.create(card_list_ref01_data, nil)
     card_list_ref01_data = Helpers.to_map(card_list_ref01_data_result)
     assert !card_list_ref01_data.nil?
     assert !card_list_ref01_data["id"].nil?
@@ -45,8 +44,7 @@ class CardListEntityTest < Minitest::Test
     # LIST
     card_list_ref01_match = {}
 
-    card_list_ref01_list_result, err = card_list_ref01_ent.list(card_list_ref01_match, nil)
-    assert_nil err
+    card_list_ref01_list_result = card_list_ref01_ent.list(card_list_ref01_match, nil)
     assert card_list_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -90,7 +88,6 @@ def card_list_basic_setup(extra)
     "SCRYFALL_TEST_CARD_LIST_ENTID" => idmap,
     "SCRYFALL_TEST_LIVE" => "FALSE",
     "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-    "SCRYFALL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -102,7 +99,6 @@ def card_list_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SCRYFALL_APIKEY"],
       },
       extra || {},
     ])

@@ -50,16 +50,14 @@ class TestSetEntity:
         set_ref01_ent = client.Set(None)
         set_ref01_match = {}
 
-        set_ref01_list_result, err = set_ref01_ent.list(set_ref01_match, None)
-        assert err is None
+        set_ref01_list_result = set_ref01_ent.list(set_ref01_match, None)
         assert isinstance(set_ref01_list_result, list)
 
         # LOAD
         set_ref01_match_dt0 = {
             "id": set_ref01_data["id"],
         }
-        set_ref01_data_dt0_loaded, err = set_ref01_ent.load(set_ref01_match_dt0, None)
-        assert err is None
+        set_ref01_data_dt0_loaded = set_ref01_ent.load(set_ref01_match_dt0, None)
         set_ref01_data_dt0_load_result = helpers.to_map(set_ref01_data_dt0_loaded)
         assert set_ref01_data_dt0_load_result is not None
         assert set_ref01_data_dt0_load_result["id"] == set_ref01_data["id"]
@@ -102,7 +100,6 @@ def _set_basic_setup(extra):
         "SCRYFALL_TEST_SET_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _set_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

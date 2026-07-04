@@ -10,6 +10,8 @@ import { MigrationEntity } from './entity/MigrationEntity'
 import { RulingEntity } from './entity/RulingEntity'
 import { SetEntity } from './entity/SetEntity'
 
+export type * from './ScryfallTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -210,54 +212,126 @@ class ScryfallSDK {
 
 
 
+  _bulk_data?: BulkDataEntity
+
+  // Idiomatic facade: `client.bulk_data.list()` / `client.bulk_data.load({ id })`.
+  get bulk_data(): BulkDataEntity {
+    return (this._bulk_data ??= new BulkDataEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.bulk_data` instead. */
   BulkData(data?: any) {
     const self = this
     return new BulkDataEntity(self,data)
   }
 
 
+  _card?: CardEntity
+
+  // Idiomatic facade: `client.card.list()` / `client.card.load({ id })`.
+  get card(): CardEntity {
+    return (this._card ??= new CardEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.card` instead. */
   Card(data?: any) {
     const self = this
     return new CardEntity(self,data)
   }
 
 
+  _card_list?: CardListEntity
+
+  // Idiomatic facade: `client.card_list.list()` / `client.card_list.load({ id })`.
+  get card_list(): CardListEntity {
+    return (this._card_list ??= new CardListEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.card_list` instead. */
   CardList(data?: any) {
     const self = this
     return new CardListEntity(self,data)
   }
 
 
+  _card_symbol_list?: CardSymbolListEntity
+
+  // Idiomatic facade: `client.card_symbol_list.list()` / `client.card_symbol_list.load({ id })`.
+  get card_symbol_list(): CardSymbolListEntity {
+    return (this._card_symbol_list ??= new CardSymbolListEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.card_symbol_list` instead. */
   CardSymbolList(data?: any) {
     const self = this
     return new CardSymbolListEntity(self,data)
   }
 
 
+  _catalog?: CatalogEntity
+
+  // Idiomatic facade: `client.catalog.list()` / `client.catalog.load({ id })`.
+  get catalog(): CatalogEntity {
+    return (this._catalog ??= new CatalogEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.catalog` instead. */
   Catalog(data?: any) {
     const self = this
     return new CatalogEntity(self,data)
   }
 
 
+  _mana_cost?: ManaCostEntity
+
+  // Idiomatic facade: `client.mana_cost.list()` / `client.mana_cost.load({ id })`.
+  get mana_cost(): ManaCostEntity {
+    return (this._mana_cost ??= new ManaCostEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.mana_cost` instead. */
   ManaCost(data?: any) {
     const self = this
     return new ManaCostEntity(self,data)
   }
 
 
+  _migration?: MigrationEntity
+
+  // Idiomatic facade: `client.migration.list()` / `client.migration.load({ id })`.
+  get migration(): MigrationEntity {
+    return (this._migration ??= new MigrationEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.migration` instead. */
   Migration(data?: any) {
     const self = this
     return new MigrationEntity(self,data)
   }
 
 
+  _ruling?: RulingEntity
+
+  // Idiomatic facade: `client.ruling.list()` / `client.ruling.load({ id })`.
+  get ruling(): RulingEntity {
+    return (this._ruling ??= new RulingEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ruling` instead. */
   Ruling(data?: any) {
     const self = this
     return new RulingEntity(self,data)
   }
 
 
+  _set?: SetEntity
+
+  // Idiomatic facade: `client.set.list()` / `client.set.load({ id })`.
+  get set(): SetEntity {
+    return (this._set ??= new SetEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.set` instead. */
   Set(data?: any) {
     const self = this
     return new SetEntity(self,data)

@@ -50,8 +50,7 @@ class CardSymbolListEntityTest extends TestCase
         $card_symbol_list_ref01_ent = $client->CardSymbolList(null);
         $card_symbol_list_ref01_match = [];
 
-        [$card_symbol_list_ref01_list_result, $err] = $card_symbol_list_ref01_ent->list($card_symbol_list_ref01_match, null);
-        $this->assertNull($err);
+        $card_symbol_list_ref01_list_result = $card_symbol_list_ref01_ent->list($card_symbol_list_ref01_match, null);
         $this->assertIsArray($card_symbol_list_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function card_symbol_list_basic_setup($extra)
         "SCRYFALL_TEST_CARD_SYMBOL_LIST_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function card_symbol_list_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);

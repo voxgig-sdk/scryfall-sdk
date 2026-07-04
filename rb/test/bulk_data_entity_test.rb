@@ -43,16 +43,14 @@ class BulkDataEntityTest < Minitest::Test
     bulk_data_ref01_ent = client.BulkData(nil)
     bulk_data_ref01_match = {}
 
-    bulk_data_ref01_list_result, err = bulk_data_ref01_ent.list(bulk_data_ref01_match, nil)
-    assert_nil err
+    bulk_data_ref01_list_result = bulk_data_ref01_ent.list(bulk_data_ref01_match, nil)
     assert bulk_data_ref01_list_result.is_a?(Array)
 
     # LOAD
     bulk_data_ref01_match_dt0 = {
       "id" => bulk_data_ref01_data["id"],
     }
-    bulk_data_ref01_data_dt0_loaded, err = bulk_data_ref01_ent.load(bulk_data_ref01_match_dt0, nil)
-    assert_nil err
+    bulk_data_ref01_data_dt0_loaded = bulk_data_ref01_ent.load(bulk_data_ref01_match_dt0, nil)
     bulk_data_ref01_data_dt0_load_result = Helpers.to_map(bulk_data_ref01_data_dt0_loaded)
     assert !bulk_data_ref01_data_dt0_load_result.nil?
     assert_equal bulk_data_ref01_data_dt0_load_result["id"], bulk_data_ref01_data["id"]
@@ -93,7 +91,6 @@ def bulk_data_basic_setup(extra)
     "SCRYFALL_TEST_BULK_DATA_ENTID" => idmap,
     "SCRYFALL_TEST_LIVE" => "FALSE",
     "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-    "SCRYFALL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def bulk_data_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SCRYFALL_APIKEY"],
       },
       extra || {},
     ])

@@ -50,8 +50,7 @@ class ManaCostEntityTest extends TestCase
         $mana_cost_ref01_ent = $client->ManaCost(null);
         $mana_cost_ref01_match = [];
 
-        [$mana_cost_ref01_list_result, $err] = $mana_cost_ref01_ent->list($mana_cost_ref01_match, null);
-        $this->assertNull($err);
+        $mana_cost_ref01_list_result = $mana_cost_ref01_ent->list($mana_cost_ref01_match, null);
         $this->assertIsArray($mana_cost_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function mana_cost_basic_setup($extra)
         "SCRYFALL_TEST_MANA_COST_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function mana_cost_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);

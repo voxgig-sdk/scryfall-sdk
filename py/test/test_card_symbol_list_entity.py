@@ -50,8 +50,7 @@ class TestCardSymbolListEntity:
         card_symbol_list_ref01_ent = client.CardSymbolList(None)
         card_symbol_list_ref01_match = {}
 
-        card_symbol_list_ref01_list_result, err = card_symbol_list_ref01_ent.list(card_symbol_list_ref01_match, None)
-        assert err is None
+        card_symbol_list_ref01_list_result = card_symbol_list_ref01_ent.list(card_symbol_list_ref01_match, None)
         assert isinstance(card_symbol_list_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _card_symbol_list_basic_setup(extra):
         "SCRYFALL_TEST_CARD_SYMBOL_LIST_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _card_symbol_list_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

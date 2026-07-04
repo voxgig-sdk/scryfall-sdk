@@ -55,6 +55,9 @@ class CardEntity
         return new CardEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Card|array $args Card data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class CardEntity
         }
     }
 
+    /**
+     * @return Card|array The current Card data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Card fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class CardEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Card fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class CardEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Card.
+     *
+     * @param CardLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed CardLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Card|array The loaded Card as an assoc-array at the
+     *   SDK boundary; throws ScryfallError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class CardEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Card items matching the given filter.
+     *
+     * @param CardListMatch|array|null $reqmatch Match filter (any subset
+     *   of Card fields) as an assoc-array; CardListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Card[]|array A list of Card items as assoc-arrays at
+     *   the SDK boundary; throws ScryfallError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class CardEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

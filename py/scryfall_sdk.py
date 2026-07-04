@@ -144,16 +144,23 @@ class ScryfallSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class ScryfallSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,55 +212,154 @@ class ScryfallSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def bulk_data(self):
+        """Idiomatic facade: client.bulk_data.list() / client.bulk_data.load({"id": ...})."""
+        from entity.bulk_data_entity import BulkDataEntity
+        cached = getattr(self, "_bulk_data", None)
+        if cached is None:
+            cached = BulkDataEntity(self, None)
+            self._bulk_data = cached
+        return cached
 
     def BulkData(self, data=None):
+        # Deprecated: use client.bulk_data instead.
         from entity.bulk_data_entity import BulkDataEntity
         return BulkDataEntity(self, data)
 
 
+    @property
+    def card(self):
+        """Idiomatic facade: client.card.list() / client.card.load({"id": ...})."""
+        from entity.card_entity import CardEntity
+        cached = getattr(self, "_card", None)
+        if cached is None:
+            cached = CardEntity(self, None)
+            self._card = cached
+        return cached
+
     def Card(self, data=None):
+        # Deprecated: use client.card instead.
         from entity.card_entity import CardEntity
         return CardEntity(self, data)
 
 
+    @property
+    def card_list(self):
+        """Idiomatic facade: client.card_list.list() / client.card_list.load({"id": ...})."""
+        from entity.card_list_entity import CardListEntity
+        cached = getattr(self, "_card_list", None)
+        if cached is None:
+            cached = CardListEntity(self, None)
+            self._card_list = cached
+        return cached
+
     def CardList(self, data=None):
+        # Deprecated: use client.card_list instead.
         from entity.card_list_entity import CardListEntity
         return CardListEntity(self, data)
 
 
+    @property
+    def card_symbol_list(self):
+        """Idiomatic facade: client.card_symbol_list.list() / client.card_symbol_list.load({"id": ...})."""
+        from entity.card_symbol_list_entity import CardSymbolListEntity
+        cached = getattr(self, "_card_symbol_list", None)
+        if cached is None:
+            cached = CardSymbolListEntity(self, None)
+            self._card_symbol_list = cached
+        return cached
+
     def CardSymbolList(self, data=None):
+        # Deprecated: use client.card_symbol_list instead.
         from entity.card_symbol_list_entity import CardSymbolListEntity
         return CardSymbolListEntity(self, data)
 
 
+    @property
+    def catalog(self):
+        """Idiomatic facade: client.catalog.list() / client.catalog.load({"id": ...})."""
+        from entity.catalog_entity import CatalogEntity
+        cached = getattr(self, "_catalog", None)
+        if cached is None:
+            cached = CatalogEntity(self, None)
+            self._catalog = cached
+        return cached
+
     def Catalog(self, data=None):
+        # Deprecated: use client.catalog instead.
         from entity.catalog_entity import CatalogEntity
         return CatalogEntity(self, data)
 
 
+    @property
+    def mana_cost(self):
+        """Idiomatic facade: client.mana_cost.list() / client.mana_cost.load({"id": ...})."""
+        from entity.mana_cost_entity import ManaCostEntity
+        cached = getattr(self, "_mana_cost", None)
+        if cached is None:
+            cached = ManaCostEntity(self, None)
+            self._mana_cost = cached
+        return cached
+
     def ManaCost(self, data=None):
+        # Deprecated: use client.mana_cost instead.
         from entity.mana_cost_entity import ManaCostEntity
         return ManaCostEntity(self, data)
 
 
+    @property
+    def migration(self):
+        """Idiomatic facade: client.migration.list() / client.migration.load({"id": ...})."""
+        from entity.migration_entity import MigrationEntity
+        cached = getattr(self, "_migration", None)
+        if cached is None:
+            cached = MigrationEntity(self, None)
+            self._migration = cached
+        return cached
+
     def Migration(self, data=None):
+        # Deprecated: use client.migration instead.
         from entity.migration_entity import MigrationEntity
         return MigrationEntity(self, data)
 
 
+    @property
+    def ruling(self):
+        """Idiomatic facade: client.ruling.list() / client.ruling.load({"id": ...})."""
+        from entity.ruling_entity import RulingEntity
+        cached = getattr(self, "_ruling", None)
+        if cached is None:
+            cached = RulingEntity(self, None)
+            self._ruling = cached
+        return cached
+
     def Ruling(self, data=None):
+        # Deprecated: use client.ruling instead.
         from entity.ruling_entity import RulingEntity
         return RulingEntity(self, data)
 
 
+    @property
+    def set(self):
+        """Idiomatic facade: client.set.list() / client.set.load({"id": ...})."""
+        from entity.set_entity import SetEntity
+        cached = getattr(self, "_set", None)
+        if cached is None:
+            cached = SetEntity(self, None)
+            self._set = cached
+        return cached
+
     def Set(self, data=None):
+        # Deprecated: use client.set instead.
         from entity.set_entity import SetEntity
         return SetEntity(self, data)
 

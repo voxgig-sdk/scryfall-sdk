@@ -44,17 +44,14 @@ class TestCardListEntity:
         card_list_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.card_list"), "card_list_ref01"))
 
-        card_list_ref01_data_result, err = card_list_ref01_ent.create(card_list_ref01_data, None)
-        assert err is None
-        card_list_ref01_data = helpers.to_map(card_list_ref01_data_result)
+        card_list_ref01_data = helpers.to_map(card_list_ref01_ent.create(card_list_ref01_data, None))
         assert card_list_ref01_data is not None
         assert card_list_ref01_data["id"] is not None
 
         # LIST
         card_list_ref01_match = {}
 
-        card_list_ref01_list_result, err = card_list_ref01_ent.list(card_list_ref01_match, None)
-        assert err is None
+        card_list_ref01_list_result = card_list_ref01_ent.list(card_list_ref01_match, None)
         assert isinstance(card_list_ref01_list_result, list)
 
         found_item = vs.select(
@@ -100,7 +97,6 @@ def _card_list_basic_setup(extra):
         "SCRYFALL_TEST_CARD_LIST_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -111,7 +107,6 @@ def _card_list_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

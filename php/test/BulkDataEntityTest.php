@@ -50,16 +50,14 @@ class BulkDataEntityTest extends TestCase
         $bulk_data_ref01_ent = $client->BulkData(null);
         $bulk_data_ref01_match = [];
 
-        [$bulk_data_ref01_list_result, $err] = $bulk_data_ref01_ent->list($bulk_data_ref01_match, null);
-        $this->assertNull($err);
+        $bulk_data_ref01_list_result = $bulk_data_ref01_ent->list($bulk_data_ref01_match, null);
         $this->assertIsArray($bulk_data_ref01_list_result);
 
         // LOAD
         $bulk_data_ref01_match_dt0 = [
             "id" => $bulk_data_ref01_data["id"],
         ];
-        [$bulk_data_ref01_data_dt0_loaded, $err] = $bulk_data_ref01_ent->load($bulk_data_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $bulk_data_ref01_data_dt0_loaded = $bulk_data_ref01_ent->load($bulk_data_ref01_match_dt0, null);
         $bulk_data_ref01_data_dt0_load_result = Helpers::to_map($bulk_data_ref01_data_dt0_loaded);
         $this->assertNotNull($bulk_data_ref01_data_dt0_load_result);
         $this->assertEquals($bulk_data_ref01_data_dt0_load_result["id"], $bulk_data_ref01_data["id"]);
@@ -96,7 +94,6 @@ function bulk_data_basic_setup($extra)
         "SCRYFALL_TEST_BULK_DATA_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function bulk_data_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);

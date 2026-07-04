@@ -43,8 +43,7 @@ class CardListEntityTest extends TestCase
         $card_list_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.card_list"), "card_list_ref01"));
 
-        [$card_list_ref01_data_result, $err] = $card_list_ref01_ent->create($card_list_ref01_data, null);
-        $this->assertNull($err);
+        $card_list_ref01_data_result = $card_list_ref01_ent->create($card_list_ref01_data, null);
         $card_list_ref01_data = Helpers::to_map($card_list_ref01_data_result);
         $this->assertNotNull($card_list_ref01_data);
         $this->assertNotNull($card_list_ref01_data["id"]);
@@ -52,8 +51,7 @@ class CardListEntityTest extends TestCase
         // LIST
         $card_list_ref01_match = [];
 
-        [$card_list_ref01_list_result, $err] = $card_list_ref01_ent->list($card_list_ref01_match, null);
-        $this->assertNull($err);
+        $card_list_ref01_list_result = $card_list_ref01_ent->list($card_list_ref01_match, null);
         $this->assertIsArray($card_list_ref01_list_result);
 
         $found_item = sdk_select(
@@ -93,7 +91,6 @@ function card_list_basic_setup($extra)
         "SCRYFALL_TEST_CARD_LIST_ENTID" => $idmap,
         "SCRYFALL_TEST_LIVE" => "FALSE",
         "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-        "SCRYFALL_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -105,7 +102,6 @@ function card_list_basic_setup($extra)
     if ($env["SCRYFALL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SCRYFALL_APIKEY"],
             ],
             $extra ?? [],
         ]);

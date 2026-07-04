@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Set,
+  SetLoadMatch,
+  SetListMatch,
+} from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class SetEntity extends ScryfallEntityBase {
+class SetEntity extends ScryfallEntityBase<Set> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class SetEntity extends ScryfallEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: SetLoadMatch, ctrl?: Control): Promise<Set> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class SetEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Set> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: SetListMatch, ctrl?: Control): Promise<Set[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class SetEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Set[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

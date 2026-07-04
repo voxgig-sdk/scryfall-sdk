@@ -9,9 +9,10 @@ The PHP SDK for the Scryfall API — an entity-oriented client using PHP convent
 
 
 ## Install
-```bash
-composer require voxgig-sdk/scryfall
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/scryfall-sdk/releases](https://github.com/voxgig-sdk/scryfall-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,31 +26,34 @@ loading a specific record.
 <?php
 require_once 'scryfall_sdk.php';
 
-$client = new ScryfallSDK([
-    "apikey" => getenv("SCRYFALL_APIKEY"),
-]);
+$client = new ScryfallSDK();
 ```
 
 ### 2. List bulkdatas
 
 ```php
-[$result, $err] = $client->BulkData()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->bulkdata()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
 ### 3. Load a bulkdata
 
 ```php
-[$result, $err] = $client->BulkData()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->bulkdata()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +64,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = ScryfallSDK::test();
 
-[$result, $err] = $client->Scryfall()->load(["id" => "test01"]);
+$result = $client->bulkdata()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -130,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SCRYFALL_TEST_LIVE=TRUE
-SCRYFALL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -153,7 +159,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -207,8 +212,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -420,7 +429,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `const bulk_data = client.BulkData()`
+Create an instance: `const bulk_data = client.bulk_data`
 
 #### Operations
 
@@ -447,19 +456,19 @@ Create an instance: `const bulk_data = client.BulkData()`
 #### Example: Load
 
 ```ts
-const bulk_data = await client.BulkData().load({ id: 'bulk_data_id' })
+const bulk_data = await client.bulk_data.load({ id: 'bulk_data_id' })
 ```
 
 #### Example: List
 
 ```ts
-const bulk_datas = await client.BulkData().list()
+const bulk_datas = await client.bulk_data.list()
 ```
 
 
 ### Card
 
-Create an instance: `const card = client.Card()`
+Create an instance: `const card = client.card`
 
 #### Operations
 
@@ -501,19 +510,19 @@ Create an instance: `const card = client.Card()`
 #### Example: Load
 
 ```ts
-const card = await client.Card().load({ id: 'card_id' })
+const card = await client.card.load({ id: 'card_id' })
 ```
 
 #### Example: List
 
 ```ts
-const cards = await client.Card().list()
+const cards = await client.card.list()
 ```
 
 
 ### CardList
 
-Create an instance: `const card_list = client.CardList()`
+Create an instance: `const card_list = client.card_list`
 
 #### Operations
 
@@ -561,13 +570,13 @@ Create an instance: `const card_list = client.CardList()`
 #### Example: List
 
 ```ts
-const card_lists = await client.CardList().list()
+const card_lists = await client.card_list.list()
 ```
 
 #### Example: Create
 
 ```ts
-const card_list = await client.CardList().create({
+const card_list = await client.card_list.create({
   identifier: /* `$ARRAY` */,
 })
 ```
@@ -575,7 +584,7 @@ const card_list = await client.CardList().create({
 
 ### CardSymbolList
 
-Create an instance: `const card_symbol_list = client.CardSymbolList()`
+Create an instance: `const card_symbol_list = client.card_symbol_list`
 
 #### Operations
 
@@ -602,13 +611,13 @@ Create an instance: `const card_symbol_list = client.CardSymbolList()`
 #### Example: List
 
 ```ts
-const card_symbol_lists = await client.CardSymbolList().list()
+const card_symbol_lists = await client.card_symbol_list.list()
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.Catalog()`
+Create an instance: `const catalog = client.catalog`
 
 #### Operations
 
@@ -628,13 +637,13 @@ Create an instance: `const catalog = client.Catalog()`
 #### Example: Load
 
 ```ts
-const catalog = await client.Catalog().load({ id: 'catalog_id' })
+const catalog = await client.catalog.load({ id: 'catalog_id' })
 ```
 
 
 ### ManaCost
 
-Create an instance: `const mana_cost = client.ManaCost()`
+Create an instance: `const mana_cost = client.mana_cost`
 
 #### Operations
 
@@ -657,13 +666,13 @@ Create an instance: `const mana_cost = client.ManaCost()`
 #### Example: List
 
 ```ts
-const mana_costs = await client.ManaCost().list()
+const mana_costs = await client.mana_cost.list()
 ```
 
 
 ### Migration
 
-Create an instance: `const migration = client.Migration()`
+Create an instance: `const migration = client.migration`
 
 #### Operations
 
@@ -686,13 +695,13 @@ Create an instance: `const migration = client.Migration()`
 #### Example: List
 
 ```ts
-const migrations = await client.Migration().list()
+const migrations = await client.migration.list()
 ```
 
 
 ### Ruling
 
-Create an instance: `const ruling = client.Ruling()`
+Create an instance: `const ruling = client.ruling`
 
 #### Operations
 
@@ -713,13 +722,13 @@ Create an instance: `const ruling = client.Ruling()`
 #### Example: List
 
 ```ts
-const rulings = await client.Ruling().list()
+const rulings = await client.ruling.list()
 ```
 
 
 ### Set
 
-Create an instance: `const set = client.Set()`
+Create an instance: `const set = client.set`
 
 #### Operations
 
@@ -747,13 +756,13 @@ Create an instance: `const set = client.Set()`
 #### Example: Load
 
 ```ts
-const set = await client.Set().load({ id: 'set_id' })
+const set = await client.set.load({ id: 'set_id' })
 ```
 
 #### Example: List
 
 ```ts
-const sets = await client.Set().list()
+const sets = await client.set.list()
 ```
 
 
@@ -828,11 +837,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$bulkdata = $client->bulkdata();
+$bulkdata->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $bulkdata->dataGet() now returns the loaded bulkdata data
+// $bulkdata->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

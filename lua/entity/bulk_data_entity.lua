@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch BulkDataLoadMatch
+---@param ctrl? table
+---@return BulkData
+---@return string? err
 function BulkDataEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch BulkDataListMatch
+---@param ctrl? table
+---@return BulkData[]
+---@return string? err
 function BulkDataEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ManaCostListMatch
+---@param ctrl? table
+---@return ManaCost[]
+---@return string? err
 function ManaCostEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

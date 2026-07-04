@@ -50,8 +50,7 @@ class TestMigrationEntity:
         migration_ref01_ent = client.Migration(None)
         migration_ref01_match = {}
 
-        migration_ref01_list_result, err = migration_ref01_ent.list(migration_ref01_match, None)
-        assert err is None
+        migration_ref01_list_result = migration_ref01_ent.list(migration_ref01_match, None)
         assert isinstance(migration_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _migration_basic_setup(extra):
         "SCRYFALL_TEST_MIGRATION_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _migration_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

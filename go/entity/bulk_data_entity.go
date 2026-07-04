@@ -85,6 +85,27 @@ func (e *BulkDataEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an BulkData; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *BulkDataEntity) DataTyped(data ...BulkData) BulkData {
+	if len(data) > 0 {
+		return typedFrom[BulkData](e.Data(asMap(data[0])))
+	}
+	return typedFrom[BulkData](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through BulkData (all fields
+// optional at the wire level).
+func (e *BulkDataEntity) MatchTyped(match ...BulkData) BulkData {
+	if len(match) > 0 {
+		return typedFrom[BulkData](e.Match(asMap(match[0])))
+	}
+	return typedFrom[BulkData](e.Match())
+}
+
 
 func (e *BulkDataEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *BulkDataEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// BulkDataLoadMatch and returns an BulkData. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *BulkDataEntity) LoadTyped(reqmatch BulkDataLoadMatch, ctrl map[string]any) (BulkData, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return BulkData{}, err
+	}
+	return typedFrom[BulkData](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *BulkDataEntity) List(reqmatch map[string]any, ctrl map[string]any) (any
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// BulkDataListMatch and returns []BulkData. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *BulkDataEntity) ListTyped(reqmatch BulkDataListMatch, ctrl map[string]any) ([]BulkData, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[BulkData](res), nil
 }
 
 

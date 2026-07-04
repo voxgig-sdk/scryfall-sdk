@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Migration,
+  MigrationListMatch,
+} from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class MigrationEntity extends ScryfallEntityBase {
+class MigrationEntity extends ScryfallEntityBase<Migration> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class MigrationEntity extends ScryfallEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: MigrationListMatch, ctrl?: Control): Promise<Migration[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class MigrationEntity extends ScryfallEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Migration[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

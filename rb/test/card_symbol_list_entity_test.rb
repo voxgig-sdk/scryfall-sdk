@@ -43,8 +43,7 @@ class CardSymbolListEntityTest < Minitest::Test
     card_symbol_list_ref01_ent = client.CardSymbolList(nil)
     card_symbol_list_ref01_match = {}
 
-    card_symbol_list_ref01_list_result, err = card_symbol_list_ref01_ent.list(card_symbol_list_ref01_match, nil)
-    assert_nil err
+    card_symbol_list_ref01_list_result = card_symbol_list_ref01_ent.list(card_symbol_list_ref01_match, nil)
     assert card_symbol_list_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def card_symbol_list_basic_setup(extra)
     "SCRYFALL_TEST_CARD_SYMBOL_LIST_ENTID" => idmap,
     "SCRYFALL_TEST_LIVE" => "FALSE",
     "SCRYFALL_TEST_EXPLAIN" => "FALSE",
-    "SCRYFALL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def card_symbol_list_basic_setup(extra)
   if env["SCRYFALL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SCRYFALL_APIKEY"],
       },
       extra || {},
     ])

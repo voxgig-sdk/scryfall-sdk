@@ -45,6 +45,7 @@ class ManaCostEntity
     end
   end
 
+  # @return [ManaCost, Hash] the current ManaCost data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ManaCostEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ManaCost fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ManaCostEntity
   
 
   
+  # List ManaCost items matching the given filter.
+  #
+  # @param reqmatch [ManaCostListMatch, Hash, nil] match filter (any subset of ManaCost fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<ManaCost>, Array] the matching ManaCost items; raises ScryfallError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -45,6 +45,7 @@ class BulkDataEntity
     end
   end
 
+  # @return [BulkData, Hash] the current BulkData data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class BulkDataEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of BulkData fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single BulkData.
+  #
+  # @param reqmatch [BulkDataLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [BulkData, Hash] the loaded BulkData; raises ScryfallError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class BulkDataEntity
 
 
   
+  # List BulkData items matching the given filter.
+  #
+  # @param reqmatch [BulkDataListMatch, Hash, nil] match filter (any subset of BulkData fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<BulkData>, Array] the matching BulkData items; raises ScryfallError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

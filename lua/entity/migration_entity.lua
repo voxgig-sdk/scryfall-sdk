@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch MigrationListMatch
+---@param ctrl? table
+---@return Migration[]
+---@return string? err
 function MigrationEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

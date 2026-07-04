@@ -49,8 +49,7 @@ class TestCatalogEntity:
         # LOAD
         catalog_ref01_ent = client.Catalog(None)
         catalog_ref01_match_dt0 = {}
-        catalog_ref01_data_dt0_loaded, err = catalog_ref01_ent.load(catalog_ref01_match_dt0, None)
-        assert err is None
+        catalog_ref01_data_dt0_loaded = catalog_ref01_ent.load(catalog_ref01_match_dt0, None)
         assert catalog_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _catalog_basic_setup(extra):
         "SCRYFALL_TEST_CATALOG_ENTID": idmap,
         "SCRYFALL_TEST_LIVE": "FALSE",
         "SCRYFALL_TEST_EXPLAIN": "FALSE",
-        "SCRYFALL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _catalog_basic_setup(extra):
     if env.get("SCRYFALL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SCRYFALL_APIKEY"),
             },
             extra or {},
         ])

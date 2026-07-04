@@ -1,0 +1,171 @@
+-- Typed models for the Scryfall SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
+-- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class BulkData
+---@field content_encoding? string
+---@field content_type? string
+---@field description? string
+---@field download_uri? string
+---@field id? string
+---@field name? string
+---@field object? string
+---@field size? number
+---@field type? string
+---@field updated_at? string
+
+---@class BulkDataLoadMatch
+---@field id string
+
+---@class BulkDataListMatch
+
+---@class Card
+---@field artist? string
+---@field cmc? number
+---@field collector_number? string
+---@field color? table
+---@field color_identity? table
+---@field id? string
+---@field image_uri? table
+---@field lang? string
+---@field layout? string
+---@field legality? table
+---@field loyalty? string
+---@field mana_cost? string
+---@field name? string
+---@field oracle_id? string
+---@field oracle_text? string
+---@field power? string
+---@field price? table
+---@field rarity? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field set? string
+---@field set_name? string
+---@field toughness? string
+---@field type_line? string
+---@field uri? string
+
+---@class CardLoadMatch
+---@field id string
+
+---@class CardListMatch
+
+---@class CardList
+---@field artist? string
+---@field cmc? number
+---@field collector_number? string
+---@field color? table
+---@field color_identity? table
+---@field data? table
+---@field has_more? boolean
+---@field id? string
+---@field identifier table
+---@field image_uri? table
+---@field lang? string
+---@field layout? string
+---@field legality? table
+---@field loyalty? string
+---@field mana_cost? string
+---@field name? string
+---@field next_page? string
+---@field object? string
+---@field oracle_id? string
+---@field oracle_text? string
+---@field power? string
+---@field price? table
+---@field rarity? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field set? string
+---@field set_name? string
+---@field total_card? number
+---@field toughness? string
+---@field type_line? string
+---@field uri? string
+
+---@class CardListListMatch
+
+---@class CardListCreateData
+
+---@class CardSymbolList
+---@field appears_in_mana_cost? boolean
+---@field cmc? number
+---@field color? table
+---@field english? string
+---@field funny? boolean
+---@field loose_variant? string
+---@field object? string
+---@field represents_mana? boolean
+---@field svg_uri? string
+---@field symbol? string
+---@field transposable? boolean
+
+---@class CardSymbolListListMatch
+
+---@class Catalog
+---@field data? table
+---@field object? string
+---@field total_value? number
+---@field uri? string
+
+---@class CatalogLoadMatch
+---@field id string
+
+---@class ManaCost
+---@field cmc? number
+---@field color? table
+---@field colorless? boolean
+---@field cost? string
+---@field monocolored? boolean
+---@field multicolored? boolean
+---@field object? string
+
+---@class ManaCostListMatch
+
+---@class Migration
+---@field id? string
+---@field migration_strategy? string
+---@field new_scryfall_id? string
+---@field object? string
+---@field old_scryfall_id? string
+---@field performed_at? string
+---@field uri? string
+
+---@class MigrationListMatch
+
+---@class Ruling
+---@field comment? string
+---@field object? string
+---@field oracle_id? string
+---@field published_at? string
+---@field source? string
+
+---@class RulingListMatch
+---@field card_id string
+
+---@class Set
+---@field card_count? number
+---@field code? string
+---@field digital? boolean
+---@field icon_svg_uri? string
+---@field id? string
+---@field name? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field search_uri? string
+---@field set_type? string
+---@field uri? string
+
+---@class SetLoadMatch
+---@field id string
+
+---@class SetListMatch
+
+local M = {}
+
+return M

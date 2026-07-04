@@ -45,6 +45,7 @@ class CardListEntity
     end
   end
 
+  # @return [CardList, Hash] the current CardList data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CardListEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CardList fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CardListEntity
   
 
   
+  # List CardList items matching the given filter.
+  #
+  # @param reqmatch [CardListListMatch, Hash, nil] match filter (any subset of CardList fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<CardList>, Array] the matching CardList items; raises ScryfallError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -85,6 +92,11 @@ class CardListEntity
 
 
   
+  # Create a new CardList.
+  #
+  # @param reqdata [CardListCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [CardList, Hash] the created CardList; raises ScryfallError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
