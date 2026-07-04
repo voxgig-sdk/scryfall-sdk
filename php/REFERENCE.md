@@ -117,7 +117,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BulkDataEntity
 
 ```php
-$bulk_data = $client->bulk_data();
+$bulk_data = $client->BulkData();
 ```
 
 ### Fields
@@ -142,7 +142,7 @@ $bulk_data = $client->bulk_data();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->bulk_data()->list([]);
+$results = $client->BulkData()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -150,7 +150,7 @@ $results = $client->bulk_data()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->bulk_data()->load(["id" => "bulk_data_id"]);
+$result = $client->BulkData()->load(["id" => "bulk_data_id"]);
 ```
 
 ### Common Methods
@@ -186,7 +186,7 @@ Return the entity name.
 ## CardEntity
 
 ```php
-$card = $client->card();
+$card = $client->Card();
 ```
 
 ### Fields
@@ -226,7 +226,7 @@ $card = $client->card();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->card()->list([]);
+$results = $client->Card()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -234,7 +234,7 @@ $results = $client->card()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->card()->load(["id" => "card_id"]);
+$result = $client->Card()->load(["id" => "card_id"]);
 ```
 
 ### Common Methods
@@ -270,7 +270,7 @@ Return the entity name.
 ## CardListEntity
 
 ```php
-$card_list = $client->card_list();
+$card_list = $client->CardList();
 ```
 
 ### Fields
@@ -316,7 +316,7 @@ $card_list = $client->card_list();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->card_list()->create([
+$result = $client->CardList()->create([
   "identifier" => /* `$ARRAY` */,
 ]);
 ```
@@ -326,7 +326,7 @@ $result = $client->card_list()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->card_list()->list([]);
+$results = $client->CardList()->list([]);
 ```
 
 ### Common Methods
@@ -362,7 +362,7 @@ Return the entity name.
 ## CardSymbolListEntity
 
 ```php
-$card_symbol_list = $client->card_symbol_list();
+$card_symbol_list = $client->CardSymbolList();
 ```
 
 ### Fields
@@ -388,7 +388,7 @@ $card_symbol_list = $client->card_symbol_list();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->card_symbol_list()->list([]);
+$results = $client->CardSymbolList()->list([]);
 ```
 
 ### Common Methods
@@ -424,7 +424,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```php
-$catalog = $client->catalog();
+$catalog = $client->Catalog();
 ```
 
 ### Fields
@@ -443,7 +443,7 @@ $catalog = $client->catalog();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->catalog()->load(["id" => "catalog_id"]);
+$result = $client->Catalog()->load(["id" => "catalog_id"]);
 ```
 
 ### Common Methods
@@ -479,7 +479,7 @@ Return the entity name.
 ## ManaCostEntity
 
 ```php
-$mana_cost = $client->mana_cost();
+$mana_cost = $client->ManaCost();
 ```
 
 ### Fields
@@ -501,7 +501,7 @@ $mana_cost = $client->mana_cost();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->mana_cost()->list([]);
+$results = $client->ManaCost()->list([]);
 ```
 
 ### Common Methods
@@ -537,7 +537,7 @@ Return the entity name.
 ## MigrationEntity
 
 ```php
-$migration = $client->migration();
+$migration = $client->Migration();
 ```
 
 ### Fields
@@ -559,7 +559,7 @@ $migration = $client->migration();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->migration()->list([]);
+$results = $client->Migration()->list([]);
 ```
 
 ### Common Methods
@@ -595,7 +595,7 @@ Return the entity name.
 ## RulingEntity
 
 ```php
-$ruling = $client->ruling();
+$ruling = $client->Ruling();
 ```
 
 ### Fields
@@ -615,7 +615,7 @@ $ruling = $client->ruling();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->ruling()->list([]);
+$results = $client->Ruling()->list([]);
 ```
 
 ### Common Methods
@@ -651,7 +651,7 @@ Return the entity name.
 ## SetEntity
 
 ```php
-$set = $client->set();
+$set = $client->Set();
 ```
 
 ### Fields
@@ -677,7 +677,7 @@ $set = $client->set();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->set()->list([]);
+$results = $client->Set()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -685,7 +685,7 @@ $results = $client->set()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->set()->load(["id" => "set_id"]);
+$result = $client->Set()->load(["id" => "set_id"]);
 ```
 
 ### Common Methods

@@ -28,16 +28,14 @@ require_relative "Scryfall_sdk"
 client = ScryfallSDK.new
 ```
 
-### 2. List bulkdatas
+### 2. List bulkdata records
 
 ```ruby
 begin
-  result = client.bulkdata.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of BulkData records — iterate directly.
+  bulkdatas = client.BulkData.list
+  bulkdatas.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.bulkdata.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare BulkData record (raises on error).
+  bulkdata = client.BulkData.load({ "id" => "example_id" })
+  puts bulkdata
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = ScryfallSDK.test
+client = ScryfallSDK.test({
+  "entity" => { "bulkdata" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.bulkdata.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+bulkdata = client.BulkData.load({ "id" => "test01" })
+puts bulkdata
 ```
 
 ### Use a custom fetch function
@@ -424,7 +427,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `const bulk_data = client.bulk_data`
+Create an instance: `bulk_data = client.BulkData`
 
 #### Operations
 
@@ -450,20 +453,22 @@ Create an instance: `const bulk_data = client.bulk_data`
 
 #### Example: Load
 
-```ts
-const bulk_data = await client.bulk_data.load({ id: 'bulk_data_id' })
+```ruby
+# load returns the bare BulkData record (raises on error).
+bulk_data = client.BulkData.load({ "id" => "bulk_data_id" })
 ```
 
 #### Example: List
 
-```ts
-const bulk_datas = await client.bulk_data.list()
+```ruby
+# list returns an Array of BulkData records (raises on error).
+bulk_datas = client.BulkData.list
 ```
 
 
 ### Card
 
-Create an instance: `const card = client.card`
+Create an instance: `card = client.Card`
 
 #### Operations
 
@@ -504,20 +509,22 @@ Create an instance: `const card = client.card`
 
 #### Example: Load
 
-```ts
-const card = await client.card.load({ id: 'card_id' })
+```ruby
+# load returns the bare Card record (raises on error).
+card = client.Card.load({ "id" => "card_id" })
 ```
 
 #### Example: List
 
-```ts
-const cards = await client.card.list()
+```ruby
+# list returns an Array of Card records (raises on error).
+cards = client.Card.list
 ```
 
 
 ### CardList
 
-Create an instance: `const card_list = client.card_list`
+Create an instance: `card_list = client.CardList`
 
 #### Operations
 
@@ -564,22 +571,23 @@ Create an instance: `const card_list = client.card_list`
 
 #### Example: List
 
-```ts
-const card_lists = await client.card_list.list()
+```ruby
+# list returns an Array of CardList records (raises on error).
+card_lists = client.CardList.list
 ```
 
 #### Example: Create
 
-```ts
-const card_list = await client.card_list.create({
-  identifier: /* `$ARRAY` */,
+```ruby
+card_list = client.CardList.create({
+  "identifier" => nil, # `$ARRAY`
 })
 ```
 
 
 ### CardSymbolList
 
-Create an instance: `const card_symbol_list = client.card_symbol_list`
+Create an instance: `card_symbol_list = client.CardSymbolList`
 
 #### Operations
 
@@ -605,14 +613,15 @@ Create an instance: `const card_symbol_list = client.card_symbol_list`
 
 #### Example: List
 
-```ts
-const card_symbol_lists = await client.card_symbol_list.list()
+```ruby
+# list returns an Array of CardSymbolList records (raises on error).
+card_symbol_lists = client.CardSymbolList.list
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `catalog = client.Catalog`
 
 #### Operations
 
@@ -631,14 +640,15 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: Load
 
-```ts
-const catalog = await client.catalog.load({ id: 'catalog_id' })
+```ruby
+# load returns the bare Catalog record (raises on error).
+catalog = client.Catalog.load({ "id" => "catalog_id" })
 ```
 
 
 ### ManaCost
 
-Create an instance: `const mana_cost = client.mana_cost`
+Create an instance: `mana_cost = client.ManaCost`
 
 #### Operations
 
@@ -660,14 +670,15 @@ Create an instance: `const mana_cost = client.mana_cost`
 
 #### Example: List
 
-```ts
-const mana_costs = await client.mana_cost.list()
+```ruby
+# list returns an Array of ManaCost records (raises on error).
+mana_costs = client.ManaCost.list
 ```
 
 
 ### Migration
 
-Create an instance: `const migration = client.migration`
+Create an instance: `migration = client.Migration`
 
 #### Operations
 
@@ -689,14 +700,15 @@ Create an instance: `const migration = client.migration`
 
 #### Example: List
 
-```ts
-const migrations = await client.migration.list()
+```ruby
+# list returns an Array of Migration records (raises on error).
+migrations = client.Migration.list
 ```
 
 
 ### Ruling
 
-Create an instance: `const ruling = client.ruling`
+Create an instance: `ruling = client.Ruling`
 
 #### Operations
 
@@ -716,14 +728,15 @@ Create an instance: `const ruling = client.ruling`
 
 #### Example: List
 
-```ts
-const rulings = await client.ruling.list()
+```ruby
+# list returns an Array of Ruling records (raises on error).
+rulings = client.Ruling.list
 ```
 
 
 ### Set
 
-Create an instance: `const set = client.set`
+Create an instance: `set = client.Set`
 
 #### Operations
 
@@ -750,14 +763,16 @@ Create an instance: `const set = client.set`
 
 #### Example: Load
 
-```ts
-const set = await client.set.load({ id: 'set_id' })
+```ruby
+# load returns the bare Set record (raises on error).
+set = client.Set.load({ "id" => "set_id" })
 ```
 
 #### Example: List
 
-```ts
-const sets = await client.set.list()
+```ruby
+# list returns an Array of Set records (raises on error).
+sets = client.Set.list
 ```
 
 
@@ -832,7 +847,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bulkdata = client.bulkdata
+bulkdata = client.BulkData
 bulkdata.load({ "id" => "example_id" })
 
 # bulkdata.data_get now returns the loaded bulkdata data

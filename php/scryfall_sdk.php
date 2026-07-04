@@ -233,10 +233,10 @@ class ScryfallSDK
 
     private $_bulk_data = null;
 
-    // Idiomatic facade: $client->bulk_data()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias BulkData() (PHP method
-    // names are case-insensitive).
-    public function bulk_data($data = null)
+    // Canonical facade: $client->BulkData()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->bulk_data()
+    // resolves here too.
+    public function BulkData($data = null)
     {
         require_once __DIR__ . '/entity/bulk_data_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class ScryfallSDK
 
     private $_card = null;
 
-    // Idiomatic facade: $client->card()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Card() (PHP method
-    // names are case-insensitive).
-    public function card($data = null)
+    // Canonical facade: $client->Card()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->card()
+    // resolves here too.
+    public function Card($data = null)
     {
         require_once __DIR__ . '/entity/card_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class ScryfallSDK
 
     private $_card_list = null;
 
-    // Idiomatic facade: $client->card_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CardList() (PHP method
-    // names are case-insensitive).
-    public function card_list($data = null)
+    // Canonical facade: $client->CardList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->card_list()
+    // resolves here too.
+    public function CardList($data = null)
     {
         require_once __DIR__ . '/entity/card_list_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class ScryfallSDK
 
     private $_card_symbol_list = null;
 
-    // Idiomatic facade: $client->card_symbol_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CardSymbolList() (PHP method
-    // names are case-insensitive).
-    public function card_symbol_list($data = null)
+    // Canonical facade: $client->CardSymbolList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->card_symbol_list()
+    // resolves here too.
+    public function CardSymbolList($data = null)
     {
         require_once __DIR__ . '/entity/card_symbol_list_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class ScryfallSDK
 
     private $_catalog = null;
 
-    // Idiomatic facade: $client->catalog()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Catalog() (PHP method
-    // names are case-insensitive).
-    public function catalog($data = null)
+    // Canonical facade: $client->Catalog()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->catalog()
+    // resolves here too.
+    public function Catalog($data = null)
     {
         require_once __DIR__ . '/entity/catalog_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class ScryfallSDK
 
     private $_mana_cost = null;
 
-    // Idiomatic facade: $client->mana_cost()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ManaCost() (PHP method
-    // names are case-insensitive).
-    public function mana_cost($data = null)
+    // Canonical facade: $client->ManaCost()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->mana_cost()
+    // resolves here too.
+    public function ManaCost($data = null)
     {
         require_once __DIR__ . '/entity/mana_cost_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class ScryfallSDK
 
     private $_migration = null;
 
-    // Idiomatic facade: $client->migration()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Migration() (PHP method
-    // names are case-insensitive).
-    public function migration($data = null)
+    // Canonical facade: $client->Migration()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->migration()
+    // resolves here too.
+    public function Migration($data = null)
     {
         require_once __DIR__ . '/entity/migration_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class ScryfallSDK
 
     private $_ruling = null;
 
-    // Idiomatic facade: $client->ruling()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Ruling() (PHP method
-    // names are case-insensitive).
-    public function ruling($data = null)
+    // Canonical facade: $client->Ruling()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ruling()
+    // resolves here too.
+    public function Ruling($data = null)
     {
         require_once __DIR__ . '/entity/ruling_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class ScryfallSDK
 
     private $_set = null;
 
-    // Idiomatic facade: $client->set()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Set() (PHP method
-    // names are case-insensitive).
-    public function set($data = null)
+    // Canonical facade: $client->Set()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->set()
+    // resolves here too.
+    public function Set($data = null)
     {
         require_once __DIR__ . '/entity/set_entity.php';
         if ($data === null) {

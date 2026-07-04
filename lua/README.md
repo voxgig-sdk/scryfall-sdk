@@ -31,26 +31,26 @@ local sdk = require("scryfall_sdk")
 local client = sdk.new()
 ```
 
-### 2. List bulkdatas
+### 2. List bulkdata records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:bulkdata():list()
+local bulkdatas, err = client:BulkData():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(bulkdatas) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a bulkdata
 
 ```lua
-local result, err = client:bulkdata():load({ id = "example_id" })
+local bulkdata, err = client:BulkData():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(bulkdata)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:bulkdata():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:BulkData():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -205,17 +205,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local bulk_data, err = client:BulkData():load({ id = "example_id" })
+    if err then error(err) end
+    -- bulk_data is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -418,7 +423,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `const bulk_data = client.bulk_data`
+Create an instance: `local bulk_data = client:BulkData(nil)`
 
 #### Operations
 
@@ -444,20 +449,20 @@ Create an instance: `const bulk_data = client.bulk_data`
 
 #### Example: Load
 
-```ts
-const bulk_data = await client.bulk_data.load({ id: 'bulk_data_id' })
+```lua
+local bulk_data, err = client:BulkData():load({ id = "bulk_data_id" })
 ```
 
 #### Example: List
 
-```ts
-const bulk_datas = await client.bulk_data.list()
+```lua
+local bulk_datas, err = client:BulkData():list()
 ```
 
 
 ### Card
 
-Create an instance: `const card = client.card`
+Create an instance: `local card = client:Card(nil)`
 
 #### Operations
 
@@ -498,20 +503,20 @@ Create an instance: `const card = client.card`
 
 #### Example: Load
 
-```ts
-const card = await client.card.load({ id: 'card_id' })
+```lua
+local card, err = client:Card():load({ id = "card_id" })
 ```
 
 #### Example: List
 
-```ts
-const cards = await client.card.list()
+```lua
+local cards, err = client:Card():list()
 ```
 
 
 ### CardList
 
-Create an instance: `const card_list = client.card_list`
+Create an instance: `local card_list = client:CardList(nil)`
 
 #### Operations
 
@@ -558,22 +563,22 @@ Create an instance: `const card_list = client.card_list`
 
 #### Example: List
 
-```ts
-const card_lists = await client.card_list.list()
+```lua
+local card_lists, err = client:CardList():list()
 ```
 
 #### Example: Create
 
-```ts
-const card_list = await client.card_list.create({
-  identifier: /* `$ARRAY` */,
+```lua
+local card_list, err = client:CardList():create({
+  identifier = nil, -- `$ARRAY`
 })
 ```
 
 
 ### CardSymbolList
 
-Create an instance: `const card_symbol_list = client.card_symbol_list`
+Create an instance: `local card_symbol_list = client:CardSymbolList(nil)`
 
 #### Operations
 
@@ -599,14 +604,14 @@ Create an instance: `const card_symbol_list = client.card_symbol_list`
 
 #### Example: List
 
-```ts
-const card_symbol_lists = await client.card_symbol_list.list()
+```lua
+local card_symbol_lists, err = client:CardSymbolList():list()
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `local catalog = client:Catalog(nil)`
 
 #### Operations
 
@@ -625,14 +630,14 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: Load
 
-```ts
-const catalog = await client.catalog.load({ id: 'catalog_id' })
+```lua
+local catalog, err = client:Catalog():load({ id = "catalog_id" })
 ```
 
 
 ### ManaCost
 
-Create an instance: `const mana_cost = client.mana_cost`
+Create an instance: `local mana_cost = client:ManaCost(nil)`
 
 #### Operations
 
@@ -654,14 +659,14 @@ Create an instance: `const mana_cost = client.mana_cost`
 
 #### Example: List
 
-```ts
-const mana_costs = await client.mana_cost.list()
+```lua
+local mana_costs, err = client:ManaCost():list()
 ```
 
 
 ### Migration
 
-Create an instance: `const migration = client.migration`
+Create an instance: `local migration = client:Migration(nil)`
 
 #### Operations
 
@@ -683,14 +688,14 @@ Create an instance: `const migration = client.migration`
 
 #### Example: List
 
-```ts
-const migrations = await client.migration.list()
+```lua
+local migrations, err = client:Migration():list()
 ```
 
 
 ### Ruling
 
-Create an instance: `const ruling = client.ruling`
+Create an instance: `local ruling = client:Ruling(nil)`
 
 #### Operations
 
@@ -710,14 +715,14 @@ Create an instance: `const ruling = client.ruling`
 
 #### Example: List
 
-```ts
-const rulings = await client.ruling.list()
+```lua
+local rulings, err = client:Ruling():list()
 ```
 
 
 ### Set
 
-Create an instance: `const set = client.set`
+Create an instance: `local set = client:Set(nil)`
 
 #### Operations
 
@@ -744,14 +749,14 @@ Create an instance: `const set = client.set`
 
 #### Example: Load
 
-```ts
-const set = await client.set.load({ id: 'set_id' })
+```lua
+local set, err = client:Set():load({ id = "set_id" })
 ```
 
 #### Example: List
 
-```ts
-const sets = await client.set.list()
+```lua
+local sets, err = client:Set():list()
 ```
 
 
@@ -826,7 +831,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bulkdata = client:bulkdata()
+local bulkdata = client:BulkData()
 bulkdata:load({ id = "example_id" })
 
 -- bulkdata:data_get() now returns the loaded bulkdata data

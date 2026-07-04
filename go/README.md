@@ -30,53 +30,39 @@ go mod edit -replace github.com/voxgig-sdk/scryfall-sdk/go=../scryfall-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/scryfall-sdk/go"
-    "github.com/voxgig-sdk/scryfall-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List bulkdatas
-
-```go
-    result, err := client.BulkData(nil).List(nil, nil)
+    // List bulkdata records — the value is the array of records itself.
+    bulkdatas, err := client.BulkData(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range bulkdatas.([]any) {
+        fmt.Println(item)
     }
-```
 
-### 3. Load a bulkdata
-
-```go
-    result, err = client.BulkData(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single bulkdata — the value is the loaded record.
+    bulkdata, err := client.BulkData(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(bulkdata)
 }
 ```
 
@@ -127,10 +113,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.BulkData(nil).Load(
+bulkdata, err := client.BulkData(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(bulkdata) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -235,17 +224,24 @@ All entities implement the `ScryfallEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    bulkdata, err := client.BulkData(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // bulkdata is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -475,13 +471,21 @@ Create an instance: `bulk_data := client.BulkData(nil)`
 #### Example: Load
 
 ```go
-result, err := client.BulkData(nil).Load(map[string]any{"id": "bulk_data_id"}, nil)
+bulk_data, err := client.BulkData(nil).Load(map[string]any{"id": "bulk_data_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(bulk_data) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.BulkData(nil).List(nil, nil)
+bulk_datas, err := client.BulkData(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(bulk_datas) // the array of records
 ```
 
 
@@ -529,13 +533,21 @@ Create an instance: `card := client.Card(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Card(nil).Load(map[string]any{"id": "card_id"}, nil)
+card, err := client.Card(nil).Load(map[string]any{"id": "card_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(card) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Card(nil).List(nil, nil)
+cards, err := client.Card(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cards) // the array of records
 ```
 
 
@@ -589,7 +601,11 @@ Create an instance: `card_list := client.CardList(nil)`
 #### Example: List
 
 ```go
-results, err := client.CardList(nil).List(nil, nil)
+card_lists, err := client.CardList(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(card_lists) // the array of records
 ```
 
 #### Example: Create
@@ -630,7 +646,11 @@ Create an instance: `card_symbol_list := client.CardSymbolList(nil)`
 #### Example: List
 
 ```go
-results, err := client.CardSymbolList(nil).List(nil, nil)
+card_symbol_lists, err := client.CardSymbolList(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(card_symbol_lists) // the array of records
 ```
 
 
@@ -656,7 +676,11 @@ Create an instance: `catalog := client.Catalog(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Catalog(nil).Load(map[string]any{"id": "catalog_id"}, nil)
+catalog, err := client.Catalog(nil).Load(map[string]any{"id": "catalog_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(catalog) // the loaded record
 ```
 
 
@@ -685,7 +709,11 @@ Create an instance: `mana_cost := client.ManaCost(nil)`
 #### Example: List
 
 ```go
-results, err := client.ManaCost(nil).List(nil, nil)
+mana_costs, err := client.ManaCost(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(mana_costs) // the array of records
 ```
 
 
@@ -714,7 +742,11 @@ Create an instance: `migration := client.Migration(nil)`
 #### Example: List
 
 ```go
-results, err := client.Migration(nil).List(nil, nil)
+migrations, err := client.Migration(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(migrations) // the array of records
 ```
 
 
@@ -741,7 +773,11 @@ Create an instance: `ruling := client.Ruling(nil)`
 #### Example: List
 
 ```go
-results, err := client.Ruling(nil).List(nil, nil)
+rulings, err := client.Ruling(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(rulings) // the array of records
 ```
 
 
@@ -775,13 +811,21 @@ Create an instance: `set := client.Set(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Set(nil).Load(map[string]any{"id": "set_id"}, nil)
+set, err := client.Set(nil).Load(map[string]any{"id": "set_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(set) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Set(nil).List(nil, nil)
+sets, err := client.Set(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(sets) // the array of records
 ```
 
 

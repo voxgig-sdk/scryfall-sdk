@@ -29,18 +29,16 @@ require_once 'scryfall_sdk.php';
 $client = new ScryfallSDK();
 ```
 
-### 2. List bulkdatas
+### 2. List bulkdata records
 
 ```php
 try {
-    $result = $client->bulkdata()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of BulkData records — iterate directly.
+    $bulkdatas = $client->BulkData()->list();
+    foreach ($bulkdatas as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->bulkdata()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare BulkData record (throws on error).
+    $bulkdata = $client->BulkData()->load(["id" => "example_id"]);
+    print_r($bulkdata);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = ScryfallSDK::test();
+$client = ScryfallSDK::test([
+    "entity" => ["bulkdata" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->bulkdata()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$bulkdata = $client->BulkData()->load(["id" => "test01"]);
+print_r($bulkdata);
 ```
 
 ### Use a custom fetch function
@@ -429,7 +432,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `const bulk_data = client.bulk_data`
+Create an instance: `$bulk_data = $client->BulkData();`
 
 #### Operations
 
@@ -455,20 +458,22 @@ Create an instance: `const bulk_data = client.bulk_data`
 
 #### Example: Load
 
-```ts
-const bulk_data = await client.bulk_data.load({ id: 'bulk_data_id' })
+```php
+// load() returns the bare BulkData record (throws on error).
+$bulk_data = $client->BulkData()->load(["id" => "bulk_data_id"]);
 ```
 
 #### Example: List
 
-```ts
-const bulk_datas = await client.bulk_data.list()
+```php
+// list() returns an array of BulkData records (throws on error).
+$bulk_datas = $client->BulkData()->list();
 ```
 
 
 ### Card
 
-Create an instance: `const card = client.card`
+Create an instance: `$card = $client->Card();`
 
 #### Operations
 
@@ -509,20 +514,22 @@ Create an instance: `const card = client.card`
 
 #### Example: Load
 
-```ts
-const card = await client.card.load({ id: 'card_id' })
+```php
+// load() returns the bare Card record (throws on error).
+$card = $client->Card()->load(["id" => "card_id"]);
 ```
 
 #### Example: List
 
-```ts
-const cards = await client.card.list()
+```php
+// list() returns an array of Card records (throws on error).
+$cards = $client->Card()->list();
 ```
 
 
 ### CardList
 
-Create an instance: `const card_list = client.card_list`
+Create an instance: `$card_list = $client->CardList();`
 
 #### Operations
 
@@ -569,22 +576,23 @@ Create an instance: `const card_list = client.card_list`
 
 #### Example: List
 
-```ts
-const card_lists = await client.card_list.list()
+```php
+// list() returns an array of CardList records (throws on error).
+$card_lists = $client->CardList()->list();
 ```
 
 #### Example: Create
 
-```ts
-const card_list = await client.card_list.create({
-  identifier: /* `$ARRAY` */,
-})
+```php
+$card_list = $client->CardList()->create([
+    "identifier" => null, // `$ARRAY`
+]);
 ```
 
 
 ### CardSymbolList
 
-Create an instance: `const card_symbol_list = client.card_symbol_list`
+Create an instance: `$card_symbol_list = $client->CardSymbolList();`
 
 #### Operations
 
@@ -610,14 +618,15 @@ Create an instance: `const card_symbol_list = client.card_symbol_list`
 
 #### Example: List
 
-```ts
-const card_symbol_lists = await client.card_symbol_list.list()
+```php
+// list() returns an array of CardSymbolList records (throws on error).
+$card_symbol_lists = $client->CardSymbolList()->list();
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `$catalog = $client->Catalog();`
 
 #### Operations
 
@@ -636,14 +645,15 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: Load
 
-```ts
-const catalog = await client.catalog.load({ id: 'catalog_id' })
+```php
+// load() returns the bare Catalog record (throws on error).
+$catalog = $client->Catalog()->load(["id" => "catalog_id"]);
 ```
 
 
 ### ManaCost
 
-Create an instance: `const mana_cost = client.mana_cost`
+Create an instance: `$mana_cost = $client->ManaCost();`
 
 #### Operations
 
@@ -665,14 +675,15 @@ Create an instance: `const mana_cost = client.mana_cost`
 
 #### Example: List
 
-```ts
-const mana_costs = await client.mana_cost.list()
+```php
+// list() returns an array of ManaCost records (throws on error).
+$mana_costs = $client->ManaCost()->list();
 ```
 
 
 ### Migration
 
-Create an instance: `const migration = client.migration`
+Create an instance: `$migration = $client->Migration();`
 
 #### Operations
 
@@ -694,14 +705,15 @@ Create an instance: `const migration = client.migration`
 
 #### Example: List
 
-```ts
-const migrations = await client.migration.list()
+```php
+// list() returns an array of Migration records (throws on error).
+$migrations = $client->Migration()->list();
 ```
 
 
 ### Ruling
 
-Create an instance: `const ruling = client.ruling`
+Create an instance: `$ruling = $client->Ruling();`
 
 #### Operations
 
@@ -721,14 +733,15 @@ Create an instance: `const ruling = client.ruling`
 
 #### Example: List
 
-```ts
-const rulings = await client.ruling.list()
+```php
+// list() returns an array of Ruling records (throws on error).
+$rulings = $client->Ruling()->list();
 ```
 
 
 ### Set
 
-Create an instance: `const set = client.set`
+Create an instance: `$set = $client->Set();`
 
 #### Operations
 
@@ -755,14 +768,16 @@ Create an instance: `const set = client.set`
 
 #### Example: Load
 
-```ts
-const set = await client.set.load({ id: 'set_id' })
+```php
+// load() returns the bare Set record (throws on error).
+$set = $client->Set()->load(["id" => "set_id"]);
 ```
 
 #### Example: List
 
-```ts
-const sets = await client.set.list()
+```php
+// list() returns an array of Set records (throws on error).
+$sets = $client->Set()->list();
 ```
 
 
@@ -837,7 +852,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bulkdata = $client->bulkdata();
+$bulkdata = $client->BulkData();
 $bulkdata->load(["id" => "example_id"]);
 
 // $bulkdata->dataGet() now returns the loaded bulkdata data

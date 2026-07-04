@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:bulk_data():list() / client:bulk_data():load({ id = ... })
-function ScryfallSDK:bulk_data(data)
+-- Idiomatic facade: client:BulkData():list() / client:BulkData():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:BulkData(data)
   local EntityMod = require("entity.bulk_data_entity")
   if data == nil then
     if self._bulk_data == nil then
@@ -256,15 +257,10 @@ function ScryfallSDK:bulk_data(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:bulk_data() instead.
-function ScryfallSDK:BulkData(data)
-  local EntityMod = require("entity.bulk_data_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:card():list() / client:card():load({ id = ... })
-function ScryfallSDK:card(data)
+-- Idiomatic facade: client:Card():list() / client:Card():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:Card(data)
   local EntityMod = require("entity.card_entity")
   if data == nil then
     if self._card == nil then
@@ -275,15 +271,10 @@ function ScryfallSDK:card(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:card() instead.
-function ScryfallSDK:Card(data)
-  local EntityMod = require("entity.card_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:card_list():list() / client:card_list():load({ id = ... })
-function ScryfallSDK:card_list(data)
+-- Idiomatic facade: client:CardList():list() / client:CardList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:CardList(data)
   local EntityMod = require("entity.card_list_entity")
   if data == nil then
     if self._card_list == nil then
@@ -294,15 +285,10 @@ function ScryfallSDK:card_list(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:card_list() instead.
-function ScryfallSDK:CardList(data)
-  local EntityMod = require("entity.card_list_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:card_symbol_list():list() / client:card_symbol_list():load({ id = ... })
-function ScryfallSDK:card_symbol_list(data)
+-- Idiomatic facade: client:CardSymbolList():list() / client:CardSymbolList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:CardSymbolList(data)
   local EntityMod = require("entity.card_symbol_list_entity")
   if data == nil then
     if self._card_symbol_list == nil then
@@ -313,15 +299,10 @@ function ScryfallSDK:card_symbol_list(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:card_symbol_list() instead.
-function ScryfallSDK:CardSymbolList(data)
-  local EntityMod = require("entity.card_symbol_list_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:catalog():list() / client:catalog():load({ id = ... })
-function ScryfallSDK:catalog(data)
+-- Idiomatic facade: client:Catalog():list() / client:Catalog():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:Catalog(data)
   local EntityMod = require("entity.catalog_entity")
   if data == nil then
     if self._catalog == nil then
@@ -332,15 +313,10 @@ function ScryfallSDK:catalog(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:catalog() instead.
-function ScryfallSDK:Catalog(data)
-  local EntityMod = require("entity.catalog_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:mana_cost():list() / client:mana_cost():load({ id = ... })
-function ScryfallSDK:mana_cost(data)
+-- Idiomatic facade: client:ManaCost():list() / client:ManaCost():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:ManaCost(data)
   local EntityMod = require("entity.mana_cost_entity")
   if data == nil then
     if self._mana_cost == nil then
@@ -351,15 +327,10 @@ function ScryfallSDK:mana_cost(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:mana_cost() instead.
-function ScryfallSDK:ManaCost(data)
-  local EntityMod = require("entity.mana_cost_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:migration():list() / client:migration():load({ id = ... })
-function ScryfallSDK:migration(data)
+-- Idiomatic facade: client:Migration():list() / client:Migration():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:Migration(data)
   local EntityMod = require("entity.migration_entity")
   if data == nil then
     if self._migration == nil then
@@ -370,15 +341,10 @@ function ScryfallSDK:migration(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:migration() instead.
-function ScryfallSDK:Migration(data)
-  local EntityMod = require("entity.migration_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ruling():list() / client:ruling():load({ id = ... })
-function ScryfallSDK:ruling(data)
+-- Idiomatic facade: client:Ruling():list() / client:Ruling():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:Ruling(data)
   local EntityMod = require("entity.ruling_entity")
   if data == nil then
     if self._ruling == nil then
@@ -389,15 +355,10 @@ function ScryfallSDK:ruling(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ruling() instead.
-function ScryfallSDK:Ruling(data)
-  local EntityMod = require("entity.ruling_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:set():list() / client:set():load({ id = ... })
-function ScryfallSDK:set(data)
+-- Idiomatic facade: client:Set():list() / client:Set():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ScryfallSDK:Set(data)
   local EntityMod = require("entity.set_entity")
   if data == nil then
     if self._set == nil then
@@ -405,12 +366,6 @@ function ScryfallSDK:set(data)
     end
     return self._set
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:set() instead.
-function ScryfallSDK:Set(data)
-  local EntityMod = require("entity.set_entity")
   return EntityMod.new(self, data)
 end
 

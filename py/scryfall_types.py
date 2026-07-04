@@ -4,346 +4,331 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class BulkData:
-    content_encoding: Optional[str] = None
-    content_type: Optional[str] = None
-    description: Optional[str] = None
-    download_uri: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    object: Optional[str] = None
-    size: Optional[int] = None
-    type: Optional[str] = None
-    updated_at: Optional[str] = None
+class BulkData(TypedDict, total=False):
+    content_encoding: str
+    content_type: str
+    description: str
+    download_uri: str
+    id: str
+    name: str
+    object: str
+    size: int
+    type: str
+    updated_at: str
 
 
-@dataclass
-class BulkDataLoadMatch:
+class BulkDataLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class BulkDataListMatch:
-    content_encoding: Optional[str] = None
-    content_type: Optional[str] = None
-    description: Optional[str] = None
-    download_uri: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    object: Optional[str] = None
-    size: Optional[int] = None
-    type: Optional[str] = None
-    updated_at: Optional[str] = None
+class BulkDataListMatch(TypedDict, total=False):
+    content_encoding: str
+    content_type: str
+    description: str
+    download_uri: str
+    id: str
+    name: str
+    object: str
+    size: int
+    type: str
+    updated_at: str
 
 
-@dataclass
-class Card:
-    artist: Optional[str] = None
-    cmc: Optional[float] = None
-    collector_number: Optional[str] = None
-    color: Optional[list] = None
-    color_identity: Optional[list] = None
-    id: Optional[str] = None
-    image_uri: Optional[dict] = None
-    lang: Optional[str] = None
-    layout: Optional[str] = None
-    legality: Optional[dict] = None
-    loyalty: Optional[str] = None
-    mana_cost: Optional[str] = None
-    name: Optional[str] = None
-    oracle_id: Optional[str] = None
-    oracle_text: Optional[str] = None
-    power: Optional[str] = None
-    price: Optional[dict] = None
-    rarity: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    set: Optional[str] = None
-    set_name: Optional[str] = None
-    toughness: Optional[str] = None
-    type_line: Optional[str] = None
-    uri: Optional[str] = None
+class Card(TypedDict, total=False):
+    artist: str
+    cmc: float
+    collector_number: str
+    color: list
+    color_identity: list
+    id: str
+    image_uri: dict
+    lang: str
+    layout: str
+    legality: dict
+    loyalty: str
+    mana_cost: str
+    name: str
+    oracle_id: str
+    oracle_text: str
+    power: str
+    price: dict
+    rarity: str
+    released_at: str
+    scryfall_uri: str
+    set: str
+    set_name: str
+    toughness: str
+    type_line: str
+    uri: str
 
 
-@dataclass
-class CardLoadMatch:
+class CardLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class CardListMatch:
-    artist: Optional[str] = None
-    cmc: Optional[float] = None
-    collector_number: Optional[str] = None
-    color: Optional[list] = None
-    color_identity: Optional[list] = None
-    id: Optional[str] = None
-    image_uri: Optional[dict] = None
-    lang: Optional[str] = None
-    layout: Optional[str] = None
-    legality: Optional[dict] = None
-    loyalty: Optional[str] = None
-    mana_cost: Optional[str] = None
-    name: Optional[str] = None
-    oracle_id: Optional[str] = None
-    oracle_text: Optional[str] = None
-    power: Optional[str] = None
-    price: Optional[dict] = None
-    rarity: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    set: Optional[str] = None
-    set_name: Optional[str] = None
-    toughness: Optional[str] = None
-    type_line: Optional[str] = None
-    uri: Optional[str] = None
+class CardListMatch(TypedDict, total=False):
+    artist: str
+    cmc: float
+    collector_number: str
+    color: list
+    color_identity: list
+    id: str
+    image_uri: dict
+    lang: str
+    layout: str
+    legality: dict
+    loyalty: str
+    mana_cost: str
+    name: str
+    oracle_id: str
+    oracle_text: str
+    power: str
+    price: dict
+    rarity: str
+    released_at: str
+    scryfall_uri: str
+    set: str
+    set_name: str
+    toughness: str
+    type_line: str
+    uri: str
 
 
-@dataclass
-class CardList:
+class CardListRequired(TypedDict):
     identifier: list
-    artist: Optional[str] = None
-    cmc: Optional[float] = None
-    collector_number: Optional[str] = None
-    color: Optional[list] = None
-    color_identity: Optional[list] = None
-    data: Optional[list] = None
-    has_more: Optional[bool] = None
-    id: Optional[str] = None
-    image_uri: Optional[dict] = None
-    lang: Optional[str] = None
-    layout: Optional[str] = None
-    legality: Optional[dict] = None
-    loyalty: Optional[str] = None
-    mana_cost: Optional[str] = None
-    name: Optional[str] = None
-    next_page: Optional[str] = None
-    object: Optional[str] = None
-    oracle_id: Optional[str] = None
-    oracle_text: Optional[str] = None
-    power: Optional[str] = None
-    price: Optional[dict] = None
-    rarity: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    set: Optional[str] = None
-    set_name: Optional[str] = None
-    total_card: Optional[int] = None
-    toughness: Optional[str] = None
-    type_line: Optional[str] = None
-    uri: Optional[str] = None
 
 
-@dataclass
-class CardListListMatch:
-    artist: Optional[str] = None
-    cmc: Optional[float] = None
-    collector_number: Optional[str] = None
-    color: Optional[list] = None
-    color_identity: Optional[list] = None
-    data: Optional[list] = None
-    has_more: Optional[bool] = None
-    id: Optional[str] = None
-    identifier: Optional[list] = None
-    image_uri: Optional[dict] = None
-    lang: Optional[str] = None
-    layout: Optional[str] = None
-    legality: Optional[dict] = None
-    loyalty: Optional[str] = None
-    mana_cost: Optional[str] = None
-    name: Optional[str] = None
-    next_page: Optional[str] = None
-    object: Optional[str] = None
-    oracle_id: Optional[str] = None
-    oracle_text: Optional[str] = None
-    power: Optional[str] = None
-    price: Optional[dict] = None
-    rarity: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    set: Optional[str] = None
-    set_name: Optional[str] = None
-    total_card: Optional[int] = None
-    toughness: Optional[str] = None
-    type_line: Optional[str] = None
-    uri: Optional[str] = None
+class CardList(CardListRequired, total=False):
+    artist: str
+    cmc: float
+    collector_number: str
+    color: list
+    color_identity: list
+    data: list
+    has_more: bool
+    id: str
+    image_uri: dict
+    lang: str
+    layout: str
+    legality: dict
+    loyalty: str
+    mana_cost: str
+    name: str
+    next_page: str
+    object: str
+    oracle_id: str
+    oracle_text: str
+    power: str
+    price: dict
+    rarity: str
+    released_at: str
+    scryfall_uri: str
+    set: str
+    set_name: str
+    total_card: int
+    toughness: str
+    type_line: str
+    uri: str
 
 
-@dataclass
-class CardListCreateData:
-    artist: Optional[str] = None
-    cmc: Optional[float] = None
-    collector_number: Optional[str] = None
-    color: Optional[list] = None
-    color_identity: Optional[list] = None
-    data: Optional[list] = None
-    has_more: Optional[bool] = None
-    id: Optional[str] = None
-    identifier: Optional[list] = None
-    image_uri: Optional[dict] = None
-    lang: Optional[str] = None
-    layout: Optional[str] = None
-    legality: Optional[dict] = None
-    loyalty: Optional[str] = None
-    mana_cost: Optional[str] = None
-    name: Optional[str] = None
-    next_page: Optional[str] = None
-    object: Optional[str] = None
-    oracle_id: Optional[str] = None
-    oracle_text: Optional[str] = None
-    power: Optional[str] = None
-    price: Optional[dict] = None
-    rarity: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    set: Optional[str] = None
-    set_name: Optional[str] = None
-    total_card: Optional[int] = None
-    toughness: Optional[str] = None
-    type_line: Optional[str] = None
-    uri: Optional[str] = None
+class CardListListMatch(TypedDict, total=False):
+    artist: str
+    cmc: float
+    collector_number: str
+    color: list
+    color_identity: list
+    data: list
+    has_more: bool
+    id: str
+    identifier: list
+    image_uri: dict
+    lang: str
+    layout: str
+    legality: dict
+    loyalty: str
+    mana_cost: str
+    name: str
+    next_page: str
+    object: str
+    oracle_id: str
+    oracle_text: str
+    power: str
+    price: dict
+    rarity: str
+    released_at: str
+    scryfall_uri: str
+    set: str
+    set_name: str
+    total_card: int
+    toughness: str
+    type_line: str
+    uri: str
 
 
-@dataclass
-class CardSymbolList:
-    appears_in_mana_cost: Optional[bool] = None
-    cmc: Optional[float] = None
-    color: Optional[list] = None
-    english: Optional[str] = None
-    funny: Optional[bool] = None
-    loose_variant: Optional[str] = None
-    object: Optional[str] = None
-    represents_mana: Optional[bool] = None
-    svg_uri: Optional[str] = None
-    symbol: Optional[str] = None
-    transposable: Optional[bool] = None
+class CardListCreateData(TypedDict, total=False):
+    artist: str
+    cmc: float
+    collector_number: str
+    color: list
+    color_identity: list
+    data: list
+    has_more: bool
+    id: str
+    identifier: list
+    image_uri: dict
+    lang: str
+    layout: str
+    legality: dict
+    loyalty: str
+    mana_cost: str
+    name: str
+    next_page: str
+    object: str
+    oracle_id: str
+    oracle_text: str
+    power: str
+    price: dict
+    rarity: str
+    released_at: str
+    scryfall_uri: str
+    set: str
+    set_name: str
+    total_card: int
+    toughness: str
+    type_line: str
+    uri: str
 
 
-@dataclass
-class CardSymbolListListMatch:
-    appears_in_mana_cost: Optional[bool] = None
-    cmc: Optional[float] = None
-    color: Optional[list] = None
-    english: Optional[str] = None
-    funny: Optional[bool] = None
-    loose_variant: Optional[str] = None
-    object: Optional[str] = None
-    represents_mana: Optional[bool] = None
-    svg_uri: Optional[str] = None
-    symbol: Optional[str] = None
-    transposable: Optional[bool] = None
+class CardSymbolList(TypedDict, total=False):
+    appears_in_mana_cost: bool
+    cmc: float
+    color: list
+    english: str
+    funny: bool
+    loose_variant: str
+    object: str
+    represents_mana: bool
+    svg_uri: str
+    symbol: str
+    transposable: bool
 
 
-@dataclass
-class Catalog:
-    data: Optional[list] = None
-    object: Optional[str] = None
-    total_value: Optional[int] = None
-    uri: Optional[str] = None
+class CardSymbolListListMatch(TypedDict, total=False):
+    appears_in_mana_cost: bool
+    cmc: float
+    color: list
+    english: str
+    funny: bool
+    loose_variant: str
+    object: str
+    represents_mana: bool
+    svg_uri: str
+    symbol: str
+    transposable: bool
 
 
-@dataclass
-class CatalogLoadMatch:
+class Catalog(TypedDict, total=False):
+    data: list
+    object: str
+    total_value: int
+    uri: str
+
+
+class CatalogLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ManaCost:
-    cmc: Optional[float] = None
-    color: Optional[list] = None
-    colorless: Optional[bool] = None
-    cost: Optional[str] = None
-    monocolored: Optional[bool] = None
-    multicolored: Optional[bool] = None
-    object: Optional[str] = None
+class ManaCost(TypedDict, total=False):
+    cmc: float
+    color: list
+    colorless: bool
+    cost: str
+    monocolored: bool
+    multicolored: bool
+    object: str
 
 
-@dataclass
-class ManaCostListMatch:
-    cmc: Optional[float] = None
-    color: Optional[list] = None
-    colorless: Optional[bool] = None
-    cost: Optional[str] = None
-    monocolored: Optional[bool] = None
-    multicolored: Optional[bool] = None
-    object: Optional[str] = None
+class ManaCostListMatch(TypedDict, total=False):
+    cmc: float
+    color: list
+    colorless: bool
+    cost: str
+    monocolored: bool
+    multicolored: bool
+    object: str
 
 
-@dataclass
-class Migration:
-    id: Optional[str] = None
-    migration_strategy: Optional[str] = None
-    new_scryfall_id: Optional[str] = None
-    object: Optional[str] = None
-    old_scryfall_id: Optional[str] = None
-    performed_at: Optional[str] = None
-    uri: Optional[str] = None
+class Migration(TypedDict, total=False):
+    id: str
+    migration_strategy: str
+    new_scryfall_id: str
+    object: str
+    old_scryfall_id: str
+    performed_at: str
+    uri: str
 
 
-@dataclass
-class MigrationListMatch:
-    id: Optional[str] = None
-    migration_strategy: Optional[str] = None
-    new_scryfall_id: Optional[str] = None
-    object: Optional[str] = None
-    old_scryfall_id: Optional[str] = None
-    performed_at: Optional[str] = None
-    uri: Optional[str] = None
+class MigrationListMatch(TypedDict, total=False):
+    id: str
+    migration_strategy: str
+    new_scryfall_id: str
+    object: str
+    old_scryfall_id: str
+    performed_at: str
+    uri: str
 
 
-@dataclass
-class Ruling:
-    comment: Optional[str] = None
-    object: Optional[str] = None
-    oracle_id: Optional[str] = None
-    published_at: Optional[str] = None
-    source: Optional[str] = None
+class Ruling(TypedDict, total=False):
+    comment: str
+    object: str
+    oracle_id: str
+    published_at: str
+    source: str
 
 
-@dataclass
-class RulingListMatch:
+class RulingListMatch(TypedDict):
     card_id: str
 
 
-@dataclass
-class Set:
-    card_count: Optional[int] = None
-    code: Optional[str] = None
-    digital: Optional[bool] = None
-    icon_svg_uri: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    search_uri: Optional[str] = None
-    set_type: Optional[str] = None
-    uri: Optional[str] = None
+class Set(TypedDict, total=False):
+    card_count: int
+    code: str
+    digital: bool
+    icon_svg_uri: str
+    id: str
+    name: str
+    released_at: str
+    scryfall_uri: str
+    search_uri: str
+    set_type: str
+    uri: str
 
 
-@dataclass
-class SetLoadMatch:
+class SetLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class SetListMatch:
-    card_count: Optional[int] = None
-    code: Optional[str] = None
-    digital: Optional[bool] = None
-    icon_svg_uri: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    released_at: Optional[str] = None
-    scryfall_uri: Optional[str] = None
-    search_uri: Optional[str] = None
-    set_type: Optional[str] = None
-    uri: Optional[str] = None
-
+class SetListMatch(TypedDict, total=False):
+    card_count: int
+    code: str
+    digital: bool
+    icon_svg_uri: str
+    id: str
+    name: str
+    released_at: str
+    scryfall_uri: str
+    search_uri: str
+    set_type: str
+    uri: str

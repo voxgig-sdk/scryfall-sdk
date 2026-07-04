@@ -26,9 +26,11 @@ import { ScryfallSDK } from '@voxgig-sdk/scryfall'
 
 const client = new ScryfallSDK()
 
-// List all bulkdatas
-const bulkdatas = await client.bulkdata.list()
-console.log(bulkdatas.data)
+// List all bulkdatas (returns BulkData[])
+const bulkdatas = await client.BulkData().list()
+for (const bulkdata of bulkdatas) {
+  console.log(bulkdata)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -91,12 +93,13 @@ from scryfall_sdk import ScryfallSDK
 
 client = ScryfallSDK()
 
-# List all bulkdatas
-bulkdatas = client.bulkdata.list()
-print(bulkdatas)
+# List all bulkdatas (returns a list, raises on error)
+bulkdatas = client.BulkData().list({})
+for bulkdata in bulkdatas:
+    print(bulkdata)
 
-# Load a specific bulkdata
-bulkdata = client.bulkdata.load({"id": "example_id"})
+# Load a specific bulkdata (returns the record, raises on error)
+bulkdata = client.BulkData().load({"id": "example_id"})
 print(bulkdata)
 ```
 
@@ -108,12 +111,12 @@ require_once 'scryfall_sdk.php';
 
 $client = new ScryfallSDK();
 
-// List all bulkdatas (throws on error)
-$bulkdatas = $client->bulkdata()->list();
+// List all bulkdatas (returns an array; throws on error)
+$bulkdatas = $client->BulkData()->list();
 print_r($bulkdatas);
 
-// Load a specific bulkdata
-$bulkdata = $client->bulkdata()->load(["id" => "example_id"]);
+// Load a specific bulkdata (returns the bare record; throws on error)
+$bulkdata = $client->BulkData()->load(["id" => "example_id"]);
 print_r($bulkdata);
 ```
 
@@ -136,12 +139,12 @@ require_relative "Scryfall_sdk"
 
 client = ScryfallSDK.new
 
-# List all bulkdatas
-bulkdatas = client.bulkdata.list
+# List all bulkdatas (returns an Array; raises on error)
+bulkdatas = client.BulkData.list
 puts bulkdatas
 
-# Load a specific bulkdata
-bulkdata = client.bulkdata.load({ "id" => "example_id" })
+# Load a specific bulkdata (returns the bare record; raises on error)
+bulkdata = client.BulkData.load({ "id" => "example_id" })
 puts bulkdata
 ```
 
@@ -153,11 +156,11 @@ local sdk = require("scryfall_sdk")
 local client = sdk.new()
 
 -- List all bulkdatas
-local bulkdatas, err = client:bulkdata():list()
+local bulkdatas, err = client:BulkData():list()
 print(bulkdatas)
 
 -- Load a specific bulkdata
-local bulkdata, err = client:bulkdata():load({ id = "example_id" })
+local bulkdata, err = client:BulkData():load({ id = "example_id" })
 print(bulkdata)
 ```
 
@@ -170,22 +173,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = ScryfallSDK.test()
-const result = await client.bulkdata.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const bulkdata = await client.BulkData().load({ id: 'test01' })
+// bulkdata is a bare BulkData populated with mock data
+console.log(bulkdata)
 ```
 
 ### Python
 
 ```python
 client = ScryfallSDK.test()
-result = client.bulkdata.load({"id": "test01"})
+bulkdata = client.BulkData().load({"id": "test01"})
+print(bulkdata)
 ```
 
 ### PHP
 
 ```php
-$client = ScryfallSDK::test();
-$result = $client->bulkdata()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = ScryfallSDK::test([
+    "entity" => ["bulkdata" => ["test01" => ["id" => "test01"]]],
+]);
+$bulkdata = $client->BulkData()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -200,15 +208,18 @@ result, err := client.BulkData(nil).Load(
 ### Ruby
 
 ```ruby
-client = ScryfallSDK.test
-result = client.bulkdata.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = ScryfallSDK.test({
+  "entity" => { "bulkdata" => { "test01" => { "id" => "test01" } } },
+})
+bulkdata = client.BulkData.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:bulkdata():load({ id = "test01" })
+local result, err = client:BulkData():load({ id = "test01" })
 ```
 
 ## How it works
@@ -256,6 +267,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -220,153 +220,63 @@ class ScryfallSDK:
         }
 
 
-    @property
-    def bulk_data(self):
-        """Idiomatic facade: client.bulk_data.list() / client.bulk_data.load({"id": ...})."""
-        from entity.bulk_data_entity import BulkDataEntity
-        cached = getattr(self, "_bulk_data", None)
-        if cached is None:
-            cached = BulkDataEntity(self, None)
-            self._bulk_data = cached
-        return cached
-
-    def BulkData(self, data=None):
-        # Deprecated: use client.bulk_data instead.
+    def BulkData(self, data=None) -> "BulkDataEntity":
+        """Entity factory: client.BulkData().list({}) / client.BulkData().load({"id": ...})."""
         from entity.bulk_data_entity import BulkDataEntity
         return BulkDataEntity(self, data)
 
 
-    @property
-    def card(self):
-        """Idiomatic facade: client.card.list() / client.card.load({"id": ...})."""
-        from entity.card_entity import CardEntity
-        cached = getattr(self, "_card", None)
-        if cached is None:
-            cached = CardEntity(self, None)
-            self._card = cached
-        return cached
-
-    def Card(self, data=None):
-        # Deprecated: use client.card instead.
+    def Card(self, data=None) -> "CardEntity":
+        """Entity factory: client.Card().list({}) / client.Card().load({"id": ...})."""
         from entity.card_entity import CardEntity
         return CardEntity(self, data)
 
 
-    @property
-    def card_list(self):
-        """Idiomatic facade: client.card_list.list() / client.card_list.load({"id": ...})."""
-        from entity.card_list_entity import CardListEntity
-        cached = getattr(self, "_card_list", None)
-        if cached is None:
-            cached = CardListEntity(self, None)
-            self._card_list = cached
-        return cached
-
-    def CardList(self, data=None):
-        # Deprecated: use client.card_list instead.
+    def CardList(self, data=None) -> "CardListEntity":
+        """Entity factory: client.CardList().list({}) / client.CardList().load({"id": ...})."""
         from entity.card_list_entity import CardListEntity
         return CardListEntity(self, data)
 
 
-    @property
-    def card_symbol_list(self):
-        """Idiomatic facade: client.card_symbol_list.list() / client.card_symbol_list.load({"id": ...})."""
-        from entity.card_symbol_list_entity import CardSymbolListEntity
-        cached = getattr(self, "_card_symbol_list", None)
-        if cached is None:
-            cached = CardSymbolListEntity(self, None)
-            self._card_symbol_list = cached
-        return cached
-
-    def CardSymbolList(self, data=None):
-        # Deprecated: use client.card_symbol_list instead.
+    def CardSymbolList(self, data=None) -> "CardSymbolListEntity":
+        """Entity factory: client.CardSymbolList().list({}) / client.CardSymbolList().load({"id": ...})."""
         from entity.card_symbol_list_entity import CardSymbolListEntity
         return CardSymbolListEntity(self, data)
 
 
-    @property
-    def catalog(self):
-        """Idiomatic facade: client.catalog.list() / client.catalog.load({"id": ...})."""
-        from entity.catalog_entity import CatalogEntity
-        cached = getattr(self, "_catalog", None)
-        if cached is None:
-            cached = CatalogEntity(self, None)
-            self._catalog = cached
-        return cached
-
-    def Catalog(self, data=None):
-        # Deprecated: use client.catalog instead.
+    def Catalog(self, data=None) -> "CatalogEntity":
+        """Entity factory: client.Catalog().list({}) / client.Catalog().load({"id": ...})."""
         from entity.catalog_entity import CatalogEntity
         return CatalogEntity(self, data)
 
 
-    @property
-    def mana_cost(self):
-        """Idiomatic facade: client.mana_cost.list() / client.mana_cost.load({"id": ...})."""
-        from entity.mana_cost_entity import ManaCostEntity
-        cached = getattr(self, "_mana_cost", None)
-        if cached is None:
-            cached = ManaCostEntity(self, None)
-            self._mana_cost = cached
-        return cached
-
-    def ManaCost(self, data=None):
-        # Deprecated: use client.mana_cost instead.
+    def ManaCost(self, data=None) -> "ManaCostEntity":
+        """Entity factory: client.ManaCost().list({}) / client.ManaCost().load({"id": ...})."""
         from entity.mana_cost_entity import ManaCostEntity
         return ManaCostEntity(self, data)
 
 
-    @property
-    def migration(self):
-        """Idiomatic facade: client.migration.list() / client.migration.load({"id": ...})."""
-        from entity.migration_entity import MigrationEntity
-        cached = getattr(self, "_migration", None)
-        if cached is None:
-            cached = MigrationEntity(self, None)
-            self._migration = cached
-        return cached
-
-    def Migration(self, data=None):
-        # Deprecated: use client.migration instead.
+    def Migration(self, data=None) -> "MigrationEntity":
+        """Entity factory: client.Migration().list({}) / client.Migration().load({"id": ...})."""
         from entity.migration_entity import MigrationEntity
         return MigrationEntity(self, data)
 
 
-    @property
-    def ruling(self):
-        """Idiomatic facade: client.ruling.list() / client.ruling.load({"id": ...})."""
-        from entity.ruling_entity import RulingEntity
-        cached = getattr(self, "_ruling", None)
-        if cached is None:
-            cached = RulingEntity(self, None)
-            self._ruling = cached
-        return cached
-
-    def Ruling(self, data=None):
-        # Deprecated: use client.ruling instead.
+    def Ruling(self, data=None) -> "RulingEntity":
+        """Entity factory: client.Ruling().list({}) / client.Ruling().load({"id": ...})."""
         from entity.ruling_entity import RulingEntity
         return RulingEntity(self, data)
 
 
-    @property
-    def set(self):
-        """Idiomatic facade: client.set.list() / client.set.load({"id": ...})."""
-        from entity.set_entity import SetEntity
-        cached = getattr(self, "_set", None)
-        if cached is None:
-            cached = SetEntity(self, None)
-            self._set = cached
-        return cached
-
-    def Set(self, data=None):
-        # Deprecated: use client.set instead.
+    def Set(self, data=None) -> "SetEntity":
+        """Entity factory: client.Set().list({}) / client.Set().load({"id": ...})."""
         from entity.set_entity import SetEntity
         return SetEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "ScryfallSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -386,3 +296,17 @@ class ScryfallSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.bulk_data_entity import BulkDataEntity
+    from entity.card_entity import CardEntity
+    from entity.card_list_entity import CardListEntity
+    from entity.card_symbol_list_entity import CardSymbolListEntity
+    from entity.catalog_entity import CatalogEntity
+    from entity.mana_cost_entity import ManaCostEntity
+    from entity.migration_entity import MigrationEntity
+    from entity.ruling_entity import RulingEntity
+    from entity.set_entity import SetEntity

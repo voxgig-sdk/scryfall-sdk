@@ -112,7 +112,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## BulkDataEntity
 
 ```python
-bulk_data = client.bulk_data
+bulk_data = client.BulkData()
 ```
 
 ### Fields
@@ -137,7 +137,9 @@ bulk_data = client.bulk_data
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.bulk_data.list({})
+results = client.BulkData().list({})
+for bulk_data in results:
+    print(bulk_data)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -145,7 +147,7 @@ results = client.bulk_data.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.bulk_data.load({"id": "bulk_data_id"})
+result = client.BulkData().load({"id": "bulk_data_id"})
 ```
 
 ### Common Methods
@@ -180,7 +182,7 @@ Return the entity name.
 ## CardEntity
 
 ```python
-card = client.card
+card = client.Card()
 ```
 
 ### Fields
@@ -220,7 +222,9 @@ card = client.card
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.card.list({})
+results = client.Card().list({})
+for card in results:
+    print(card)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -228,7 +232,7 @@ results = client.card.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.card.load({"id": "card_id"})
+result = client.Card().load({"id": "card_id"})
 ```
 
 ### Common Methods
@@ -263,7 +267,7 @@ Return the entity name.
 ## CardListEntity
 
 ```python
-card_list = client.card_list
+card_list = client.CardList()
 ```
 
 ### Fields
@@ -309,8 +313,8 @@ card_list = client.card_list
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.card_list.create({
-    "identifier": # `$ARRAY`,
+result = client.CardList().create({
+    "identifier": ...,  # `$ARRAY`
 })
 ```
 
@@ -319,7 +323,9 @@ result = client.card_list.create({
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.card_list.list({})
+results = client.CardList().list({})
+for card_list in results:
+    print(card_list)
 ```
 
 ### Common Methods
@@ -354,7 +360,7 @@ Return the entity name.
 ## CardSymbolListEntity
 
 ```python
-card_symbol_list = client.card_symbol_list
+card_symbol_list = client.CardSymbolList()
 ```
 
 ### Fields
@@ -380,7 +386,9 @@ card_symbol_list = client.card_symbol_list
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.card_symbol_list.list({})
+results = client.CardSymbolList().list({})
+for card_symbol_list in results:
+    print(card_symbol_list)
 ```
 
 ### Common Methods
@@ -415,7 +423,7 @@ Return the entity name.
 ## CatalogEntity
 
 ```python
-catalog = client.catalog
+catalog = client.Catalog()
 ```
 
 ### Fields
@@ -434,7 +442,7 @@ catalog = client.catalog
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.catalog.load({"id": "catalog_id"})
+result = client.Catalog().load({"id": "catalog_id"})
 ```
 
 ### Common Methods
@@ -469,7 +477,7 @@ Return the entity name.
 ## ManaCostEntity
 
 ```python
-mana_cost = client.mana_cost
+mana_cost = client.ManaCost()
 ```
 
 ### Fields
@@ -491,7 +499,9 @@ mana_cost = client.mana_cost
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.mana_cost.list({})
+results = client.ManaCost().list({})
+for mana_cost in results:
+    print(mana_cost)
 ```
 
 ### Common Methods
@@ -526,7 +536,7 @@ Return the entity name.
 ## MigrationEntity
 
 ```python
-migration = client.migration
+migration = client.Migration()
 ```
 
 ### Fields
@@ -548,7 +558,9 @@ migration = client.migration
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.migration.list({})
+results = client.Migration().list({})
+for migration in results:
+    print(migration)
 ```
 
 ### Common Methods
@@ -583,7 +595,7 @@ Return the entity name.
 ## RulingEntity
 
 ```python
-ruling = client.ruling
+ruling = client.Ruling()
 ```
 
 ### Fields
@@ -603,7 +615,9 @@ ruling = client.ruling
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.ruling.list({})
+results = client.Ruling().list({})
+for ruling in results:
+    print(ruling)
 ```
 
 ### Common Methods
@@ -638,7 +652,7 @@ Return the entity name.
 ## SetEntity
 
 ```python
-set = client.set
+set = client.Set()
 ```
 
 ### Fields
@@ -664,7 +678,9 @@ set = client.set
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.set.list({})
+results = client.Set().list({})
+for set in results:
+    print(set)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -672,7 +688,7 @@ results = client.set.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.set.load({"id": "set_id"})
+result = client.Set().load({"id": "set_id"})
 ```
 
 ### Common Methods

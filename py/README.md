@@ -31,24 +31,28 @@ from scryfall_sdk import ScryfallSDK
 client = ScryfallSDK()
 ```
 
-### 2. List bulkdatas
+### 2. List bulkdata records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.bulkdata.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    bulkdatas = client.BulkData().list({})
+    for bulkdata in bulkdatas:
+        print(bulkdata)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a bulkdata
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.bulkdata.load({"id": "example_id"})
-    print(result)
+    bulkdata = client.BulkData().load({"id": "example_id"})
+    print(bulkdata)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ScryfallSDK.test()
 
-result = client.bulkdata.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+bulkdata = client.BulkData().load({"id": "test01"})
+# bulkdata contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -420,7 +425,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `const bulk_data = client.bulk_data`
+Create an instance: `bulk_data = client.BulkData()`
 
 #### Operations
 
@@ -446,20 +451,20 @@ Create an instance: `const bulk_data = client.bulk_data`
 
 #### Example: Load
 
-```ts
-const bulk_data = await client.bulk_data.load({ id: 'bulk_data_id' })
+```python
+bulk_data = client.BulkData().load({"id": "bulk_data_id"})
 ```
 
 #### Example: List
 
-```ts
-const bulk_datas = await client.bulk_data.list()
+```python
+bulk_datas = client.BulkData().list({})
 ```
 
 
 ### Card
 
-Create an instance: `const card = client.card`
+Create an instance: `card = client.Card()`
 
 #### Operations
 
@@ -500,20 +505,20 @@ Create an instance: `const card = client.card`
 
 #### Example: Load
 
-```ts
-const card = await client.card.load({ id: 'card_id' })
+```python
+card = client.Card().load({"id": "card_id"})
 ```
 
 #### Example: List
 
-```ts
-const cards = await client.card.list()
+```python
+cards = client.Card().list({})
 ```
 
 
 ### CardList
 
-Create an instance: `const card_list = client.card_list`
+Create an instance: `card_list = client.CardList()`
 
 #### Operations
 
@@ -560,22 +565,22 @@ Create an instance: `const card_list = client.card_list`
 
 #### Example: List
 
-```ts
-const card_lists = await client.card_list.list()
+```python
+card_lists = client.CardList().list({})
 ```
 
 #### Example: Create
 
-```ts
-const card_list = await client.card_list.create({
-  identifier: /* `$ARRAY` */,
+```python
+card_list = client.CardList().create({
+    "identifier": ...,  # `$ARRAY`
 })
 ```
 
 
 ### CardSymbolList
 
-Create an instance: `const card_symbol_list = client.card_symbol_list`
+Create an instance: `card_symbol_list = client.CardSymbolList()`
 
 #### Operations
 
@@ -601,14 +606,14 @@ Create an instance: `const card_symbol_list = client.card_symbol_list`
 
 #### Example: List
 
-```ts
-const card_symbol_lists = await client.card_symbol_list.list()
+```python
+card_symbol_lists = client.CardSymbolList().list({})
 ```
 
 
 ### Catalog
 
-Create an instance: `const catalog = client.catalog`
+Create an instance: `catalog = client.Catalog()`
 
 #### Operations
 
@@ -627,14 +632,14 @@ Create an instance: `const catalog = client.catalog`
 
 #### Example: Load
 
-```ts
-const catalog = await client.catalog.load({ id: 'catalog_id' })
+```python
+catalog = client.Catalog().load({"id": "catalog_id"})
 ```
 
 
 ### ManaCost
 
-Create an instance: `const mana_cost = client.mana_cost`
+Create an instance: `mana_cost = client.ManaCost()`
 
 #### Operations
 
@@ -656,14 +661,14 @@ Create an instance: `const mana_cost = client.mana_cost`
 
 #### Example: List
 
-```ts
-const mana_costs = await client.mana_cost.list()
+```python
+mana_costs = client.ManaCost().list({})
 ```
 
 
 ### Migration
 
-Create an instance: `const migration = client.migration`
+Create an instance: `migration = client.Migration()`
 
 #### Operations
 
@@ -685,14 +690,14 @@ Create an instance: `const migration = client.migration`
 
 #### Example: List
 
-```ts
-const migrations = await client.migration.list()
+```python
+migrations = client.Migration().list({})
 ```
 
 
 ### Ruling
 
-Create an instance: `const ruling = client.ruling`
+Create an instance: `ruling = client.Ruling()`
 
 #### Operations
 
@@ -712,14 +717,14 @@ Create an instance: `const ruling = client.ruling`
 
 #### Example: List
 
-```ts
-const rulings = await client.ruling.list()
+```python
+rulings = client.Ruling().list({})
 ```
 
 
 ### Set
 
-Create an instance: `const set = client.set`
+Create an instance: `set = client.Set()`
 
 #### Operations
 
@@ -746,14 +751,14 @@ Create an instance: `const set = client.set`
 
 #### Example: Load
 
-```ts
-const set = await client.set.load({ id: 'set_id' })
+```python
+set = client.Set().load({"id": "set_id"})
 ```
 
 #### Example: List
 
-```ts
-const sets = await client.set.list()
+```python
+sets = client.Set().list({})
 ```
 
 
@@ -827,7 +832,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bulkdata = client.bulkdata
+bulkdata = client.BulkData()
 bulkdata.load({"id": "example_id"})
 
 # bulkdata.data_get() now returns the loaded bulkdata data

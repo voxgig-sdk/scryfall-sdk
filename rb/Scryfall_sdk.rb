@@ -208,117 +208,63 @@ class ScryfallSDK
   end
 
 
-  # Idiomatic facade: client.bulk_data.list / client.bulk_data.load({ "id" => ... })
-  def bulk_data
-    require_relative 'entity/bulk_data_entity'
-    @bulk_data ||= BulkDataEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.bulk_data instead.
+  # Canonical facade: client.BulkData.list / client.BulkData.load({ "id" => ... })
   def BulkData(data = nil)
     require_relative 'entity/bulk_data_entity'
     BulkDataEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.card.list / client.card.load({ "id" => ... })
-  def card
-    require_relative 'entity/card_entity'
-    @card ||= CardEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.card instead.
+  # Canonical facade: client.Card.list / client.Card.load({ "id" => ... })
   def Card(data = nil)
     require_relative 'entity/card_entity'
     CardEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.card_list.list / client.card_list.load({ "id" => ... })
-  def card_list
-    require_relative 'entity/card_list_entity'
-    @card_list ||= CardListEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.card_list instead.
+  # Canonical facade: client.CardList.list / client.CardList.load({ "id" => ... })
   def CardList(data = nil)
     require_relative 'entity/card_list_entity'
     CardListEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.card_symbol_list.list / client.card_symbol_list.load({ "id" => ... })
-  def card_symbol_list
-    require_relative 'entity/card_symbol_list_entity'
-    @card_symbol_list ||= CardSymbolListEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.card_symbol_list instead.
+  # Canonical facade: client.CardSymbolList.list / client.CardSymbolList.load({ "id" => ... })
   def CardSymbolList(data = nil)
     require_relative 'entity/card_symbol_list_entity'
     CardSymbolListEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.catalog.list / client.catalog.load({ "id" => ... })
-  def catalog
-    require_relative 'entity/catalog_entity'
-    @catalog ||= CatalogEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.catalog instead.
+  # Canonical facade: client.Catalog.list / client.Catalog.load({ "id" => ... })
   def Catalog(data = nil)
     require_relative 'entity/catalog_entity'
     CatalogEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.mana_cost.list / client.mana_cost.load({ "id" => ... })
-  def mana_cost
-    require_relative 'entity/mana_cost_entity'
-    @mana_cost ||= ManaCostEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.mana_cost instead.
+  # Canonical facade: client.ManaCost.list / client.ManaCost.load({ "id" => ... })
   def ManaCost(data = nil)
     require_relative 'entity/mana_cost_entity'
     ManaCostEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.migration.list / client.migration.load({ "id" => ... })
-  def migration
-    require_relative 'entity/migration_entity'
-    @migration ||= MigrationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.migration instead.
+  # Canonical facade: client.Migration.list / client.Migration.load({ "id" => ... })
   def Migration(data = nil)
     require_relative 'entity/migration_entity'
     MigrationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.ruling.list / client.ruling.load({ "id" => ... })
-  def ruling
-    require_relative 'entity/ruling_entity'
-    @ruling ||= RulingEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ruling instead.
+  # Canonical facade: client.Ruling.list / client.Ruling.load({ "id" => ... })
   def Ruling(data = nil)
     require_relative 'entity/ruling_entity'
     RulingEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.set.list / client.set.load({ "id" => ... })
-  def set
-    require_relative 'entity/set_entity'
-    @set ||= SetEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.set instead.
+  # Canonical facade: client.Set.list / client.Set.load({ "id" => ... })
   def Set(data = nil)
     require_relative 'entity/set_entity'
     SetEntity.new(self, data)
