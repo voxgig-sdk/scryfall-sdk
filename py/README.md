@@ -4,6 +4,11 @@
 
 The Python SDK for the Scryfall API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.BulkData()` — each
+carrying a small, uniform set of operations (`list`, `load`, `create`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    bulkdatas = client.BulkData().list({})
+    bulkdatas = client.BulkData().list()
     for bulkdata in bulkdatas:
         print(bulkdata)
 except Exception as err:
@@ -55,6 +60,34 @@ try:
     print(bulkdata)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    bulkdatas = client.BulkData().list()
+    print(bulkdatas)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -75,7 +108,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -101,7 +137,7 @@ Create a mock client for unit testing — no server required:
 client = ScryfallSDK.test()
 
 # Entity ops return the bare record and raise on error.
-bulkdata = client.BulkData().load({"id": "test01"})
+bulkdata = client.BulkData().list()
 # bulkdata contains the mock response record
 ```
 
@@ -197,8 +233,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -431,23 +465,23 @@ Create an instance: `bulk_data = client.BulkData()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content_encoding` | ``$STRING`` |  |
-| `content_type` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `download_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `content_encoding` | `str` |  |
+| `content_type` | `str` |  |
+| `description` | `str` |  |
+| `download_uri` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `object` | `str` |  |
+| `size` | `int` |  |
+| `type` | `str` |  |
+| `updated_at` | `str` |  |
 
 #### Example: Load
 
@@ -458,7 +492,7 @@ bulk_data = client.BulkData().load({"id": "bulk_data_id"})
 #### Example: List
 
 ```python
-bulk_datas = client.BulkData().list({})
+bulk_datas = client.BulkData().list()
 ```
 
 
@@ -470,38 +504,38 @@ Create an instance: `card = client.Card()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `str` |  |
+| `cmc` | `float` |  |
+| `collector_number` | `str` |  |
+| `color` | `list` |  |
+| `color_identity` | `list` |  |
+| `id` | `str` |  |
+| `image_uri` | `dict` |  |
+| `lang` | `str` |  |
+| `layout` | `str` |  |
+| `legality` | `dict` |  |
+| `loyalty` | `str` |  |
+| `mana_cost` | `str` |  |
+| `name` | `str` |  |
+| `oracle_id` | `str` |  |
+| `oracle_text` | `str` |  |
+| `power` | `str` |  |
+| `price` | `dict` |  |
+| `rarity` | `str` |  |
+| `released_at` | `str` |  |
+| `scryfall_uri` | `str` |  |
+| `set` | `str` |  |
+| `set_name` | `str` |  |
+| `toughness` | `str` |  |
+| `type_line` | `str` |  |
+| `uri` | `str` |  |
 
 #### Example: Load
 
@@ -512,7 +546,7 @@ card = client.Card().load({"id": "card_id"})
 #### Example: List
 
 ```python
-cards = client.Card().list({})
+cards = client.Card().list()
 ```
 
 
@@ -525,55 +559,55 @@ Create an instance: `card_list = client.CardList()`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `data` | ``$ARRAY`` |  |
-| `has_more` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$ARRAY`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `next_page` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `total_card` | ``$INTEGER`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `str` |  |
+| `cmc` | `float` |  |
+| `collector_number` | `str` |  |
+| `color` | `list` |  |
+| `color_identity` | `list` |  |
+| `data` | `list` |  |
+| `has_more` | `bool` |  |
+| `id` | `str` |  |
+| `identifier` | `list` |  |
+| `image_uri` | `dict` |  |
+| `lang` | `str` |  |
+| `layout` | `str` |  |
+| `legality` | `dict` |  |
+| `loyalty` | `str` |  |
+| `mana_cost` | `str` |  |
+| `name` | `str` |  |
+| `next_page` | `str` |  |
+| `object` | `str` |  |
+| `oracle_id` | `str` |  |
+| `oracle_text` | `str` |  |
+| `power` | `str` |  |
+| `price` | `dict` |  |
+| `rarity` | `str` |  |
+| `released_at` | `str` |  |
+| `scryfall_uri` | `str` |  |
+| `set` | `str` |  |
+| `set_name` | `str` |  |
+| `total_card` | `int` |  |
+| `toughness` | `str` |  |
+| `type_line` | `str` |  |
+| `uri` | `str` |  |
 
 #### Example: List
 
 ```python
-card_lists = client.CardList().list({})
+card_lists = client.CardList().list()
 ```
 
 #### Example: Create
 
 ```python
 card_list = client.CardList().create({
-    "identifier": ...,  # `$ARRAY`
+    "identifier": [],  # list
 })
 ```
 
@@ -586,28 +620,28 @@ Create an instance: `card_symbol_list = client.CardSymbolList()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `english` | ``$STRING`` |  |
-| `funny` | ``$BOOLEAN`` |  |
-| `loose_variant` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `represents_mana` | ``$BOOLEAN`` |  |
-| `svg_uri` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `transposable` | ``$BOOLEAN`` |  |
+| `appears_in_mana_cost` | `bool` |  |
+| `cmc` | `float` |  |
+| `color` | `list` |  |
+| `english` | `str` |  |
+| `funny` | `bool` |  |
+| `loose_variant` | `str` |  |
+| `object` | `str` |  |
+| `represents_mana` | `bool` |  |
+| `svg_uri` | `str` |  |
+| `symbol` | `str` |  |
+| `transposable` | `bool` |  |
 
 #### Example: List
 
 ```python
-card_symbol_lists = client.CardSymbolList().list({})
+card_symbol_lists = client.CardSymbolList().list()
 ```
 
 
@@ -625,10 +659,10 @@ Create an instance: `catalog = client.Catalog()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `object` | ``$STRING`` |  |
-| `total_value` | ``$INTEGER`` |  |
-| `uri` | ``$STRING`` |  |
+| `data` | `list` |  |
+| `object` | `str` |  |
+| `total_value` | `int` |  |
+| `uri` | `str` |  |
 
 #### Example: Load
 
@@ -645,24 +679,24 @@ Create an instance: `mana_cost = client.ManaCost()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `colorless` | ``$BOOLEAN`` |  |
-| `cost` | ``$STRING`` |  |
-| `monocolored` | ``$BOOLEAN`` |  |
-| `multicolored` | ``$BOOLEAN`` |  |
-| `object` | ``$STRING`` |  |
+| `cmc` | `float` |  |
+| `color` | `list` |  |
+| `colorless` | `bool` |  |
+| `cost` | `str` |  |
+| `monocolored` | `bool` |  |
+| `multicolored` | `bool` |  |
+| `object` | `str` |  |
 
 #### Example: List
 
 ```python
-mana_costs = client.ManaCost().list({})
+mana_costs = client.ManaCost().list()
 ```
 
 
@@ -674,24 +708,24 @@ Create an instance: `migration = client.Migration()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `migration_strategy` | ``$STRING`` |  |
-| `new_scryfall_id` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `old_scryfall_id` | ``$STRING`` |  |
-| `performed_at` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `id` | `str` |  |
+| `migration_strategy` | `str` |  |
+| `new_scryfall_id` | `str` |  |
+| `object` | `str` |  |
+| `old_scryfall_id` | `str` |  |
+| `performed_at` | `str` |  |
+| `uri` | `str` |  |
 
 #### Example: List
 
 ```python
-migrations = client.Migration().list({})
+migrations = client.Migration().list()
 ```
 
 
@@ -703,22 +737,22 @@ Create an instance: `ruling = client.Ruling()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `comment` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `published_at` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
+| `comment` | `str` |  |
+| `object` | `str` |  |
+| `oracle_id` | `str` |  |
+| `published_at` | `str` |  |
+| `source` | `str` |  |
 
 #### Example: List
 
 ```python
-rulings = client.Ruling().list({})
+rulings = client.Ruling().list()
 ```
 
 
@@ -730,24 +764,24 @@ Create an instance: `set = client.Set()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `card_count` | ``$INTEGER`` |  |
-| `code` | ``$STRING`` |  |
-| `digital` | ``$BOOLEAN`` |  |
-| `icon_svg_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `search_uri` | ``$STRING`` |  |
-| `set_type` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `card_count` | `int` |  |
+| `code` | `str` |  |
+| `digital` | `bool` |  |
+| `icon_svg_uri` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `released_at` | `str` |  |
+| `scryfall_uri` | `str` |  |
+| `search_uri` | `str` |  |
+| `set_type` | `str` |  |
+| `uri` | `str` |  |
 
 #### Example: Load
 
@@ -758,16 +792,20 @@ set = client.Set().load({"id": "set_id"})
 #### Example: List
 
 ```python
-sets = client.Set().list({})
+sets = client.Set().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -784,8 +822,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -828,14 +867,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 bulkdata = client.BulkData()
-bulkdata.load({"id": "example_id"})
+bulkdata.list()
 
-# bulkdata.data_get() now returns the loaded bulkdata data
+# bulkdata.data_get() now returns the bulkdata data from the last list
 # bulkdata.match_get() returns the last match criteria
 ```
 

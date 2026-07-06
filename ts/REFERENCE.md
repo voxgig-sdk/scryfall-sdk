@@ -212,16 +212,16 @@ const bulk_data = client.BulkData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content_encoding` | ``$STRING`` | No |  |
-| `content_type` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_uri` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `content_encoding` | `string` | No |  |
+| `content_type` | `string` | No |  |
+| `description` | `string` | No |  |
+| `download_uri` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `object` | `string` | No |  |
+| `size` | `number` | No |  |
+| `type` | `string` | No |  |
+| `updated_at` | `string` | No |  |
 
 ### Operations
 
@@ -279,31 +279,31 @@ const card = client.Card()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `collector_number` | ``$STRING`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `color_identity` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_uri` | ``$OBJECT`` | No |  |
-| `lang` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `legality` | ``$OBJECT`` | No |  |
-| `loyalty` | ``$STRING`` | No |  |
-| `mana_cost` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `oracle_text` | ``$STRING`` | No |  |
-| `power` | ``$STRING`` | No |  |
-| `price` | ``$OBJECT`` | No |  |
-| `rarity` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `set` | ``$STRING`` | No |  |
-| `set_name` | ``$STRING`` | No |  |
-| `toughness` | ``$STRING`` | No |  |
-| `type_line` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `artist` | `string` | No |  |
+| `cmc` | `number` | No |  |
+| `collector_number` | `string` | No |  |
+| `color` | `any[]` | No |  |
+| `color_identity` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `image_uri` | `Record<string, any>` | No |  |
+| `lang` | `string` | No |  |
+| `layout` | `string` | No |  |
+| `legality` | `Record<string, any>` | No |  |
+| `loyalty` | `string` | No |  |
+| `mana_cost` | `string` | No |  |
+| `name` | `string` | No |  |
+| `oracle_id` | `string` | No |  |
+| `oracle_text` | `string` | No |  |
+| `power` | `string` | No |  |
+| `price` | `Record<string, any>` | No |  |
+| `rarity` | `string` | No |  |
+| `released_at` | `string` | No |  |
+| `scryfall_uri` | `string` | No |  |
+| `set` | `string` | No |  |
+| `set_name` | `string` | No |  |
+| `toughness` | `string` | No |  |
+| `type_line` | `string` | No |  |
+| `uri` | `string` | No |  |
 
 ### Operations
 
@@ -361,37 +361,37 @@ const card_list = client.CardList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `collector_number` | ``$STRING`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `color_identity` | ``$ARRAY`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `has_more` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `identifier` | ``$ARRAY`` | Yes |  |
-| `image_uri` | ``$OBJECT`` | No |  |
-| `lang` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `legality` | ``$OBJECT`` | No |  |
-| `loyalty` | ``$STRING`` | No |  |
-| `mana_cost` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `next_page` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `oracle_text` | ``$STRING`` | No |  |
-| `power` | ``$STRING`` | No |  |
-| `price` | ``$OBJECT`` | No |  |
-| `rarity` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `set` | ``$STRING`` | No |  |
-| `set_name` | ``$STRING`` | No |  |
-| `total_card` | ``$INTEGER`` | No |  |
-| `toughness` | ``$STRING`` | No |  |
-| `type_line` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `artist` | `string` | No |  |
+| `cmc` | `number` | No |  |
+| `collector_number` | `string` | No |  |
+| `color` | `any[]` | No |  |
+| `color_identity` | `any[]` | No |  |
+| `data` | `any[]` | No |  |
+| `has_more` | `boolean` | No |  |
+| `id` | `string` | No |  |
+| `identifier` | `any[]` | Yes |  |
+| `image_uri` | `Record<string, any>` | No |  |
+| `lang` | `string` | No |  |
+| `layout` | `string` | No |  |
+| `legality` | `Record<string, any>` | No |  |
+| `loyalty` | `string` | No |  |
+| `mana_cost` | `string` | No |  |
+| `name` | `string` | No |  |
+| `next_page` | `string` | No |  |
+| `object` | `string` | No |  |
+| `oracle_id` | `string` | No |  |
+| `oracle_text` | `string` | No |  |
+| `power` | `string` | No |  |
+| `price` | `Record<string, any>` | No |  |
+| `rarity` | `string` | No |  |
+| `released_at` | `string` | No |  |
+| `scryfall_uri` | `string` | No |  |
+| `set` | `string` | No |  |
+| `set_name` | `string` | No |  |
+| `total_card` | `number` | No |  |
+| `toughness` | `string` | No |  |
+| `type_line` | `string` | No |  |
+| `uri` | `string` | No |  |
 
 ### Operations
 
@@ -401,7 +401,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.CardList().create({
-  identifier: /* `$ARRAY` */,
+  identifier: /* any[] */,
 })
 ```
 
@@ -451,17 +451,17 @@ const card_symbol_list = client.CardSymbolList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `english` | ``$STRING`` | No |  |
-| `funny` | ``$BOOLEAN`` | No |  |
-| `loose_variant` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `represents_mana` | ``$BOOLEAN`` | No |  |
-| `svg_uri` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `transposable` | ``$BOOLEAN`` | No |  |
+| `appears_in_mana_cost` | `boolean` | No |  |
+| `cmc` | `number` | No |  |
+| `color` | `any[]` | No |  |
+| `english` | `string` | No |  |
+| `funny` | `boolean` | No |  |
+| `loose_variant` | `string` | No |  |
+| `object` | `string` | No |  |
+| `represents_mana` | `boolean` | No |  |
+| `svg_uri` | `string` | No |  |
+| `symbol` | `string` | No |  |
+| `transposable` | `boolean` | No |  |
 
 ### Operations
 
@@ -511,10 +511,10 @@ const catalog = client.Catalog()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `total_value` | ``$INTEGER`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `data` | `any[]` | No |  |
+| `object` | `string` | No |  |
+| `total_value` | `number` | No |  |
+| `uri` | `string` | No |  |
 
 ### Operations
 
@@ -564,13 +564,13 @@ const mana_cost = client.ManaCost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cmc` | ``$NUMBER`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `colorless` | ``$BOOLEAN`` | No |  |
-| `cost` | ``$STRING`` | No |  |
-| `monocolored` | ``$BOOLEAN`` | No |  |
-| `multicolored` | ``$BOOLEAN`` | No |  |
-| `object` | ``$STRING`` | No |  |
+| `cmc` | `number` | No |  |
+| `color` | `any[]` | No |  |
+| `colorless` | `boolean` | No |  |
+| `cost` | `string` | No |  |
+| `monocolored` | `boolean` | No |  |
+| `multicolored` | `boolean` | No |  |
+| `object` | `string` | No |  |
 
 ### Operations
 
@@ -620,13 +620,13 @@ const migration = client.Migration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `migration_strategy` | ``$STRING`` | No |  |
-| `new_scryfall_id` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `old_scryfall_id` | ``$STRING`` | No |  |
-| `performed_at` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `id` | `string` | No |  |
+| `migration_strategy` | `string` | No |  |
+| `new_scryfall_id` | `string` | No |  |
+| `object` | `string` | No |  |
+| `old_scryfall_id` | `string` | No |  |
+| `performed_at` | `string` | No |  |
+| `uri` | `string` | No |  |
 
 ### Operations
 
@@ -676,11 +676,11 @@ const ruling = client.Ruling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comment` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `published_at` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
+| `comment` | `string` | No |  |
+| `object` | `string` | No |  |
+| `oracle_id` | `string` | No |  |
+| `published_at` | `string` | No |  |
+| `source` | `string` | No |  |
 
 ### Operations
 
@@ -730,17 +730,17 @@ const set = client.Set()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `card_count` | ``$INTEGER`` | No |  |
-| `code` | ``$STRING`` | No |  |
-| `digital` | ``$BOOLEAN`` | No |  |
-| `icon_svg_uri` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `search_uri` | ``$STRING`` | No |  |
-| `set_type` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `card_count` | `number` | No |  |
+| `code` | `string` | No |  |
+| `digital` | `boolean` | No |  |
+| `icon_svg_uri` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `released_at` | `string` | No |  |
+| `scryfall_uri` | `string` | No |  |
+| `search_uri` | `string` | No |  |
+| `set_type` | `string` | No |  |
+| `uri` | `string` | No |  |
 
 ### Operations
 

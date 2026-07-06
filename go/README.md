@@ -4,6 +4,8 @@
 
 The Golang SDK for the Scryfall API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.BulkData(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -58,12 +60,41 @@ func main() {
     }
 
     // Load a single bulkdata — the value is the loaded record.
-    bulkdata, err := client.BulkData(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bulkdata, err := client.BulkData(nil).Load(map[string]any{"id": "example"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(bulkdata)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+bulkdatas, err := client.BulkData(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = bulkdatas
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -113,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bulkdata, err := client.BulkData(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+bulkdata, err := client.BulkData(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bulkdata) // the loaded mock data
+fmt.Println(bulkdata) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -215,8 +246,6 @@ All entities implement the `ScryfallEntity` interface.
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -229,16 +258,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` / `Create` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bulkdata, err := client.BulkData(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bulkdata, err := client.BulkData(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // bulkdata is the loaded record
+    // bulkdata is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -457,16 +486,16 @@ Create an instance: `bulk_data := client.BulkData(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content_encoding` | ``$STRING`` |  |
-| `content_type` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `download_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `content_encoding` | `string` |  |
+| `content_type` | `string` |  |
+| `description` | `string` |  |
+| `download_uri` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `object` | `string` |  |
+| `size` | `int` |  |
+| `type` | `string` |  |
+| `updated_at` | `string` |  |
 
 #### Example: Load
 
@@ -504,31 +533,31 @@ Create an instance: `card := client.Card(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `cmc` | `float64` |  |
+| `collector_number` | `string` |  |
+| `color` | `[]any` |  |
+| `color_identity` | `[]any` |  |
+| `id` | `string` |  |
+| `image_uri` | `map[string]any` |  |
+| `lang` | `string` |  |
+| `layout` | `string` |  |
+| `legality` | `map[string]any` |  |
+| `loyalty` | `string` |  |
+| `mana_cost` | `string` |  |
+| `name` | `string` |  |
+| `oracle_id` | `string` |  |
+| `oracle_text` | `string` |  |
+| `power` | `string` |  |
+| `price` | `map[string]any` |  |
+| `rarity` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `set` | `string` |  |
+| `set_name` | `string` |  |
+| `toughness` | `string` |  |
+| `type_line` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -566,37 +595,37 @@ Create an instance: `card_list := client.CardList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `data` | ``$ARRAY`` |  |
-| `has_more` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$ARRAY`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `next_page` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `total_card` | ``$INTEGER`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `cmc` | `float64` |  |
+| `collector_number` | `string` |  |
+| `color` | `[]any` |  |
+| `color_identity` | `[]any` |  |
+| `data` | `[]any` |  |
+| `has_more` | `bool` |  |
+| `id` | `string` |  |
+| `identifier` | `[]any` |  |
+| `image_uri` | `map[string]any` |  |
+| `lang` | `string` |  |
+| `layout` | `string` |  |
+| `legality` | `map[string]any` |  |
+| `loyalty` | `string` |  |
+| `mana_cost` | `string` |  |
+| `name` | `string` |  |
+| `next_page` | `string` |  |
+| `object` | `string` |  |
+| `oracle_id` | `string` |  |
+| `oracle_text` | `string` |  |
+| `power` | `string` |  |
+| `price` | `map[string]any` |  |
+| `rarity` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `set` | `string` |  |
+| `set_name` | `string` |  |
+| `total_card` | `int` |  |
+| `toughness` | `string` |  |
+| `type_line` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: List
 
@@ -612,7 +641,7 @@ fmt.Println(card_lists) // the array of records
 
 ```go
 result, err := client.CardList(nil).Create(map[string]any{
-    "identifier": /* `$ARRAY` */,
+    "identifier": /* []any */,
 }, nil)
 ```
 
@@ -631,17 +660,17 @@ Create an instance: `card_symbol_list := client.CardSymbolList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `english` | ``$STRING`` |  |
-| `funny` | ``$BOOLEAN`` |  |
-| `loose_variant` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `represents_mana` | ``$BOOLEAN`` |  |
-| `svg_uri` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `transposable` | ``$BOOLEAN`` |  |
+| `appears_in_mana_cost` | `bool` |  |
+| `cmc` | `float64` |  |
+| `color` | `[]any` |  |
+| `english` | `string` |  |
+| `funny` | `bool` |  |
+| `loose_variant` | `string` |  |
+| `object` | `string` |  |
+| `represents_mana` | `bool` |  |
+| `svg_uri` | `string` |  |
+| `symbol` | `string` |  |
+| `transposable` | `bool` |  |
 
 #### Example: List
 
@@ -668,10 +697,10 @@ Create an instance: `catalog := client.Catalog(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `object` | ``$STRING`` |  |
-| `total_value` | ``$INTEGER`` |  |
-| `uri` | ``$STRING`` |  |
+| `data` | `[]any` |  |
+| `object` | `string` |  |
+| `total_value` | `int` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -698,13 +727,13 @@ Create an instance: `mana_cost := client.ManaCost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `colorless` | ``$BOOLEAN`` |  |
-| `cost` | ``$STRING`` |  |
-| `monocolored` | ``$BOOLEAN`` |  |
-| `multicolored` | ``$BOOLEAN`` |  |
-| `object` | ``$STRING`` |  |
+| `cmc` | `float64` |  |
+| `color` | `[]any` |  |
+| `colorless` | `bool` |  |
+| `cost` | `string` |  |
+| `monocolored` | `bool` |  |
+| `multicolored` | `bool` |  |
+| `object` | `string` |  |
 
 #### Example: List
 
@@ -731,13 +760,13 @@ Create an instance: `migration := client.Migration(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `migration_strategy` | ``$STRING`` |  |
-| `new_scryfall_id` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `old_scryfall_id` | ``$STRING`` |  |
-| `performed_at` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `id` | `string` |  |
+| `migration_strategy` | `string` |  |
+| `new_scryfall_id` | `string` |  |
+| `object` | `string` |  |
+| `old_scryfall_id` | `string` |  |
+| `performed_at` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: List
 
@@ -764,11 +793,11 @@ Create an instance: `ruling := client.Ruling(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `comment` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `published_at` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
+| `comment` | `string` |  |
+| `object` | `string` |  |
+| `oracle_id` | `string` |  |
+| `published_at` | `string` |  |
+| `source` | `string` |  |
 
 #### Example: List
 
@@ -796,17 +825,17 @@ Create an instance: `set := client.Set(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `card_count` | ``$INTEGER`` |  |
-| `code` | ``$STRING`` |  |
-| `digital` | ``$BOOLEAN`` |  |
-| `icon_svg_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `search_uri` | ``$STRING`` |  |
-| `set_type` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `card_count` | `int` |  |
+| `code` | `string` |  |
+| `digital` | `bool` |  |
+| `icon_svg_uri` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `search_uri` | `string` |  |
+| `set_type` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -829,12 +858,16 @@ fmt.Println(sets) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -851,9 +884,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -894,14 +927,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 bulkdata := client.BulkData(nil)
-bulkdata.Load(map[string]any{"id": "example_id"}, nil)
+bulkdata.List(nil, nil)
 
-// bulkdata.Data() now returns the loaded bulkdata data
+// bulkdata.Data() now returns the bulkdata data from the last list
 // bulkdata.Match() returns the last match criteria
 ```
 

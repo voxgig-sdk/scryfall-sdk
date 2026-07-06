@@ -4,6 +4,8 @@
 
 The PHP SDK for the Scryfall API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->BulkData()` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,7 +38,7 @@ try {
     // list() returns an array of BulkData records — iterate directly.
     $bulkdatas = $client->BulkData()->list();
     foreach ($bulkdatas as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["content_encoding"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -52,6 +54,37 @@ try {
     print_r($bulkdata);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $bulkdatas = $client->BulkData()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -75,7 +108,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -104,8 +140,8 @@ $client = ScryfallSDK::test([
     "entity" => ["bulkdata" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$bulkdata = $client->BulkData()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$bulkdata = $client->BulkData()->list();
 print_r($bulkdata);
 ```
 
@@ -202,10 +238,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -445,16 +479,16 @@ Create an instance: `$bulk_data = $client->BulkData();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content_encoding` | ``$STRING`` |  |
-| `content_type` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `download_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `content_encoding` | `string` |  |
+| `content_type` | `string` |  |
+| `description` | `string` |  |
+| `download_uri` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `object` | `string` |  |
+| `size` | `int` |  |
+| `type` | `string` |  |
+| `updated_at` | `string` |  |
 
 #### Example: Load
 
@@ -486,31 +520,31 @@ Create an instance: `$card = $client->Card();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `cmc` | `float` |  |
+| `collector_number` | `string` |  |
+| `color` | `array` |  |
+| `color_identity` | `array` |  |
+| `id` | `string` |  |
+| `image_uri` | `array` |  |
+| `lang` | `string` |  |
+| `layout` | `string` |  |
+| `legality` | `array` |  |
+| `loyalty` | `string` |  |
+| `mana_cost` | `string` |  |
+| `name` | `string` |  |
+| `oracle_id` | `string` |  |
+| `oracle_text` | `string` |  |
+| `power` | `string` |  |
+| `price` | `array` |  |
+| `rarity` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `set` | `string` |  |
+| `set_name` | `string` |  |
+| `toughness` | `string` |  |
+| `type_line` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -542,37 +576,37 @@ Create an instance: `$card_list = $client->CardList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `data` | ``$ARRAY`` |  |
-| `has_more` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$ARRAY`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `next_page` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `total_card` | ``$INTEGER`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `cmc` | `float` |  |
+| `collector_number` | `string` |  |
+| `color` | `array` |  |
+| `color_identity` | `array` |  |
+| `data` | `array` |  |
+| `has_more` | `bool` |  |
+| `id` | `string` |  |
+| `identifier` | `array` |  |
+| `image_uri` | `array` |  |
+| `lang` | `string` |  |
+| `layout` | `string` |  |
+| `legality` | `array` |  |
+| `loyalty` | `string` |  |
+| `mana_cost` | `string` |  |
+| `name` | `string` |  |
+| `next_page` | `string` |  |
+| `object` | `string` |  |
+| `oracle_id` | `string` |  |
+| `oracle_text` | `string` |  |
+| `power` | `string` |  |
+| `price` | `array` |  |
+| `rarity` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `set` | `string` |  |
+| `set_name` | `string` |  |
+| `total_card` | `int` |  |
+| `toughness` | `string` |  |
+| `type_line` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: List
 
@@ -585,7 +619,7 @@ $card_lists = $client->CardList()->list();
 
 ```php
 $card_list = $client->CardList()->create([
-    "identifier" => null, // `$ARRAY`
+    "identifier" => null, // array
 ]);
 ```
 
@@ -604,17 +638,17 @@ Create an instance: `$card_symbol_list = $client->CardSymbolList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `english` | ``$STRING`` |  |
-| `funny` | ``$BOOLEAN`` |  |
-| `loose_variant` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `represents_mana` | ``$BOOLEAN`` |  |
-| `svg_uri` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `transposable` | ``$BOOLEAN`` |  |
+| `appears_in_mana_cost` | `bool` |  |
+| `cmc` | `float` |  |
+| `color` | `array` |  |
+| `english` | `string` |  |
+| `funny` | `bool` |  |
+| `loose_variant` | `string` |  |
+| `object` | `string` |  |
+| `represents_mana` | `bool` |  |
+| `svg_uri` | `string` |  |
+| `symbol` | `string` |  |
+| `transposable` | `bool` |  |
 
 #### Example: List
 
@@ -638,10 +672,10 @@ Create an instance: `$catalog = $client->Catalog();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `object` | ``$STRING`` |  |
-| `total_value` | ``$INTEGER`` |  |
-| `uri` | ``$STRING`` |  |
+| `data` | `array` |  |
+| `object` | `string` |  |
+| `total_value` | `int` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -665,13 +699,13 @@ Create an instance: `$mana_cost = $client->ManaCost();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `colorless` | ``$BOOLEAN`` |  |
-| `cost` | ``$STRING`` |  |
-| `monocolored` | ``$BOOLEAN`` |  |
-| `multicolored` | ``$BOOLEAN`` |  |
-| `object` | ``$STRING`` |  |
+| `cmc` | `float` |  |
+| `color` | `array` |  |
+| `colorless` | `bool` |  |
+| `cost` | `string` |  |
+| `monocolored` | `bool` |  |
+| `multicolored` | `bool` |  |
+| `object` | `string` |  |
 
 #### Example: List
 
@@ -695,13 +729,13 @@ Create an instance: `$migration = $client->Migration();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `migration_strategy` | ``$STRING`` |  |
-| `new_scryfall_id` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `old_scryfall_id` | ``$STRING`` |  |
-| `performed_at` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `id` | `string` |  |
+| `migration_strategy` | `string` |  |
+| `new_scryfall_id` | `string` |  |
+| `object` | `string` |  |
+| `old_scryfall_id` | `string` |  |
+| `performed_at` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: List
 
@@ -725,11 +759,11 @@ Create an instance: `$ruling = $client->Ruling();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `comment` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `published_at` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
+| `comment` | `string` |  |
+| `object` | `string` |  |
+| `oracle_id` | `string` |  |
+| `published_at` | `string` |  |
+| `source` | `string` |  |
 
 #### Example: List
 
@@ -754,17 +788,17 @@ Create an instance: `$set = $client->Set();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `card_count` | ``$INTEGER`` |  |
-| `code` | ``$STRING`` |  |
-| `digital` | ``$BOOLEAN`` |  |
-| `icon_svg_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `search_uri` | ``$STRING`` |  |
-| `set_type` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `card_count` | `int` |  |
+| `code` | `string` |  |
+| `digital` | `bool` |  |
+| `icon_svg_uri` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `search_uri` | `string` |  |
+| `set_type` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -781,12 +815,16 @@ $sets = $client->Set()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -803,8 +841,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -848,15 +887,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $bulkdata = $client->BulkData();
-$bulkdata->load(["id" => "example_id"]);
+$bulkdata->list();
 
-// $bulkdata->dataGet() now returns the loaded bulkdata data
-// $bulkdata->matchGet() returns the last match criteria
+// $bulkdata->data_get() now returns the bulkdata data from the last list
+// $bulkdata->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

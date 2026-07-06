@@ -22,6 +22,16 @@
 ---@field id string
 
 ---@class BulkDataListMatch
+---@field content_encoding? string
+---@field content_type? string
+---@field description? string
+---@field download_uri? string
+---@field id? string
+---@field name? string
+---@field object? string
+---@field size? number
+---@field type? string
+---@field updated_at? string
 
 ---@class Card
 ---@field artist? string
@@ -54,6 +64,31 @@
 ---@field id string
 
 ---@class CardListMatch
+---@field artist? string
+---@field cmc? number
+---@field collector_number? string
+---@field color? table
+---@field color_identity? table
+---@field id? string
+---@field image_uri? table
+---@field lang? string
+---@field layout? string
+---@field legality? table
+---@field loyalty? string
+---@field mana_cost? string
+---@field name? string
+---@field oracle_id? string
+---@field oracle_text? string
+---@field power? string
+---@field price? table
+---@field rarity? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field set? string
+---@field set_name? string
+---@field toughness? string
+---@field type_line? string
+---@field uri? string
 
 ---@class CardList
 ---@field artist? string
@@ -89,8 +124,70 @@
 ---@field uri? string
 
 ---@class CardListListMatch
+---@field artist? string
+---@field cmc? number
+---@field collector_number? string
+---@field color? table
+---@field color_identity? table
+---@field data? table
+---@field has_more? boolean
+---@field id? string
+---@field identifier? table
+---@field image_uri? table
+---@field lang? string
+---@field layout? string
+---@field legality? table
+---@field loyalty? string
+---@field mana_cost? string
+---@field name? string
+---@field next_page? string
+---@field object? string
+---@field oracle_id? string
+---@field oracle_text? string
+---@field power? string
+---@field price? table
+---@field rarity? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field set? string
+---@field set_name? string
+---@field total_card? number
+---@field toughness? string
+---@field type_line? string
+---@field uri? string
 
 ---@class CardListCreateData
+---@field artist? string
+---@field cmc? number
+---@field collector_number? string
+---@field color? table
+---@field color_identity? table
+---@field data? table
+---@field has_more? boolean
+---@field id? string
+---@field identifier table
+---@field image_uri? table
+---@field lang? string
+---@field layout? string
+---@field legality? table
+---@field loyalty? string
+---@field mana_cost? string
+---@field name? string
+---@field next_page? string
+---@field object? string
+---@field oracle_id? string
+---@field oracle_text? string
+---@field power? string
+---@field price? table
+---@field rarity? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field set? string
+---@field set_name? string
+---@field total_card? number
+---@field toughness? string
+---@field type_line? string
+---@field uri? string
 
 ---@class CardSymbolList
 ---@field appears_in_mana_cost? boolean
@@ -106,6 +203,17 @@
 ---@field transposable? boolean
 
 ---@class CardSymbolListListMatch
+---@field appears_in_mana_cost? boolean
+---@field cmc? number
+---@field color? table
+---@field english? string
+---@field funny? boolean
+---@field loose_variant? string
+---@field object? string
+---@field represents_mana? boolean
+---@field svg_uri? string
+---@field symbol? string
+---@field transposable? boolean
 
 ---@class Catalog
 ---@field data? table
@@ -126,6 +234,13 @@
 ---@field object? string
 
 ---@class ManaCostListMatch
+---@field cmc? number
+---@field color? table
+---@field colorless? boolean
+---@field cost? string
+---@field monocolored? boolean
+---@field multicolored? boolean
+---@field object? string
 
 ---@class Migration
 ---@field id? string
@@ -137,6 +252,13 @@
 ---@field uri? string
 
 ---@class MigrationListMatch
+---@field id? string
+---@field migration_strategy? string
+---@field new_scryfall_id? string
+---@field object? string
+---@field old_scryfall_id? string
+---@field performed_at? string
+---@field uri? string
 
 ---@class Ruling
 ---@field comment? string
@@ -165,6 +287,17 @@
 ---@field id string
 
 ---@class SetListMatch
+---@field card_count? number
+---@field code? string
+---@field digital? boolean
+---@field icon_svg_uri? string
+---@field id? string
+---@field name? string
+---@field released_at? string
+---@field scryfall_uri? string
+---@field search_uri? string
+---@field set_type? string
+---@field uri? string
 
 local M = {}
 

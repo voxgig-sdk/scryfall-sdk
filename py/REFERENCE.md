@@ -119,25 +119,25 @@ bulk_data = client.BulkData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content_encoding` | ``$STRING`` | No |  |
-| `content_type` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_uri` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `content_encoding` | `str` | No |  |
+| `content_type` | `str` | No |  |
+| `description` | `str` | No |  |
+| `download_uri` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `object` | `str` | No |  |
+| `size` | `int` | No |  |
+| `type` | `str` | No |  |
+| `updated_at` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.BulkData().list({})
+results = client.BulkData().list()
 for bulk_data in results:
     print(bulk_data)
 ```
@@ -189,40 +189,40 @@ card = client.Card()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `collector_number` | ``$STRING`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `color_identity` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_uri` | ``$OBJECT`` | No |  |
-| `lang` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `legality` | ``$OBJECT`` | No |  |
-| `loyalty` | ``$STRING`` | No |  |
-| `mana_cost` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `oracle_text` | ``$STRING`` | No |  |
-| `power` | ``$STRING`` | No |  |
-| `price` | ``$OBJECT`` | No |  |
-| `rarity` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `set` | ``$STRING`` | No |  |
-| `set_name` | ``$STRING`` | No |  |
-| `toughness` | ``$STRING`` | No |  |
-| `type_line` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `artist` | `str` | No |  |
+| `cmc` | `float` | No |  |
+| `collector_number` | `str` | No |  |
+| `color` | `list` | No |  |
+| `color_identity` | `list` | No |  |
+| `id` | `str` | No |  |
+| `image_uri` | `dict` | No |  |
+| `lang` | `str` | No |  |
+| `layout` | `str` | No |  |
+| `legality` | `dict` | No |  |
+| `loyalty` | `str` | No |  |
+| `mana_cost` | `str` | No |  |
+| `name` | `str` | No |  |
+| `oracle_id` | `str` | No |  |
+| `oracle_text` | `str` | No |  |
+| `power` | `str` | No |  |
+| `price` | `dict` | No |  |
+| `rarity` | `str` | No |  |
+| `released_at` | `str` | No |  |
+| `scryfall_uri` | `str` | No |  |
+| `set` | `str` | No |  |
+| `set_name` | `str` | No |  |
+| `toughness` | `str` | No |  |
+| `type_line` | `str` | No |  |
+| `uri` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Card().list({})
+results = client.Card().list()
 for card in results:
     print(card)
 ```
@@ -274,37 +274,37 @@ card_list = client.CardList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `collector_number` | ``$STRING`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `color_identity` | ``$ARRAY`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `has_more` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `identifier` | ``$ARRAY`` | Yes |  |
-| `image_uri` | ``$OBJECT`` | No |  |
-| `lang` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `legality` | ``$OBJECT`` | No |  |
-| `loyalty` | ``$STRING`` | No |  |
-| `mana_cost` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `next_page` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `oracle_text` | ``$STRING`` | No |  |
-| `power` | ``$STRING`` | No |  |
-| `price` | ``$OBJECT`` | No |  |
-| `rarity` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `set` | ``$STRING`` | No |  |
-| `set_name` | ``$STRING`` | No |  |
-| `total_card` | ``$INTEGER`` | No |  |
-| `toughness` | ``$STRING`` | No |  |
-| `type_line` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `artist` | `str` | No |  |
+| `cmc` | `float` | No |  |
+| `collector_number` | `str` | No |  |
+| `color` | `list` | No |  |
+| `color_identity` | `list` | No |  |
+| `data` | `list` | No |  |
+| `has_more` | `bool` | No |  |
+| `id` | `str` | No |  |
+| `identifier` | `list` | Yes |  |
+| `image_uri` | `dict` | No |  |
+| `lang` | `str` | No |  |
+| `layout` | `str` | No |  |
+| `legality` | `dict` | No |  |
+| `loyalty` | `str` | No |  |
+| `mana_cost` | `str` | No |  |
+| `name` | `str` | No |  |
+| `next_page` | `str` | No |  |
+| `object` | `str` | No |  |
+| `oracle_id` | `str` | No |  |
+| `oracle_text` | `str` | No |  |
+| `power` | `str` | No |  |
+| `price` | `dict` | No |  |
+| `rarity` | `str` | No |  |
+| `released_at` | `str` | No |  |
+| `scryfall_uri` | `str` | No |  |
+| `set` | `str` | No |  |
+| `set_name` | `str` | No |  |
+| `total_card` | `int` | No |  |
+| `toughness` | `str` | No |  |
+| `type_line` | `str` | No |  |
+| `uri` | `str` | No |  |
 
 ### Operations
 
@@ -314,16 +314,16 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.CardList().create({
-    "identifier": ...,  # `$ARRAY`
+    "identifier": [],  # list
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CardList().list({})
+results = client.CardList().list()
 for card_list in results:
     print(card_list)
 ```
@@ -367,26 +367,26 @@ card_symbol_list = client.CardSymbolList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `english` | ``$STRING`` | No |  |
-| `funny` | ``$BOOLEAN`` | No |  |
-| `loose_variant` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `represents_mana` | ``$BOOLEAN`` | No |  |
-| `svg_uri` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `transposable` | ``$BOOLEAN`` | No |  |
+| `appears_in_mana_cost` | `bool` | No |  |
+| `cmc` | `float` | No |  |
+| `color` | `list` | No |  |
+| `english` | `str` | No |  |
+| `funny` | `bool` | No |  |
+| `loose_variant` | `str` | No |  |
+| `object` | `str` | No |  |
+| `represents_mana` | `bool` | No |  |
+| `svg_uri` | `str` | No |  |
+| `symbol` | `str` | No |  |
+| `transposable` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CardSymbolList().list({})
+results = client.CardSymbolList().list()
 for card_symbol_list in results:
     print(card_symbol_list)
 ```
@@ -430,10 +430,10 @@ catalog = client.Catalog()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `total_value` | ``$INTEGER`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `data` | `list` | No |  |
+| `object` | `str` | No |  |
+| `total_value` | `int` | No |  |
+| `uri` | `str` | No |  |
 
 ### Operations
 
@@ -484,22 +484,22 @@ mana_cost = client.ManaCost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cmc` | ``$NUMBER`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `colorless` | ``$BOOLEAN`` | No |  |
-| `cost` | ``$STRING`` | No |  |
-| `monocolored` | ``$BOOLEAN`` | No |  |
-| `multicolored` | ``$BOOLEAN`` | No |  |
-| `object` | ``$STRING`` | No |  |
+| `cmc` | `float` | No |  |
+| `color` | `list` | No |  |
+| `colorless` | `bool` | No |  |
+| `cost` | `str` | No |  |
+| `monocolored` | `bool` | No |  |
+| `multicolored` | `bool` | No |  |
+| `object` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ManaCost().list({})
+results = client.ManaCost().list()
 for mana_cost in results:
     print(mana_cost)
 ```
@@ -543,22 +543,22 @@ migration = client.Migration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `migration_strategy` | ``$STRING`` | No |  |
-| `new_scryfall_id` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `old_scryfall_id` | ``$STRING`` | No |  |
-| `performed_at` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `id` | `str` | No |  |
+| `migration_strategy` | `str` | No |  |
+| `new_scryfall_id` | `str` | No |  |
+| `object` | `str` | No |  |
+| `old_scryfall_id` | `str` | No |  |
+| `performed_at` | `str` | No |  |
+| `uri` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Migration().list({})
+results = client.Migration().list()
 for migration in results:
     print(migration)
 ```
@@ -602,20 +602,20 @@ ruling = client.Ruling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comment` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `published_at` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
+| `comment` | `str` | No |  |
+| `object` | `str` | No |  |
+| `oracle_id` | `str` | No |  |
+| `published_at` | `str` | No |  |
+| `source` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Ruling().list({})
+results = client.Ruling().list()
 for ruling in results:
     print(ruling)
 ```
@@ -659,26 +659,26 @@ set = client.Set()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `card_count` | ``$INTEGER`` | No |  |
-| `code` | ``$STRING`` | No |  |
-| `digital` | ``$BOOLEAN`` | No |  |
-| `icon_svg_uri` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `search_uri` | ``$STRING`` | No |  |
-| `set_type` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `card_count` | `int` | No |  |
+| `code` | `str` | No |  |
+| `digital` | `bool` | No |  |
+| `icon_svg_uri` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `released_at` | `str` | No |  |
+| `scryfall_uri` | `str` | No |  |
+| `search_uri` | `str` | No |  |
+| `set_type` | `str` | No |  |
+| `uri` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Set().list({})
+results = client.Set().list()
 for set in results:
     print(set)
 ```

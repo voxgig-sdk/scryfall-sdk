@@ -27,8 +27,7 @@ type BulkDataLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// BulkDataListMatch mirrors the bulk_data fields as an all-optional match
-// filter (Go analog of Partial<BulkData>).
+// BulkDataListMatch is the typed request payload for BulkData.ListTyped.
 type BulkDataListMatch struct {
 	ContentEncoding *string `json:"content_encoding,omitempty"`
 	ContentType *string `json:"content_type,omitempty"`
@@ -76,8 +75,7 @@ type CardLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// CardListMatch mirrors the card fields as an all-optional match
-// filter (Go analog of Partial<Card>).
+// CardListMatch is the typed request payload for Card.ListTyped.
 type CardListMatch struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
@@ -141,8 +139,7 @@ type CardList struct {
 	Uri *string `json:"uri,omitempty"`
 }
 
-// CardListListMatch mirrors the card_list fields as an all-optional match
-// filter (Go analog of Partial<CardList>).
+// CardListListMatch is the typed request payload for CardList.ListTyped.
 type CardListListMatch struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
@@ -177,8 +174,7 @@ type CardListListMatch struct {
 	Uri *string `json:"uri,omitempty"`
 }
 
-// CardListCreateData mirrors the card_list fields as an all-optional match
-// filter (Go analog of Partial<CardList>).
+// CardListCreateData is the typed request payload for CardList.CreateTyped.
 type CardListCreateData struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
@@ -188,7 +184,7 @@ type CardListCreateData struct {
 	Data *[]any `json:"data,omitempty"`
 	HasMore *bool `json:"has_more,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Identifier *[]any `json:"identifier,omitempty"`
+	Identifier []any `json:"identifier"`
 	ImageUri *map[string]any `json:"image_uri,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	Layout *string `json:"layout,omitempty"`
@@ -228,8 +224,7 @@ type CardSymbolList struct {
 	Transposable *bool `json:"transposable,omitempty"`
 }
 
-// CardSymbolListListMatch mirrors the card_symbol_list fields as an all-optional match
-// filter (Go analog of Partial<CardSymbolList>).
+// CardSymbolListListMatch is the typed request payload for CardSymbolList.ListTyped.
 type CardSymbolListListMatch struct {
 	AppearsInManaCost *bool `json:"appears_in_mana_cost,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
@@ -268,8 +263,7 @@ type ManaCost struct {
 	Object *string `json:"object,omitempty"`
 }
 
-// ManaCostListMatch mirrors the mana_cost fields as an all-optional match
-// filter (Go analog of Partial<ManaCost>).
+// ManaCostListMatch is the typed request payload for ManaCost.ListTyped.
 type ManaCostListMatch struct {
 	Cmc *float64 `json:"cmc,omitempty"`
 	Color *[]any `json:"color,omitempty"`
@@ -291,8 +285,7 @@ type Migration struct {
 	Uri *string `json:"uri,omitempty"`
 }
 
-// MigrationListMatch mirrors the migration fields as an all-optional match
-// filter (Go analog of Partial<Migration>).
+// MigrationListMatch is the typed request payload for Migration.ListTyped.
 type MigrationListMatch struct {
 	Id *string `json:"id,omitempty"`
 	MigrationStrategy *string `json:"migration_strategy,omitempty"`
@@ -337,8 +330,7 @@ type SetLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// SetListMatch mirrors the set fields as an all-optional match
-// filter (Go analog of Partial<Set>).
+// SetListMatch is the typed request payload for Set.ListTyped.
 type SetListMatch struct {
 	CardCount *int `json:"card_count,omitempty"`
 	Code *string `json:"code,omitempty"`

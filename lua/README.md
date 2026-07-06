@@ -4,6 +4,8 @@
 
 The Lua SDK for the Scryfall API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:BulkData()` — each with the same small set of operations (`list`, `load`, `create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +43,7 @@ local bulkdatas, err = client:BulkData():list()
 if err then error(err) end
 
 for _, item in ipairs(bulkdatas) do
-  print(item["id"], item["name"])
+  print(item["id"], item["content_encoding"])
 end
 ```
 
@@ -51,6 +53,28 @@ end
 local bulkdata, err = client:BulkData():load({ id = "example_id" })
 if err then error(err) end
 print(bulkdata)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local bulkdatas, err = client:BulkData():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -96,8 +120,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BulkData():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:BulkData():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -194,8 +218,6 @@ All entities share the same interface.
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -210,7 +232,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` / `create` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
@@ -436,16 +458,16 @@ Create an instance: `local bulk_data = client:BulkData(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content_encoding` | ``$STRING`` |  |
-| `content_type` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `download_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `content_encoding` | `string` |  |
+| `content_type` | `string` |  |
+| `description` | `string` |  |
+| `download_uri` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `object` | `string` |  |
+| `size` | `number` |  |
+| `type` | `string` |  |
+| `updated_at` | `string` |  |
 
 #### Example: Load
 
@@ -475,31 +497,31 @@ Create an instance: `local card = client:Card(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `cmc` | `number` |  |
+| `collector_number` | `string` |  |
+| `color` | `table` |  |
+| `color_identity` | `table` |  |
+| `id` | `string` |  |
+| `image_uri` | `table` |  |
+| `lang` | `string` |  |
+| `layout` | `string` |  |
+| `legality` | `table` |  |
+| `loyalty` | `string` |  |
+| `mana_cost` | `string` |  |
+| `name` | `string` |  |
+| `oracle_id` | `string` |  |
+| `oracle_text` | `string` |  |
+| `power` | `string` |  |
+| `price` | `table` |  |
+| `rarity` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `set` | `string` |  |
+| `set_name` | `string` |  |
+| `toughness` | `string` |  |
+| `type_line` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -529,37 +551,37 @@ Create an instance: `local card_list = client:CardList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `data` | ``$ARRAY`` |  |
-| `has_more` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$ARRAY`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `next_page` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `total_card` | ``$INTEGER`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `string` |  |
+| `cmc` | `number` |  |
+| `collector_number` | `string` |  |
+| `color` | `table` |  |
+| `color_identity` | `table` |  |
+| `data` | `table` |  |
+| `has_more` | `boolean` |  |
+| `id` | `string` |  |
+| `identifier` | `table` |  |
+| `image_uri` | `table` |  |
+| `lang` | `string` |  |
+| `layout` | `string` |  |
+| `legality` | `table` |  |
+| `loyalty` | `string` |  |
+| `mana_cost` | `string` |  |
+| `name` | `string` |  |
+| `next_page` | `string` |  |
+| `object` | `string` |  |
+| `oracle_id` | `string` |  |
+| `oracle_text` | `string` |  |
+| `power` | `string` |  |
+| `price` | `table` |  |
+| `rarity` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `set` | `string` |  |
+| `set_name` | `string` |  |
+| `total_card` | `number` |  |
+| `toughness` | `string` |  |
+| `type_line` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: List
 
@@ -571,7 +593,7 @@ local card_lists, err = client:CardList():list()
 
 ```lua
 local card_list, err = client:CardList():create({
-  identifier = nil, -- `$ARRAY`
+  identifier = nil, -- table
 })
 ```
 
@@ -590,17 +612,17 @@ Create an instance: `local card_symbol_list = client:CardSymbolList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `english` | ``$STRING`` |  |
-| `funny` | ``$BOOLEAN`` |  |
-| `loose_variant` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `represents_mana` | ``$BOOLEAN`` |  |
-| `svg_uri` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `transposable` | ``$BOOLEAN`` |  |
+| `appears_in_mana_cost` | `boolean` |  |
+| `cmc` | `number` |  |
+| `color` | `table` |  |
+| `english` | `string` |  |
+| `funny` | `boolean` |  |
+| `loose_variant` | `string` |  |
+| `object` | `string` |  |
+| `represents_mana` | `boolean` |  |
+| `svg_uri` | `string` |  |
+| `symbol` | `string` |  |
+| `transposable` | `boolean` |  |
 
 #### Example: List
 
@@ -623,10 +645,10 @@ Create an instance: `local catalog = client:Catalog(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `object` | ``$STRING`` |  |
-| `total_value` | ``$INTEGER`` |  |
-| `uri` | ``$STRING`` |  |
+| `data` | `table` |  |
+| `object` | `string` |  |
+| `total_value` | `number` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -649,13 +671,13 @@ Create an instance: `local mana_cost = client:ManaCost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `colorless` | ``$BOOLEAN`` |  |
-| `cost` | ``$STRING`` |  |
-| `monocolored` | ``$BOOLEAN`` |  |
-| `multicolored` | ``$BOOLEAN`` |  |
-| `object` | ``$STRING`` |  |
+| `cmc` | `number` |  |
+| `color` | `table` |  |
+| `colorless` | `boolean` |  |
+| `cost` | `string` |  |
+| `monocolored` | `boolean` |  |
+| `multicolored` | `boolean` |  |
+| `object` | `string` |  |
 
 #### Example: List
 
@@ -678,13 +700,13 @@ Create an instance: `local migration = client:Migration(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `migration_strategy` | ``$STRING`` |  |
-| `new_scryfall_id` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `old_scryfall_id` | ``$STRING`` |  |
-| `performed_at` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `id` | `string` |  |
+| `migration_strategy` | `string` |  |
+| `new_scryfall_id` | `string` |  |
+| `object` | `string` |  |
+| `old_scryfall_id` | `string` |  |
+| `performed_at` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: List
 
@@ -707,11 +729,11 @@ Create an instance: `local ruling = client:Ruling(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `comment` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `published_at` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
+| `comment` | `string` |  |
+| `object` | `string` |  |
+| `oracle_id` | `string` |  |
+| `published_at` | `string` |  |
+| `source` | `string` |  |
 
 #### Example: List
 
@@ -735,17 +757,17 @@ Create an instance: `local set = client:Set(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `card_count` | ``$INTEGER`` |  |
-| `code` | ``$STRING`` |  |
-| `digital` | ``$BOOLEAN`` |  |
-| `icon_svg_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `search_uri` | ``$STRING`` |  |
-| `set_type` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `card_count` | `number` |  |
+| `code` | `string` |  |
+| `digital` | `boolean` |  |
+| `icon_svg_uri` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `released_at` | `string` |  |
+| `scryfall_uri` | `string` |  |
+| `search_uri` | `string` |  |
+| `set_type` | `string` |  |
+| `uri` | `string` |  |
 
 #### Example: Load
 
@@ -760,12 +782,16 @@ local sets, err = client:Set():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -782,8 +808,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -827,14 +854,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local bulkdata = client:BulkData()
-bulkdata:load({ id = "example_id" })
+bulkdata:list()
 
--- bulkdata:data_get() now returns the loaded bulkdata data
+-- bulkdata:data_get() now returns the bulkdata data from the last list
 -- bulkdata:match_get() returns the last match criteria
 ```
 

@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Scryfall API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.BulkData` — with named operations (`list`/`load`/`create`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,7 +37,7 @@ begin
   # list returns an Array of BulkData records — iterate directly.
   bulkdatas = client.BulkData.list
   bulkdatas.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["content_encoding"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -52,6 +54,33 @@ begin
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  bulkdatas = client.BulkData.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -72,7 +101,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -103,8 +134,8 @@ client = ScryfallSDK.test({
   "entity" => { "bulkdata" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-bulkdata = client.BulkData.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+bulkdata = client.BulkData.list()
 puts bulkdata
 ```
 
@@ -198,10 +229,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -440,16 +469,16 @@ Create an instance: `bulk_data = client.BulkData`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content_encoding` | ``$STRING`` |  |
-| `content_type` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `download_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `size` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
-| `updated_at` | ``$STRING`` |  |
+| `content_encoding` | `String` |  |
+| `content_type` | `String` |  |
+| `description` | `String` |  |
+| `download_uri` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `object` | `String` |  |
+| `size` | `Integer` |  |
+| `type` | `String` |  |
+| `updated_at` | `String` |  |
 
 #### Example: Load
 
@@ -481,31 +510,31 @@ Create an instance: `card = client.Card`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `String` |  |
+| `cmc` | `Float` |  |
+| `collector_number` | `String` |  |
+| `color` | `Array` |  |
+| `color_identity` | `Array` |  |
+| `id` | `String` |  |
+| `image_uri` | `Hash` |  |
+| `lang` | `String` |  |
+| `layout` | `String` |  |
+| `legality` | `Hash` |  |
+| `loyalty` | `String` |  |
+| `mana_cost` | `String` |  |
+| `name` | `String` |  |
+| `oracle_id` | `String` |  |
+| `oracle_text` | `String` |  |
+| `power` | `String` |  |
+| `price` | `Hash` |  |
+| `rarity` | `String` |  |
+| `released_at` | `String` |  |
+| `scryfall_uri` | `String` |  |
+| `set` | `String` |  |
+| `set_name` | `String` |  |
+| `toughness` | `String` |  |
+| `type_line` | `String` |  |
+| `uri` | `String` |  |
 
 #### Example: Load
 
@@ -537,37 +566,37 @@ Create an instance: `card_list = client.CardList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | ``$STRING`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `collector_number` | ``$STRING`` |  |
-| `color` | ``$ARRAY`` |  |
-| `color_identity` | ``$ARRAY`` |  |
-| `data` | ``$ARRAY`` |  |
-| `has_more` | ``$BOOLEAN`` |  |
-| `id` | ``$STRING`` |  |
-| `identifier` | ``$ARRAY`` |  |
-| `image_uri` | ``$OBJECT`` |  |
-| `lang` | ``$STRING`` |  |
-| `layout` | ``$STRING`` |  |
-| `legality` | ``$OBJECT`` |  |
-| `loyalty` | ``$STRING`` |  |
-| `mana_cost` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `next_page` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `oracle_text` | ``$STRING`` |  |
-| `power` | ``$STRING`` |  |
-| `price` | ``$OBJECT`` |  |
-| `rarity` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `set` | ``$STRING`` |  |
-| `set_name` | ``$STRING`` |  |
-| `total_card` | ``$INTEGER`` |  |
-| `toughness` | ``$STRING`` |  |
-| `type_line` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `artist` | `String` |  |
+| `cmc` | `Float` |  |
+| `collector_number` | `String` |  |
+| `color` | `Array` |  |
+| `color_identity` | `Array` |  |
+| `data` | `Array` |  |
+| `has_more` | `Boolean` |  |
+| `id` | `String` |  |
+| `identifier` | `Array` |  |
+| `image_uri` | `Hash` |  |
+| `lang` | `String` |  |
+| `layout` | `String` |  |
+| `legality` | `Hash` |  |
+| `loyalty` | `String` |  |
+| `mana_cost` | `String` |  |
+| `name` | `String` |  |
+| `next_page` | `String` |  |
+| `object` | `String` |  |
+| `oracle_id` | `String` |  |
+| `oracle_text` | `String` |  |
+| `power` | `String` |  |
+| `price` | `Hash` |  |
+| `rarity` | `String` |  |
+| `released_at` | `String` |  |
+| `scryfall_uri` | `String` |  |
+| `set` | `String` |  |
+| `set_name` | `String` |  |
+| `total_card` | `Integer` |  |
+| `toughness` | `String` |  |
+| `type_line` | `String` |  |
+| `uri` | `String` |  |
 
 #### Example: List
 
@@ -580,7 +609,7 @@ card_lists = client.CardList.list
 
 ```ruby
 card_list = client.CardList.create({
-  "identifier" => nil, # `$ARRAY`
+  "identifier" => [], # Array
 })
 ```
 
@@ -599,17 +628,17 @@ Create an instance: `card_symbol_list = client.CardSymbolList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` |  |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `english` | ``$STRING`` |  |
-| `funny` | ``$BOOLEAN`` |  |
-| `loose_variant` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `represents_mana` | ``$BOOLEAN`` |  |
-| `svg_uri` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `transposable` | ``$BOOLEAN`` |  |
+| `appears_in_mana_cost` | `Boolean` |  |
+| `cmc` | `Float` |  |
+| `color` | `Array` |  |
+| `english` | `String` |  |
+| `funny` | `Boolean` |  |
+| `loose_variant` | `String` |  |
+| `object` | `String` |  |
+| `represents_mana` | `Boolean` |  |
+| `svg_uri` | `String` |  |
+| `symbol` | `String` |  |
+| `transposable` | `Boolean` |  |
 
 #### Example: List
 
@@ -633,10 +662,10 @@ Create an instance: `catalog = client.Catalog`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `object` | ``$STRING`` |  |
-| `total_value` | ``$INTEGER`` |  |
-| `uri` | ``$STRING`` |  |
+| `data` | `Array` |  |
+| `object` | `String` |  |
+| `total_value` | `Integer` |  |
+| `uri` | `String` |  |
 
 #### Example: Load
 
@@ -660,13 +689,13 @@ Create an instance: `mana_cost = client.ManaCost`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cmc` | ``$NUMBER`` |  |
-| `color` | ``$ARRAY`` |  |
-| `colorless` | ``$BOOLEAN`` |  |
-| `cost` | ``$STRING`` |  |
-| `monocolored` | ``$BOOLEAN`` |  |
-| `multicolored` | ``$BOOLEAN`` |  |
-| `object` | ``$STRING`` |  |
+| `cmc` | `Float` |  |
+| `color` | `Array` |  |
+| `colorless` | `Boolean` |  |
+| `cost` | `String` |  |
+| `monocolored` | `Boolean` |  |
+| `multicolored` | `Boolean` |  |
+| `object` | `String` |  |
 
 #### Example: List
 
@@ -690,13 +719,13 @@ Create an instance: `migration = client.Migration`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | ``$STRING`` |  |
-| `migration_strategy` | ``$STRING`` |  |
-| `new_scryfall_id` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `old_scryfall_id` | ``$STRING`` |  |
-| `performed_at` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `id` | `String` |  |
+| `migration_strategy` | `String` |  |
+| `new_scryfall_id` | `String` |  |
+| `object` | `String` |  |
+| `old_scryfall_id` | `String` |  |
+| `performed_at` | `String` |  |
+| `uri` | `String` |  |
 
 #### Example: List
 
@@ -720,11 +749,11 @@ Create an instance: `ruling = client.Ruling`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `comment` | ``$STRING`` |  |
-| `object` | ``$STRING`` |  |
-| `oracle_id` | ``$STRING`` |  |
-| `published_at` | ``$STRING`` |  |
-| `source` | ``$STRING`` |  |
+| `comment` | `String` |  |
+| `object` | `String` |  |
+| `oracle_id` | `String` |  |
+| `published_at` | `String` |  |
+| `source` | `String` |  |
 
 #### Example: List
 
@@ -749,17 +778,17 @@ Create an instance: `set = client.Set`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `card_count` | ``$INTEGER`` |  |
-| `code` | ``$STRING`` |  |
-| `digital` | ``$BOOLEAN`` |  |
-| `icon_svg_uri` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `released_at` | ``$STRING`` |  |
-| `scryfall_uri` | ``$STRING`` |  |
-| `search_uri` | ``$STRING`` |  |
-| `set_type` | ``$STRING`` |  |
-| `uri` | ``$STRING`` |  |
+| `card_count` | `Integer` |  |
+| `code` | `String` |  |
+| `digital` | `Boolean` |  |
+| `icon_svg_uri` | `String` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `released_at` | `String` |  |
+| `scryfall_uri` | `String` |  |
+| `search_uri` | `String` |  |
+| `set_type` | `String` |  |
+| `uri` | `String` |  |
 
 #### Example: Load
 
@@ -776,12 +805,16 @@ sets = client.Set.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -798,8 +831,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -843,14 +877,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 bulkdata = client.BulkData
-bulkdata.load({ "id" => "example_id" })
+bulkdata.list()
 
-# bulkdata.data_get now returns the loaded bulkdata data
+# bulkdata.data_get now returns the bulkdata data from the last list
 # bulkdata.match_get returns the last match criteria
 ```
 

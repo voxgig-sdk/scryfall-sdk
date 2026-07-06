@@ -62,7 +62,7 @@ BulkDataLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for BulkData#list (any subset of BulkData fields).
+# Request payload for BulkData#list.
 #
 # @!attribute [rw] content_encoding
 #   @return [String, nil]
@@ -221,7 +221,7 @@ CardLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Card#list (any subset of Card fields).
+# Request payload for Card#list.
 #
 # @!attribute [rw] artist
 #   @return [String, nil]
@@ -455,7 +455,7 @@ CardList = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CardList#list (any subset of CardList fields).
+# Request payload for CardList#list.
 #
 # @!attribute [rw] artist
 #   @return [String, nil]
@@ -584,7 +584,7 @@ CardListListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CardList#create (any subset of CardList fields).
+# Request payload for CardList#create.
 #
 # @!attribute [rw] artist
 #   @return [String, nil]
@@ -611,7 +611,7 @@ CardListListMatch = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] identifier
-#   @return [Array, nil]
+#   @return [Array]
 #
 # @!attribute [rw] image_uri
 #   @return [Hash, nil]
@@ -762,7 +762,7 @@ CardSymbolList = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CardSymbolList#list (any subset of CardSymbolList fields).
+# Request payload for CardSymbolList#list.
 #
 # @!attribute [rw] appears_in_mana_cost
 #   @return [Boolean, nil]
@@ -874,7 +874,7 @@ ManaCost = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ManaCost#list (any subset of ManaCost fields).
+# Request payload for ManaCost#list.
 #
 # @!attribute [rw] cmc
 #   @return [Float, nil]
@@ -940,7 +940,7 @@ Migration = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Migration#list (any subset of Migration fields).
+# Request payload for Migration#list.
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -1065,7 +1065,7 @@ SetLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Set#list (any subset of Set fields).
+# Request payload for Set#list.
 #
 # @!attribute [rw] card_count
 #   @return [Integer, nil]

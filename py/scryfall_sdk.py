@@ -221,55 +221,55 @@ class ScryfallSDK:
 
 
     def BulkData(self, data=None) -> "BulkDataEntity":
-        """Entity factory: client.BulkData().list({}) / client.BulkData().load({"id": ...})."""
+        """Entity factory: client.BulkData().list() / client.BulkData().load({"id": ...})."""
         from entity.bulk_data_entity import BulkDataEntity
         return BulkDataEntity(self, data)
 
 
     def Card(self, data=None) -> "CardEntity":
-        """Entity factory: client.Card().list({}) / client.Card().load({"id": ...})."""
+        """Entity factory: client.Card().list() / client.Card().load({"id": ...})."""
         from entity.card_entity import CardEntity
         return CardEntity(self, data)
 
 
     def CardList(self, data=None) -> "CardListEntity":
-        """Entity factory: client.CardList().list({}) / client.CardList().load({"id": ...})."""
+        """Entity factory: client.CardList().list() / client.CardList().load({"id": ...})."""
         from entity.card_list_entity import CardListEntity
         return CardListEntity(self, data)
 
 
     def CardSymbolList(self, data=None) -> "CardSymbolListEntity":
-        """Entity factory: client.CardSymbolList().list({}) / client.CardSymbolList().load({"id": ...})."""
+        """Entity factory: client.CardSymbolList().list() / client.CardSymbolList().load({"id": ...})."""
         from entity.card_symbol_list_entity import CardSymbolListEntity
         return CardSymbolListEntity(self, data)
 
 
     def Catalog(self, data=None) -> "CatalogEntity":
-        """Entity factory: client.Catalog().list({}) / client.Catalog().load({"id": ...})."""
+        """Entity factory: client.Catalog().list() / client.Catalog().load({"id": ...})."""
         from entity.catalog_entity import CatalogEntity
         return CatalogEntity(self, data)
 
 
     def ManaCost(self, data=None) -> "ManaCostEntity":
-        """Entity factory: client.ManaCost().list({}) / client.ManaCost().load({"id": ...})."""
+        """Entity factory: client.ManaCost().list() / client.ManaCost().load({"id": ...})."""
         from entity.mana_cost_entity import ManaCostEntity
         return ManaCostEntity(self, data)
 
 
     def Migration(self, data=None) -> "MigrationEntity":
-        """Entity factory: client.Migration().list({}) / client.Migration().load({"id": ...})."""
+        """Entity factory: client.Migration().list() / client.Migration().load({"id": ...})."""
         from entity.migration_entity import MigrationEntity
         return MigrationEntity(self, data)
 
 
     def Ruling(self, data=None) -> "RulingEntity":
-        """Entity factory: client.Ruling().list({}) / client.Ruling().load({"id": ...})."""
+        """Entity factory: client.Ruling().list() / client.Ruling().load({"id": ...})."""
         from entity.ruling_entity import RulingEntity
         return RulingEntity(self, data)
 
 
     def Set(self, data=None) -> "SetEntity":
-        """Entity factory: client.Set().list({}) / client.Set().load({"id": ...})."""
+        """Entity factory: client.Set().list() / client.Set().load({"id": ...})."""
         from entity.set_entity import SetEntity
         return SetEntity(self, data)
 

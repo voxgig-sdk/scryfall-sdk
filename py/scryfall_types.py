@@ -177,7 +177,11 @@ class CardListListMatch(TypedDict, total=False):
     uri: str
 
 
-class CardListCreateData(TypedDict, total=False):
+class CardListCreateDataRequired(TypedDict):
+    identifier: list
+
+
+class CardListCreateData(CardListCreateDataRequired, total=False):
     artist: str
     cmc: float
     collector_number: str
@@ -186,7 +190,6 @@ class CardListCreateData(TypedDict, total=False):
     data: list
     has_more: bool
     id: str
-    identifier: list
     image_uri: dict
     lang: str
     layout: str

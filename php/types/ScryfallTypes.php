@@ -33,7 +33,7 @@ class BulkDataLoadMatch
     public string $id;
 }
 
-/** Match filter for BulkData#list (any subset of BulkData fields). */
+/** Request payload for BulkData#list. */
 class BulkDataListMatch
 {
     public ?string $content_encoding = null;
@@ -84,7 +84,7 @@ class CardLoadMatch
     public string $id;
 }
 
-/** Match filter for Card#list (any subset of Card fields). */
+/** Request payload for Card#list. */
 class CardListMatch
 {
     public ?string $artist = null;
@@ -150,7 +150,7 @@ class CardList
     public ?string $uri = null;
 }
 
-/** Match filter for CardList#list (any subset of CardList fields). */
+/** Request payload for CardList#list. */
 class CardListListMatch
 {
     public ?string $artist = null;
@@ -186,7 +186,7 @@ class CardListListMatch
     public ?string $uri = null;
 }
 
-/** Match filter for CardList#create (any subset of CardList fields). */
+/** Request payload for CardList#create. */
 class CardListCreateData
 {
     public ?string $artist = null;
@@ -197,7 +197,7 @@ class CardListCreateData
     public ?array $data = null;
     public ?bool $has_more = null;
     public ?string $id = null;
-    public ?array $identifier = null;
+    public array $identifier;
     public ?array $image_uri = null;
     public ?string $lang = null;
     public ?string $layout = null;
@@ -238,7 +238,7 @@ class CardSymbolList
     public ?bool $transposable = null;
 }
 
-/** Match filter for CardSymbolList#list (any subset of CardSymbolList fields). */
+/** Request payload for CardSymbolList#list. */
 class CardSymbolListListMatch
 {
     public ?bool $appears_in_mana_cost = null;
@@ -281,7 +281,7 @@ class ManaCost
     public ?string $object = null;
 }
 
-/** Match filter for ManaCost#list (any subset of ManaCost fields). */
+/** Request payload for ManaCost#list. */
 class ManaCostListMatch
 {
     public ?float $cmc = null;
@@ -305,7 +305,7 @@ class Migration
     public ?string $uri = null;
 }
 
-/** Match filter for Migration#list (any subset of Migration fields). */
+/** Request payload for Migration#list. */
 class MigrationListMatch
 {
     public ?string $id = null;
@@ -355,7 +355,7 @@ class SetLoadMatch
     public string $id;
 }
 
-/** Match filter for Set#list (any subset of Set fields). */
+/** Request payload for Set#list. */
 class SetListMatch
 {
     public ?int $card_count = null;

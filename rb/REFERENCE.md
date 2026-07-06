@@ -8,7 +8,7 @@ Complete API reference for the Scryfall Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'scryfall_sdk'
+require_relative 'Scryfall_sdk'
 
 client = ScryfallSDK.new(options)
 ```
@@ -125,25 +125,25 @@ bulk_data = client.BulkData
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content_encoding` | ``$STRING`` | No |  |
-| `content_type` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_uri` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `size` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `updated_at` | ``$STRING`` | No |  |
+| `content_encoding` | `String` | No |  |
+| `content_type` | `String` | No |  |
+| `description` | `String` | No |  |
+| `download_uri` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `object` | `String` | No |  |
+| `size` | `Integer` | No |  |
+| `type` | `String` | No |  |
+| `updated_at` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.BulkData.list(nil)
+results = client.BulkData.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -194,40 +194,40 @@ card = client.Card
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `collector_number` | ``$STRING`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `color_identity` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image_uri` | ``$OBJECT`` | No |  |
-| `lang` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `legality` | ``$OBJECT`` | No |  |
-| `loyalty` | ``$STRING`` | No |  |
-| `mana_cost` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `oracle_text` | ``$STRING`` | No |  |
-| `power` | ``$STRING`` | No |  |
-| `price` | ``$OBJECT`` | No |  |
-| `rarity` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `set` | ``$STRING`` | No |  |
-| `set_name` | ``$STRING`` | No |  |
-| `toughness` | ``$STRING`` | No |  |
-| `type_line` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `artist` | `String` | No |  |
+| `cmc` | `Float` | No |  |
+| `collector_number` | `String` | No |  |
+| `color` | `Array` | No |  |
+| `color_identity` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `image_uri` | `Hash` | No |  |
+| `lang` | `String` | No |  |
+| `layout` | `String` | No |  |
+| `legality` | `Hash` | No |  |
+| `loyalty` | `String` | No |  |
+| `mana_cost` | `String` | No |  |
+| `name` | `String` | No |  |
+| `oracle_id` | `String` | No |  |
+| `oracle_text` | `String` | No |  |
+| `power` | `String` | No |  |
+| `price` | `Hash` | No |  |
+| `rarity` | `String` | No |  |
+| `released_at` | `String` | No |  |
+| `scryfall_uri` | `String` | No |  |
+| `set` | `String` | No |  |
+| `set_name` | `String` | No |  |
+| `toughness` | `String` | No |  |
+| `type_line` | `String` | No |  |
+| `uri` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Card.list(nil)
+results = client.Card.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -278,37 +278,37 @@ card_list = client.CardList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | ``$STRING`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `collector_number` | ``$STRING`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `color_identity` | ``$ARRAY`` | No |  |
-| `data` | ``$ARRAY`` | No |  |
-| `has_more` | ``$BOOLEAN`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `identifier` | ``$ARRAY`` | Yes |  |
-| `image_uri` | ``$OBJECT`` | No |  |
-| `lang` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `legality` | ``$OBJECT`` | No |  |
-| `loyalty` | ``$STRING`` | No |  |
-| `mana_cost` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `next_page` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `oracle_text` | ``$STRING`` | No |  |
-| `power` | ``$STRING`` | No |  |
-| `price` | ``$OBJECT`` | No |  |
-| `rarity` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `set` | ``$STRING`` | No |  |
-| `set_name` | ``$STRING`` | No |  |
-| `total_card` | ``$INTEGER`` | No |  |
-| `toughness` | ``$STRING`` | No |  |
-| `type_line` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `artist` | `String` | No |  |
+| `cmc` | `Float` | No |  |
+| `collector_number` | `String` | No |  |
+| `color` | `Array` | No |  |
+| `color_identity` | `Array` | No |  |
+| `data` | `Array` | No |  |
+| `has_more` | `Boolean` | No |  |
+| `id` | `String` | No |  |
+| `identifier` | `Array` | Yes |  |
+| `image_uri` | `Hash` | No |  |
+| `lang` | `String` | No |  |
+| `layout` | `String` | No |  |
+| `legality` | `Hash` | No |  |
+| `loyalty` | `String` | No |  |
+| `mana_cost` | `String` | No |  |
+| `name` | `String` | No |  |
+| `next_page` | `String` | No |  |
+| `object` | `String` | No |  |
+| `oracle_id` | `String` | No |  |
+| `oracle_text` | `String` | No |  |
+| `power` | `String` | No |  |
+| `price` | `Hash` | No |  |
+| `rarity` | `String` | No |  |
+| `released_at` | `String` | No |  |
+| `scryfall_uri` | `String` | No |  |
+| `set` | `String` | No |  |
+| `set_name` | `String` | No |  |
+| `total_card` | `Integer` | No |  |
+| `toughness` | `String` | No |  |
+| `type_line` | `String` | No |  |
+| `uri` | `String` | No |  |
 
 ### Operations
 
@@ -318,16 +318,16 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.CardList.create({
-  "identifier" => # `$ARRAY`,
+  "identifier" => [], # Array
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CardList.list(nil)
+results = client.CardList.list
 ```
 
 ### Common Methods
@@ -370,26 +370,26 @@ card_symbol_list = client.CardSymbolList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | ``$BOOLEAN`` | No |  |
-| `cmc` | ``$NUMBER`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `english` | ``$STRING`` | No |  |
-| `funny` | ``$BOOLEAN`` | No |  |
-| `loose_variant` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `represents_mana` | ``$BOOLEAN`` | No |  |
-| `svg_uri` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `transposable` | ``$BOOLEAN`` | No |  |
+| `appears_in_mana_cost` | `Boolean` | No |  |
+| `cmc` | `Float` | No |  |
+| `color` | `Array` | No |  |
+| `english` | `String` | No |  |
+| `funny` | `Boolean` | No |  |
+| `loose_variant` | `String` | No |  |
+| `object` | `String` | No |  |
+| `represents_mana` | `Boolean` | No |  |
+| `svg_uri` | `String` | No |  |
+| `symbol` | `String` | No |  |
+| `transposable` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CardSymbolList.list(nil)
+results = client.CardSymbolList.list
 ```
 
 ### Common Methods
@@ -432,10 +432,10 @@ catalog = client.Catalog
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `total_value` | ``$INTEGER`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `data` | `Array` | No |  |
+| `object` | `String` | No |  |
+| `total_value` | `Integer` | No |  |
+| `uri` | `String` | No |  |
 
 ### Operations
 
@@ -487,22 +487,22 @@ mana_cost = client.ManaCost
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cmc` | ``$NUMBER`` | No |  |
-| `color` | ``$ARRAY`` | No |  |
-| `colorless` | ``$BOOLEAN`` | No |  |
-| `cost` | ``$STRING`` | No |  |
-| `monocolored` | ``$BOOLEAN`` | No |  |
-| `multicolored` | ``$BOOLEAN`` | No |  |
-| `object` | ``$STRING`` | No |  |
+| `cmc` | `Float` | No |  |
+| `color` | `Array` | No |  |
+| `colorless` | `Boolean` | No |  |
+| `cost` | `String` | No |  |
+| `monocolored` | `Boolean` | No |  |
+| `multicolored` | `Boolean` | No |  |
+| `object` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ManaCost.list(nil)
+results = client.ManaCost.list
 ```
 
 ### Common Methods
@@ -545,22 +545,22 @@ migration = client.Migration
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | ``$STRING`` | No |  |
-| `migration_strategy` | ``$STRING`` | No |  |
-| `new_scryfall_id` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `old_scryfall_id` | ``$STRING`` | No |  |
-| `performed_at` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `id` | `String` | No |  |
+| `migration_strategy` | `String` | No |  |
+| `new_scryfall_id` | `String` | No |  |
+| `object` | `String` | No |  |
+| `old_scryfall_id` | `String` | No |  |
+| `performed_at` | `String` | No |  |
+| `uri` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Migration.list(nil)
+results = client.Migration.list
 ```
 
 ### Common Methods
@@ -603,20 +603,20 @@ ruling = client.Ruling
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comment` | ``$STRING`` | No |  |
-| `object` | ``$STRING`` | No |  |
-| `oracle_id` | ``$STRING`` | No |  |
-| `published_at` | ``$STRING`` | No |  |
-| `source` | ``$STRING`` | No |  |
+| `comment` | `String` | No |  |
+| `object` | `String` | No |  |
+| `oracle_id` | `String` | No |  |
+| `published_at` | `String` | No |  |
+| `source` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Ruling.list(nil)
+results = client.Ruling.list
 ```
 
 ### Common Methods
@@ -659,26 +659,26 @@ set = client.Set
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `card_count` | ``$INTEGER`` | No |  |
-| `code` | ``$STRING`` | No |  |
-| `digital` | ``$BOOLEAN`` | No |  |
-| `icon_svg_uri` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `released_at` | ``$STRING`` | No |  |
-| `scryfall_uri` | ``$STRING`` | No |  |
-| `search_uri` | ``$STRING`` | No |  |
-| `set_type` | ``$STRING`` | No |  |
-| `uri` | ``$STRING`` | No |  |
+| `card_count` | `Integer` | No |  |
+| `code` | `String` | No |  |
+| `digital` | `Boolean` | No |  |
+| `icon_svg_uri` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `released_at` | `String` | No |  |
+| `scryfall_uri` | `String` | No |  |
+| `search_uri` | `String` | No |  |
+| `set_type` | `String` | No |  |
+| `uri` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Set.list(nil)
+results = client.Set.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
