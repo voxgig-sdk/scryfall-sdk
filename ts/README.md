@@ -651,7 +651,7 @@ const card_lists = await client.CardList().list()
 
 ```ts
 const card_list = await client.CardList().create({
-  identifier: /* any[] */,
+  identifier: [],
 })
 ```
 

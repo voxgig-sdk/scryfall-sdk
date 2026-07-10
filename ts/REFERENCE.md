@@ -401,7 +401,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.CardList().create({
-  identifier: /* any[] */,
+  identifier: [],
 })
 ```
 

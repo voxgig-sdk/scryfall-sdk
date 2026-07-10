@@ -593,7 +593,7 @@ local card_lists, err = client:CardList():list()
 
 ```lua
 local card_list, err = client:CardList():create({
-  identifier = nil, -- table
+  identifier = {}, -- table
 })
 ```
 

@@ -1,0 +1,11 @@
+# Entity Models
+
+@"bulk_data.aontu"
+@"card.aontu"
+@"card_list.aontu"
+@"card_symbol_list.aontu"
+@"catalog.aontu"
+@"mana_cost.aontu"
+@"migration.aontu"
+@"ruling.aontu"
+@"set.aontu"

@@ -122,7 +122,8 @@ same parameters as `Direct()`.
 ## BulkDataEntity
 
 ```go
-bulk_data := client.BulkData(nil)
+bulkData := client.BulkData(nil)
+fmt.Println(bulkData.GetName()) // "bulk_data"
 ```
 
 ### Fields
@@ -148,6 +149,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.BulkData(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -156,6 +161,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.BulkData(nil).Load(map[string]any{"id": "bulk_data_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -186,6 +195,7 @@ Return the entity name.
 
 ```go
 card := client.Card(nil)
+fmt.Println(card.GetName()) // "card"
 ```
 
 ### Fields
@@ -226,6 +236,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Card(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -234,6 +248,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Card(nil).Load(map[string]any{"id": "card_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -263,7 +281,8 @@ Return the entity name.
 ## CardListEntity
 
 ```go
-card_list := client.CardList(nil)
+cardList := client.CardList(nil)
+fmt.Println(cardList.GetName()) // "card_list"
 ```
 
 ### Fields
@@ -304,22 +323,30 @@ card_list := client.CardList(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.CardList(nil).Create(map[string]any{
-    "identifier": /* []any */,
-}, nil)
-```
-
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
 List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.CardList(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.CardList(nil).Create(map[string]any{
+    "identifier": []any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -349,7 +376,8 @@ Return the entity name.
 ## CardSymbolListEntity
 
 ```go
-card_symbol_list := client.CardSymbolList(nil)
+cardSymbolList := client.CardSymbolList(nil)
+fmt.Println(cardSymbolList.GetName()) // "card_symbol_list"
 ```
 
 ### Fields
@@ -376,6 +404,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.CardSymbolList(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -406,6 +438,7 @@ Return the entity name.
 
 ```go
 catalog := client.Catalog(nil)
+fmt.Println(catalog.GetName()) // "catalog"
 ```
 
 ### Fields
@@ -425,6 +458,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Catalog(nil).Load(map[string]any{"id": "catalog_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -454,7 +491,8 @@ Return the entity name.
 ## ManaCostEntity
 
 ```go
-mana_cost := client.ManaCost(nil)
+manaCost := client.ManaCost(nil)
+fmt.Println(manaCost.GetName()) // "mana_cost"
 ```
 
 ### Fields
@@ -477,6 +515,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.ManaCost(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -507,6 +549,7 @@ Return the entity name.
 
 ```go
 migration := client.Migration(nil)
+fmt.Println(migration.GetName()) // "migration"
 ```
 
 ### Fields
@@ -529,6 +572,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Migration(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -559,6 +606,7 @@ Return the entity name.
 
 ```go
 ruling := client.Ruling(nil)
+fmt.Println(ruling.GetName()) // "ruling"
 ```
 
 ### Fields
@@ -579,6 +627,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Ruling(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -609,6 +661,7 @@ Return the entity name.
 
 ```go
 set := client.Set(nil)
+fmt.Println(set.GetName()) // "set"
 ```
 
 ### Fields
@@ -635,6 +688,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Set(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -643,6 +700,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Set(nil).Load(map[string]any{"id": "set_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

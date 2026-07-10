@@ -1,0 +1,11 @@
+# Flows
+
+@"BasicBulkDataFlow.aontu"
+@"BasicCardFlow.aontu"
+@"BasicCardListFlow.aontu"
+@"BasicCardSymbolListFlow.aontu"
+@"BasicCatalogFlow.aontu"
+@"BasicManaCostFlow.aontu"
+@"BasicMigrationFlow.aontu"
+@"BasicRulingFlow.aontu"
+@"BasicSetFlow.aontu"

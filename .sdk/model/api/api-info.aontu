@@ -16,13 +16,13 @@ main: {
           url: "https://api.scryfall.com"
         }
       ]
+      summary: "Scryfall provides a REST-like API for accessing Magic: The Gathering card data programmatically."
       termsOfService: "https://scryfall.com/docs/terms"
       title: "Scryfall API"
       version: "1.0.0"
+      website: "https://scryfall.com/docs/api"
       "x-logo": {
         url: "https://scryfall.com/favicon.ico"
       }
     }
   }
-}
-

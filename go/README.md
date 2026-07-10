@@ -50,21 +50,21 @@ import (
 func main() {
     client := sdk.New()
 
-    // List bulkdata records — the value is the array of records itself.
-    bulkdatas, err := client.BulkData(nil).List(nil, nil)
+    // List bulkData records — the value is the array of records itself.
+    bulkDatas, err := client.BulkData(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range bulkdatas.([]any) {
+    for _, item := range bulkDatas.([]any) {
         fmt.Println(item)
     }
 
-    // Load a single bulkdata — the value is the loaded record.
-    bulkdata, err := client.BulkData(nil).Load(map[string]any{"id": "example"}, nil)
+    // Load a single bulkData — the value is the loaded record.
+    bulkData, err := client.BulkData(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(bulkdata)
+    fmt.Println(bulkData)
 }
 ```
 
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bulkdata, err := client.BulkData(nil).List(
+bulkData, err := client.BulkData(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bulkdata) // the returned mock data
+fmt.Println(bulkData) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -265,9 +265,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bulkdata, err := client.BulkData(nil).List(map[string]any{/* fields */}, nil)
+    bulkData, err := client.BulkData(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // bulkdata is the returned record
+    // bulkData is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -473,7 +473,7 @@ API path: `/sets`
 
 ### BulkData
 
-Create an instance: `bulk_data := client.BulkData(nil)`
+Create an instance: `bulkData := client.BulkData(nil)`
 
 #### Operations
 
@@ -500,21 +500,21 @@ Create an instance: `bulk_data := client.BulkData(nil)`
 #### Example: Load
 
 ```go
-bulk_data, err := client.BulkData(nil).Load(map[string]any{"id": "bulk_data_id"}, nil)
+bulkData, err := client.BulkData(nil).Load(map[string]any{"id": "bulk_data_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(bulk_data) // the loaded record
+fmt.Println(bulkData) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-bulk_datas, err := client.BulkData(nil).List(nil, nil)
+bulkDatas, err := client.BulkData(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(bulk_datas) // the array of records
+fmt.Println(bulkDatas) // the array of records
 ```
 
 
@@ -582,14 +582,14 @@ fmt.Println(cards) // the array of records
 
 ### CardList
 
-Create an instance: `card_list := client.CardList(nil)`
+Create an instance: `cardList := client.CardList(nil)`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -630,25 +630,29 @@ Create an instance: `card_list := client.CardList(nil)`
 #### Example: List
 
 ```go
-card_lists, err := client.CardList(nil).List(nil, nil)
+cardLists, err := client.CardList(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(card_lists) // the array of records
+fmt.Println(cardLists) // the array of records
 ```
 
 #### Example: Create
 
 ```go
 result, err := client.CardList(nil).Create(map[string]any{
-    "identifier": /* []any */,
+    "identifier": []any{},
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### CardSymbolList
 
-Create an instance: `card_symbol_list := client.CardSymbolList(nil)`
+Create an instance: `cardSymbolList := client.CardSymbolList(nil)`
 
 #### Operations
 
@@ -675,11 +679,11 @@ Create an instance: `card_symbol_list := client.CardSymbolList(nil)`
 #### Example: List
 
 ```go
-card_symbol_lists, err := client.CardSymbolList(nil).List(nil, nil)
+cardSymbolLists, err := client.CardSymbolList(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(card_symbol_lists) // the array of records
+fmt.Println(cardSymbolLists) // the array of records
 ```
 
 
@@ -715,7 +719,7 @@ fmt.Println(catalog) // the loaded record
 
 ### ManaCost
 
-Create an instance: `mana_cost := client.ManaCost(nil)`
+Create an instance: `manaCost := client.ManaCost(nil)`
 
 #### Operations
 
@@ -738,11 +742,11 @@ Create an instance: `mana_cost := client.ManaCost(nil)`
 #### Example: List
 
 ```go
-mana_costs, err := client.ManaCost(nil).List(nil, nil)
+manaCosts, err := client.ManaCost(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(mana_costs) // the array of records
+fmt.Println(manaCosts) // the array of records
 ```
 
 

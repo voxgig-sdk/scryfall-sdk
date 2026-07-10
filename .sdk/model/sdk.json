@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1818,15 +1815,18 @@
           "url": "https://scryfall.com/contact"
         },
         "description": "Scryfall provides a REST-like API for accessing Magic: The Gathering card data programmatically. It offers endpoints to retrieve cards, sets, images, and other related data in an easy-to-consume format.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production API Server",
             "url": "https://api.scryfall.com"
           }
         ],
+        "summary": "Scryfall provides a REST-like API for accessing Magic: The Gathering card data programmatically.",
         "termsOfService": "https://scryfall.com/docs/terms",
         "title": "Scryfall API",
         "version": "1.0.0",
+        "website": "https://scryfall.com/docs/api",
         "x-logo": {
           "url": "https://scryfall.com/favicon.ico"
         }
@@ -1882,6 +1882,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1932,6 +1935,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
