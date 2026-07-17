@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Scryfall SDK exists test
 
 local sdk = require("scryfall_sdk")
 
