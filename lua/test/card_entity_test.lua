@@ -97,7 +97,7 @@ describe("CardEntity", function()
     }
     local card_ref01_data_dt0_loaded, err = card_ref01_ent:load(card_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local card_ref01_data_dt0_load_result = helpers.to_map(card_ref01_data_dt0_loaded)
+    local card_ref01_data_dt0_load_result = helpers.to_map(type(card_ref01_data_dt0_loaded) == 'table' and card_ref01_data_dt0_loaded.data_get and card_ref01_data_dt0_loaded:data_get() or card_ref01_data_dt0_loaded)
     assert.is_not_nil(card_ref01_data_dt0_load_result)
     assert.are.equal(card_ref01_data_dt0_load_result["id"], card_ref01_data["id"])
 

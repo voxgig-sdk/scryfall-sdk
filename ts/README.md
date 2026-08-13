@@ -35,7 +35,9 @@ const client = new ScryfallSDK()
 
 ### 2. List bulkdata records
 
-`list()` resolves to an array of BulkData objects — iterate it directly:
+`list()` resolves to an array of BulkData ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const bulkdatas = await client.BulkData().list()
@@ -133,7 +135,8 @@ Create a mock client for unit testing — no server required:
 const client = ScryfallSDK.test()
 
 const bulkdata = await client.BulkData().list()
-// bulkdata is a bare entity populated with mock response data
+// bulkdata is the entity, populated with mock response data
+// — call bulkdata.data() for the record itself
 console.log(bulkdata)
 ```
 
@@ -330,20 +333,20 @@ API path: `/bulk-data`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `id` |  |
-| `image_uri` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
@@ -364,16 +367,16 @@ API path: `/cards/named`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `data` |  |
 | `has_more` |  |
 | `id` |  |
-| `identifier` |  |
-| `image_uri` |  |
+| `identifiers` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
@@ -382,13 +385,13 @@ API path: `/cards/named`
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
 | `set` |  |
 | `set_name` |  |
-| `total_card` |  |
+| `total_cards` |  |
 | `toughness` |  |
 | `type_line` |  |
 | `uri` |  |
@@ -401,9 +404,9 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `appears_in_mana_cost` |  |
+| `appears_in_mana_costs` |  |
 | `cmc` |  |
-| `color` |  |
+| `colors` |  |
 | `english` |  |
 | `funny` |  |
 | `loose_variant` |  |
@@ -423,7 +426,7 @@ API path: `/symbology`
 | --- | --- |
 | `data` |  |
 | `object` |  |
-| `total_value` |  |
+| `total_values` |  |
 | `uri` |  |
 
 Operations: load.
@@ -435,8 +438,8 @@ API path: `/catalog/{catalog_name}`
 | Field | Description |
 | --- | --- |
 | `cmc` |  |
-| `color` |  |
 | `colorless` |  |
+| `colors` |  |
 | `cost` |  |
 | `monocolored` |  |
 | `multicolored` |  |
@@ -558,20 +561,20 @@ Create an instance: `const card = client.Card()`
 | `artist` | `string` |  |
 | `cmc` | `number` |  |
 | `collector_number` | `string` |  |
-| `color` | `any[]` |  |
 | `color_identity` | `any[]` |  |
+| `colors` | `any[]` |  |
 | `id` | `string` |  |
-| `image_uri` | `Record<string, any>` |  |
+| `image_uris` | `Record<string, any>` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `Record<string, any>` |  |
+| `legalities` | `Record<string, any>` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `Record<string, any>` |  |
+| `prices` | `Record<string, any>` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
@@ -612,16 +615,16 @@ Create an instance: `const card_list = client.CardList()`
 | `artist` | `string` |  |
 | `cmc` | `number` |  |
 | `collector_number` | `string` |  |
-| `color` | `any[]` |  |
 | `color_identity` | `any[]` |  |
+| `colors` | `any[]` |  |
 | `data` | `any[]` |  |
 | `has_more` | `boolean` |  |
 | `id` | `string` |  |
-| `identifier` | `any[]` |  |
-| `image_uri` | `Record<string, any>` |  |
+| `identifiers` | `any[]` |  |
+| `image_uris` | `Record<string, any>` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `Record<string, any>` |  |
+| `legalities` | `Record<string, any>` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
@@ -630,13 +633,13 @@ Create an instance: `const card_list = client.CardList()`
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `Record<string, any>` |  |
+| `prices` | `Record<string, any>` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
 | `set` | `string` |  |
 | `set_name` | `string` |  |
-| `total_card` | `number` |  |
+| `total_cards` | `number` |  |
 | `toughness` | `string` |  |
 | `type_line` | `string` |  |
 | `uri` | `string` |  |
@@ -651,7 +654,7 @@ const card_lists = await client.CardList().list()
 
 ```ts
 const card_list = await client.CardList().create({
-  identifier: [],
+  identifiers: [],
 })
 ```
 
@@ -670,9 +673,9 @@ Create an instance: `const card_symbol_list = client.CardSymbolList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | `boolean` |  |
+| `appears_in_mana_costs` | `boolean` |  |
 | `cmc` | `number` |  |
-| `color` | `any[]` |  |
+| `colors` | `any[]` |  |
 | `english` | `string` |  |
 | `funny` | `boolean` |  |
 | `loose_variant` | `string` |  |
@@ -705,7 +708,7 @@ Create an instance: `const catalog = client.Catalog()`
 | --- | --- | --- |
 | `data` | `any[]` |  |
 | `object` | `string` |  |
-| `total_value` | `number` |  |
+| `total_values` | `number` |  |
 | `uri` | `string` |  |
 
 #### Example: Load
@@ -730,8 +733,8 @@ Create an instance: `const mana_cost = client.ManaCost()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cmc` | `number` |  |
-| `color` | `any[]` |  |
 | `colorless` | `boolean` |  |
+| `colors` | `any[]` |  |
 | `cost` | `string` |  |
 | `monocolored` | `boolean` |  |
 | `multicolored` | `boolean` |  |
@@ -796,7 +799,7 @@ Create an instance: `const ruling = client.Ruling()`
 #### Example: List
 
 ```ts
-const rulings = await client.Ruling().list()
+const rulings = await client.Ruling().list({ card_id: "example" })
 ```
 
 

@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "bulk_data": {
           "active": true,
@@ -99,6 +104,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/bulk-data",
                   "parts": [
@@ -107,7 +113,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -130,6 +136,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/bulk-data/{id}",
                   "parts": [
@@ -179,13 +186,13 @@
             },
             {
               "active": true,
-              "name": "color",
+              "name": "color_identity",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "color_identity",
+              "name": "colors",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -197,7 +204,7 @@
             },
             {
               "active": true,
-              "name": "image_uri",
+              "name": "image_uris",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -215,7 +222,7 @@
             },
             {
               "active": true,
-              "name": "legality",
+              "name": "legalities",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -257,7 +264,7 @@
             },
             {
               "active": true,
-              "name": "price",
+              "name": "prices",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -353,6 +360,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cards/named",
                   "parts": [
@@ -386,6 +394,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cards/random",
                   "parts": [
@@ -424,6 +433,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cards/{id}",
                   "parts": [
@@ -473,13 +483,13 @@
             },
             {
               "active": true,
-              "name": "color",
+              "name": "color_identity",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "color_identity",
+              "name": "colors",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -503,13 +513,13 @@
             },
             {
               "active": true,
-              "name": "identifier",
+              "name": "identifiers",
               "req": true,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "image_uri",
+              "name": "image_uris",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -527,7 +537,7 @@
             },
             {
               "active": true,
-              "name": "legality",
+              "name": "legalities",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -581,7 +591,7 @@
             },
             {
               "active": true,
-              "name": "price",
+              "name": "prices",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -617,7 +627,7 @@
             },
             {
               "active": true,
-              "name": "total_card",
+              "name": "total_cards",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -653,6 +663,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/cards/collection",
                   "parts": [
@@ -731,6 +742,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cards/search",
                   "parts": [
@@ -749,7 +761,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -767,7 +779,7 @@
           "fields": [
             {
               "active": true,
-              "name": "appears_in_mana_cost",
+              "name": "appears_in_mana_costs",
               "req": false,
               "type": "`$BOOLEAN`"
             },
@@ -779,7 +791,7 @@
             },
             {
               "active": true,
-              "name": "color",
+              "name": "colors",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -841,6 +853,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/symbology",
                   "parts": [
@@ -849,7 +862,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -879,7 +892,7 @@
             },
             {
               "active": true,
-              "name": "total_value",
+              "name": "total_values",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -910,6 +923,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/catalog/{catalog_name}",
                   "parts": [
@@ -952,15 +966,15 @@
             },
             {
               "active": true,
-              "name": "color",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "colorless",
               "req": false,
               "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "colors",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -1008,6 +1022,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/symbology/parse-mana",
                   "parts": [
@@ -1021,7 +1036,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.colors`"
                   }
                 }
               ]
@@ -1105,6 +1120,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/migrations",
                   "parts": [
@@ -1117,7 +1133,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1184,6 +1200,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/cards/{id}/rulings",
                   "parts": [
@@ -1203,7 +1220,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1303,6 +1320,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sets",
                   "parts": [
@@ -1311,7 +1329,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1335,6 +1353,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sets/{code}",
                   "parts": [
@@ -1370,6 +1389,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/sets/{id}",
                   "parts": [
@@ -1832,18 +1852,41 @@
         }
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1865,22 +1908,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1919,21 +1980,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1972,12 +2051,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1989,10 +2073,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2014,22 +2111,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2051,13 +2166,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2069,10 +2189,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2094,13 +2227,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2117,10 +2255,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2142,13 +2293,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -2171,10 +2327,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "scryfall"
+            "goversion": "",
+            "name": "scryfall",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2196,9 +2365,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

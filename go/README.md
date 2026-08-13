@@ -300,20 +300,20 @@ API path: `/bulk-data`
 | `"artist"` |  |
 | `"cmc"` |  |
 | `"collector_number"` |  |
-| `"color"` |  |
 | `"color_identity"` |  |
+| `"colors"` |  |
 | `"id"` |  |
-| `"image_uri"` |  |
+| `"image_uris"` |  |
 | `"lang"` |  |
 | `"layout"` |  |
-| `"legality"` |  |
+| `"legalities"` |  |
 | `"loyalty"` |  |
 | `"mana_cost"` |  |
 | `"name"` |  |
 | `"oracle_id"` |  |
 | `"oracle_text"` |  |
 | `"power"` |  |
-| `"price"` |  |
+| `"prices"` |  |
 | `"rarity"` |  |
 | `"released_at"` |  |
 | `"scryfall_uri"` |  |
@@ -334,16 +334,16 @@ API path: `/cards/named`
 | `"artist"` |  |
 | `"cmc"` |  |
 | `"collector_number"` |  |
-| `"color"` |  |
 | `"color_identity"` |  |
+| `"colors"` |  |
 | `"data"` |  |
 | `"has_more"` |  |
 | `"id"` |  |
-| `"identifier"` |  |
-| `"image_uri"` |  |
+| `"identifiers"` |  |
+| `"image_uris"` |  |
 | `"lang"` |  |
 | `"layout"` |  |
-| `"legality"` |  |
+| `"legalities"` |  |
 | `"loyalty"` |  |
 | `"mana_cost"` |  |
 | `"name"` |  |
@@ -352,13 +352,13 @@ API path: `/cards/named`
 | `"oracle_id"` |  |
 | `"oracle_text"` |  |
 | `"power"` |  |
-| `"price"` |  |
+| `"prices"` |  |
 | `"rarity"` |  |
 | `"released_at"` |  |
 | `"scryfall_uri"` |  |
 | `"set"` |  |
 | `"set_name"` |  |
-| `"total_card"` |  |
+| `"total_cards"` |  |
 | `"toughness"` |  |
 | `"type_line"` |  |
 | `"uri"` |  |
@@ -371,9 +371,9 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `"appears_in_mana_cost"` |  |
+| `"appears_in_mana_costs"` |  |
 | `"cmc"` |  |
-| `"color"` |  |
+| `"colors"` |  |
 | `"english"` |  |
 | `"funny"` |  |
 | `"loose_variant"` |  |
@@ -393,7 +393,7 @@ API path: `/symbology`
 | --- | --- |
 | `"data"` |  |
 | `"object"` |  |
-| `"total_value"` |  |
+| `"total_values"` |  |
 | `"uri"` |  |
 
 Operations: Load.
@@ -405,8 +405,8 @@ API path: `/catalog/{catalog_name}`
 | Field | Description |
 | --- | --- |
 | `"cmc"` |  |
-| `"color"` |  |
 | `"colorless"` |  |
+| `"colors"` |  |
 | `"cost"` |  |
 | `"monocolored"` |  |
 | `"multicolored"` |  |
@@ -536,20 +536,20 @@ Create an instance: `card := client.Card(nil)`
 | `artist` | `string` |  |
 | `cmc` | `float64` |  |
 | `collector_number` | `string` |  |
-| `color` | `[]any` |  |
 | `color_identity` | `[]any` |  |
+| `colors` | `[]any` |  |
 | `id` | `string` |  |
-| `image_uri` | `map[string]any` |  |
+| `image_uris` | `map[string]any` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `map[string]any` |  |
+| `legalities` | `map[string]any` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `map[string]any` |  |
+| `prices` | `map[string]any` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
@@ -598,16 +598,16 @@ Create an instance: `cardList := client.CardList(nil)`
 | `artist` | `string` |  |
 | `cmc` | `float64` |  |
 | `collector_number` | `string` |  |
-| `color` | `[]any` |  |
 | `color_identity` | `[]any` |  |
+| `colors` | `[]any` |  |
 | `data` | `[]any` |  |
 | `has_more` | `bool` |  |
 | `id` | `string` |  |
-| `identifier` | `[]any` |  |
-| `image_uri` | `map[string]any` |  |
+| `identifiers` | `[]any` |  |
+| `image_uris` | `map[string]any` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `map[string]any` |  |
+| `legalities` | `map[string]any` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
@@ -616,13 +616,13 @@ Create an instance: `cardList := client.CardList(nil)`
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `map[string]any` |  |
+| `prices` | `map[string]any` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
 | `set` | `string` |  |
 | `set_name` | `string` |  |
-| `total_card` | `int` |  |
+| `total_cards` | `int` |  |
 | `toughness` | `string` |  |
 | `type_line` | `string` |  |
 | `uri` | `string` |  |
@@ -641,7 +641,7 @@ fmt.Println(cardLists) // the array of records
 
 ```go
 result, err := client.CardList(nil).Create(map[string]any{
-    "identifier": []any{},
+    "identifiers": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -664,9 +664,9 @@ Create an instance: `cardSymbolList := client.CardSymbolList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | `bool` |  |
+| `appears_in_mana_costs` | `bool` |  |
 | `cmc` | `float64` |  |
-| `color` | `[]any` |  |
+| `colors` | `[]any` |  |
 | `english` | `string` |  |
 | `funny` | `bool` |  |
 | `loose_variant` | `string` |  |
@@ -703,7 +703,7 @@ Create an instance: `catalog := client.Catalog(nil)`
 | --- | --- | --- |
 | `data` | `[]any` |  |
 | `object` | `string` |  |
-| `total_value` | `int` |  |
+| `total_values` | `int` |  |
 | `uri` | `string` |  |
 
 #### Example: Load
@@ -732,8 +732,8 @@ Create an instance: `manaCost := client.ManaCost(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cmc` | `float64` |  |
-| `color` | `[]any` |  |
 | `colorless` | `bool` |  |
+| `colors` | `[]any` |  |
 | `cost` | `string` |  |
 | `monocolored` | `bool` |  |
 | `multicolored` | `bool` |  |

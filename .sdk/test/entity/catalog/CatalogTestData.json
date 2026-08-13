@@ -4,21 +4,21 @@
       "CATALOG00": {
         "data": [],
         "object": "s29",
-        "total_value": "s2a",
+        "total_values": "s2a",
         "uri": "s2b",
         "id": "CATALOG00"
       },
       "CATALOG01": {
         "data": [],
         "object": "s51",
-        "total_value": "s52",
+        "total_values": "s52",
         "uri": "s53",
         "id": "CATALOG01"
       },
       "CATALOG02": {
         "data": [],
         "object": "s79",
-        "total_value": "s7a",
+        "total_values": "s7a",
         "uri": "s7b",
         "id": "CATALOG02"
       }
@@ -29,7 +29,7 @@
       "catalog_ref01": {
         "data": [],
         "object": "sa1",
-        "total_value": "sa2",
+        "total_values": "sa2",
         "uri": "sa3"
       }
     }

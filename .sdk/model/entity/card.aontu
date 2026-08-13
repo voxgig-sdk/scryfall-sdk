@@ -21,12 +21,12 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
-      name: "color"
+      name: "color_identity"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "color_identity"
+      name: "colors"
       req: false
       type: "`$ARRAY`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
-      name: "image_uri"
+      name: "image_uris"
       req: false
       type: "`$OBJECT`"
     }
@@ -51,7 +51,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
-      name: "legality"
+      name: "legalities"
       req: false
       type: "`$OBJECT`"
     }
@@ -86,7 +86,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
-      name: "price"
+      name: "prices"
       req: false
       type: "`$OBJECT`"
     }

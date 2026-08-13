@@ -97,7 +97,7 @@ describe("BulkDataEntity", function()
     }
     local bulk_data_ref01_data_dt0_loaded, err = bulk_data_ref01_ent:load(bulk_data_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local bulk_data_ref01_data_dt0_load_result = helpers.to_map(bulk_data_ref01_data_dt0_loaded)
+    local bulk_data_ref01_data_dt0_load_result = helpers.to_map(type(bulk_data_ref01_data_dt0_loaded) == 'table' and bulk_data_ref01_data_dt0_loaded.data_get and bulk_data_ref01_data_dt0_loaded:data_get() or bulk_data_ref01_data_dt0_loaded)
     assert.is_not_nil(bulk_data_ref01_data_dt0_load_result)
     assert.are.equal(bulk_data_ref01_data_dt0_load_result["id"], bulk_data_ref01_data["id"])
 

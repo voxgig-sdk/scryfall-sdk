@@ -8,6 +8,7 @@ guide: {
   entity: bulk_data: {
     path: "/bulk-data": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/bulk-data/{id}": {
       op: load: method: *GET
@@ -34,12 +35,14 @@ guide: {
     }
     path: "/cards/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: card_symbol_list: {
     path: "/symbology": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -53,12 +56,14 @@ guide: {
   entity: mana_cost: {
     path: "/symbology/parse-mana": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.colors`")|top
     }
   }
 
   entity: migration: {
     path: "/migrations": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -66,12 +71,14 @@ guide: {
     path: "/cards/{id}/rulings": {
       rename: param: "id": *"card_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: set: {
     path: "/sets": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/sets/{code}": {
       rename: param: "code": *"id"

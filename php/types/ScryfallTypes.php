@@ -54,20 +54,20 @@ class Card
     public ?string $artist = null;
     public ?float $cmc = null;
     public ?string $collector_number = null;
-    public ?array $color = null;
     public ?array $color_identity = null;
+    public ?array $colors = null;
     public ?string $id = null;
-    public ?array $image_uri = null;
+    public ?array $image_uris = null;
     public ?string $lang = null;
     public ?string $layout = null;
-    public ?array $legality = null;
+    public ?array $legalities = null;
     public ?string $loyalty = null;
     public ?string $mana_cost = null;
     public ?string $name = null;
     public ?string $oracle_id = null;
     public ?string $oracle_text = null;
     public ?string $power = null;
-    public ?array $price = null;
+    public ?array $prices = null;
     public ?string $rarity = null;
     public ?string $released_at = null;
     public ?string $scryfall_uri = null;
@@ -90,20 +90,20 @@ class CardListMatch
     public ?string $artist = null;
     public ?float $cmc = null;
     public ?string $collector_number = null;
-    public ?array $color = null;
     public ?array $color_identity = null;
+    public ?array $colors = null;
     public ?string $id = null;
-    public ?array $image_uri = null;
+    public ?array $image_uris = null;
     public ?string $lang = null;
     public ?string $layout = null;
-    public ?array $legality = null;
+    public ?array $legalities = null;
     public ?string $loyalty = null;
     public ?string $mana_cost = null;
     public ?string $name = null;
     public ?string $oracle_id = null;
     public ?string $oracle_text = null;
     public ?string $power = null;
-    public ?array $price = null;
+    public ?array $prices = null;
     public ?string $rarity = null;
     public ?string $released_at = null;
     public ?string $scryfall_uri = null;
@@ -120,16 +120,16 @@ class CardList
     public ?string $artist = null;
     public ?float $cmc = null;
     public ?string $collector_number = null;
-    public ?array $color = null;
     public ?array $color_identity = null;
+    public ?array $colors = null;
     public ?array $data = null;
     public ?bool $has_more = null;
     public ?string $id = null;
-    public array $identifier;
-    public ?array $image_uri = null;
+    public array $identifiers;
+    public ?array $image_uris = null;
     public ?string $lang = null;
     public ?string $layout = null;
-    public ?array $legality = null;
+    public ?array $legalities = null;
     public ?string $loyalty = null;
     public ?string $mana_cost = null;
     public ?string $name = null;
@@ -138,13 +138,13 @@ class CardList
     public ?string $oracle_id = null;
     public ?string $oracle_text = null;
     public ?string $power = null;
-    public ?array $price = null;
+    public ?array $prices = null;
     public ?string $rarity = null;
     public ?string $released_at = null;
     public ?string $scryfall_uri = null;
     public ?string $set = null;
     public ?string $set_name = null;
-    public ?int $total_card = null;
+    public ?int $total_cards = null;
     public ?string $toughness = null;
     public ?string $type_line = null;
     public ?string $uri = null;
@@ -156,16 +156,16 @@ class CardListListMatch
     public ?string $artist = null;
     public ?float $cmc = null;
     public ?string $collector_number = null;
-    public ?array $color = null;
     public ?array $color_identity = null;
+    public ?array $colors = null;
     public ?array $data = null;
     public ?bool $has_more = null;
     public ?string $id = null;
-    public ?array $identifier = null;
-    public ?array $image_uri = null;
+    public ?array $identifiers = null;
+    public ?array $image_uris = null;
     public ?string $lang = null;
     public ?string $layout = null;
-    public ?array $legality = null;
+    public ?array $legalities = null;
     public ?string $loyalty = null;
     public ?string $mana_cost = null;
     public ?string $name = null;
@@ -174,13 +174,13 @@ class CardListListMatch
     public ?string $oracle_id = null;
     public ?string $oracle_text = null;
     public ?string $power = null;
-    public ?array $price = null;
+    public ?array $prices = null;
     public ?string $rarity = null;
     public ?string $released_at = null;
     public ?string $scryfall_uri = null;
     public ?string $set = null;
     public ?string $set_name = null;
-    public ?int $total_card = null;
+    public ?int $total_cards = null;
     public ?string $toughness = null;
     public ?string $type_line = null;
     public ?string $uri = null;
@@ -192,16 +192,16 @@ class CardListCreateData
     public ?string $artist = null;
     public ?float $cmc = null;
     public ?string $collector_number = null;
-    public ?array $color = null;
     public ?array $color_identity = null;
+    public ?array $colors = null;
     public ?array $data = null;
     public ?bool $has_more = null;
     public ?string $id = null;
-    public array $identifier;
-    public ?array $image_uri = null;
+    public array $identifiers;
+    public ?array $image_uris = null;
     public ?string $lang = null;
     public ?string $layout = null;
-    public ?array $legality = null;
+    public ?array $legalities = null;
     public ?string $loyalty = null;
     public ?string $mana_cost = null;
     public ?string $name = null;
@@ -210,13 +210,13 @@ class CardListCreateData
     public ?string $oracle_id = null;
     public ?string $oracle_text = null;
     public ?string $power = null;
-    public ?array $price = null;
+    public ?array $prices = null;
     public ?string $rarity = null;
     public ?string $released_at = null;
     public ?string $scryfall_uri = null;
     public ?string $set = null;
     public ?string $set_name = null;
-    public ?int $total_card = null;
+    public ?int $total_cards = null;
     public ?string $toughness = null;
     public ?string $type_line = null;
     public ?string $uri = null;
@@ -225,9 +225,9 @@ class CardListCreateData
 /** CardSymbolList entity data model. */
 class CardSymbolList
 {
-    public ?bool $appears_in_mana_cost = null;
+    public ?bool $appears_in_mana_costs = null;
     public ?float $cmc = null;
-    public ?array $color = null;
+    public ?array $colors = null;
     public ?string $english = null;
     public ?bool $funny = null;
     public ?string $loose_variant = null;
@@ -241,9 +241,9 @@ class CardSymbolList
 /** Request payload for CardSymbolList#list. */
 class CardSymbolListListMatch
 {
-    public ?bool $appears_in_mana_cost = null;
+    public ?bool $appears_in_mana_costs = null;
     public ?float $cmc = null;
-    public ?array $color = null;
+    public ?array $colors = null;
     public ?string $english = null;
     public ?bool $funny = null;
     public ?string $loose_variant = null;
@@ -259,7 +259,7 @@ class Catalog
 {
     public ?array $data = null;
     public ?string $object = null;
-    public ?int $total_value = null;
+    public ?int $total_values = null;
     public ?string $uri = null;
 }
 
@@ -273,8 +273,8 @@ class CatalogLoadMatch
 class ManaCost
 {
     public ?float $cmc = null;
-    public ?array $color = null;
     public ?bool $colorless = null;
+    public ?array $colors = null;
     public ?string $cost = null;
     public ?bool $monocolored = null;
     public ?bool $multicolored = null;
@@ -285,8 +285,8 @@ class ManaCost
 class ManaCostListMatch
 {
     public ?float $cmc = null;
-    public ?array $color = null;
     public ?bool $colorless = null;
+    public ?array $colors = null;
     public ?string $cost = null;
     public ?bool $monocolored = null;
     public ?bool $multicolored = null;

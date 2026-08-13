@@ -205,20 +205,20 @@ fmt.Println(card.GetName()) // "card"
 | `artist` | `string` | No |  |
 | `cmc` | `float64` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `[]any` | No |  |
 | `color_identity` | `[]any` | No |  |
+| `colors` | `[]any` | No |  |
 | `id` | `string` | No |  |
-| `image_uri` | `map[string]any` | No |  |
+| `image_uris` | `map[string]any` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `map[string]any` | No |  |
+| `legalities` | `map[string]any` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `map[string]any` | No |  |
+| `prices` | `map[string]any` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
@@ -292,16 +292,16 @@ fmt.Println(cardList.GetName()) // "card_list"
 | `artist` | `string` | No |  |
 | `cmc` | `float64` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `[]any` | No |  |
 | `color_identity` | `[]any` | No |  |
+| `colors` | `[]any` | No |  |
 | `data` | `[]any` | No |  |
 | `has_more` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `identifier` | `[]any` | Yes |  |
-| `image_uri` | `map[string]any` | No |  |
+| `identifiers` | `[]any` | Yes |  |
+| `image_uris` | `map[string]any` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `map[string]any` | No |  |
+| `legalities` | `map[string]any` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
@@ -310,13 +310,13 @@ fmt.Println(cardList.GetName()) // "card_list"
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `map[string]any` | No |  |
+| `prices` | `map[string]any` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
 | `set` | `string` | No |  |
 | `set_name` | `string` | No |  |
-| `total_card` | `int` | No |  |
+| `total_cards` | `int` | No |  |
 | `toughness` | `string` | No |  |
 | `type_line` | `string` | No |  |
 | `uri` | `string` | No |  |
@@ -341,7 +341,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.CardList(nil).Create(map[string]any{
-    "identifier": []any{},
+    "identifiers": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -384,9 +384,9 @@ fmt.Println(cardSymbolList.GetName()) // "card_symbol_list"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | `bool` | No |  |
+| `appears_in_mana_costs` | `bool` | No |  |
 | `cmc` | `float64` | No |  |
-| `color` | `[]any` | No |  |
+| `colors` | `[]any` | No |  |
 | `english` | `string` | No |  |
 | `funny` | `bool` | No |  |
 | `loose_variant` | `string` | No |  |
@@ -447,7 +447,7 @@ fmt.Println(catalog.GetName()) // "catalog"
 | --- | --- | --- | --- |
 | `data` | `[]any` | No |  |
 | `object` | `string` | No |  |
-| `total_value` | `int` | No |  |
+| `total_values` | `int` | No |  |
 | `uri` | `string` | No |  |
 
 ### Operations
@@ -500,8 +500,8 @@ fmt.Println(manaCost.GetName()) // "mana_cost"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cmc` | `float64` | No |  |
-| `color` | `[]any` | No |  |
 | `colorless` | `bool` | No |  |
+| `colors` | `[]any` | No |  |
 | `cost` | `string` | No |  |
 | `monocolored` | `bool` | No |  |
 | `multicolored` | `bool` | No |  |

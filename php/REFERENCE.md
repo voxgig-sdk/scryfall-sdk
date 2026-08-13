@@ -196,20 +196,20 @@ $card = $client->Card();
 | `artist` | `string` | No |  |
 | `cmc` | `float` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `array` | No |  |
 | `color_identity` | `array` | No |  |
+| `colors` | `array` | No |  |
 | `id` | `string` | No |  |
-| `image_uri` | `array` | No |  |
+| `image_uris` | `array` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `array` | No |  |
+| `legalities` | `array` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `array` | No |  |
+| `prices` | `array` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
@@ -280,16 +280,16 @@ $card_list = $client->CardList();
 | `artist` | `string` | No |  |
 | `cmc` | `float` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `array` | No |  |
 | `color_identity` | `array` | No |  |
+| `colors` | `array` | No |  |
 | `data` | `array` | No |  |
 | `has_more` | `bool` | No |  |
 | `id` | `string` | No |  |
-| `identifier` | `array` | Yes |  |
-| `image_uri` | `array` | No |  |
+| `identifiers` | `array` | Yes |  |
+| `image_uris` | `array` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `array` | No |  |
+| `legalities` | `array` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
@@ -298,13 +298,13 @@ $card_list = $client->CardList();
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `array` | No |  |
+| `prices` | `array` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
 | `set` | `string` | No |  |
 | `set_name` | `string` | No |  |
-| `total_card` | `int` | No |  |
+| `total_cards` | `int` | No |  |
 | `toughness` | `string` | No |  |
 | `type_line` | `string` | No |  |
 | `uri` | `string` | No |  |
@@ -317,7 +317,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->CardList()->create([
-  "identifier" => null, // array
+  "identifiers" => null, // array
 ]);
 ```
 
@@ -369,9 +369,9 @@ $card_symbol_list = $client->CardSymbolList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | `bool` | No |  |
+| `appears_in_mana_costs` | `bool` | No |  |
 | `cmc` | `float` | No |  |
-| `color` | `array` | No |  |
+| `colors` | `array` | No |  |
 | `english` | `string` | No |  |
 | `funny` | `bool` | No |  |
 | `loose_variant` | `string` | No |  |
@@ -433,7 +433,7 @@ $catalog = $client->Catalog();
 | --- | --- | --- | --- |
 | `data` | `array` | No |  |
 | `object` | `string` | No |  |
-| `total_value` | `int` | No |  |
+| `total_values` | `int` | No |  |
 | `uri` | `string` | No |  |
 
 ### Operations
@@ -487,8 +487,8 @@ $mana_cost = $client->ManaCost();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cmc` | `float` | No |  |
-| `color` | `array` | No |  |
 | `colorless` | `bool` | No |  |
+| `colors` | `array` | No |  |
 | `cost` | `string` | No |  |
 | `monocolored` | `bool` | No |  |
 | `multicolored` | `bool` | No |  |

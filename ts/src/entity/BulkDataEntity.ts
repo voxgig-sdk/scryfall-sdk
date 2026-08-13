@@ -37,7 +37,7 @@ class BulkDataEntity extends ScryfallEntityBase<BulkData> {
 
 
 
-  async load(this: any, reqmatch?: BulkDataLoadMatch, ctrl?: Control): Promise<BulkData> {
+  async load(this: any, reqmatch?: BulkDataLoadMatch, ctrl?: Control): Promise<BulkDataEntity> {
 
     const utility = this._utility
 
@@ -128,7 +128,15 @@ class BulkDataEntity extends ScryfallEntityBase<BulkData> {
         }
       }
 
-      return done(ctx)
+      const out = done(ctx)
+
+      // An operation resolves to the ENTITY, not the raw data — the record
+      // has just been absorbed into this instance and is reached through
+      // data(). `done` still runs: it completes the pipeline and raises on
+      // failure, and when throwing is disabled it hands back the error
+      // payload, which passes through unchanged. See AGENTS.md "Entity
+      // operations return ENTITIES".
+      return (ctx.result && ctx.result.ok) ? this : out
     }
     catch (err: any) {
 
@@ -150,7 +158,7 @@ class BulkDataEntity extends ScryfallEntityBase<BulkData> {
 
 
 
-  async list(this: any, reqmatch?: BulkDataListMatch, ctrl?: Control): Promise<BulkData[]> {
+  async list(this: any, reqmatch?: BulkDataListMatch, ctrl?: Control): Promise<BulkDataEntity[]> {
 
     const utility = this._utility
 

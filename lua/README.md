@@ -272,20 +272,20 @@ API path: `/bulk-data`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `id` |  |
-| `image_uri` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
@@ -306,16 +306,16 @@ API path: `/cards/named`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `data` |  |
 | `has_more` |  |
 | `id` |  |
-| `identifier` |  |
-| `image_uri` |  |
+| `identifiers` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
@@ -324,13 +324,13 @@ API path: `/cards/named`
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
 | `set` |  |
 | `set_name` |  |
-| `total_card` |  |
+| `total_cards` |  |
 | `toughness` |  |
 | `type_line` |  |
 | `uri` |  |
@@ -343,9 +343,9 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `appears_in_mana_cost` |  |
+| `appears_in_mana_costs` |  |
 | `cmc` |  |
-| `color` |  |
+| `colors` |  |
 | `english` |  |
 | `funny` |  |
 | `loose_variant` |  |
@@ -365,7 +365,7 @@ API path: `/symbology`
 | --- | --- |
 | `data` |  |
 | `object` |  |
-| `total_value` |  |
+| `total_values` |  |
 | `uri` |  |
 
 Operations: Load.
@@ -377,8 +377,8 @@ API path: `/catalog/{catalog_name}`
 | Field | Description |
 | --- | --- |
 | `cmc` |  |
-| `color` |  |
 | `colorless` |  |
+| `colors` |  |
 | `cost` |  |
 | `monocolored` |  |
 | `multicolored` |  |
@@ -500,20 +500,20 @@ Create an instance: `local card = client:Card(nil)`
 | `artist` | `string` |  |
 | `cmc` | `number` |  |
 | `collector_number` | `string` |  |
-| `color` | `table` |  |
 | `color_identity` | `table` |  |
+| `colors` | `table` |  |
 | `id` | `string` |  |
-| `image_uri` | `table` |  |
+| `image_uris` | `table` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `table` |  |
+| `legalities` | `table` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `table` |  |
+| `prices` | `table` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
@@ -554,16 +554,16 @@ Create an instance: `local card_list = client:CardList(nil)`
 | `artist` | `string` |  |
 | `cmc` | `number` |  |
 | `collector_number` | `string` |  |
-| `color` | `table` |  |
 | `color_identity` | `table` |  |
+| `colors` | `table` |  |
 | `data` | `table` |  |
 | `has_more` | `boolean` |  |
 | `id` | `string` |  |
-| `identifier` | `table` |  |
-| `image_uri` | `table` |  |
+| `identifiers` | `table` |  |
+| `image_uris` | `table` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `table` |  |
+| `legalities` | `table` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
@@ -572,13 +572,13 @@ Create an instance: `local card_list = client:CardList(nil)`
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `table` |  |
+| `prices` | `table` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
 | `set` | `string` |  |
 | `set_name` | `string` |  |
-| `total_card` | `number` |  |
+| `total_cards` | `number` |  |
 | `toughness` | `string` |  |
 | `type_line` | `string` |  |
 | `uri` | `string` |  |
@@ -593,7 +593,7 @@ local card_lists, err = client:CardList():list()
 
 ```lua
 local card_list, err = client:CardList():create({
-  identifier = {}, -- table
+  identifiers = {}, -- table
 })
 ```
 
@@ -612,9 +612,9 @@ Create an instance: `local card_symbol_list = client:CardSymbolList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | `boolean` |  |
+| `appears_in_mana_costs` | `boolean` |  |
 | `cmc` | `number` |  |
-| `color` | `table` |  |
+| `colors` | `table` |  |
 | `english` | `string` |  |
 | `funny` | `boolean` |  |
 | `loose_variant` | `string` |  |
@@ -647,7 +647,7 @@ Create an instance: `local catalog = client:Catalog(nil)`
 | --- | --- | --- |
 | `data` | `table` |  |
 | `object` | `string` |  |
-| `total_value` | `number` |  |
+| `total_values` | `number` |  |
 | `uri` | `string` |  |
 
 #### Example: Load
@@ -672,8 +672,8 @@ Create an instance: `local mana_cost = client:ManaCost(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cmc` | `number` |  |
-| `color` | `table` |  |
 | `colorless` | `boolean` |  |
+| `colors` | `table` |  |
 | `cost` | `string` |  |
 | `monocolored` | `boolean` |  |
 | `multicolored` | `boolean` |  |

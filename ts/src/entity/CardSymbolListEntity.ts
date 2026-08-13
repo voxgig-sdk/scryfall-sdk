@@ -37,7 +37,7 @@ class CardSymbolListEntity extends ScryfallEntityBase<CardSymbolList> {
 
 
 
-  async list(this: any, reqmatch?: CardSymbolListListMatch, ctrl?: Control): Promise<CardSymbolList[]> {
+  async list(this: any, reqmatch?: CardSymbolListListMatch, ctrl?: Control): Promise<CardSymbolListEntity[]> {
 
     const utility = this._utility
 

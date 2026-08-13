@@ -63,7 +63,7 @@ describe('CardSymbolListEntity', async () => {
     const card_symbol_list_ref01_ent = client.CardSymbolList()
     const card_symbol_list_ref01_match: any = {}
 
-    const card_symbol_list_ref01_list = await card_symbol_list_ref01_ent.list(card_symbol_list_ref01_match)
+    const card_symbol_list_ref01_list = (await card_symbol_list_ref01_ent.list(card_symbol_list_ref01_match)).map((e: any) => e.data())
 
 
   })

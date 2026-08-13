@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load a bulkdata
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -136,7 +136,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ScryfallSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 bulkdata = client.BulkData().list()
 # bulkdata contains the mock response record
 ```
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -286,20 +287,20 @@ API path: `/bulk-data`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `id` |  |
-| `image_uri` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
@@ -320,16 +321,16 @@ API path: `/cards/named`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `data` |  |
 | `has_more` |  |
 | `id` |  |
-| `identifier` |  |
-| `image_uri` |  |
+| `identifiers` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
@@ -338,13 +339,13 @@ API path: `/cards/named`
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
 | `set` |  |
 | `set_name` |  |
-| `total_card` |  |
+| `total_cards` |  |
 | `toughness` |  |
 | `type_line` |  |
 | `uri` |  |
@@ -357,9 +358,9 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `appears_in_mana_cost` |  |
+| `appears_in_mana_costs` |  |
 | `cmc` |  |
-| `color` |  |
+| `colors` |  |
 | `english` |  |
 | `funny` |  |
 | `loose_variant` |  |
@@ -379,7 +380,7 @@ API path: `/symbology`
 | --- | --- |
 | `data` |  |
 | `object` |  |
-| `total_value` |  |
+| `total_values` |  |
 | `uri` |  |
 
 Operations: Load.
@@ -391,8 +392,8 @@ API path: `/catalog/{catalog_name}`
 | Field | Description |
 | --- | --- |
 | `cmc` |  |
-| `color` |  |
 | `colorless` |  |
+| `colors` |  |
 | `cost` |  |
 | `monocolored` |  |
 | `multicolored` |  |
@@ -514,20 +515,20 @@ Create an instance: `card = client.Card()`
 | `artist` | `str` |  |
 | `cmc` | `float` |  |
 | `collector_number` | `str` |  |
-| `color` | `list` |  |
 | `color_identity` | `list` |  |
+| `colors` | `list` |  |
 | `id` | `str` |  |
-| `image_uri` | `dict` |  |
+| `image_uris` | `dict` |  |
 | `lang` | `str` |  |
 | `layout` | `str` |  |
-| `legality` | `dict` |  |
+| `legalities` | `dict` |  |
 | `loyalty` | `str` |  |
 | `mana_cost` | `str` |  |
 | `name` | `str` |  |
 | `oracle_id` | `str` |  |
 | `oracle_text` | `str` |  |
 | `power` | `str` |  |
-| `price` | `dict` |  |
+| `prices` | `dict` |  |
 | `rarity` | `str` |  |
 | `released_at` | `str` |  |
 | `scryfall_uri` | `str` |  |
@@ -568,16 +569,16 @@ Create an instance: `card_list = client.CardList()`
 | `artist` | `str` |  |
 | `cmc` | `float` |  |
 | `collector_number` | `str` |  |
-| `color` | `list` |  |
 | `color_identity` | `list` |  |
+| `colors` | `list` |  |
 | `data` | `list` |  |
 | `has_more` | `bool` |  |
 | `id` | `str` |  |
-| `identifier` | `list` |  |
-| `image_uri` | `dict` |  |
+| `identifiers` | `list` |  |
+| `image_uris` | `dict` |  |
 | `lang` | `str` |  |
 | `layout` | `str` |  |
-| `legality` | `dict` |  |
+| `legalities` | `dict` |  |
 | `loyalty` | `str` |  |
 | `mana_cost` | `str` |  |
 | `name` | `str` |  |
@@ -586,13 +587,13 @@ Create an instance: `card_list = client.CardList()`
 | `oracle_id` | `str` |  |
 | `oracle_text` | `str` |  |
 | `power` | `str` |  |
-| `price` | `dict` |  |
+| `prices` | `dict` |  |
 | `rarity` | `str` |  |
 | `released_at` | `str` |  |
 | `scryfall_uri` | `str` |  |
 | `set` | `str` |  |
 | `set_name` | `str` |  |
-| `total_card` | `int` |  |
+| `total_cards` | `int` |  |
 | `toughness` | `str` |  |
 | `type_line` | `str` |  |
 | `uri` | `str` |  |
@@ -607,7 +608,7 @@ card_lists = client.CardList().list()
 
 ```python
 card_list = client.CardList().create({
-    "identifier": [],  # list
+    "identifiers": [],  # list
 })
 ```
 
@@ -626,9 +627,9 @@ Create an instance: `card_symbol_list = client.CardSymbolList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | `bool` |  |
+| `appears_in_mana_costs` | `bool` |  |
 | `cmc` | `float` |  |
-| `color` | `list` |  |
+| `colors` | `list` |  |
 | `english` | `str` |  |
 | `funny` | `bool` |  |
 | `loose_variant` | `str` |  |
@@ -661,7 +662,7 @@ Create an instance: `catalog = client.Catalog()`
 | --- | --- | --- |
 | `data` | `list` |  |
 | `object` | `str` |  |
-| `total_value` | `int` |  |
+| `total_values` | `int` |  |
 | `uri` | `str` |  |
 
 #### Example: Load
@@ -686,8 +687,8 @@ Create an instance: `mana_cost = client.ManaCost()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cmc` | `float` |  |
-| `color` | `list` |  |
 | `colorless` | `bool` |  |
+| `colors` | `list` |  |
 | `cost` | `str` |  |
 | `monocolored` | `bool` |  |
 | `multicolored` | `bool` |  |
@@ -752,7 +753,7 @@ Create an instance: `ruling = client.Ruling()`
 #### Example: List
 
 ```python
-rulings = client.Ruling().list()
+rulings = client.Ruling().list({"card_id": "example"})
 ```
 
 

@@ -197,20 +197,20 @@ card = client.Card
 | `artist` | `String` | No |  |
 | `cmc` | `Float` | No |  |
 | `collector_number` | `String` | No |  |
-| `color` | `Array` | No |  |
 | `color_identity` | `Array` | No |  |
+| `colors` | `Array` | No |  |
 | `id` | `String` | No |  |
-| `image_uri` | `Hash` | No |  |
+| `image_uris` | `Hash` | No |  |
 | `lang` | `String` | No |  |
 | `layout` | `String` | No |  |
-| `legality` | `Hash` | No |  |
+| `legalities` | `Hash` | No |  |
 | `loyalty` | `String` | No |  |
 | `mana_cost` | `String` | No |  |
 | `name` | `String` | No |  |
 | `oracle_id` | `String` | No |  |
 | `oracle_text` | `String` | No |  |
 | `power` | `String` | No |  |
-| `price` | `Hash` | No |  |
+| `prices` | `Hash` | No |  |
 | `rarity` | `String` | No |  |
 | `released_at` | `String` | No |  |
 | `scryfall_uri` | `String` | No |  |
@@ -281,16 +281,16 @@ card_list = client.CardList
 | `artist` | `String` | No |  |
 | `cmc` | `Float` | No |  |
 | `collector_number` | `String` | No |  |
-| `color` | `Array` | No |  |
 | `color_identity` | `Array` | No |  |
+| `colors` | `Array` | No |  |
 | `data` | `Array` | No |  |
 | `has_more` | `Boolean` | No |  |
 | `id` | `String` | No |  |
-| `identifier` | `Array` | Yes |  |
-| `image_uri` | `Hash` | No |  |
+| `identifiers` | `Array` | Yes |  |
+| `image_uris` | `Hash` | No |  |
 | `lang` | `String` | No |  |
 | `layout` | `String` | No |  |
-| `legality` | `Hash` | No |  |
+| `legalities` | `Hash` | No |  |
 | `loyalty` | `String` | No |  |
 | `mana_cost` | `String` | No |  |
 | `name` | `String` | No |  |
@@ -299,13 +299,13 @@ card_list = client.CardList
 | `oracle_id` | `String` | No |  |
 | `oracle_text` | `String` | No |  |
 | `power` | `String` | No |  |
-| `price` | `Hash` | No |  |
+| `prices` | `Hash` | No |  |
 | `rarity` | `String` | No |  |
 | `released_at` | `String` | No |  |
 | `scryfall_uri` | `String` | No |  |
 | `set` | `String` | No |  |
 | `set_name` | `String` | No |  |
-| `total_card` | `Integer` | No |  |
+| `total_cards` | `Integer` | No |  |
 | `toughness` | `String` | No |  |
 | `type_line` | `String` | No |  |
 | `uri` | `String` | No |  |
@@ -318,7 +318,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.CardList.create({
-  "identifier" => [], # Array
+  "identifiers" => [], # Array
 })
 ```
 
@@ -370,9 +370,9 @@ card_symbol_list = client.CardSymbolList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | `Boolean` | No |  |
+| `appears_in_mana_costs` | `Boolean` | No |  |
 | `cmc` | `Float` | No |  |
-| `color` | `Array` | No |  |
+| `colors` | `Array` | No |  |
 | `english` | `String` | No |  |
 | `funny` | `Boolean` | No |  |
 | `loose_variant` | `String` | No |  |
@@ -434,7 +434,7 @@ catalog = client.Catalog
 | --- | --- | --- | --- |
 | `data` | `Array` | No |  |
 | `object` | `String` | No |  |
-| `total_value` | `Integer` | No |  |
+| `total_values` | `Integer` | No |  |
 | `uri` | `String` | No |  |
 
 ### Operations
@@ -488,8 +488,8 @@ mana_cost = client.ManaCost
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cmc` | `Float` | No |  |
-| `color` | `Array` | No |  |
 | `colorless` | `Boolean` | No |  |
+| `colors` | `Array` | No |  |
 | `cost` | `String` | No |  |
 | `monocolored` | `Boolean` | No |  |
 | `multicolored` | `Boolean` | No |  |

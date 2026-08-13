@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from scryfall_sdk.utility.voxgig_struct import voxgig_struct as vs
 from scryfall_sdk import ScryfallSDK
-from core import helpers
+from scryfall_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestSetEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from scryfall_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = ScryfallSDK.test(
@@ -92,7 +92,7 @@ class TestSetEntity:
             "id": set_ref01_data["id"],
         }
         set_ref01_data_dt0_loaded = set_ref01_ent.load(set_ref01_match_dt0, None)
-        set_ref01_data_dt0_load_result = helpers.to_map(set_ref01_data_dt0_loaded)
+        set_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(set_ref01_data_dt0_loaded))
         assert set_ref01_data_dt0_load_result is not None
         assert set_ref01_data_dt0_load_result["id"] == set_ref01_data["id"]
 

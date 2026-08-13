@@ -154,8 +154,29 @@ class ScryfallSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('ScryfallSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -216,66 +237,138 @@ class ScryfallSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('ScryfallSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('ScryfallSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.BulkData().list()` / `client.BulkData().load({ id })`.
-  BulkData(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BulkData(entopts?: Record<string, any>) {
     const self = this
-    return new BulkDataEntity(self,data)
+    return new BulkDataEntity(self, entopts)
   }
 
 
   // Entity access: `client.Card().list()` / `client.Card().load({ id })`.
-  Card(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Card(entopts?: Record<string, any>) {
     const self = this
-    return new CardEntity(self,data)
+    return new CardEntity(self, entopts)
   }
 
 
   // Entity access: `client.CardList().list()` / `client.CardList().load({ id })`.
-  CardList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CardList(entopts?: Record<string, any>) {
     const self = this
-    return new CardListEntity(self,data)
+    return new CardListEntity(self, entopts)
   }
 
 
   // Entity access: `client.CardSymbolList().list()` / `client.CardSymbolList().load({ id })`.
-  CardSymbolList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CardSymbolList(entopts?: Record<string, any>) {
     const self = this
-    return new CardSymbolListEntity(self,data)
+    return new CardSymbolListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Catalog().list()` / `client.Catalog().load({ id })`.
-  Catalog(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Catalog(entopts?: Record<string, any>) {
     const self = this
-    return new CatalogEntity(self,data)
+    return new CatalogEntity(self, entopts)
   }
 
 
   // Entity access: `client.ManaCost().list()` / `client.ManaCost().load({ id })`.
-  ManaCost(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ManaCost(entopts?: Record<string, any>) {
     const self = this
-    return new ManaCostEntity(self,data)
+    return new ManaCostEntity(self, entopts)
   }
 
 
   // Entity access: `client.Migration().list()` / `client.Migration().load({ id })`.
-  Migration(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Migration(entopts?: Record<string, any>) {
     const self = this
-    return new MigrationEntity(self,data)
+    return new MigrationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Ruling().list()` / `client.Ruling().load({ id })`.
-  Ruling(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Ruling(entopts?: Record<string, any>) {
     const self = this
-    return new RulingEntity(self,data)
+    return new RulingEntity(self, entopts)
   }
 
 
   // Entity access: `client.Set().list()` / `client.Set().load({ id })`.
-  Set(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Set(entopts?: Record<string, any>) {
     const self = this
-    return new SetEntity(self,data)
+    return new SetEntity(self, entopts)
   }
 
 

@@ -2,9 +2,9 @@
   "existing": {
     "card_symbol_list": {
       "CARD_SYMBOL_LIST00": {
-        "appears_in_mana_cost": true,
+        "appears_in_mana_costs": true,
         "cmc": 111,
-        "color": [],
+        "colors": [],
         "english": "s71",
         "funny": true,
         "loose_variant": "s73",
@@ -15,9 +15,9 @@
         "transposable": true
       },
       "CARD_SYMBOL_LIST01": {
-        "appears_in_mana_cost": true,
+        "appears_in_mana_costs": true,
         "cmc": 221,
-        "color": [],
+        "colors": [],
         "english": "sdf",
         "funny": true,
         "loose_variant": "se1",
@@ -28,9 +28,9 @@
         "transposable": true
       },
       "CARD_SYMBOL_LIST02": {
-        "appears_in_mana_cost": true,
+        "appears_in_mana_costs": true,
         "cmc": 331,
-        "color": [],
+        "colors": [],
         "english": "s14d",
         "funny": true,
         "loose_variant": "s14f",
@@ -45,9 +45,9 @@
   "new": {
     "card_symbol_list": {
       "card_symbol_list_ref01": {
-        "appears_in_mana_cost": true,
+        "appears_in_mana_costs": true,
         "cmc": 441,
-        "color": [],
+        "colors": [],
         "english": "s1bb",
         "funny": true,
         "loose_variant": "s1bd",

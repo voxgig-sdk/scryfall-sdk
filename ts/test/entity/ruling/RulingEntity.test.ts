@@ -64,7 +64,7 @@ describe('RulingEntity', async () => {
     const ruling_ref01_match: any = {}
     ruling_ref01_match['card_id'] = setup.idmap['card01']
 
-    const ruling_ref01_list = await ruling_ref01_ent.list(ruling_ref01_match)
+    const ruling_ref01_list = (await ruling_ref01_ent.list(ruling_ref01_match)).map((e: any) => e.data())
 
 
   })

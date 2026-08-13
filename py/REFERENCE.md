@@ -192,20 +192,20 @@ card = client.Card()
 | `artist` | `str` | No |  |
 | `cmc` | `float` | No |  |
 | `collector_number` | `str` | No |  |
-| `color` | `list` | No |  |
 | `color_identity` | `list` | No |  |
+| `colors` | `list` | No |  |
 | `id` | `str` | No |  |
-| `image_uri` | `dict` | No |  |
+| `image_uris` | `dict` | No |  |
 | `lang` | `str` | No |  |
 | `layout` | `str` | No |  |
-| `legality` | `dict` | No |  |
+| `legalities` | `dict` | No |  |
 | `loyalty` | `str` | No |  |
 | `mana_cost` | `str` | No |  |
 | `name` | `str` | No |  |
 | `oracle_id` | `str` | No |  |
 | `oracle_text` | `str` | No |  |
 | `power` | `str` | No |  |
-| `price` | `dict` | No |  |
+| `prices` | `dict` | No |  |
 | `rarity` | `str` | No |  |
 | `released_at` | `str` | No |  |
 | `scryfall_uri` | `str` | No |  |
@@ -277,16 +277,16 @@ card_list = client.CardList()
 | `artist` | `str` | No |  |
 | `cmc` | `float` | No |  |
 | `collector_number` | `str` | No |  |
-| `color` | `list` | No |  |
 | `color_identity` | `list` | No |  |
+| `colors` | `list` | No |  |
 | `data` | `list` | No |  |
 | `has_more` | `bool` | No |  |
 | `id` | `str` | No |  |
-| `identifier` | `list` | Yes |  |
-| `image_uri` | `dict` | No |  |
+| `identifiers` | `list` | Yes |  |
+| `image_uris` | `dict` | No |  |
 | `lang` | `str` | No |  |
 | `layout` | `str` | No |  |
-| `legality` | `dict` | No |  |
+| `legalities` | `dict` | No |  |
 | `loyalty` | `str` | No |  |
 | `mana_cost` | `str` | No |  |
 | `name` | `str` | No |  |
@@ -295,13 +295,13 @@ card_list = client.CardList()
 | `oracle_id` | `str` | No |  |
 | `oracle_text` | `str` | No |  |
 | `power` | `str` | No |  |
-| `price` | `dict` | No |  |
+| `prices` | `dict` | No |  |
 | `rarity` | `str` | No |  |
 | `released_at` | `str` | No |  |
 | `scryfall_uri` | `str` | No |  |
 | `set` | `str` | No |  |
 | `set_name` | `str` | No |  |
-| `total_card` | `int` | No |  |
+| `total_cards` | `int` | No |  |
 | `toughness` | `str` | No |  |
 | `type_line` | `str` | No |  |
 | `uri` | `str` | No |  |
@@ -314,7 +314,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.CardList().create({
-    "identifier": [],  # list
+    "identifiers": [],  # list
 })
 ```
 
@@ -367,9 +367,9 @@ card_symbol_list = client.CardSymbolList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | `bool` | No |  |
+| `appears_in_mana_costs` | `bool` | No |  |
 | `cmc` | `float` | No |  |
-| `color` | `list` | No |  |
+| `colors` | `list` | No |  |
 | `english` | `str` | No |  |
 | `funny` | `bool` | No |  |
 | `loose_variant` | `str` | No |  |
@@ -432,7 +432,7 @@ catalog = client.Catalog()
 | --- | --- | --- | --- |
 | `data` | `list` | No |  |
 | `object` | `str` | No |  |
-| `total_value` | `int` | No |  |
+| `total_values` | `int` | No |  |
 | `uri` | `str` | No |  |
 
 ### Operations
@@ -485,8 +485,8 @@ mana_cost = client.ManaCost()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cmc` | `float` | No |  |
-| `color` | `list` | No |  |
 | `colorless` | `bool` | No |  |
+| `colors` | `list` | No |  |
 | `cost` | `str` | No |  |
 | `monocolored` | `bool` | No |  |
 | `multicolored` | `bool` | No |  |
@@ -615,7 +615,7 @@ ruling = client.Ruling()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Ruling().list()
+results = client.Ruling().list({"card_id": "example"})
 for ruling in results:
     print(ruling)
 ```

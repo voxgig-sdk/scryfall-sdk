@@ -63,7 +63,7 @@ describe('MigrationEntity', async () => {
     const migration_ref01_ent = client.Migration()
     const migration_ref01_match: any = {}
 
-    const migration_ref01_list = await migration_ref01_ent.list(migration_ref01_match)
+    const migration_ref01_list = (await migration_ref01_ent.list(migration_ref01_match)).map((e: any) => e.data())
 
 
   })

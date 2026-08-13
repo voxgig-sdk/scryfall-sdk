@@ -63,7 +63,7 @@ describe('ManaCostEntity', async () => {
     const mana_cost_ref01_ent = client.ManaCost()
     const mana_cost_ref01_match: any = {}
 
-    const mana_cost_ref01_list = await mana_cost_ref01_ent.list(mana_cost_ref01_match)
+    const mana_cost_ref01_list = (await mana_cost_ref01_ent.list(mana_cost_ref01_match)).map((e: any) => e.data())
 
 
   })

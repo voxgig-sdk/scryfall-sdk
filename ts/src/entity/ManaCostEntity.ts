@@ -37,7 +37,7 @@ class ManaCostEntity extends ScryfallEntityBase<ManaCost> {
 
 
 
-  async list(this: any, reqmatch?: ManaCostListMatch, ctrl?: Control): Promise<ManaCost[]> {
+  async list(this: any, reqmatch?: ManaCostListMatch, ctrl?: Control): Promise<ManaCostEntity[]> {
 
     const utility = this._utility
 

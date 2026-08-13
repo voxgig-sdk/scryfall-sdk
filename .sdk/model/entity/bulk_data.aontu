@@ -75,7 +75,7 @@ main: kit: entity: bulk_data: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

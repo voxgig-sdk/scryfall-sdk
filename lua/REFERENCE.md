@@ -194,20 +194,20 @@ local card = client:Card(nil)
 | `artist` | `string` | No |  |
 | `cmc` | `number` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `table` | No |  |
 | `color_identity` | `table` | No |  |
+| `colors` | `table` | No |  |
 | `id` | `string` | No |  |
-| `image_uri` | `table` | No |  |
+| `image_uris` | `table` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `table` | No |  |
+| `legalities` | `table` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `table` | No |  |
+| `prices` | `table` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
@@ -278,16 +278,16 @@ local card_list = client:CardList(nil)
 | `artist` | `string` | No |  |
 | `cmc` | `number` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `table` | No |  |
 | `color_identity` | `table` | No |  |
+| `colors` | `table` | No |  |
 | `data` | `table` | No |  |
 | `has_more` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `identifier` | `table` | Yes |  |
-| `image_uri` | `table` | No |  |
+| `identifiers` | `table` | Yes |  |
+| `image_uris` | `table` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `table` | No |  |
+| `legalities` | `table` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
@@ -296,13 +296,13 @@ local card_list = client:CardList(nil)
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `table` | No |  |
+| `prices` | `table` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
 | `set` | `string` | No |  |
 | `set_name` | `string` | No |  |
-| `total_card` | `number` | No |  |
+| `total_cards` | `number` | No |  |
 | `toughness` | `string` | No |  |
 | `type_line` | `string` | No |  |
 | `uri` | `string` | No |  |
@@ -315,7 +315,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:CardList():create({
-  identifier = --[[ table ]],
+  identifiers = --[[ table ]],
 })
 ```
 
@@ -367,9 +367,9 @@ local card_symbol_list = client:CardSymbolList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | `boolean` | No |  |
+| `appears_in_mana_costs` | `boolean` | No |  |
 | `cmc` | `number` | No |  |
-| `color` | `table` | No |  |
+| `colors` | `table` | No |  |
 | `english` | `string` | No |  |
 | `funny` | `boolean` | No |  |
 | `loose_variant` | `string` | No |  |
@@ -431,7 +431,7 @@ local catalog = client:Catalog(nil)
 | --- | --- | --- | --- |
 | `data` | `table` | No |  |
 | `object` | `string` | No |  |
-| `total_value` | `number` | No |  |
+| `total_values` | `number` | No |  |
 | `uri` | `string` | No |  |
 
 ### Operations
@@ -485,8 +485,8 @@ local mana_cost = client:ManaCost(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cmc` | `number` | No |  |
-| `color` | `table` | No |  |
 | `colorless` | `boolean` | No |  |
+| `colors` | `table` | No |  |
 | `cost` | `string` | No |  |
 | `monocolored` | `boolean` | No |  |
 | `multicolored` | `boolean` | No |  |

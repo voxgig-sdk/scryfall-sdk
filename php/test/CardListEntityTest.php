@@ -83,7 +83,7 @@ class CardListEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.card_list"), "card_list_ref01"));
 
         $card_list_ref01_data_result = $card_list_ref01_ent->create($card_list_ref01_data, null);
-        $card_list_ref01_data = Helpers::to_map($card_list_ref01_data_result);
+        $card_list_ref01_data = Helpers::to_map(is_object($card_list_ref01_data_result) && method_exists($card_list_ref01_data_result, 'data_get') ? $card_list_ref01_data_result->data_get() : $card_list_ref01_data_result);
         $this->assertNotNull($card_list_ref01_data);
         $this->assertNotNull($card_list_ref01_data["id"]);
 

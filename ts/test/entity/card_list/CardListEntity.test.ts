@@ -62,14 +62,14 @@ describe('CardListEntity', async () => {
     const card_list_ref01_ent = client.CardList()
     let card_list_ref01_data = setup.data.new.card_list['card_list_ref01']
 
-    card_list_ref01_data = await card_list_ref01_ent.create(card_list_ref01_data)
+    card_list_ref01_data = (await card_list_ref01_ent.create(card_list_ref01_data)).data()
     assert(null != card_list_ref01_data.id)
 
 
     // LIST
     const card_list_ref01_match: any = {}
 
-    const card_list_ref01_list = await card_list_ref01_ent.list(card_list_ref01_match)
+    const card_list_ref01_list = (await card_list_ref01_ent.list(card_list_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(card_list_ref01_list, { id: card_list_ref01_data.id })))
 

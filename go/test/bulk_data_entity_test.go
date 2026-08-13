@@ -128,7 +128,7 @@ func TestBulkDataEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		bulkDataRef01DataDt0LoadResult := core.ToMapAny(bulkDataRef01DataDt0Loaded)
+		bulkDataRef01DataDt0LoadResult := core.ToMapAny(entityData(bulkDataRef01DataDt0Loaded))
 		if bulkDataRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

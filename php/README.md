@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare BulkData record (throws on error).
+    // load() returns the ENTITY — call data_get() for the BulkData record (throws on error).
     $bulkdata = $client->BulkData()->load(["id" => "example_id"]);
     print_r($bulkdata);
 } catch (\Throwable $err) {
@@ -140,7 +140,8 @@ $client = ScryfallSDK::test([
     "entity" => ["bulkdata" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $bulkdata = $client->BulkData()->list();
 print_r($bulkdata);
 ```
@@ -249,7 +250,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -293,20 +294,20 @@ API path: `/bulk-data`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `id` |  |
-| `image_uri` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
@@ -327,16 +328,16 @@ API path: `/cards/named`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `data` |  |
 | `has_more` |  |
 | `id` |  |
-| `identifier` |  |
-| `image_uri` |  |
+| `identifiers` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
@@ -345,13 +346,13 @@ API path: `/cards/named`
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
 | `set` |  |
 | `set_name` |  |
-| `total_card` |  |
+| `total_cards` |  |
 | `toughness` |  |
 | `type_line` |  |
 | `uri` |  |
@@ -364,9 +365,9 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `appears_in_mana_cost` |  |
+| `appears_in_mana_costs` |  |
 | `cmc` |  |
-| `color` |  |
+| `colors` |  |
 | `english` |  |
 | `funny` |  |
 | `loose_variant` |  |
@@ -386,7 +387,7 @@ API path: `/symbology`
 | --- | --- |
 | `data` |  |
 | `object` |  |
-| `total_value` |  |
+| `total_values` |  |
 | `uri` |  |
 
 Operations: Load.
@@ -398,8 +399,8 @@ API path: `/catalog/{catalog_name}`
 | Field | Description |
 | --- | --- |
 | `cmc` |  |
-| `color` |  |
 | `colorless` |  |
+| `colors` |  |
 | `cost` |  |
 | `monocolored` |  |
 | `multicolored` |  |
@@ -493,7 +494,7 @@ Create an instance: `$bulk_data = $client->BulkData();`
 #### Example: Load
 
 ```php
-// load() returns the bare BulkData record (throws on error).
+// load() returns the ENTITY — call data_get() for the BulkData record (throws on error).
 $bulk_data = $client->BulkData()->load(["id" => "bulk_data_id"]);
 ```
 
@@ -523,20 +524,20 @@ Create an instance: `$card = $client->Card();`
 | `artist` | `string` |  |
 | `cmc` | `float` |  |
 | `collector_number` | `string` |  |
-| `color` | `array` |  |
 | `color_identity` | `array` |  |
+| `colors` | `array` |  |
 | `id` | `string` |  |
-| `image_uri` | `array` |  |
+| `image_uris` | `array` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `array` |  |
+| `legalities` | `array` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `array` |  |
+| `prices` | `array` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
@@ -549,7 +550,7 @@ Create an instance: `$card = $client->Card();`
 #### Example: Load
 
 ```php
-// load() returns the bare Card record (throws on error).
+// load() returns the ENTITY — call data_get() for the Card record (throws on error).
 $card = $client->Card()->load(["id" => "card_id"]);
 ```
 
@@ -579,16 +580,16 @@ Create an instance: `$card_list = $client->CardList();`
 | `artist` | `string` |  |
 | `cmc` | `float` |  |
 | `collector_number` | `string` |  |
-| `color` | `array` |  |
 | `color_identity` | `array` |  |
+| `colors` | `array` |  |
 | `data` | `array` |  |
 | `has_more` | `bool` |  |
 | `id` | `string` |  |
-| `identifier` | `array` |  |
-| `image_uri` | `array` |  |
+| `identifiers` | `array` |  |
+| `image_uris` | `array` |  |
 | `lang` | `string` |  |
 | `layout` | `string` |  |
-| `legality` | `array` |  |
+| `legalities` | `array` |  |
 | `loyalty` | `string` |  |
 | `mana_cost` | `string` |  |
 | `name` | `string` |  |
@@ -597,13 +598,13 @@ Create an instance: `$card_list = $client->CardList();`
 | `oracle_id` | `string` |  |
 | `oracle_text` | `string` |  |
 | `power` | `string` |  |
-| `price` | `array` |  |
+| `prices` | `array` |  |
 | `rarity` | `string` |  |
 | `released_at` | `string` |  |
 | `scryfall_uri` | `string` |  |
 | `set` | `string` |  |
 | `set_name` | `string` |  |
-| `total_card` | `int` |  |
+| `total_cards` | `int` |  |
 | `toughness` | `string` |  |
 | `type_line` | `string` |  |
 | `uri` | `string` |  |
@@ -619,7 +620,7 @@ $card_lists = $client->CardList()->list();
 
 ```php
 $card_list = $client->CardList()->create([
-    "identifier" => null, // array
+    "identifiers" => null, // array
 ]);
 ```
 
@@ -638,9 +639,9 @@ Create an instance: `$card_symbol_list = $client->CardSymbolList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | `bool` |  |
+| `appears_in_mana_costs` | `bool` |  |
 | `cmc` | `float` |  |
-| `color` | `array` |  |
+| `colors` | `array` |  |
 | `english` | `string` |  |
 | `funny` | `bool` |  |
 | `loose_variant` | `string` |  |
@@ -674,13 +675,13 @@ Create an instance: `$catalog = $client->Catalog();`
 | --- | --- | --- |
 | `data` | `array` |  |
 | `object` | `string` |  |
-| `total_value` | `int` |  |
+| `total_values` | `int` |  |
 | `uri` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Catalog record (throws on error).
+// load() returns the ENTITY — call data_get() for the Catalog record (throws on error).
 $catalog = $client->Catalog()->load(["id" => "catalog_id"]);
 ```
 
@@ -700,8 +701,8 @@ Create an instance: `$mana_cost = $client->ManaCost();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cmc` | `float` |  |
-| `color` | `array` |  |
 | `colorless` | `bool` |  |
+| `colors` | `array` |  |
 | `cost` | `string` |  |
 | `monocolored` | `bool` |  |
 | `multicolored` | `bool` |  |
@@ -803,7 +804,7 @@ Create an instance: `$set = $client->Set();`
 #### Example: Load
 
 ```php
-// load() returns the bare Set record (throws on error).
+// load() returns the ENTITY — call data_get() for the Set record (throws on error).
 $set = $client->Set()->load(["id" => "set_id"]);
 ```
 

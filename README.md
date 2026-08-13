@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = ScryfallSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = ScryfallSDK.test({
+  entity: {
+    bulk_data: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const bulkdatas = await client.BulkData().list()
-// bulkdatas is an array of bare BulkData records populated with mock data
+// bulkdatas is an array of BulkData entities, populated with mock data
+// — call bulkdatas[0].data() for the record itself
 console.log(bulkdatas)
 ```
 
@@ -110,7 +119,7 @@ import { ScryfallSDK } from '@voxgig-sdk/scryfall'
 
 const client = new ScryfallSDK()
 
-// List all bulkdatas (returns BulkData[])
+// List all bulkdatas (returns BulkDataEntity[] — .data() for the record)
 const bulkdatas = await client.BulkData().list()
 for (const bulkdata of bulkdatas) {
   console.log(bulkdata)
@@ -157,7 +166,7 @@ The API exposes 9 entities:
 | --- | --- | --- |
 | **BulkData** | The BulkData entity (list, load). | `/bulk-data` |
 | **Card** | The Card entity (list, load). | `/cards/named` |
-| **CardList** | The CardList entity (create, list). | `/cards/collection` |
+| **CardList** | The CardList entity (create, list). | `/cards/search` |
 | **CardSymbolList** | The CardSymbolList entity (list). | `/symbology` |
 | **Catalog** | The Catalog entity (load). | `/catalog/{catalog_name}` |
 | **ManaCost** | The ManaCost entity (list). | `/symbology/parse-mana` |
@@ -199,7 +208,7 @@ $client = new ScryfallSDK();
 $bulkdatas = $client->BulkData()->list();
 print_r($bulkdatas);
 
-// Load a specific bulkdata (returns the bare record; throws on error)
+// Load a specific bulkdata (returns the ENTITY; call data_get() for the record; throws on error)
 $bulkdata = $client->BulkData()->load(["id" => "example_id"]);
 print_r($bulkdata);
 ```
@@ -230,7 +239,7 @@ client = ScryfallSDK.new
 bulkdatas = client.BulkData.list
 puts bulkdatas
 
-# Load a specific bulkdata (returns the bare record; raises on error)
+# Load a specific bulkdata (returns the ENTITY; call data_get for the record)
 bulkdata = client.BulkData.load({ "id" => "example_id" })
 puts bulkdata
 ```
@@ -367,6 +376,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://scryfall.com/contact](https://scryfall.com/contact)
 

@@ -282,20 +282,20 @@ const card = client.Card()
 | `artist` | `string` | No |  |
 | `cmc` | `number` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `any[]` | No |  |
 | `color_identity` | `any[]` | No |  |
+| `colors` | `any[]` | No |  |
 | `id` | `string` | No |  |
-| `image_uri` | `Record<string, any>` | No |  |
+| `image_uris` | `Record<string, any>` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `Record<string, any>` | No |  |
+| `legalities` | `Record<string, any>` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `Record<string, any>` | No |  |
+| `prices` | `Record<string, any>` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
@@ -304,6 +304,27 @@ const card = client.Card()
 | `toughness` | `string` | No |  |
 | `type_line` | `string` | No |  |
 | `uri` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `named` | `/cards/named` | `client.Card().list({ $action: 'named', ... })` |
+| `random` | `/cards/random` | `client.Card().list({ $action: 'random', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Card record — check the API definition for its shape.
+
+```ts
+const result = await client.Card().list({
+  $action: 'named',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -364,16 +385,16 @@ const card_list = client.CardList()
 | `artist` | `string` | No |  |
 | `cmc` | `number` | No |  |
 | `collector_number` | `string` | No |  |
-| `color` | `any[]` | No |  |
 | `color_identity` | `any[]` | No |  |
+| `colors` | `any[]` | No |  |
 | `data` | `any[]` | No |  |
 | `has_more` | `boolean` | No |  |
 | `id` | `string` | No |  |
-| `identifier` | `any[]` | Yes |  |
-| `image_uri` | `Record<string, any>` | No |  |
+| `identifiers` | `any[]` | Yes |  |
+| `image_uris` | `Record<string, any>` | No |  |
 | `lang` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `legality` | `Record<string, any>` | No |  |
+| `legalities` | `Record<string, any>` | No |  |
 | `loyalty` | `string` | No |  |
 | `mana_cost` | `string` | No |  |
 | `name` | `string` | No |  |
@@ -382,13 +403,13 @@ const card_list = client.CardList()
 | `oracle_id` | `string` | No |  |
 | `oracle_text` | `string` | No |  |
 | `power` | `string` | No |  |
-| `price` | `Record<string, any>` | No |  |
+| `prices` | `Record<string, any>` | No |  |
 | `rarity` | `string` | No |  |
 | `released_at` | `string` | No |  |
 | `scryfall_uri` | `string` | No |  |
 | `set` | `string` | No |  |
 | `set_name` | `string` | No |  |
-| `total_card` | `number` | No |  |
+| `total_cards` | `number` | No |  |
 | `toughness` | `string` | No |  |
 | `type_line` | `string` | No |  |
 | `uri` | `string` | No |  |
@@ -401,7 +422,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.CardList().create({
-  identifier: [],
+  identifiers: [],
 })
 ```
 
@@ -451,9 +472,9 @@ const card_symbol_list = client.CardSymbolList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_cost` | `boolean` | No |  |
+| `appears_in_mana_costs` | `boolean` | No |  |
 | `cmc` | `number` | No |  |
-| `color` | `any[]` | No |  |
+| `colors` | `any[]` | No |  |
 | `english` | `string` | No |  |
 | `funny` | `boolean` | No |  |
 | `loose_variant` | `string` | No |  |
@@ -513,7 +534,7 @@ const catalog = client.Catalog()
 | --- | --- | --- | --- |
 | `data` | `any[]` | No |  |
 | `object` | `string` | No |  |
-| `total_value` | `number` | No |  |
+| `total_values` | `number` | No |  |
 | `uri` | `string` | No |  |
 
 ### Operations
@@ -565,8 +586,8 @@ const mana_cost = client.ManaCost()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cmc` | `number` | No |  |
-| `color` | `any[]` | No |  |
 | `colorless` | `boolean` | No |  |
+| `colors` | `any[]` | No |  |
 | `cost` | `string` | No |  |
 | `monocolored` | `boolean` | No |  |
 | `multicolored` | `boolean` | No |  |
@@ -689,7 +710,7 @@ const ruling = client.Ruling()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Ruling().list()
+const results = await client.Ruling().list({ card_id: "example" })
 ```
 
 ### Common Methods

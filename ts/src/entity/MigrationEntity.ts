@@ -37,7 +37,7 @@ class MigrationEntity extends ScryfallEntityBase<Migration> {
 
 
 
-  async list(this: any, reqmatch?: MigrationListMatch, ctrl?: Control): Promise<Migration[]> {
+  async list(this: any, reqmatch?: MigrationListMatch, ctrl?: Control): Promise<MigrationEntity[]> {
 
     const utility = this._utility
 

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import ScryfallControl
-from core.error import ScryfallError
-from core.result import ScryfallResult
-from core.spec import ScryfallSpec
+from scryfall_sdk.config import make_config
+from scryfall_sdk.features import _make_feature
+from scryfall_sdk.core.control import ScryfallControl
+from scryfall_sdk.core.error import ScryfallError
+from scryfall_sdk.core.result import ScryfallResult
+from scryfall_sdk.core.spec import ScryfallSpec
 
 
 # True when this SDK was generated with the named feature.

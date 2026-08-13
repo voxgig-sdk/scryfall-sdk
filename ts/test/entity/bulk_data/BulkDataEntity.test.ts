@@ -63,13 +63,13 @@ describe('BulkDataEntity', async () => {
     const bulk_data_ref01_ent = client.BulkData()
     const bulk_data_ref01_match: any = {}
 
-    const bulk_data_ref01_list = await bulk_data_ref01_ent.list(bulk_data_ref01_match)
+    const bulk_data_ref01_list = (await bulk_data_ref01_ent.list(bulk_data_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const bulk_data_ref01_match_dt0: any = {}
     bulk_data_ref01_match_dt0.id = bulk_data_ref01_data.id
-    const bulk_data_ref01_data_dt0 = await bulk_data_ref01_ent.load(bulk_data_ref01_match_dt0)
+    const bulk_data_ref01_data_dt0 = (await bulk_data_ref01_ent.load(bulk_data_ref01_match_dt0)).data()
     assert(bulk_data_ref01_data_dt0.id === bulk_data_ref01_data.id)
 
 

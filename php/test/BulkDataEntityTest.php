@@ -97,7 +97,7 @@ class BulkDataEntityTest extends TestCase
             "id" => $bulk_data_ref01_data["id"],
         ];
         $bulk_data_ref01_data_dt0_loaded = $bulk_data_ref01_ent->load($bulk_data_ref01_match_dt0, null);
-        $bulk_data_ref01_data_dt0_load_result = Helpers::to_map($bulk_data_ref01_data_dt0_loaded);
+        $bulk_data_ref01_data_dt0_load_result = Helpers::to_map(is_object($bulk_data_ref01_data_dt0_loaded) && method_exists($bulk_data_ref01_data_dt0_loaded, 'data_get') ? $bulk_data_ref01_data_dt0_loaded->data_get() : $bulk_data_ref01_data_dt0_loaded);
         $this->assertNotNull($bulk_data_ref01_data_dt0_load_result);
         $this->assertEquals($bulk_data_ref01_data_dt0_load_result["id"], $bulk_data_ref01_data["id"]);
 

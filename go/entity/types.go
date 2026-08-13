@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/scryfall-sdk/go/core"
+)
 
 // BulkData is the typed data model for the bulk_data entity.
 type BulkData struct {
@@ -46,20 +50,20 @@ type Card struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
 	CollectorNumber *string `json:"collector_number,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	ColorIdentity *[]any `json:"color_identity,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Id *string `json:"id,omitempty"`
-	ImageUri *map[string]any `json:"image_uri,omitempty"`
+	ImageUris *map[string]any `json:"image_uris,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	Layout *string `json:"layout,omitempty"`
-	Legality *map[string]any `json:"legality,omitempty"`
+	Legalities *map[string]any `json:"legalities,omitempty"`
 	Loyalty *string `json:"loyalty,omitempty"`
 	ManaCost *string `json:"mana_cost,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OracleId *string `json:"oracle_id,omitempty"`
 	OracleText *string `json:"oracle_text,omitempty"`
 	Power *string `json:"power,omitempty"`
-	Price *map[string]any `json:"price,omitempty"`
+	Prices *map[string]any `json:"prices,omitempty"`
 	Rarity *string `json:"rarity,omitempty"`
 	ReleasedAt *string `json:"released_at,omitempty"`
 	ScryfallUri *string `json:"scryfall_uri,omitempty"`
@@ -80,20 +84,20 @@ type CardListMatch struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
 	CollectorNumber *string `json:"collector_number,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	ColorIdentity *[]any `json:"color_identity,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Id *string `json:"id,omitempty"`
-	ImageUri *map[string]any `json:"image_uri,omitempty"`
+	ImageUris *map[string]any `json:"image_uris,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	Layout *string `json:"layout,omitempty"`
-	Legality *map[string]any `json:"legality,omitempty"`
+	Legalities *map[string]any `json:"legalities,omitempty"`
 	Loyalty *string `json:"loyalty,omitempty"`
 	ManaCost *string `json:"mana_cost,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OracleId *string `json:"oracle_id,omitempty"`
 	OracleText *string `json:"oracle_text,omitempty"`
 	Power *string `json:"power,omitempty"`
-	Price *map[string]any `json:"price,omitempty"`
+	Prices *map[string]any `json:"prices,omitempty"`
 	Rarity *string `json:"rarity,omitempty"`
 	ReleasedAt *string `json:"released_at,omitempty"`
 	ScryfallUri *string `json:"scryfall_uri,omitempty"`
@@ -109,16 +113,16 @@ type CardList struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
 	CollectorNumber *string `json:"collector_number,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	ColorIdentity *[]any `json:"color_identity,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Data *[]any `json:"data,omitempty"`
 	HasMore *bool `json:"has_more,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Identifier []any `json:"identifier"`
-	ImageUri *map[string]any `json:"image_uri,omitempty"`
+	Identifiers []any `json:"identifiers"`
+	ImageUris *map[string]any `json:"image_uris,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	Layout *string `json:"layout,omitempty"`
-	Legality *map[string]any `json:"legality,omitempty"`
+	Legalities *map[string]any `json:"legalities,omitempty"`
 	Loyalty *string `json:"loyalty,omitempty"`
 	ManaCost *string `json:"mana_cost,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -127,13 +131,13 @@ type CardList struct {
 	OracleId *string `json:"oracle_id,omitempty"`
 	OracleText *string `json:"oracle_text,omitempty"`
 	Power *string `json:"power,omitempty"`
-	Price *map[string]any `json:"price,omitempty"`
+	Prices *map[string]any `json:"prices,omitempty"`
 	Rarity *string `json:"rarity,omitempty"`
 	ReleasedAt *string `json:"released_at,omitempty"`
 	ScryfallUri *string `json:"scryfall_uri,omitempty"`
 	Set *string `json:"set,omitempty"`
 	SetName *string `json:"set_name,omitempty"`
-	TotalCard *int `json:"total_card,omitempty"`
+	TotalCards *int `json:"total_cards,omitempty"`
 	Toughness *string `json:"toughness,omitempty"`
 	TypeLine *string `json:"type_line,omitempty"`
 	Uri *string `json:"uri,omitempty"`
@@ -144,16 +148,16 @@ type CardListListMatch struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
 	CollectorNumber *string `json:"collector_number,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	ColorIdentity *[]any `json:"color_identity,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Data *[]any `json:"data,omitempty"`
 	HasMore *bool `json:"has_more,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Identifier *[]any `json:"identifier,omitempty"`
-	ImageUri *map[string]any `json:"image_uri,omitempty"`
+	Identifiers *[]any `json:"identifiers,omitempty"`
+	ImageUris *map[string]any `json:"image_uris,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	Layout *string `json:"layout,omitempty"`
-	Legality *map[string]any `json:"legality,omitempty"`
+	Legalities *map[string]any `json:"legalities,omitempty"`
 	Loyalty *string `json:"loyalty,omitempty"`
 	ManaCost *string `json:"mana_cost,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -162,13 +166,13 @@ type CardListListMatch struct {
 	OracleId *string `json:"oracle_id,omitempty"`
 	OracleText *string `json:"oracle_text,omitempty"`
 	Power *string `json:"power,omitempty"`
-	Price *map[string]any `json:"price,omitempty"`
+	Prices *map[string]any `json:"prices,omitempty"`
 	Rarity *string `json:"rarity,omitempty"`
 	ReleasedAt *string `json:"released_at,omitempty"`
 	ScryfallUri *string `json:"scryfall_uri,omitempty"`
 	Set *string `json:"set,omitempty"`
 	SetName *string `json:"set_name,omitempty"`
-	TotalCard *int `json:"total_card,omitempty"`
+	TotalCards *int `json:"total_cards,omitempty"`
 	Toughness *string `json:"toughness,omitempty"`
 	TypeLine *string `json:"type_line,omitempty"`
 	Uri *string `json:"uri,omitempty"`
@@ -179,16 +183,16 @@ type CardListCreateData struct {
 	Artist *string `json:"artist,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
 	CollectorNumber *string `json:"collector_number,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	ColorIdentity *[]any `json:"color_identity,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Data *[]any `json:"data,omitempty"`
 	HasMore *bool `json:"has_more,omitempty"`
 	Id *string `json:"id,omitempty"`
-	Identifier []any `json:"identifier"`
-	ImageUri *map[string]any `json:"image_uri,omitempty"`
+	Identifiers []any `json:"identifiers"`
+	ImageUris *map[string]any `json:"image_uris,omitempty"`
 	Lang *string `json:"lang,omitempty"`
 	Layout *string `json:"layout,omitempty"`
-	Legality *map[string]any `json:"legality,omitempty"`
+	Legalities *map[string]any `json:"legalities,omitempty"`
 	Loyalty *string `json:"loyalty,omitempty"`
 	ManaCost *string `json:"mana_cost,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -197,13 +201,13 @@ type CardListCreateData struct {
 	OracleId *string `json:"oracle_id,omitempty"`
 	OracleText *string `json:"oracle_text,omitempty"`
 	Power *string `json:"power,omitempty"`
-	Price *map[string]any `json:"price,omitempty"`
+	Prices *map[string]any `json:"prices,omitempty"`
 	Rarity *string `json:"rarity,omitempty"`
 	ReleasedAt *string `json:"released_at,omitempty"`
 	ScryfallUri *string `json:"scryfall_uri,omitempty"`
 	Set *string `json:"set,omitempty"`
 	SetName *string `json:"set_name,omitempty"`
-	TotalCard *int `json:"total_card,omitempty"`
+	TotalCards *int `json:"total_cards,omitempty"`
 	Toughness *string `json:"toughness,omitempty"`
 	TypeLine *string `json:"type_line,omitempty"`
 	Uri *string `json:"uri,omitempty"`
@@ -211,9 +215,9 @@ type CardListCreateData struct {
 
 // CardSymbolList is the typed data model for the card_symbol_list entity.
 type CardSymbolList struct {
-	AppearsInManaCost *bool `json:"appears_in_mana_cost,omitempty"`
+	AppearsInManaCosts *bool `json:"appears_in_mana_costs,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
-	Color *[]any `json:"color,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	English *string `json:"english,omitempty"`
 	Funny *bool `json:"funny,omitempty"`
 	LooseVariant *string `json:"loose_variant,omitempty"`
@@ -226,9 +230,9 @@ type CardSymbolList struct {
 
 // CardSymbolListListMatch is the typed request payload for CardSymbolList.ListTyped.
 type CardSymbolListListMatch struct {
-	AppearsInManaCost *bool `json:"appears_in_mana_cost,omitempty"`
+	AppearsInManaCosts *bool `json:"appears_in_mana_costs,omitempty"`
 	Cmc *float64 `json:"cmc,omitempty"`
-	Color *[]any `json:"color,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	English *string `json:"english,omitempty"`
 	Funny *bool `json:"funny,omitempty"`
 	LooseVariant *string `json:"loose_variant,omitempty"`
@@ -243,7 +247,7 @@ type CardSymbolListListMatch struct {
 type Catalog struct {
 	Data *[]any `json:"data,omitempty"`
 	Object *string `json:"object,omitempty"`
-	TotalValue *int `json:"total_value,omitempty"`
+	TotalValues *int `json:"total_values,omitempty"`
 	Uri *string `json:"uri,omitempty"`
 }
 
@@ -255,8 +259,8 @@ type CatalogLoadMatch struct {
 // ManaCost is the typed data model for the mana_cost entity.
 type ManaCost struct {
 	Cmc *float64 `json:"cmc,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	Colorless *bool `json:"colorless,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Cost *string `json:"cost,omitempty"`
 	Monocolored *bool `json:"monocolored,omitempty"`
 	Multicolored *bool `json:"multicolored,omitempty"`
@@ -266,8 +270,8 @@ type ManaCost struct {
 // ManaCostListMatch is the typed request payload for ManaCost.ListTyped.
 type ManaCostListMatch struct {
 	Cmc *float64 `json:"cmc,omitempty"`
-	Color *[]any `json:"color,omitempty"`
 	Colorless *bool `json:"colorless,omitempty"`
+	Colors *[]any `json:"colors,omitempty"`
 	Cost *string `json:"cost,omitempty"`
 	Monocolored *bool `json:"monocolored,omitempty"`
 	Multicolored *bool `json:"multicolored,omitempty"`
@@ -357,12 +361,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -374,12 +392,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

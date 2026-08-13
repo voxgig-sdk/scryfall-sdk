@@ -37,7 +37,7 @@ class RulingEntity extends ScryfallEntityBase<Ruling> {
 
 
 
-  async list(this: any, reqmatch?: RulingListMatch, ctrl?: Control): Promise<Ruling[]> {
+  async list(this: any, reqmatch?: RulingListMatch, ctrl?: Control): Promise<RulingEntity[]> {
 
     const utility = this._utility
 

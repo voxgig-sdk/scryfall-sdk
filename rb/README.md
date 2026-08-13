@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare BulkData record (raises on error).
+  # load returns the ENTITY — call data_get for the BulkData record (raises on error).
   bulkdata = client.BulkData.load({ "id" => "example_id" })
   puts bulkdata
 rescue => err
@@ -134,7 +134,8 @@ client = ScryfallSDK.test({
   "entity" => { "bulkdata" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 bulkdata = client.BulkData.list()
 puts bulkdata
 ```
@@ -283,20 +284,20 @@ API path: `/bulk-data`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `id` |  |
-| `image_uri` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
@@ -317,16 +318,16 @@ API path: `/cards/named`
 | `artist` |  |
 | `cmc` |  |
 | `collector_number` |  |
-| `color` |  |
 | `color_identity` |  |
+| `colors` |  |
 | `data` |  |
 | `has_more` |  |
 | `id` |  |
-| `identifier` |  |
-| `image_uri` |  |
+| `identifiers` |  |
+| `image_uris` |  |
 | `lang` |  |
 | `layout` |  |
-| `legality` |  |
+| `legalities` |  |
 | `loyalty` |  |
 | `mana_cost` |  |
 | `name` |  |
@@ -335,13 +336,13 @@ API path: `/cards/named`
 | `oracle_id` |  |
 | `oracle_text` |  |
 | `power` |  |
-| `price` |  |
+| `prices` |  |
 | `rarity` |  |
 | `released_at` |  |
 | `scryfall_uri` |  |
 | `set` |  |
 | `set_name` |  |
-| `total_card` |  |
+| `total_cards` |  |
 | `toughness` |  |
 | `type_line` |  |
 | `uri` |  |
@@ -354,9 +355,9 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `appears_in_mana_cost` |  |
+| `appears_in_mana_costs` |  |
 | `cmc` |  |
-| `color` |  |
+| `colors` |  |
 | `english` |  |
 | `funny` |  |
 | `loose_variant` |  |
@@ -376,7 +377,7 @@ API path: `/symbology`
 | --- | --- |
 | `data` |  |
 | `object` |  |
-| `total_value` |  |
+| `total_values` |  |
 | `uri` |  |
 
 Operations: Load.
@@ -388,8 +389,8 @@ API path: `/catalog/{catalog_name}`
 | Field | Description |
 | --- | --- |
 | `cmc` |  |
-| `color` |  |
 | `colorless` |  |
+| `colors` |  |
 | `cost` |  |
 | `monocolored` |  |
 | `multicolored` |  |
@@ -483,7 +484,7 @@ Create an instance: `bulk_data = client.BulkData`
 #### Example: Load
 
 ```ruby
-# load returns the bare BulkData record (raises on error).
+# load returns the ENTITY — call data_get for the BulkData record (raises on error).
 bulk_data = client.BulkData.load({ "id" => "bulk_data_id" })
 ```
 
@@ -513,20 +514,20 @@ Create an instance: `card = client.Card`
 | `artist` | `String` |  |
 | `cmc` | `Float` |  |
 | `collector_number` | `String` |  |
-| `color` | `Array` |  |
 | `color_identity` | `Array` |  |
+| `colors` | `Array` |  |
 | `id` | `String` |  |
-| `image_uri` | `Hash` |  |
+| `image_uris` | `Hash` |  |
 | `lang` | `String` |  |
 | `layout` | `String` |  |
-| `legality` | `Hash` |  |
+| `legalities` | `Hash` |  |
 | `loyalty` | `String` |  |
 | `mana_cost` | `String` |  |
 | `name` | `String` |  |
 | `oracle_id` | `String` |  |
 | `oracle_text` | `String` |  |
 | `power` | `String` |  |
-| `price` | `Hash` |  |
+| `prices` | `Hash` |  |
 | `rarity` | `String` |  |
 | `released_at` | `String` |  |
 | `scryfall_uri` | `String` |  |
@@ -539,7 +540,7 @@ Create an instance: `card = client.Card`
 #### Example: Load
 
 ```ruby
-# load returns the bare Card record (raises on error).
+# load returns the ENTITY — call data_get for the Card record (raises on error).
 card = client.Card.load({ "id" => "card_id" })
 ```
 
@@ -569,16 +570,16 @@ Create an instance: `card_list = client.CardList`
 | `artist` | `String` |  |
 | `cmc` | `Float` |  |
 | `collector_number` | `String` |  |
-| `color` | `Array` |  |
 | `color_identity` | `Array` |  |
+| `colors` | `Array` |  |
 | `data` | `Array` |  |
 | `has_more` | `Boolean` |  |
 | `id` | `String` |  |
-| `identifier` | `Array` |  |
-| `image_uri` | `Hash` |  |
+| `identifiers` | `Array` |  |
+| `image_uris` | `Hash` |  |
 | `lang` | `String` |  |
 | `layout` | `String` |  |
-| `legality` | `Hash` |  |
+| `legalities` | `Hash` |  |
 | `loyalty` | `String` |  |
 | `mana_cost` | `String` |  |
 | `name` | `String` |  |
@@ -587,13 +588,13 @@ Create an instance: `card_list = client.CardList`
 | `oracle_id` | `String` |  |
 | `oracle_text` | `String` |  |
 | `power` | `String` |  |
-| `price` | `Hash` |  |
+| `prices` | `Hash` |  |
 | `rarity` | `String` |  |
 | `released_at` | `String` |  |
 | `scryfall_uri` | `String` |  |
 | `set` | `String` |  |
 | `set_name` | `String` |  |
-| `total_card` | `Integer` |  |
+| `total_cards` | `Integer` |  |
 | `toughness` | `String` |  |
 | `type_line` | `String` |  |
 | `uri` | `String` |  |
@@ -609,7 +610,7 @@ card_lists = client.CardList.list
 
 ```ruby
 card_list = client.CardList.create({
-  "identifier" => [], # Array
+  "identifiers" => [], # Array
 })
 ```
 
@@ -628,9 +629,9 @@ Create an instance: `card_symbol_list = client.CardSymbolList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_cost` | `Boolean` |  |
+| `appears_in_mana_costs` | `Boolean` |  |
 | `cmc` | `Float` |  |
-| `color` | `Array` |  |
+| `colors` | `Array` |  |
 | `english` | `String` |  |
 | `funny` | `Boolean` |  |
 | `loose_variant` | `String` |  |
@@ -664,13 +665,13 @@ Create an instance: `catalog = client.Catalog`
 | --- | --- | --- |
 | `data` | `Array` |  |
 | `object` | `String` |  |
-| `total_value` | `Integer` |  |
+| `total_values` | `Integer` |  |
 | `uri` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Catalog record (raises on error).
+# load returns the ENTITY — call data_get for the Catalog record (raises on error).
 catalog = client.Catalog.load({ "id" => "catalog_id" })
 ```
 
@@ -690,8 +691,8 @@ Create an instance: `mana_cost = client.ManaCost`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cmc` | `Float` |  |
-| `color` | `Array` |  |
 | `colorless` | `Boolean` |  |
+| `colors` | `Array` |  |
 | `cost` | `String` |  |
 | `monocolored` | `Boolean` |  |
 | `multicolored` | `Boolean` |  |
@@ -793,7 +794,7 @@ Create an instance: `set = client.Set`
 #### Example: Load
 
 ```ruby
-# load returns the bare Set record (raises on error).
+# load returns the ENTITY — call data_get for the Set record (raises on error).
 set = client.Set.load({ "id" => "set_id" })
 ```
 

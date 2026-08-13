@@ -87,7 +87,7 @@ class CardEntityTest < Minitest::Test
       "id" => card_ref01_data["id"],
     }
     card_ref01_data_dt0_loaded = card_ref01_ent.load(card_ref01_match_dt0, nil)
-    card_ref01_data_dt0_load_result = Helpers.to_map(card_ref01_data_dt0_loaded)
+    card_ref01_data_dt0_load_result = Helpers.to_map(card_ref01_data_dt0_loaded.respond_to?(:data_get) ? card_ref01_data_dt0_loaded.data_get : card_ref01_data_dt0_loaded)
     assert !card_ref01_data_dt0_load_result.nil?
     assert_equal card_ref01_data_dt0_load_result["id"], card_ref01_data["id"]
 

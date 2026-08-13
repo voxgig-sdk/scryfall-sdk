@@ -112,6 +112,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bulk-data",
                 ["parts"] = {
@@ -120,7 +121,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -146,6 +147,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bulk-data/{id}",
                 ["parts"] = {
@@ -196,14 +198,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "color",
+            ["name"] = "color_identity",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "color_identity",
+            ["name"] = "colors",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
@@ -217,7 +219,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "image_uri",
+            ["name"] = "image_uris",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 6,
@@ -238,7 +240,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "legality",
+            ["name"] = "legalities",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 9,
@@ -287,7 +289,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "price",
+            ["name"] = "prices",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 16,
@@ -388,6 +390,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/named",
                 ["parts"] = {
@@ -422,6 +425,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/random",
                 ["parts"] = {
@@ -463,6 +467,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}",
                 ["parts"] = {
@@ -513,14 +518,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "color",
+            ["name"] = "color_identity",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "color_identity",
+            ["name"] = "colors",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 4,
@@ -548,14 +553,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "identifier",
+            ["name"] = "identifiers",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
             ["index$"] = 8,
           },
           {
             ["active"] = true,
-            ["name"] = "image_uri",
+            ["name"] = "image_uris",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 9,
@@ -576,7 +581,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "legality",
+            ["name"] = "legalities",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 12,
@@ -639,7 +644,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "price",
+            ["name"] = "prices",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 21,
@@ -681,7 +686,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "total_card",
+            ["name"] = "total_cards",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 27,
@@ -717,6 +722,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/collection",
                 ["parts"] = {
@@ -797,6 +803,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/search",
                 ["parts"] = {
@@ -815,7 +822,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -831,7 +838,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "appears_in_mana_cost",
+            ["name"] = "appears_in_mana_costs",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 0,
@@ -845,7 +852,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "color",
+            ["name"] = "colors",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -916,6 +923,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/symbology",
                 ["parts"] = {
@@ -924,7 +932,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -954,7 +962,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "total_value",
+            ["name"] = "total_values",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 2,
@@ -988,6 +996,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/catalog/{catalog_name}",
                 ["parts"] = {
@@ -1029,16 +1038,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "color",
+            ["name"] = "colorless",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$BOOLEAN`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "colorless",
+            ["name"] = "colors",
             ["req"] = false,
-            ["type"] = "`$BOOLEAN`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -1091,6 +1100,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/symbology/parse-mana",
                 ["parts"] = {
@@ -1104,7 +1114,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.colors`",
                 },
                 ["index$"] = 0,
               },
@@ -1189,6 +1199,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/migrations",
                 ["parts"] = {
@@ -1201,7 +1212,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -1272,6 +1283,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/rulings",
                 ["parts"] = {
@@ -1291,7 +1303,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -1396,6 +1408,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sets",
                 ["parts"] = {
@@ -1404,7 +1417,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -1431,6 +1444,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sets/{code}",
                 ["parts"] = {
@@ -1468,6 +1482,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sets/{id}",
                 ["parts"] = {

@@ -16,7 +16,7 @@ main: kit: entity: catalog: {
       type: "`$STRING`"
     }
     {
-      name: "total_value"
+      name: "total_values"
       req: false
       type: "`$INTEGER`"
     }

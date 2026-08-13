@@ -118,16 +118,16 @@ BulkDataListMatch = Struct.new(
 # @!attribute [rw] collector_number
 #   @return [String, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] color_identity
 #   @return [Array, nil]
 #
-# @!attribute [rw] color_identity
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_uri
+# @!attribute [rw] image_uris
 #   @return [Hash, nil]
 #
 # @!attribute [rw] lang
@@ -136,7 +136,7 @@ BulkDataListMatch = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] legality
+# @!attribute [rw] legalities
 #   @return [Hash, nil]
 #
 # @!attribute [rw] loyalty
@@ -157,7 +157,7 @@ BulkDataListMatch = Struct.new(
 # @!attribute [rw] power
 #   @return [String, nil]
 #
-# @!attribute [rw] price
+# @!attribute [rw] prices
 #   @return [Hash, nil]
 #
 # @!attribute [rw] rarity
@@ -187,20 +187,20 @@ Card = Struct.new(
   :artist,
   :cmc,
   :collector_number,
-  :color,
   :color_identity,
+  :colors,
   :id,
-  :image_uri,
+  :image_uris,
   :lang,
   :layout,
-  :legality,
+  :legalities,
   :loyalty,
   :mana_cost,
   :name,
   :oracle_id,
   :oracle_text,
   :power,
-  :price,
+  :prices,
   :rarity,
   :released_at,
   :scryfall_uri,
@@ -232,16 +232,16 @@ CardLoadMatch = Struct.new(
 # @!attribute [rw] collector_number
 #   @return [String, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] color_identity
 #   @return [Array, nil]
 #
-# @!attribute [rw] color_identity
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image_uri
+# @!attribute [rw] image_uris
 #   @return [Hash, nil]
 #
 # @!attribute [rw] lang
@@ -250,7 +250,7 @@ CardLoadMatch = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] legality
+# @!attribute [rw] legalities
 #   @return [Hash, nil]
 #
 # @!attribute [rw] loyalty
@@ -271,7 +271,7 @@ CardLoadMatch = Struct.new(
 # @!attribute [rw] power
 #   @return [String, nil]
 #
-# @!attribute [rw] price
+# @!attribute [rw] prices
 #   @return [Hash, nil]
 #
 # @!attribute [rw] rarity
@@ -301,20 +301,20 @@ CardListMatch = Struct.new(
   :artist,
   :cmc,
   :collector_number,
-  :color,
   :color_identity,
+  :colors,
   :id,
-  :image_uri,
+  :image_uris,
   :lang,
   :layout,
-  :legality,
+  :legalities,
   :loyalty,
   :mana_cost,
   :name,
   :oracle_id,
   :oracle_text,
   :power,
-  :price,
+  :prices,
   :rarity,
   :released_at,
   :scryfall_uri,
@@ -337,10 +337,10 @@ CardListMatch = Struct.new(
 # @!attribute [rw] collector_number
 #   @return [String, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] color_identity
 #   @return [Array, nil]
 #
-# @!attribute [rw] color_identity
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] data
@@ -352,10 +352,10 @@ CardListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] identifier
+# @!attribute [rw] identifiers
 #   @return [Array]
 #
-# @!attribute [rw] image_uri
+# @!attribute [rw] image_uris
 #   @return [Hash, nil]
 #
 # @!attribute [rw] lang
@@ -364,7 +364,7 @@ CardListMatch = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] legality
+# @!attribute [rw] legalities
 #   @return [Hash, nil]
 #
 # @!attribute [rw] loyalty
@@ -391,7 +391,7 @@ CardListMatch = Struct.new(
 # @!attribute [rw] power
 #   @return [String, nil]
 #
-# @!attribute [rw] price
+# @!attribute [rw] prices
 #   @return [Hash, nil]
 #
 # @!attribute [rw] rarity
@@ -409,7 +409,7 @@ CardListMatch = Struct.new(
 # @!attribute [rw] set_name
 #   @return [String, nil]
 #
-# @!attribute [rw] total_card
+# @!attribute [rw] total_cards
 #   @return [Integer, nil]
 #
 # @!attribute [rw] toughness
@@ -424,16 +424,16 @@ CardList = Struct.new(
   :artist,
   :cmc,
   :collector_number,
-  :color,
   :color_identity,
+  :colors,
   :data,
   :has_more,
   :id,
-  :identifier,
-  :image_uri,
+  :identifiers,
+  :image_uris,
   :lang,
   :layout,
-  :legality,
+  :legalities,
   :loyalty,
   :mana_cost,
   :name,
@@ -442,13 +442,13 @@ CardList = Struct.new(
   :oracle_id,
   :oracle_text,
   :power,
-  :price,
+  :prices,
   :rarity,
   :released_at,
   :scryfall_uri,
   :set,
   :set_name,
-  :total_card,
+  :total_cards,
   :toughness,
   :type_line,
   :uri,
@@ -466,10 +466,10 @@ CardList = Struct.new(
 # @!attribute [rw] collector_number
 #   @return [String, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] color_identity
 #   @return [Array, nil]
 #
-# @!attribute [rw] color_identity
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] data
@@ -481,10 +481,10 @@ CardList = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] identifier
+# @!attribute [rw] identifiers
 #   @return [Array, nil]
 #
-# @!attribute [rw] image_uri
+# @!attribute [rw] image_uris
 #   @return [Hash, nil]
 #
 # @!attribute [rw] lang
@@ -493,7 +493,7 @@ CardList = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] legality
+# @!attribute [rw] legalities
 #   @return [Hash, nil]
 #
 # @!attribute [rw] loyalty
@@ -520,7 +520,7 @@ CardList = Struct.new(
 # @!attribute [rw] power
 #   @return [String, nil]
 #
-# @!attribute [rw] price
+# @!attribute [rw] prices
 #   @return [Hash, nil]
 #
 # @!attribute [rw] rarity
@@ -538,7 +538,7 @@ CardList = Struct.new(
 # @!attribute [rw] set_name
 #   @return [String, nil]
 #
-# @!attribute [rw] total_card
+# @!attribute [rw] total_cards
 #   @return [Integer, nil]
 #
 # @!attribute [rw] toughness
@@ -553,16 +553,16 @@ CardListListMatch = Struct.new(
   :artist,
   :cmc,
   :collector_number,
-  :color,
   :color_identity,
+  :colors,
   :data,
   :has_more,
   :id,
-  :identifier,
-  :image_uri,
+  :identifiers,
+  :image_uris,
   :lang,
   :layout,
-  :legality,
+  :legalities,
   :loyalty,
   :mana_cost,
   :name,
@@ -571,13 +571,13 @@ CardListListMatch = Struct.new(
   :oracle_id,
   :oracle_text,
   :power,
-  :price,
+  :prices,
   :rarity,
   :released_at,
   :scryfall_uri,
   :set,
   :set_name,
-  :total_card,
+  :total_cards,
   :toughness,
   :type_line,
   :uri,
@@ -595,10 +595,10 @@ CardListListMatch = Struct.new(
 # @!attribute [rw] collector_number
 #   @return [String, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] color_identity
 #   @return [Array, nil]
 #
-# @!attribute [rw] color_identity
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] data
@@ -610,10 +610,10 @@ CardListListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] identifier
+# @!attribute [rw] identifiers
 #   @return [Array]
 #
-# @!attribute [rw] image_uri
+# @!attribute [rw] image_uris
 #   @return [Hash, nil]
 #
 # @!attribute [rw] lang
@@ -622,7 +622,7 @@ CardListListMatch = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] legality
+# @!attribute [rw] legalities
 #   @return [Hash, nil]
 #
 # @!attribute [rw] loyalty
@@ -649,7 +649,7 @@ CardListListMatch = Struct.new(
 # @!attribute [rw] power
 #   @return [String, nil]
 #
-# @!attribute [rw] price
+# @!attribute [rw] prices
 #   @return [Hash, nil]
 #
 # @!attribute [rw] rarity
@@ -667,7 +667,7 @@ CardListListMatch = Struct.new(
 # @!attribute [rw] set_name
 #   @return [String, nil]
 #
-# @!attribute [rw] total_card
+# @!attribute [rw] total_cards
 #   @return [Integer, nil]
 #
 # @!attribute [rw] toughness
@@ -682,16 +682,16 @@ CardListCreateData = Struct.new(
   :artist,
   :cmc,
   :collector_number,
-  :color,
   :color_identity,
+  :colors,
   :data,
   :has_more,
   :id,
-  :identifier,
-  :image_uri,
+  :identifiers,
+  :image_uris,
   :lang,
   :layout,
-  :legality,
+  :legalities,
   :loyalty,
   :mana_cost,
   :name,
@@ -700,13 +700,13 @@ CardListCreateData = Struct.new(
   :oracle_id,
   :oracle_text,
   :power,
-  :price,
+  :prices,
   :rarity,
   :released_at,
   :scryfall_uri,
   :set,
   :set_name,
-  :total_card,
+  :total_cards,
   :toughness,
   :type_line,
   :uri,
@@ -715,13 +715,13 @@ CardListCreateData = Struct.new(
 
 # CardSymbolList entity data model.
 #
-# @!attribute [rw] appears_in_mana_cost
+# @!attribute [rw] appears_in_mana_costs
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] cmc
 #   @return [Float, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] english
@@ -748,9 +748,9 @@ CardListCreateData = Struct.new(
 # @!attribute [rw] transposable
 #   @return [Boolean, nil]
 CardSymbolList = Struct.new(
-  :appears_in_mana_cost,
+  :appears_in_mana_costs,
   :cmc,
-  :color,
+  :colors,
   :english,
   :funny,
   :loose_variant,
@@ -764,13 +764,13 @@ CardSymbolList = Struct.new(
 
 # Request payload for CardSymbolList#list.
 #
-# @!attribute [rw] appears_in_mana_cost
+# @!attribute [rw] appears_in_mana_costs
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] cmc
 #   @return [Float, nil]
 #
-# @!attribute [rw] color
+# @!attribute [rw] colors
 #   @return [Array, nil]
 #
 # @!attribute [rw] english
@@ -797,9 +797,9 @@ CardSymbolList = Struct.new(
 # @!attribute [rw] transposable
 #   @return [Boolean, nil]
 CardSymbolListListMatch = Struct.new(
-  :appears_in_mana_cost,
+  :appears_in_mana_costs,
   :cmc,
-  :color,
+  :colors,
   :english,
   :funny,
   :loose_variant,
@@ -819,7 +819,7 @@ CardSymbolListListMatch = Struct.new(
 # @!attribute [rw] object
 #   @return [String, nil]
 #
-# @!attribute [rw] total_value
+# @!attribute [rw] total_values
 #   @return [Integer, nil]
 #
 # @!attribute [rw] uri
@@ -827,7 +827,7 @@ CardSymbolListListMatch = Struct.new(
 Catalog = Struct.new(
   :data,
   :object,
-  :total_value,
+  :total_values,
   :uri,
   keyword_init: true
 )
@@ -846,11 +846,11 @@ CatalogLoadMatch = Struct.new(
 # @!attribute [rw] cmc
 #   @return [Float, nil]
 #
-# @!attribute [rw] color
-#   @return [Array, nil]
-#
 # @!attribute [rw] colorless
 #   @return [Boolean, nil]
+#
+# @!attribute [rw] colors
+#   @return [Array, nil]
 #
 # @!attribute [rw] cost
 #   @return [String, nil]
@@ -865,8 +865,8 @@ CatalogLoadMatch = Struct.new(
 #   @return [String, nil]
 ManaCost = Struct.new(
   :cmc,
-  :color,
   :colorless,
+  :colors,
   :cost,
   :monocolored,
   :multicolored,
@@ -879,11 +879,11 @@ ManaCost = Struct.new(
 # @!attribute [rw] cmc
 #   @return [Float, nil]
 #
-# @!attribute [rw] color
-#   @return [Array, nil]
-#
 # @!attribute [rw] colorless
 #   @return [Boolean, nil]
+#
+# @!attribute [rw] colors
+#   @return [Array, nil]
 #
 # @!attribute [rw] cost
 #   @return [String, nil]
@@ -898,8 +898,8 @@ ManaCost = Struct.new(
 #   @return [String, nil]
 ManaCostListMatch = Struct.new(
   :cmc,
-  :color,
   :colorless,
+  :colors,
   :cost,
   :monocolored,
   :multicolored,
@@ -1041,7 +1041,7 @@ RulingListMatch = Struct.new(
 #
 # @!attribute [rw] uri
 #   @return [String, nil]
-Set = Struct.new(
+SetType = Struct.new(
   :card_count,
   :code,
   :digital,

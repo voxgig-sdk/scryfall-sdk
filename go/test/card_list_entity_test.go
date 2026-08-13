@@ -106,7 +106,7 @@ func TestCardListEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		cardListRef01Data = core.ToMapAny(cardListRef01DataResult)
+		cardListRef01Data = core.ToMapAny(entityData(cardListRef01DataResult))
 		if cardListRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}

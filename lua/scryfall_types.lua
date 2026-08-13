@@ -37,20 +37,20 @@
 ---@field artist? string
 ---@field cmc? number
 ---@field collector_number? string
----@field color? table
 ---@field color_identity? table
+---@field colors? table
 ---@field id? string
----@field image_uri? table
+---@field image_uris? table
 ---@field lang? string
 ---@field layout? string
----@field legality? table
+---@field legalities? table
 ---@field loyalty? string
 ---@field mana_cost? string
 ---@field name? string
 ---@field oracle_id? string
 ---@field oracle_text? string
 ---@field power? string
----@field price? table
+---@field prices? table
 ---@field rarity? string
 ---@field released_at? string
 ---@field scryfall_uri? string
@@ -67,20 +67,20 @@
 ---@field artist? string
 ---@field cmc? number
 ---@field collector_number? string
----@field color? table
 ---@field color_identity? table
+---@field colors? table
 ---@field id? string
----@field image_uri? table
+---@field image_uris? table
 ---@field lang? string
 ---@field layout? string
----@field legality? table
+---@field legalities? table
 ---@field loyalty? string
 ---@field mana_cost? string
 ---@field name? string
 ---@field oracle_id? string
 ---@field oracle_text? string
 ---@field power? string
----@field price? table
+---@field prices? table
 ---@field rarity? string
 ---@field released_at? string
 ---@field scryfall_uri? string
@@ -94,16 +94,16 @@
 ---@field artist? string
 ---@field cmc? number
 ---@field collector_number? string
----@field color? table
 ---@field color_identity? table
+---@field colors? table
 ---@field data? table
 ---@field has_more? boolean
 ---@field id? string
----@field identifier table
----@field image_uri? table
+---@field identifiers table
+---@field image_uris? table
 ---@field lang? string
 ---@field layout? string
----@field legality? table
+---@field legalities? table
 ---@field loyalty? string
 ---@field mana_cost? string
 ---@field name? string
@@ -112,13 +112,13 @@
 ---@field oracle_id? string
 ---@field oracle_text? string
 ---@field power? string
----@field price? table
+---@field prices? table
 ---@field rarity? string
 ---@field released_at? string
 ---@field scryfall_uri? string
 ---@field set? string
 ---@field set_name? string
----@field total_card? number
+---@field total_cards? number
 ---@field toughness? string
 ---@field type_line? string
 ---@field uri? string
@@ -127,16 +127,16 @@
 ---@field artist? string
 ---@field cmc? number
 ---@field collector_number? string
----@field color? table
 ---@field color_identity? table
+---@field colors? table
 ---@field data? table
 ---@field has_more? boolean
 ---@field id? string
----@field identifier? table
----@field image_uri? table
+---@field identifiers? table
+---@field image_uris? table
 ---@field lang? string
 ---@field layout? string
----@field legality? table
+---@field legalities? table
 ---@field loyalty? string
 ---@field mana_cost? string
 ---@field name? string
@@ -145,13 +145,13 @@
 ---@field oracle_id? string
 ---@field oracle_text? string
 ---@field power? string
----@field price? table
+---@field prices? table
 ---@field rarity? string
 ---@field released_at? string
 ---@field scryfall_uri? string
 ---@field set? string
 ---@field set_name? string
----@field total_card? number
+---@field total_cards? number
 ---@field toughness? string
 ---@field type_line? string
 ---@field uri? string
@@ -160,16 +160,16 @@
 ---@field artist? string
 ---@field cmc? number
 ---@field collector_number? string
----@field color? table
 ---@field color_identity? table
+---@field colors? table
 ---@field data? table
 ---@field has_more? boolean
 ---@field id? string
----@field identifier table
----@field image_uri? table
+---@field identifiers table
+---@field image_uris? table
 ---@field lang? string
 ---@field layout? string
----@field legality? table
+---@field legalities? table
 ---@field loyalty? string
 ---@field mana_cost? string
 ---@field name? string
@@ -178,21 +178,21 @@
 ---@field oracle_id? string
 ---@field oracle_text? string
 ---@field power? string
----@field price? table
+---@field prices? table
 ---@field rarity? string
 ---@field released_at? string
 ---@field scryfall_uri? string
 ---@field set? string
 ---@field set_name? string
----@field total_card? number
+---@field total_cards? number
 ---@field toughness? string
 ---@field type_line? string
 ---@field uri? string
 
 ---@class CardSymbolList
----@field appears_in_mana_cost? boolean
+---@field appears_in_mana_costs? boolean
 ---@field cmc? number
----@field color? table
+---@field colors? table
 ---@field english? string
 ---@field funny? boolean
 ---@field loose_variant? string
@@ -203,9 +203,9 @@
 ---@field transposable? boolean
 
 ---@class CardSymbolListListMatch
----@field appears_in_mana_cost? boolean
+---@field appears_in_mana_costs? boolean
 ---@field cmc? number
----@field color? table
+---@field colors? table
 ---@field english? string
 ---@field funny? boolean
 ---@field loose_variant? string
@@ -218,7 +218,7 @@
 ---@class Catalog
 ---@field data? table
 ---@field object? string
----@field total_value? number
+---@field total_values? number
 ---@field uri? string
 
 ---@class CatalogLoadMatch
@@ -226,8 +226,8 @@
 
 ---@class ManaCost
 ---@field cmc? number
----@field color? table
 ---@field colorless? boolean
+---@field colors? table
 ---@field cost? string
 ---@field monocolored? boolean
 ---@field multicolored? boolean
@@ -235,8 +235,8 @@
 
 ---@class ManaCostListMatch
 ---@field cmc? number
----@field color? table
 ---@field colorless? boolean
+---@field colors? table
 ---@field cost? string
 ---@field monocolored? boolean
 ---@field multicolored? boolean

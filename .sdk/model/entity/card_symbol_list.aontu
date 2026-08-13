@@ -6,7 +6,7 @@ main: kit: entity: card_symbol_list: {
 
   fields: [
     {
-      name: "appears_in_mana_cost"
+      name: "appears_in_mana_costs"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -16,7 +16,7 @@ main: kit: entity: card_symbol_list: {
       type: "`$NUMBER`"
     }
     {
-      name: "color"
+      name: "colors"
       req: false
       type: "`$ARRAY`"
     }
@@ -75,7 +75,7 @@ main: kit: entity: card_symbol_list: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

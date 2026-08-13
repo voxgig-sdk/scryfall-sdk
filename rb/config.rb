@@ -113,6 +113,7 @@ module ScryfallConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/bulk-data",
                   "parts" => [
@@ -121,7 +122,7 @@ module ScryfallConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -147,6 +148,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/bulk-data/{id}",
                   "parts" => [
@@ -197,14 +199,14 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "color",
+              "name" => "color_identity",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "color_identity",
+              "name" => "colors",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 4,
@@ -218,7 +220,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "image_uri",
+              "name" => "image_uris",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -239,7 +241,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "legality",
+              "name" => "legalities",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 9,
@@ -288,7 +290,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "price",
+              "name" => "prices",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 16,
@@ -389,6 +391,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cards/named",
                   "parts" => [
@@ -423,6 +426,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cards/random",
                   "parts" => [
@@ -464,6 +468,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cards/{id}",
                   "parts" => [
@@ -514,14 +519,14 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "color",
+              "name" => "color_identity",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 3,
             },
             {
               "active" => true,
-              "name" => "color_identity",
+              "name" => "colors",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 4,
@@ -549,14 +554,14 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "identifier",
+              "name" => "identifiers",
               "req" => true,
               "type" => "`$ARRAY`",
               "index$" => 8,
             },
             {
               "active" => true,
-              "name" => "image_uri",
+              "name" => "image_uris",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 9,
@@ -577,7 +582,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "legality",
+              "name" => "legalities",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 12,
@@ -640,7 +645,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "price",
+              "name" => "prices",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 21,
@@ -682,7 +687,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "total_card",
+              "name" => "total_cards",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 27,
@@ -718,6 +723,7 @@ module ScryfallConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/cards/collection",
                   "parts" => [
@@ -798,6 +804,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cards/search",
                   "parts" => [
@@ -816,7 +823,7 @@ module ScryfallConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -832,7 +839,7 @@ module ScryfallConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "appears_in_mana_cost",
+              "name" => "appears_in_mana_costs",
               "req" => false,
               "type" => "`$BOOLEAN`",
               "index$" => 0,
@@ -846,7 +853,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "color",
+              "name" => "colors",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -917,6 +924,7 @@ module ScryfallConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/symbology",
                   "parts" => [
@@ -925,7 +933,7 @@ module ScryfallConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -955,7 +963,7 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "total_value",
+              "name" => "total_values",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 2,
@@ -989,6 +997,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/catalog/{catalog_name}",
                   "parts" => [
@@ -1030,16 +1039,16 @@ module ScryfallConfig
             },
             {
               "active" => true,
-              "name" => "color",
+              "name" => "colorless",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$BOOLEAN`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "colorless",
+              "name" => "colors",
               "req" => false,
-              "type" => "`$BOOLEAN`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -1092,6 +1101,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/symbology/parse-mana",
                   "parts" => [
@@ -1105,7 +1115,7 @@ module ScryfallConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.colors`",
                   },
                   "index$" => 0,
                 },
@@ -1190,6 +1200,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/migrations",
                   "parts" => [
@@ -1202,7 +1213,7 @@ module ScryfallConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -1273,6 +1284,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cards/{id}/rulings",
                   "parts" => [
@@ -1292,7 +1304,7 @@ module ScryfallConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -1397,6 +1409,7 @@ module ScryfallConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/sets",
                   "parts" => [
@@ -1405,7 +1418,7 @@ module ScryfallConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -1432,6 +1445,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/sets/{code}",
                   "parts" => [
@@ -1469,6 +1483,7 @@ module ScryfallConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/sets/{id}",
                   "parts" => [

@@ -11,14 +11,14 @@ main: kit: entity: mana_cost: {
       type: "`$NUMBER`"
     }
     {
-      name: "color"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "colorless"
       req: false
       type: "`$BOOLEAN`"
+    }
+    {
+      name: "colors"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "cost"
@@ -73,7 +73,7 @@ main: kit: entity: mana_cost: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.colors`"
           }
         }
       ]

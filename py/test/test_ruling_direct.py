@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from scryfall_sdk.utility.voxgig_struct import voxgig_struct as vs
 from scryfall_sdk import ScryfallSDK
-from core import helpers
+from scryfall_sdk.core import helpers
 from test import runner
 
 

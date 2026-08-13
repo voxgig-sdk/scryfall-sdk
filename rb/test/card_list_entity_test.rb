@@ -73,7 +73,7 @@ class CardListEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.card_list"), "card_list_ref01"))
 
     card_list_ref01_data_result = card_list_ref01_ent.create(card_list_ref01_data, nil)
-    card_list_ref01_data = Helpers.to_map(card_list_ref01_data_result)
+    card_list_ref01_data = Helpers.to_map(card_list_ref01_data_result.respond_to?(:data_get) ? card_list_ref01_data_result.data_get : card_list_ref01_data_result)
     assert !card_list_ref01_data.nil?
     assert !card_list_ref01_data["id"].nil?
 

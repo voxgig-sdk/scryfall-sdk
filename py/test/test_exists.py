@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Scryfall SDK exists test
 
 import pytest
 from scryfall_sdk import ScryfallSDK

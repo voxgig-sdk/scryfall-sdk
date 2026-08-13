@@ -39,20 +39,20 @@ export interface Card {
   artist?: string
   cmc?: number
   collector_number?: string
-  color?: any[]
   color_identity?: any[]
+  colors?: any[]
   id?: string
-  image_uri?: Record<string, any>
+  image_uris?: Record<string, any>
   lang?: string
   layout?: string
-  legality?: Record<string, any>
+  legalities?: Record<string, any>
   loyalty?: string
   mana_cost?: string
   name?: string
   oracle_id?: string
   oracle_text?: string
   power?: string
-  price?: Record<string, any>
+  prices?: Record<string, any>
   rarity?: string
   released_at?: string
   scryfall_uri?: string
@@ -71,20 +71,20 @@ export interface CardListMatch {
   artist?: string
   cmc?: number
   collector_number?: string
-  color?: any[]
   color_identity?: any[]
+  colors?: any[]
   id?: string
-  image_uri?: Record<string, any>
+  image_uris?: Record<string, any>
   lang?: string
   layout?: string
-  legality?: Record<string, any>
+  legalities?: Record<string, any>
   loyalty?: string
   mana_cost?: string
   name?: string
   oracle_id?: string
   oracle_text?: string
   power?: string
-  price?: Record<string, any>
+  prices?: Record<string, any>
   rarity?: string
   released_at?: string
   scryfall_uri?: string
@@ -93,22 +93,28 @@ export interface CardListMatch {
   toughness?: string
   type_line?: string
   uri?: string
+
+  // Selects a custom action instead of the plain list:
+  //   'named' | 'random'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface CardList {
   artist?: string
   cmc?: number
   collector_number?: string
-  color?: any[]
   color_identity?: any[]
+  colors?: any[]
   data?: any[]
   has_more?: boolean
   id?: string
-  identifier: any[]
-  image_uri?: Record<string, any>
+  identifiers: any[]
+  image_uris?: Record<string, any>
   lang?: string
   layout?: string
-  legality?: Record<string, any>
+  legalities?: Record<string, any>
   loyalty?: string
   mana_cost?: string
   name?: string
@@ -117,13 +123,13 @@ export interface CardList {
   oracle_id?: string
   oracle_text?: string
   power?: string
-  price?: Record<string, any>
+  prices?: Record<string, any>
   rarity?: string
   released_at?: string
   scryfall_uri?: string
   set?: string
   set_name?: string
-  total_card?: number
+  total_cards?: number
   toughness?: string
   type_line?: string
   uri?: string
@@ -133,16 +139,16 @@ export interface CardListListMatch {
   artist?: string
   cmc?: number
   collector_number?: string
-  color?: any[]
   color_identity?: any[]
+  colors?: any[]
   data?: any[]
   has_more?: boolean
   id?: string
-  identifier?: any[]
-  image_uri?: Record<string, any>
+  identifiers?: any[]
+  image_uris?: Record<string, any>
   lang?: string
   layout?: string
-  legality?: Record<string, any>
+  legalities?: Record<string, any>
   loyalty?: string
   mana_cost?: string
   name?: string
@@ -151,13 +157,13 @@ export interface CardListListMatch {
   oracle_id?: string
   oracle_text?: string
   power?: string
-  price?: Record<string, any>
+  prices?: Record<string, any>
   rarity?: string
   released_at?: string
   scryfall_uri?: string
   set?: string
   set_name?: string
-  total_card?: number
+  total_cards?: number
   toughness?: string
   type_line?: string
   uri?: string
@@ -167,16 +173,16 @@ export interface CardListCreateData {
   artist?: string
   cmc?: number
   collector_number?: string
-  color?: any[]
   color_identity?: any[]
+  colors?: any[]
   data?: any[]
   has_more?: boolean
   id?: string
-  identifier: any[]
-  image_uri?: Record<string, any>
+  identifiers: any[]
+  image_uris?: Record<string, any>
   lang?: string
   layout?: string
-  legality?: Record<string, any>
+  legalities?: Record<string, any>
   loyalty?: string
   mana_cost?: string
   name?: string
@@ -185,22 +191,22 @@ export interface CardListCreateData {
   oracle_id?: string
   oracle_text?: string
   power?: string
-  price?: Record<string, any>
+  prices?: Record<string, any>
   rarity?: string
   released_at?: string
   scryfall_uri?: string
   set?: string
   set_name?: string
-  total_card?: number
+  total_cards?: number
   toughness?: string
   type_line?: string
   uri?: string
 }
 
 export interface CardSymbolList {
-  appears_in_mana_cost?: boolean
+  appears_in_mana_costs?: boolean
   cmc?: number
-  color?: any[]
+  colors?: any[]
   english?: string
   funny?: boolean
   loose_variant?: string
@@ -212,9 +218,9 @@ export interface CardSymbolList {
 }
 
 export interface CardSymbolListListMatch {
-  appears_in_mana_cost?: boolean
+  appears_in_mana_costs?: boolean
   cmc?: number
-  color?: any[]
+  colors?: any[]
   english?: string
   funny?: boolean
   loose_variant?: string
@@ -228,7 +234,7 @@ export interface CardSymbolListListMatch {
 export interface Catalog {
   data?: any[]
   object?: string
-  total_value?: number
+  total_values?: number
   uri?: string
 }
 
@@ -238,8 +244,8 @@ export interface CatalogLoadMatch {
 
 export interface ManaCost {
   cmc?: number
-  color?: any[]
   colorless?: boolean
+  colors?: any[]
   cost?: string
   monocolored?: boolean
   multicolored?: boolean
@@ -248,8 +254,8 @@ export interface ManaCost {
 
 export interface ManaCostListMatch {
   cmc?: number
-  color?: any[]
   colorless?: boolean
+  colors?: any[]
   cost?: string
   monocolored?: boolean
   multicolored?: boolean

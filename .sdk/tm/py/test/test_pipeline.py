@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import ScryfallSDK
-from core.error import ScryfallError
-from core.result import ScryfallResult
-from core.response import ScryfallResponse
-from core.spec import ScryfallSpec
-from feature.base_feature import ScryfallBaseFeature
+from projectname_sdk.core.error import ScryfallError
+from projectname_sdk.core.result import ScryfallResult
+from projectname_sdk.core.response import ScryfallResponse
+from projectname_sdk.core.spec import ScryfallSpec
+from projectname_sdk.feature.base_feature import ScryfallBaseFeature
 
 
 def _client():
