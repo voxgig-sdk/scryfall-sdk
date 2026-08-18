@@ -40,7 +40,7 @@ class ScryfallSDK
         $utility = new ScryfallUtility();
         $this->_utility = $utility;
 
-        $config = ScryfallConfig::make_config();
+        $config = ScryfallConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

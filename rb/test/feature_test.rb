@@ -15,7 +15,7 @@ require_relative "../Scryfall_sdk"
 module ScryfallFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = ScryfallConfig.make_config["feature"]
+    f = ScryfallConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -28,7 +28,7 @@ class ScryfallSDK
     utility = ScryfallUtility.new
     @_utility = utility
 
-    config = ScryfallConfig.make_config
+    config = ScryfallConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
