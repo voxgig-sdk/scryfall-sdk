@@ -1,0 +1,98 @@
+# Entity: card_symbol_list
+
+main: kit: entity: card_symbol_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "appears_in_mana_costs"
+      req: false
+      short: "True if this symbol appears in mana costs"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "cmc"
+      req: false
+      short: "The converted mana cost represented by this symbol"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "colors"
+      req: false
+      short: "The colors of this symbol"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "english"
+      req: false
+      short: "An English textual description of the symbol"
+      type: "`$STRING`"
+    }
+    {
+      name: "funny"
+      req: false
+      short: "True if this symbol is only used on funny cards"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "loose_variant"
+      req: false
+      short: "An alternate version of this symbol"
+      type: "`$STRING`"
+    }
+    {
+      name: "object"
+      req: false
+      short: "The object type"
+      type: "`$STRING`"
+    }
+    {
+      name: "represents_mana"
+      req: false
+      short: "True if this is a mana symbol"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "svg_uri"
+      req: false
+      short: "A URI to an SVG image for this symbol"
+      type: "`$STRING`"
+    }
+    {
+      name: "symbol"
+      req: false
+      short: "The plaintext symbol"
+      type: "`$STRING`"
+    }
+    {
+      name: "transposable"
+      req: false
+      short: "True if it's possible to write this symbol backwards"
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "card_symbol_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/symbology"
+          parts: [
+            "symbology"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -265,16 +265,16 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `content_encoding` |  |
-| `content_type` |  |
-| `description` |  |
-| `download_uri` |  |
-| `id` |  |
-| `name` |  |
-| `object` |  |
-| `size` |  |
-| `type` |  |
-| `updated_at` |  |
+| `content_encoding` | The Content-Encoding encoding for this file |
+| `content_type` | The MIME type of this file |
+| `description` | A human-readable description for this file |
+| `download_uri` | The URI that hosts this bulk file |
+| `id` | A unique ID for this bulk data file |
+| `name` | A human-readable name for this file |
+| `object` | The object type |
+| `size` | The size of this file in bytes |
+| `type` | The type of bulk data |
+| `updated_at` | The time this file was last updated |
 
 Operations: List, Load.
 
@@ -284,31 +284,31 @@ API path: `/bulk-data`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `cmc` |  |
-| `collector_number` |  |
-| `color_identity` |  |
-| `colors` |  |
-| `id` |  |
-| `image_uris` |  |
-| `lang` |  |
-| `layout` |  |
-| `legalities` |  |
-| `loyalty` |  |
-| `mana_cost` |  |
-| `name` |  |
-| `oracle_id` |  |
-| `oracle_text` |  |
-| `power` |  |
-| `prices` |  |
-| `rarity` |  |
-| `released_at` |  |
-| `scryfall_uri` |  |
-| `set` |  |
-| `set_name` |  |
-| `toughness` |  |
-| `type_line` |  |
-| `uri` |  |
+| `artist` | The name of the illustrator of this card |
+| `cmc` | The card's converted mana cost |
+| `collector_number` | This card's collector number |
+| `color_identity` | This card's color identity |
+| `colors` | This card's colors |
+| `id` | A unique ID for this card in Scryfall's database |
+| `image_uris` | An object containing URIs to this card's imagery |
+| `lang` | The language code for this printing |
+| `layout` | A code for this card's layout |
+| `legalities` | An object describing the legality of this card |
+| `loyalty` | This card's loyalty (for planeswalkers) |
+| `mana_cost` | The mana cost for this card |
+| `name` | The name of this card |
+| `oracle_id` | A unique ID for this card's oracle identity |
+| `oracle_text` | The Oracle text for this card |
+| `power` | This card's power (for creatures) |
+| `prices` | An object containing daily price information for this card |
+| `rarity` | This card's rarity |
+| `released_at` | The date this card was first released |
+| `scryfall_uri` | A link to this card's page on Scryfall's website |
+| `set` | This card's set code |
+| `set_name` | This card's full set name |
+| `toughness` | This card's toughness (for creatures) |
+| `type_line` | The type line of this card |
+| `uri` | A link to this card object on Scryfall's API |
 
 Operations: List, Load.
 
@@ -318,37 +318,37 @@ API path: `/cards/named`
 
 | Field | Description |
 | --- | --- |
-| `artist` |  |
-| `cmc` |  |
-| `collector_number` |  |
-| `color_identity` |  |
-| `colors` |  |
-| `data` |  |
-| `has_more` |  |
-| `id` |  |
+| `artist` | The name of the illustrator of this card |
+| `cmc` | The card's converted mana cost |
+| `collector_number` | This card's collector number |
+| `color_identity` | This card's color identity |
+| `colors` | This card's colors |
+| `data` | An array of the requested objects |
+| `has_more` | True if this list is paginated and has more pages |
+| `id` | A unique ID for this card in Scryfall's database |
 | `identifiers` |  |
-| `image_uris` |  |
-| `lang` |  |
-| `layout` |  |
-| `legalities` |  |
-| `loyalty` |  |
-| `mana_cost` |  |
-| `name` |  |
-| `next_page` |  |
-| `object` |  |
-| `oracle_id` |  |
-| `oracle_text` |  |
-| `power` |  |
-| `prices` |  |
-| `rarity` |  |
-| `released_at` |  |
-| `scryfall_uri` |  |
-| `set` |  |
-| `set_name` |  |
-| `total_cards` |  |
-| `toughness` |  |
-| `type_line` |  |
-| `uri` |  |
+| `image_uris` | An object containing URIs to this card's imagery |
+| `lang` | The language code for this printing |
+| `layout` | A code for this card's layout |
+| `legalities` | An object describing the legality of this card |
+| `loyalty` | This card's loyalty (for planeswalkers) |
+| `mana_cost` | The mana cost for this card |
+| `name` | The name of this card |
+| `next_page` | The URL for the next page of results |
+| `object` | The object type |
+| `oracle_id` | A unique ID for this card's oracle identity |
+| `oracle_text` | The Oracle text for this card |
+| `power` | This card's power (for creatures) |
+| `prices` | An object containing daily price information for this card |
+| `rarity` | This card's rarity |
+| `released_at` | The date this card was first released |
+| `scryfall_uri` | A link to this card's page on Scryfall's website |
+| `set` | This card's set code |
+| `set_name` | This card's full set name |
+| `total_cards` | The total number of cards found |
+| `toughness` | This card's toughness (for creatures) |
+| `type_line` | The type line of this card |
+| `uri` | A link to this card object on Scryfall's API |
 
 Operations: Create, List.
 
@@ -358,17 +358,17 @@ API path: `/cards/collection`
 
 | Field | Description |
 | --- | --- |
-| `appears_in_mana_costs` |  |
-| `cmc` |  |
-| `colors` |  |
-| `english` |  |
-| `funny` |  |
-| `loose_variant` |  |
-| `object` |  |
-| `represents_mana` |  |
-| `svg_uri` |  |
-| `symbol` |  |
-| `transposable` |  |
+| `appears_in_mana_costs` | True if this symbol appears in mana costs |
+| `cmc` | The converted mana cost represented by this symbol |
+| `colors` | The colors of this symbol |
+| `english` | An English textual description of the symbol |
+| `funny` | True if this symbol is only used on funny cards |
+| `loose_variant` | An alternate version of this symbol |
+| `object` | The object type |
+| `represents_mana` | True if this is a mana symbol |
+| `svg_uri` | A URI to an SVG image for this symbol |
+| `symbol` | The plaintext symbol |
+| `transposable` | True if it's possible to write this symbol backwards |
 
 Operations: List.
 
@@ -378,10 +378,10 @@ API path: `/symbology`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `object` |  |
-| `total_values` |  |
-| `uri` |  |
+| `data` | An array of datapoints |
+| `object` | The object type |
+| `total_values` | The number of items in the data array |
+| `uri` | A link to this catalog on Scryfall's API |
 
 Operations: Load.
 
@@ -391,13 +391,13 @@ API path: `/catalog/{catalog_name}`
 
 | Field | Description |
 | --- | --- |
-| `cmc` |  |
-| `colorless` |  |
-| `colors` |  |
-| `cost` |  |
-| `monocolored` |  |
-| `multicolored` |  |
-| `object` |  |
+| `cmc` | The converted mana cost |
+| `colorless` | True if this mana cost is colorless |
+| `colors` | The colors in this mana cost |
+| `cost` | The normalized cost |
+| `monocolored` | True if this mana cost is monocolored |
+| `multicolored` | True if this mana cost is multicolored |
+| `object` | The object type |
 
 Operations: List.
 
@@ -407,13 +407,13 @@ API path: `/symbology/parse-mana`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-| `migration_strategy` |  |
-| `new_scryfall_id` |  |
-| `object` |  |
-| `old_scryfall_id` |  |
-| `performed_at` |  |
-| `uri` |  |
+| `id` | A unique ID for this migration |
+| `migration_strategy` | The type of migration strategy |
+| `new_scryfall_id` | The updated Scryfall ID |
+| `object` | The object type |
+| `old_scryfall_id` | The original Scryfall ID |
+| `performed_at` | The date this migration was performed |
+| `uri` | A link to this migration on Scryfall's API |
 
 Operations: List.
 
@@ -423,11 +423,11 @@ API path: `/migrations`
 
 | Field | Description |
 | --- | --- |
-| `comment` |  |
-| `object` |  |
-| `oracle_id` |  |
-| `published_at` |  |
-| `source` |  |
+| `comment` | The text of the ruling |
+| `object` | The object type |
+| `oracle_id` | The Oracle ID of the card this ruling applies to |
+| `published_at` | The date this ruling was published |
+| `source` | The source of this ruling |
 
 Operations: List.
 
@@ -437,17 +437,17 @@ API path: `/cards/{id}/rulings`
 
 | Field | Description |
 | --- | --- |
-| `card_count` |  |
-| `code` |  |
-| `digital` |  |
-| `icon_svg_uri` |  |
-| `id` |  |
-| `name` |  |
-| `released_at` |  |
-| `scryfall_uri` |  |
-| `search_uri` |  |
-| `set_type` |  |
-| `uri` |  |
+| `card_count` | The number of cards in this set |
+| `code` | The unique three to five-letter code for this set |
+| `digital` | True if this set is only available digitally |
+| `icon_svg_uri` | A URI to an SVG file for this set's icon |
+| `id` | A unique ID for this set |
+| `name` | The English name of the set |
+| `released_at` | The date the set was released |
+| `scryfall_uri` | A link to this set's page on Scryfall's website |
+| `search_uri` | A link to search for cards in this set on Scryfall's API |
+| `set_type` | The type of set |
+| `uri` | A link to this set object on Scryfall's API |
 
 Operations: List, Load.
 
@@ -473,16 +473,16 @@ Create an instance: `bulk_data = client.BulkData()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content_encoding` | `str` |  |
-| `content_type` | `str` |  |
-| `description` | `str` |  |
-| `download_uri` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
-| `object` | `str` |  |
-| `size` | `int` |  |
-| `type` | `str` |  |
-| `updated_at` | `str` |  |
+| `content_encoding` | `str` | The Content-Encoding encoding for this file |
+| `content_type` | `str` | The MIME type of this file |
+| `description` | `str` | A human-readable description for this file |
+| `download_uri` | `str` | The URI that hosts this bulk file |
+| `id` | `str` | A unique ID for this bulk data file |
+| `name` | `str` | A human-readable name for this file |
+| `object` | `str` | The object type |
+| `size` | `int` | The size of this file in bytes |
+| `type` | `str` | The type of bulk data |
+| `updated_at` | `str` | The time this file was last updated |
 
 #### Example: Load
 
@@ -512,31 +512,31 @@ Create an instance: `card = client.Card()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `str` |  |
-| `cmc` | `float` |  |
-| `collector_number` | `str` |  |
-| `color_identity` | `list` |  |
-| `colors` | `list` |  |
-| `id` | `str` |  |
-| `image_uris` | `dict` |  |
-| `lang` | `str` |  |
-| `layout` | `str` |  |
-| `legalities` | `dict` |  |
-| `loyalty` | `str` |  |
-| `mana_cost` | `str` |  |
-| `name` | `str` |  |
-| `oracle_id` | `str` |  |
-| `oracle_text` | `str` |  |
-| `power` | `str` |  |
-| `prices` | `dict` |  |
-| `rarity` | `str` |  |
-| `released_at` | `str` |  |
-| `scryfall_uri` | `str` |  |
-| `set` | `str` |  |
-| `set_name` | `str` |  |
-| `toughness` | `str` |  |
-| `type_line` | `str` |  |
-| `uri` | `str` |  |
+| `artist` | `str` | The name of the illustrator of this card |
+| `cmc` | `float` | The card's converted mana cost |
+| `collector_number` | `str` | This card's collector number |
+| `color_identity` | `list` | This card's color identity |
+| `colors` | `list` | This card's colors |
+| `id` | `str` | A unique ID for this card in Scryfall's database |
+| `image_uris` | `dict` | An object containing URIs to this card's imagery |
+| `lang` | `str` | The language code for this printing |
+| `layout` | `str` | A code for this card's layout |
+| `legalities` | `dict` | An object describing the legality of this card |
+| `loyalty` | `str` | This card's loyalty (for planeswalkers) |
+| `mana_cost` | `str` | The mana cost for this card |
+| `name` | `str` | The name of this card |
+| `oracle_id` | `str` | A unique ID for this card's oracle identity |
+| `oracle_text` | `str` | The Oracle text for this card |
+| `power` | `str` | This card's power (for creatures) |
+| `prices` | `dict` | An object containing daily price information for this card |
+| `rarity` | `str` | This card's rarity |
+| `released_at` | `str` | The date this card was first released |
+| `scryfall_uri` | `str` | A link to this card's page on Scryfall's website |
+| `set` | `str` | This card's set code |
+| `set_name` | `str` | This card's full set name |
+| `toughness` | `str` | This card's toughness (for creatures) |
+| `type_line` | `str` | The type line of this card |
+| `uri` | `str` | A link to this card object on Scryfall's API |
 
 #### Example: Load
 
@@ -566,37 +566,37 @@ Create an instance: `card_list = client.CardList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `artist` | `str` |  |
-| `cmc` | `float` |  |
-| `collector_number` | `str` |  |
-| `color_identity` | `list` |  |
-| `colors` | `list` |  |
-| `data` | `list` |  |
-| `has_more` | `bool` |  |
-| `id` | `str` |  |
+| `artist` | `str` | The name of the illustrator of this card |
+| `cmc` | `float` | The card's converted mana cost |
+| `collector_number` | `str` | This card's collector number |
+| `color_identity` | `list` | This card's color identity |
+| `colors` | `list` | This card's colors |
+| `data` | `list` | An array of the requested objects |
+| `has_more` | `bool` | True if this list is paginated and has more pages |
+| `id` | `str` | A unique ID for this card in Scryfall's database |
 | `identifiers` | `list` |  |
-| `image_uris` | `dict` |  |
-| `lang` | `str` |  |
-| `layout` | `str` |  |
-| `legalities` | `dict` |  |
-| `loyalty` | `str` |  |
-| `mana_cost` | `str` |  |
-| `name` | `str` |  |
-| `next_page` | `str` |  |
-| `object` | `str` |  |
-| `oracle_id` | `str` |  |
-| `oracle_text` | `str` |  |
-| `power` | `str` |  |
-| `prices` | `dict` |  |
-| `rarity` | `str` |  |
-| `released_at` | `str` |  |
-| `scryfall_uri` | `str` |  |
-| `set` | `str` |  |
-| `set_name` | `str` |  |
-| `total_cards` | `int` |  |
-| `toughness` | `str` |  |
-| `type_line` | `str` |  |
-| `uri` | `str` |  |
+| `image_uris` | `dict` | An object containing URIs to this card's imagery |
+| `lang` | `str` | The language code for this printing |
+| `layout` | `str` | A code for this card's layout |
+| `legalities` | `dict` | An object describing the legality of this card |
+| `loyalty` | `str` | This card's loyalty (for planeswalkers) |
+| `mana_cost` | `str` | The mana cost for this card |
+| `name` | `str` | The name of this card |
+| `next_page` | `str` | The URL for the next page of results |
+| `object` | `str` | The object type |
+| `oracle_id` | `str` | A unique ID for this card's oracle identity |
+| `oracle_text` | `str` | The Oracle text for this card |
+| `power` | `str` | This card's power (for creatures) |
+| `prices` | `dict` | An object containing daily price information for this card |
+| `rarity` | `str` | This card's rarity |
+| `released_at` | `str` | The date this card was first released |
+| `scryfall_uri` | `str` | A link to this card's page on Scryfall's website |
+| `set` | `str` | This card's set code |
+| `set_name` | `str` | This card's full set name |
+| `total_cards` | `int` | The total number of cards found |
+| `toughness` | `str` | This card's toughness (for creatures) |
+| `type_line` | `str` | The type line of this card |
+| `uri` | `str` | A link to this card object on Scryfall's API |
 
 #### Example: List
 
@@ -627,17 +627,17 @@ Create an instance: `card_symbol_list = client.CardSymbolList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `appears_in_mana_costs` | `bool` |  |
-| `cmc` | `float` |  |
-| `colors` | `list` |  |
-| `english` | `str` |  |
-| `funny` | `bool` |  |
-| `loose_variant` | `str` |  |
-| `object` | `str` |  |
-| `represents_mana` | `bool` |  |
-| `svg_uri` | `str` |  |
-| `symbol` | `str` |  |
-| `transposable` | `bool` |  |
+| `appears_in_mana_costs` | `bool` | True if this symbol appears in mana costs |
+| `cmc` | `float` | The converted mana cost represented by this symbol |
+| `colors` | `list` | The colors of this symbol |
+| `english` | `str` | An English textual description of the symbol |
+| `funny` | `bool` | True if this symbol is only used on funny cards |
+| `loose_variant` | `str` | An alternate version of this symbol |
+| `object` | `str` | The object type |
+| `represents_mana` | `bool` | True if this is a mana symbol |
+| `svg_uri` | `str` | A URI to an SVG image for this symbol |
+| `symbol` | `str` | The plaintext symbol |
+| `transposable` | `bool` | True if it's possible to write this symbol backwards |
 
 #### Example: List
 
@@ -660,10 +660,10 @@ Create an instance: `catalog = client.Catalog()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `list` |  |
-| `object` | `str` |  |
-| `total_values` | `int` |  |
-| `uri` | `str` |  |
+| `data` | `list` | An array of datapoints |
+| `object` | `str` | The object type |
+| `total_values` | `int` | The number of items in the data array |
+| `uri` | `str` | A link to this catalog on Scryfall's API |
 
 #### Example: Load
 
@@ -686,13 +686,13 @@ Create an instance: `mana_cost = client.ManaCost()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cmc` | `float` |  |
-| `colorless` | `bool` |  |
-| `colors` | `list` |  |
-| `cost` | `str` |  |
-| `monocolored` | `bool` |  |
-| `multicolored` | `bool` |  |
-| `object` | `str` |  |
+| `cmc` | `float` | The converted mana cost |
+| `colorless` | `bool` | True if this mana cost is colorless |
+| `colors` | `list` | The colors in this mana cost |
+| `cost` | `str` | The normalized cost |
+| `monocolored` | `bool` | True if this mana cost is monocolored |
+| `multicolored` | `bool` | True if this mana cost is multicolored |
+| `object` | `str` | The object type |
 
 #### Example: List
 
@@ -715,13 +715,13 @@ Create an instance: `migration = client.Migration()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `str` |  |
-| `migration_strategy` | `str` |  |
-| `new_scryfall_id` | `str` |  |
-| `object` | `str` |  |
-| `old_scryfall_id` | `str` |  |
-| `performed_at` | `str` |  |
-| `uri` | `str` |  |
+| `id` | `str` | A unique ID for this migration |
+| `migration_strategy` | `str` | The type of migration strategy |
+| `new_scryfall_id` | `str` | The updated Scryfall ID |
+| `object` | `str` | The object type |
+| `old_scryfall_id` | `str` | The original Scryfall ID |
+| `performed_at` | `str` | The date this migration was performed |
+| `uri` | `str` | A link to this migration on Scryfall's API |
 
 #### Example: List
 
@@ -744,11 +744,11 @@ Create an instance: `ruling = client.Ruling()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `comment` | `str` |  |
-| `object` | `str` |  |
-| `oracle_id` | `str` |  |
-| `published_at` | `str` |  |
-| `source` | `str` |  |
+| `comment` | `str` | The text of the ruling |
+| `object` | `str` | The object type |
+| `oracle_id` | `str` | The Oracle ID of the card this ruling applies to |
+| `published_at` | `str` | The date this ruling was published |
+| `source` | `str` | The source of this ruling |
 
 #### Example: List
 
@@ -772,17 +772,17 @@ Create an instance: `set = client.Set()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `card_count` | `int` |  |
-| `code` | `str` |  |
-| `digital` | `bool` |  |
-| `icon_svg_uri` | `str` |  |
-| `id` | `str` |  |
-| `name` | `str` |  |
-| `released_at` | `str` |  |
-| `scryfall_uri` | `str` |  |
-| `search_uri` | `str` |  |
-| `set_type` | `str` |  |
-| `uri` | `str` |  |
+| `card_count` | `int` | The number of cards in this set |
+| `code` | `str` | The unique three to five-letter code for this set |
+| `digital` | `bool` | True if this set is only available digitally |
+| `icon_svg_uri` | `str` | A URI to an SVG file for this set's icon |
+| `id` | `str` | A unique ID for this set |
+| `name` | `str` | The English name of the set |
+| `released_at` | `str` | The date the set was released |
+| `scryfall_uri` | `str` | A link to this set's page on Scryfall's website |
+| `search_uri` | `str` | A link to search for cards in this set on Scryfall's API |
+| `set_type` | `str` | The type of set |
+| `uri` | `str` | A link to this set object on Scryfall's API |
 
 #### Example: Load
 

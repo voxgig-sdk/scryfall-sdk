@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Scryfall",
+			"slug": "scryfall",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -41,42 +44,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "content_encoding",
+						"short": "The Content-Encoding encoding for this file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "content_type",
+						"short": "The MIME type of this file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "A human-readable description for this file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "download_uri",
+						"short": "The URI that hosts this bulk file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "A unique ID for this bulk data file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "A human-readable name for this file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "size",
+						"short": "The size of this file in bytes",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type of bulk data",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "updated_at",
+						"short": "The time this file was last updated",
 						"type": "`$STRING`",
 					},
 				},
@@ -146,102 +159,127 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "artist",
+						"short": "The name of the illustrator of this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "cmc",
+						"short": "The card's converted mana cost",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "collector_number",
+						"short": "This card's collector number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "color_identity",
+						"short": "This card's color identity",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "colors",
+						"short": "This card's colors",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "A unique ID for this card in Scryfall's database",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "image_uris",
+						"short": "An object containing URIs to this card's imagery",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "lang",
+						"short": "The language code for this printing",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "layout",
+						"short": "A code for this card's layout",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "legalities",
+						"short": "An object describing the legality of this card",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "loyalty",
+						"short": "This card's loyalty (for planeswalkers)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "mana_cost",
+						"short": "The mana cost for this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "oracle_id",
+						"short": "A unique ID for this card's oracle identity",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "oracle_text",
+						"short": "The Oracle text for this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "power",
+						"short": "This card's power (for creatures)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "prices",
+						"short": "An object containing daily price information for this card",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "rarity",
+						"short": "This card's rarity",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "released_at",
+						"short": "The date this card was first released",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "scryfall_uri",
+						"short": "A link to this card's page on Scryfall's website",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "set",
+						"short": "This card's set code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "set_name",
+						"short": "This card's full set name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "toughness",
+						"short": "This card's toughness (for creatures)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type_line",
+						"short": "The type line of this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uri",
+						"short": "A link to this card object on Scryfall's API",
 						"type": "`$STRING`",
 					},
 				},
@@ -373,34 +411,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "artist",
+						"short": "The name of the illustrator of this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "cmc",
+						"short": "The card's converted mana cost",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "collector_number",
+						"short": "This card's collector number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "color_identity",
+						"short": "This card's color identity",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "colors",
+						"short": "This card's colors",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "data",
+						"short": "An array of the requested objects",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "has_more",
+						"short": "True if this list is paginated and has more pages",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "A unique ID for this card in Scryfall's database",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -410,90 +456,112 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "image_uris",
+						"short": "An object containing URIs to this card's imagery",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "lang",
+						"short": "The language code for this printing",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "layout",
+						"short": "A code for this card's layout",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "legalities",
+						"short": "An object describing the legality of this card",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "loyalty",
+						"short": "This card's loyalty (for planeswalkers)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "mana_cost",
+						"short": "The mana cost for this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "next_page",
+						"short": "The URL for the next page of results",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "oracle_id",
+						"short": "A unique ID for this card's oracle identity",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "oracle_text",
+						"short": "The Oracle text for this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "power",
+						"short": "This card's power (for creatures)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "prices",
+						"short": "An object containing daily price information for this card",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "rarity",
+						"short": "This card's rarity",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "released_at",
+						"short": "The date this card was first released",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "scryfall_uri",
+						"short": "A link to this card's page on Scryfall's website",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "set",
+						"short": "This card's set code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "set_name",
+						"short": "This card's full set name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "total_cards",
+						"short": "The total number of cards found",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "toughness",
+						"short": "This card's toughness (for creatures)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type_line",
+						"short": "The type line of this card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uri",
+						"short": "A link to this card object on Scryfall's API",
 						"type": "`$STRING`",
 					},
 				},
@@ -605,46 +673,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "appears_in_mana_costs",
+						"short": "True if this symbol appears in mana costs",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "cmc",
+						"short": "The converted mana cost represented by this symbol",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "colors",
+						"short": "The colors of this symbol",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "english",
+						"short": "An English textual description of the symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "funny",
+						"short": "True if this symbol is only used on funny cards",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "loose_variant",
+						"short": "An alternate version of this symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "represents_mana",
+						"short": "True if this is a mana symbol",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "svg_uri",
+						"short": "A URI to an SVG image for this symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "symbol",
+						"short": "The plaintext symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "transposable",
+						"short": "True if it's possible to write this symbol backwards",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -679,18 +758,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"short": "An array of datapoints",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "total_values",
+						"short": "The number of items in the data array",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "uri",
+						"short": "A link to this catalog on Scryfall's API",
 						"type": "`$STRING`",
 					},
 				},
@@ -745,30 +828,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cmc",
+						"short": "The converted mana cost",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "colorless",
+						"short": "True if this mana cost is colorless",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "colors",
+						"short": "The colors in this mana cost",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "cost",
+						"short": "The normalized cost",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "monocolored",
+						"short": "True if this mana cost is monocolored",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "multicolored",
+						"short": "True if this mana cost is multicolored",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 				},
@@ -819,30 +909,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "A unique ID for this migration",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "migration_strategy",
+						"short": "The type of migration strategy",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "new_scryfall_id",
+						"short": "The updated Scryfall ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "old_scryfall_id",
+						"short": "The original Scryfall ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "performed_at",
+						"short": "The date this migration was performed",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uri",
+						"short": "A link to this migration on Scryfall's API",
 						"type": "`$STRING`",
 					},
 				},
@@ -891,22 +988,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "comment",
+						"short": "The text of the ruling",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "object",
+						"short": "The object type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "oracle_id",
+						"short": "The Oracle ID of the card this ruling applies to",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "published_at",
+						"short": "The date this ruling was published",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "source",
+						"short": "The source of this ruling",
 						"type": "`$STRING`",
 					},
 				},
@@ -966,46 +1068,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "card_count",
+						"short": "The number of cards in this set",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "code",
+						"short": "The unique three to five-letter code for this set",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "digital",
+						"short": "True if this set is only available digitally",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "icon_svg_uri",
+						"short": "A URI to an SVG file for this set's icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "A unique ID for this set",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The English name of the set",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "released_at",
+						"short": "The date the set was released",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "scryfall_uri",
+						"short": "A link to this set's page on Scryfall's website",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "search_uri",
+						"short": "A link to search for cards in this set on Scryfall's API",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "set_type",
+						"short": "The type of set",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "uri",
+						"short": "A link to this set object on Scryfall's API",
 						"type": "`$STRING`",
 					},
 				},

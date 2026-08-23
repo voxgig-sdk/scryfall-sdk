@@ -1,0 +1,93 @@
+# Entity: ruling
+
+main: kit: entity: ruling: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "comment"
+      req: false
+      short: "The text of the ruling"
+      type: "`$STRING`"
+    }
+    {
+      name: "object"
+      req: false
+      short: "The object type"
+      type: "`$STRING`"
+    }
+    {
+      name: "oracle_id"
+      req: false
+      short: "The Oracle ID of the card this ruling applies to"
+      type: "`$STRING`"
+    }
+    {
+      name: "published_at"
+      req: false
+      short: "The date this ruling was published"
+      type: "`$STRING`"
+    }
+    {
+      name: "source"
+      req: false
+      short: "The source of this ruling"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "ruling"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "card_id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cards/{id}/rulings"
+          parts: [
+            "cards"
+            "{card_id}"
+            "rulings"
+          ]
+          rename: {
+            param: {
+              id: "card_id"
+            }
+          }
+          select: {
+            exist: [
+              "card_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "card"
+      ]
+    ]
+  }
+
+
+
+}

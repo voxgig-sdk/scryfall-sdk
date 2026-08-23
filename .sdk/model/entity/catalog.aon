@@ -1,0 +1,78 @@
+# Entity: catalog
+
+main: kit: entity: catalog: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: false
+      short: "An array of datapoints"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "object"
+      req: false
+      short: "The object type"
+      type: "`$STRING`"
+    }
+    {
+      name: "total_values"
+      req: false
+      short: "The number of items in the data array"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "uri"
+      req: false
+      short: "A link to this catalog on Scryfall's API"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "catalog"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "catalog_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/catalog/{catalog_name}"
+          parts: [
+            "catalog"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              catalog_name: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

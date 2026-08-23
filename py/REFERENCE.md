@@ -119,16 +119,16 @@ bulk_data = client.BulkData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content_encoding` | `str` | No |  |
-| `content_type` | `str` | No |  |
-| `description` | `str` | No |  |
-| `download_uri` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `object` | `str` | No |  |
-| `size` | `int` | No |  |
-| `type` | `str` | No |  |
-| `updated_at` | `str` | No |  |
+| `content_encoding` | `str` | No | The Content-Encoding encoding for this file |
+| `content_type` | `str` | No | The MIME type of this file |
+| `description` | `str` | No | A human-readable description for this file |
+| `download_uri` | `str` | No | The URI that hosts this bulk file |
+| `id` | `str` | No | A unique ID for this bulk data file |
+| `name` | `str` | No | A human-readable name for this file |
+| `object` | `str` | No | The object type |
+| `size` | `int` | No | The size of this file in bytes |
+| `type` | `str` | No | The type of bulk data |
+| `updated_at` | `str` | No | The time this file was last updated |
 
 ### Operations
 
@@ -189,31 +189,31 @@ card = client.Card()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `str` | No |  |
-| `cmc` | `float` | No |  |
-| `collector_number` | `str` | No |  |
-| `color_identity` | `list` | No |  |
-| `colors` | `list` | No |  |
-| `id` | `str` | No |  |
-| `image_uris` | `dict` | No |  |
-| `lang` | `str` | No |  |
-| `layout` | `str` | No |  |
-| `legalities` | `dict` | No |  |
-| `loyalty` | `str` | No |  |
-| `mana_cost` | `str` | No |  |
-| `name` | `str` | No |  |
-| `oracle_id` | `str` | No |  |
-| `oracle_text` | `str` | No |  |
-| `power` | `str` | No |  |
-| `prices` | `dict` | No |  |
-| `rarity` | `str` | No |  |
-| `released_at` | `str` | No |  |
-| `scryfall_uri` | `str` | No |  |
-| `set` | `str` | No |  |
-| `set_name` | `str` | No |  |
-| `toughness` | `str` | No |  |
-| `type_line` | `str` | No |  |
-| `uri` | `str` | No |  |
+| `artist` | `str` | No | The name of the illustrator of this card |
+| `cmc` | `float` | No | The card's converted mana cost |
+| `collector_number` | `str` | No | This card's collector number |
+| `color_identity` | `list` | No | This card's color identity |
+| `colors` | `list` | No | This card's colors |
+| `id` | `str` | No | A unique ID for this card in Scryfall's database |
+| `image_uris` | `dict` | No | An object containing URIs to this card's imagery |
+| `lang` | `str` | No | The language code for this printing |
+| `layout` | `str` | No | A code for this card's layout |
+| `legalities` | `dict` | No | An object describing the legality of this card |
+| `loyalty` | `str` | No | This card's loyalty (for planeswalkers) |
+| `mana_cost` | `str` | No | The mana cost for this card |
+| `name` | `str` | No | The name of this card |
+| `oracle_id` | `str` | No | A unique ID for this card's oracle identity |
+| `oracle_text` | `str` | No | The Oracle text for this card |
+| `power` | `str` | No | This card's power (for creatures) |
+| `prices` | `dict` | No | An object containing daily price information for this card |
+| `rarity` | `str` | No | This card's rarity |
+| `released_at` | `str` | No | The date this card was first released |
+| `scryfall_uri` | `str` | No | A link to this card's page on Scryfall's website |
+| `set` | `str` | No | This card's set code |
+| `set_name` | `str` | No | This card's full set name |
+| `toughness` | `str` | No | This card's toughness (for creatures) |
+| `type_line` | `str` | No | The type line of this card |
+| `uri` | `str` | No | A link to this card object on Scryfall's API |
 
 ### Operations
 
@@ -274,37 +274,37 @@ card_list = client.CardList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `artist` | `str` | No |  |
-| `cmc` | `float` | No |  |
-| `collector_number` | `str` | No |  |
-| `color_identity` | `list` | No |  |
-| `colors` | `list` | No |  |
-| `data` | `list` | No |  |
-| `has_more` | `bool` | No |  |
-| `id` | `str` | No |  |
+| `artist` | `str` | No | The name of the illustrator of this card |
+| `cmc` | `float` | No | The card's converted mana cost |
+| `collector_number` | `str` | No | This card's collector number |
+| `color_identity` | `list` | No | This card's color identity |
+| `colors` | `list` | No | This card's colors |
+| `data` | `list` | No | An array of the requested objects |
+| `has_more` | `bool` | No | True if this list is paginated and has more pages |
+| `id` | `str` | No | A unique ID for this card in Scryfall's database |
 | `identifiers` | `list` | Yes |  |
-| `image_uris` | `dict` | No |  |
-| `lang` | `str` | No |  |
-| `layout` | `str` | No |  |
-| `legalities` | `dict` | No |  |
-| `loyalty` | `str` | No |  |
-| `mana_cost` | `str` | No |  |
-| `name` | `str` | No |  |
-| `next_page` | `str` | No |  |
-| `object` | `str` | No |  |
-| `oracle_id` | `str` | No |  |
-| `oracle_text` | `str` | No |  |
-| `power` | `str` | No |  |
-| `prices` | `dict` | No |  |
-| `rarity` | `str` | No |  |
-| `released_at` | `str` | No |  |
-| `scryfall_uri` | `str` | No |  |
-| `set` | `str` | No |  |
-| `set_name` | `str` | No |  |
-| `total_cards` | `int` | No |  |
-| `toughness` | `str` | No |  |
-| `type_line` | `str` | No |  |
-| `uri` | `str` | No |  |
+| `image_uris` | `dict` | No | An object containing URIs to this card's imagery |
+| `lang` | `str` | No | The language code for this printing |
+| `layout` | `str` | No | A code for this card's layout |
+| `legalities` | `dict` | No | An object describing the legality of this card |
+| `loyalty` | `str` | No | This card's loyalty (for planeswalkers) |
+| `mana_cost` | `str` | No | The mana cost for this card |
+| `name` | `str` | No | The name of this card |
+| `next_page` | `str` | No | The URL for the next page of results |
+| `object` | `str` | No | The object type |
+| `oracle_id` | `str` | No | A unique ID for this card's oracle identity |
+| `oracle_text` | `str` | No | The Oracle text for this card |
+| `power` | `str` | No | This card's power (for creatures) |
+| `prices` | `dict` | No | An object containing daily price information for this card |
+| `rarity` | `str` | No | This card's rarity |
+| `released_at` | `str` | No | The date this card was first released |
+| `scryfall_uri` | `str` | No | A link to this card's page on Scryfall's website |
+| `set` | `str` | No | This card's set code |
+| `set_name` | `str` | No | This card's full set name |
+| `total_cards` | `int` | No | The total number of cards found |
+| `toughness` | `str` | No | This card's toughness (for creatures) |
+| `type_line` | `str` | No | The type line of this card |
+| `uri` | `str` | No | A link to this card object on Scryfall's API |
 
 ### Operations
 
@@ -367,17 +367,17 @@ card_symbol_list = client.CardSymbolList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `appears_in_mana_costs` | `bool` | No |  |
-| `cmc` | `float` | No |  |
-| `colors` | `list` | No |  |
-| `english` | `str` | No |  |
-| `funny` | `bool` | No |  |
-| `loose_variant` | `str` | No |  |
-| `object` | `str` | No |  |
-| `represents_mana` | `bool` | No |  |
-| `svg_uri` | `str` | No |  |
-| `symbol` | `str` | No |  |
-| `transposable` | `bool` | No |  |
+| `appears_in_mana_costs` | `bool` | No | True if this symbol appears in mana costs |
+| `cmc` | `float` | No | The converted mana cost represented by this symbol |
+| `colors` | `list` | No | The colors of this symbol |
+| `english` | `str` | No | An English textual description of the symbol |
+| `funny` | `bool` | No | True if this symbol is only used on funny cards |
+| `loose_variant` | `str` | No | An alternate version of this symbol |
+| `object` | `str` | No | The object type |
+| `represents_mana` | `bool` | No | True if this is a mana symbol |
+| `svg_uri` | `str` | No | A URI to an SVG image for this symbol |
+| `symbol` | `str` | No | The plaintext symbol |
+| `transposable` | `bool` | No | True if it's possible to write this symbol backwards |
 
 ### Operations
 
@@ -430,10 +430,10 @@ catalog = client.Catalog()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `list` | No |  |
-| `object` | `str` | No |  |
-| `total_values` | `int` | No |  |
-| `uri` | `str` | No |  |
+| `data` | `list` | No | An array of datapoints |
+| `object` | `str` | No | The object type |
+| `total_values` | `int` | No | The number of items in the data array |
+| `uri` | `str` | No | A link to this catalog on Scryfall's API |
 
 ### Operations
 
@@ -484,13 +484,13 @@ mana_cost = client.ManaCost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cmc` | `float` | No |  |
-| `colorless` | `bool` | No |  |
-| `colors` | `list` | No |  |
-| `cost` | `str` | No |  |
-| `monocolored` | `bool` | No |  |
-| `multicolored` | `bool` | No |  |
-| `object` | `str` | No |  |
+| `cmc` | `float` | No | The converted mana cost |
+| `colorless` | `bool` | No | True if this mana cost is colorless |
+| `colors` | `list` | No | The colors in this mana cost |
+| `cost` | `str` | No | The normalized cost |
+| `monocolored` | `bool` | No | True if this mana cost is monocolored |
+| `multicolored` | `bool` | No | True if this mana cost is multicolored |
+| `object` | `str` | No | The object type |
 
 ### Operations
 
@@ -543,13 +543,13 @@ migration = client.Migration()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
-| `migration_strategy` | `str` | No |  |
-| `new_scryfall_id` | `str` | No |  |
-| `object` | `str` | No |  |
-| `old_scryfall_id` | `str` | No |  |
-| `performed_at` | `str` | No |  |
-| `uri` | `str` | No |  |
+| `id` | `str` | No | A unique ID for this migration |
+| `migration_strategy` | `str` | No | The type of migration strategy |
+| `new_scryfall_id` | `str` | No | The updated Scryfall ID |
+| `object` | `str` | No | The object type |
+| `old_scryfall_id` | `str` | No | The original Scryfall ID |
+| `performed_at` | `str` | No | The date this migration was performed |
+| `uri` | `str` | No | A link to this migration on Scryfall's API |
 
 ### Operations
 
@@ -602,11 +602,11 @@ ruling = client.Ruling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comment` | `str` | No |  |
-| `object` | `str` | No |  |
-| `oracle_id` | `str` | No |  |
-| `published_at` | `str` | No |  |
-| `source` | `str` | No |  |
+| `comment` | `str` | No | The text of the ruling |
+| `object` | `str` | No | The object type |
+| `oracle_id` | `str` | No | The Oracle ID of the card this ruling applies to |
+| `published_at` | `str` | No | The date this ruling was published |
+| `source` | `str` | No | The source of this ruling |
 
 ### Operations
 
@@ -659,17 +659,17 @@ set = client.Set()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `card_count` | `int` | No |  |
-| `code` | `str` | No |  |
-| `digital` | `bool` | No |  |
-| `icon_svg_uri` | `str` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `released_at` | `str` | No |  |
-| `scryfall_uri` | `str` | No |  |
-| `search_uri` | `str` | No |  |
-| `set_type` | `str` | No |  |
-| `uri` | `str` | No |  |
+| `card_count` | `int` | No | The number of cards in this set |
+| `code` | `str` | No | The unique three to five-letter code for this set |
+| `digital` | `bool` | No | True if this set is only available digitally |
+| `icon_svg_uri` | `str` | No | A URI to an SVG file for this set's icon |
+| `id` | `str` | No | A unique ID for this set |
+| `name` | `str` | No | The English name of the set |
+| `released_at` | `str` | No | The date the set was released |
+| `scryfall_uri` | `str` | No | A link to this set's page on Scryfall's website |
+| `search_uri` | `str` | No | A link to search for cards in this set on Scryfall's API |
+| `set_type` | `str` | No | The type of set |
+| `uri` | `str` | No | A link to this set object on Scryfall's API |
 
 ### Operations
 

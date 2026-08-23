@@ -294,7 +294,7 @@ export interface RulingListMatch {
   card_id: string
 }
 
-export interface Set {
+export interface SetType {
   card_count?: number
   code?: string
   digital?: boolean

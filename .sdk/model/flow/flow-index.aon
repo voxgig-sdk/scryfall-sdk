@@ -1,0 +1,11 @@
+# Flows
+
+@"BasicBulkDataFlow.aon"
+@"BasicCardFlow.aon"
+@"BasicCardListFlow.aon"
+@"BasicCardSymbolListFlow.aon"
+@"BasicCatalogFlow.aon"
+@"BasicManaCostFlow.aon"
+@"BasicMigrationFlow.aon"
+@"BasicRulingFlow.aon"
+@"BasicSetFlow.aon"

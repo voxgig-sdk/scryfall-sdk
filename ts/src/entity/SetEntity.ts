@@ -15,13 +15,13 @@ import type {
 } from '../types'
 
 import type {
-  Set,
+  SetType,
   SetLoadMatch,
   SetListMatch,
 } from '../ScryfallTypes'
 
 // TODO: needs Entity superclass
-class SetEntity extends ScryfallEntityBase<Set> {
+class SetEntity extends ScryfallEntityBase<SetType> {
 
   constructor(client: ScryfallSDK, entopts: any) {
     super(client, entopts)

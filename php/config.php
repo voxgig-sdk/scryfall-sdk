@@ -33,6 +33,9 @@ class ScryfallConfig
         return [
             "main" => [
                 "name" => "Scryfall",
+                "slug" => "scryfall",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -63,42 +66,52 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'content_encoding',
+              'short' => 'The Content-Encoding encoding for this file',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'content_type',
+              'short' => 'The MIME type of this file',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'description',
+              'short' => 'A human-readable description for this file',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'download_uri',
+              'short' => 'The URI that hosts this bulk file',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'A unique ID for this bulk data file',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'A human-readable name for this file',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'size',
+              'short' => 'The size of this file in bytes',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'type',
+              'short' => 'The type of bulk data',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'updated_at',
+              'short' => 'The time this file was last updated',
               'type' => '`$STRING`',
             ],
           ],
@@ -168,102 +181,127 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'artist',
+              'short' => 'The name of the illustrator of this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'cmc',
+              'short' => 'The card\'s converted mana cost',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'collector_number',
+              'short' => 'This card\'s collector number',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'color_identity',
+              'short' => 'This card\'s color identity',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'colors',
+              'short' => 'This card\'s colors',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'A unique ID for this card in Scryfall\'s database',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'image_uris',
+              'short' => 'An object containing URIs to this card\'s imagery',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'lang',
+              'short' => 'The language code for this printing',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'layout',
+              'short' => 'A code for this card\'s layout',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'legalities',
+              'short' => 'An object describing the legality of this card',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'loyalty',
+              'short' => 'This card\'s loyalty (for planeswalkers)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'mana_cost',
+              'short' => 'The mana cost for this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'The name of this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'oracle_id',
+              'short' => 'A unique ID for this card\'s oracle identity',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'oracle_text',
+              'short' => 'The Oracle text for this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'power',
+              'short' => 'This card\'s power (for creatures)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'prices',
+              'short' => 'An object containing daily price information for this card',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'rarity',
+              'short' => 'This card\'s rarity',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'released_at',
+              'short' => 'The date this card was first released',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'scryfall_uri',
+              'short' => 'A link to this card\'s page on Scryfall\'s website',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'set',
+              'short' => 'This card\'s set code',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'set_name',
+              'short' => 'This card\'s full set name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'toughness',
+              'short' => 'This card\'s toughness (for creatures)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type_line',
+              'short' => 'The type line of this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'uri',
+              'short' => 'A link to this card object on Scryfall\'s API',
               'type' => '`$STRING`',
             ],
           ],
@@ -395,34 +433,42 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'artist',
+              'short' => 'The name of the illustrator of this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'cmc',
+              'short' => 'The card\'s converted mana cost',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'collector_number',
+              'short' => 'This card\'s collector number',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'color_identity',
+              'short' => 'This card\'s color identity',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'colors',
+              'short' => 'This card\'s colors',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'data',
+              'short' => 'An array of the requested objects',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'has_more',
+              'short' => 'True if this list is paginated and has more pages',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'id',
+              'short' => 'A unique ID for this card in Scryfall\'s database',
               'type' => '`$STRING`',
             ],
             [
@@ -432,90 +478,112 @@ class ScryfallConfig
             ],
             [
               'name' => 'image_uris',
+              'short' => 'An object containing URIs to this card\'s imagery',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'lang',
+              'short' => 'The language code for this printing',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'layout',
+              'short' => 'A code for this card\'s layout',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'legalities',
+              'short' => 'An object describing the legality of this card',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'loyalty',
+              'short' => 'This card\'s loyalty (for planeswalkers)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'mana_cost',
+              'short' => 'The mana cost for this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'The name of this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'next_page',
+              'short' => 'The URL for the next page of results',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'oracle_id',
+              'short' => 'A unique ID for this card\'s oracle identity',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'oracle_text',
+              'short' => 'The Oracle text for this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'power',
+              'short' => 'This card\'s power (for creatures)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'prices',
+              'short' => 'An object containing daily price information for this card',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'rarity',
+              'short' => 'This card\'s rarity',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'released_at',
+              'short' => 'The date this card was first released',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'scryfall_uri',
+              'short' => 'A link to this card\'s page on Scryfall\'s website',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'set',
+              'short' => 'This card\'s set code',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'set_name',
+              'short' => 'This card\'s full set name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'total_cards',
+              'short' => 'The total number of cards found',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'toughness',
+              'short' => 'This card\'s toughness (for creatures)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type_line',
+              'short' => 'The type line of this card',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'uri',
+              'short' => 'A link to this card object on Scryfall\'s API',
               'type' => '`$STRING`',
             ],
           ],
@@ -627,46 +695,57 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'appears_in_mana_costs',
+              'short' => 'True if this symbol appears in mana costs',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'cmc',
+              'short' => 'The converted mana cost represented by this symbol',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'colors',
+              'short' => 'The colors of this symbol',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'english',
+              'short' => 'An English textual description of the symbol',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'funny',
+              'short' => 'True if this symbol is only used on funny cards',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'loose_variant',
+              'short' => 'An alternate version of this symbol',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'represents_mana',
+              'short' => 'True if this is a mana symbol',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'svg_uri',
+              'short' => 'A URI to an SVG image for this symbol',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'symbol',
+              'short' => 'The plaintext symbol',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'transposable',
+              'short' => 'True if it\'s possible to write this symbol backwards',
               'type' => '`$BOOLEAN`',
             ],
           ],
@@ -701,18 +780,22 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'data',
+              'short' => 'An array of datapoints',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'total_values',
+              'short' => 'The number of items in the data array',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'uri',
+              'short' => 'A link to this catalog on Scryfall\'s API',
               'type' => '`$STRING`',
             ],
           ],
@@ -767,30 +850,37 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'cmc',
+              'short' => 'The converted mana cost',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'colorless',
+              'short' => 'True if this mana cost is colorless',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'colors',
+              'short' => 'The colors in this mana cost',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'cost',
+              'short' => 'The normalized cost',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'monocolored',
+              'short' => 'True if this mana cost is monocolored',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'multicolored',
+              'short' => 'True if this mana cost is multicolored',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
           ],
@@ -841,30 +931,37 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'id',
+              'short' => 'A unique ID for this migration',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'migration_strategy',
+              'short' => 'The type of migration strategy',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'new_scryfall_id',
+              'short' => 'The updated Scryfall ID',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'old_scryfall_id',
+              'short' => 'The original Scryfall ID',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'performed_at',
+              'short' => 'The date this migration was performed',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'uri',
+              'short' => 'A link to this migration on Scryfall\'s API',
               'type' => '`$STRING`',
             ],
           ],
@@ -913,22 +1010,27 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'comment',
+              'short' => 'The text of the ruling',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'object',
+              'short' => 'The object type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'oracle_id',
+              'short' => 'The Oracle ID of the card this ruling applies to',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'published_at',
+              'short' => 'The date this ruling was published',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'source',
+              'short' => 'The source of this ruling',
               'type' => '`$STRING`',
             ],
           ],
@@ -988,46 +1090,57 @@ class ScryfallConfig
           'fields' => [
             [
               'name' => 'card_count',
+              'short' => 'The number of cards in this set',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'code',
+              'short' => 'The unique three to five-letter code for this set',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'digital',
+              'short' => 'True if this set is only available digitally',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'icon_svg_uri',
+              'short' => 'A URI to an SVG file for this set\'s icon',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'A unique ID for this set',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'The English name of the set',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'released_at',
+              'short' => 'The date the set was released',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'scryfall_uri',
+              'short' => 'A link to this set\'s page on Scryfall\'s website',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'search_uri',
+              'short' => 'A link to search for cards in this set on Scryfall\'s API',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'set_type',
+              'short' => 'The type of set',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'uri',
+              'short' => 'A link to this set object on Scryfall\'s API',
               'type' => '`$STRING`',
             ],
           ],

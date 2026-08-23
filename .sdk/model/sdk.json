@@ -36,60 +36,70 @@
               "active": true,
               "name": "content_encoding",
               "req": false,
+              "short": "The Content-Encoding encoding for this file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "content_type",
               "req": false,
+              "short": "The MIME type of this file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "A human-readable description for this file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "download_uri",
               "req": false,
+              "short": "The URI that hosts this bulk file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "A unique ID for this bulk data file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "A human-readable name for this file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "size",
               "req": false,
+              "short": "The size of this file in bytes",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type of bulk data",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "updated_at",
               "req": false,
+              "short": "The time this file was last updated",
               "type": "`$STRING`"
             }
           ],
@@ -172,150 +182,175 @@
               "active": true,
               "name": "artist",
               "req": false,
+              "short": "The name of the illustrator of this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "cmc",
               "req": false,
+              "short": "The card's converted mana cost",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "collector_number",
               "req": false,
+              "short": "This card's collector number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "color_identity",
               "req": false,
+              "short": "This card's color identity",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "colors",
               "req": false,
+              "short": "This card's colors",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "A unique ID for this card in Scryfall's database",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "image_uris",
               "req": false,
+              "short": "An object containing URIs to this card's imagery",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "lang",
               "req": false,
+              "short": "The language code for this printing",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "layout",
               "req": false,
+              "short": "A code for this card's layout",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "legalities",
               "req": false,
+              "short": "An object describing the legality of this card",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "loyalty",
               "req": false,
+              "short": "This card's loyalty (for planeswalkers)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "mana_cost",
               "req": false,
+              "short": "The mana cost for this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "oracle_id",
               "req": false,
+              "short": "A unique ID for this card's oracle identity",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "oracle_text",
               "req": false,
+              "short": "The Oracle text for this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "power",
               "req": false,
+              "short": "This card's power (for creatures)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "prices",
               "req": false,
+              "short": "An object containing daily price information for this card",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "rarity",
               "req": false,
+              "short": "This card's rarity",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "released_at",
               "req": false,
+              "short": "The date this card was first released",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "scryfall_uri",
               "req": false,
+              "short": "A link to this card's page on Scryfall's website",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "set",
               "req": false,
+              "short": "This card's set code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "set_name",
               "req": false,
+              "short": "This card's full set name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "toughness",
               "req": false,
+              "short": "This card's toughness (for creatures)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type_line",
               "req": false,
+              "short": "The type line of this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uri",
               "req": false,
+              "short": "A link to this card object on Scryfall's API",
               "type": "`$STRING`"
             }
           ],
@@ -469,48 +504,56 @@
               "active": true,
               "name": "artist",
               "req": false,
+              "short": "The name of the illustrator of this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "cmc",
               "req": false,
+              "short": "The card's converted mana cost",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "collector_number",
               "req": false,
+              "short": "This card's collector number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "color_identity",
               "req": false,
+              "short": "This card's color identity",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "colors",
               "req": false,
+              "short": "This card's colors",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "data",
               "req": false,
+              "short": "An array of the requested objects",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "has_more",
               "req": false,
+              "short": "True if this list is paginated and has more pages",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "A unique ID for this card in Scryfall's database",
               "type": "`$STRING`"
             },
             {
@@ -523,132 +566,154 @@
               "active": true,
               "name": "image_uris",
               "req": false,
+              "short": "An object containing URIs to this card's imagery",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "lang",
               "req": false,
+              "short": "The language code for this printing",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "layout",
               "req": false,
+              "short": "A code for this card's layout",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "legalities",
               "req": false,
+              "short": "An object describing the legality of this card",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "loyalty",
               "req": false,
+              "short": "This card's loyalty (for planeswalkers)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "mana_cost",
               "req": false,
+              "short": "The mana cost for this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "next_page",
               "req": false,
+              "short": "The URL for the next page of results",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "oracle_id",
               "req": false,
+              "short": "A unique ID for this card's oracle identity",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "oracle_text",
               "req": false,
+              "short": "The Oracle text for this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "power",
               "req": false,
+              "short": "This card's power (for creatures)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "prices",
               "req": false,
+              "short": "An object containing daily price information for this card",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "rarity",
               "req": false,
+              "short": "This card's rarity",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "released_at",
               "req": false,
+              "short": "The date this card was first released",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "scryfall_uri",
               "req": false,
+              "short": "A link to this card's page on Scryfall's website",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "set",
               "req": false,
+              "short": "This card's set code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "set_name",
               "req": false,
+              "short": "This card's full set name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "total_cards",
               "req": false,
+              "short": "The total number of cards found",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "toughness",
               "req": false,
+              "short": "This card's toughness (for creatures)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type_line",
               "req": false,
+              "short": "The type line of this card",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uri",
               "req": false,
+              "short": "A link to this card object on Scryfall's API",
               "type": "`$STRING`"
             }
           ],
@@ -783,66 +848,77 @@
               "active": true,
               "name": "appears_in_mana_costs",
               "req": false,
+              "short": "True if this symbol appears in mana costs",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "cmc",
               "req": false,
+              "short": "The converted mana cost represented by this symbol",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "colors",
               "req": false,
+              "short": "The colors of this symbol",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "english",
               "req": false,
+              "short": "An English textual description of the symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "funny",
               "req": false,
+              "short": "True if this symbol is only used on funny cards",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "loose_variant",
               "req": false,
+              "short": "An alternate version of this symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "represents_mana",
               "req": false,
+              "short": "True if this is a mana symbol",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "svg_uri",
               "req": false,
+              "short": "A URI to an SVG image for this symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "symbol",
               "req": false,
+              "short": "The plaintext symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "transposable",
               "req": false,
+              "short": "True if it's possible to write this symbol backwards",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -884,24 +960,28 @@
               "active": true,
               "name": "data",
               "req": false,
+              "short": "An array of datapoints",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "total_values",
               "req": false,
+              "short": "The number of items in the data array",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "uri",
               "req": false,
+              "short": "A link to this catalog on Scryfall's API",
               "type": "`$STRING`"
             }
           ],
@@ -964,42 +1044,49 @@
               "active": true,
               "name": "cmc",
               "req": false,
+              "short": "The converted mana cost",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "colorless",
               "req": false,
+              "short": "True if this mana cost is colorless",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "colors",
               "req": false,
+              "short": "The colors in this mana cost",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "cost",
               "req": false,
+              "short": "The normalized cost",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "monocolored",
               "req": false,
+              "short": "True if this mana cost is monocolored",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "multicolored",
               "req": false,
+              "short": "True if this mana cost is multicolored",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             }
           ],
@@ -1058,42 +1145,49 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "A unique ID for this migration",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "migration_strategy",
               "req": false,
+              "short": "The type of migration strategy",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "new_scryfall_id",
               "req": false,
+              "short": "The updated Scryfall ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "old_scryfall_id",
               "req": false,
+              "short": "The original Scryfall ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "performed_at",
               "req": false,
+              "short": "The date this migration was performed",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uri",
               "req": false,
+              "short": "A link to this migration on Scryfall's API",
               "type": "`$STRING`"
             }
           ],
@@ -1155,30 +1249,35 @@
               "active": true,
               "name": "comment",
               "req": false,
+              "short": "The text of the ruling",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "object",
               "req": false,
+              "short": "The object type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "oracle_id",
               "req": false,
+              "short": "The Oracle ID of the card this ruling applies to",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "published_at",
               "req": false,
+              "short": "The date this ruling was published",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "source",
               "req": false,
+              "short": "The source of this ruling",
               "type": "`$STRING`"
             }
           ],
@@ -1246,66 +1345,77 @@
               "active": true,
               "name": "card_count",
               "req": false,
+              "short": "The number of cards in this set",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "code",
               "req": false,
+              "short": "The unique three to five-letter code for this set",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "digital",
               "req": false,
+              "short": "True if this set is only available digitally",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "icon_svg_uri",
               "req": false,
+              "short": "A URI to an SVG file for this set's icon",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "A unique ID for this set",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The English name of the set",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "released_at",
               "req": false,
+              "short": "The date the set was released",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "scryfall_uri",
               "req": false,
+              "short": "A link to this set's page on Scryfall's website",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "search_uri",
               "req": false,
+              "short": "A link to search for cards in this set on Scryfall's API",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "set_type",
               "req": false,
+              "short": "The type of set",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "uri",
               "req": false,
+              "short": "A link to this set object on Scryfall's API",
               "type": "`$STRING`"
             }
           ],
