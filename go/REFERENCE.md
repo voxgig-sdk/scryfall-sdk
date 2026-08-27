@@ -446,6 +446,7 @@ fmt.Println(catalog.GetName()) // "catalog"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `[]any` | No | An array of datapoints |
+| `id` | `string` | No |  |
 | `object` | `string` | No | The object type |
 | `total_values` | `int` | No | The number of items in the data array |
 | `uri` | `string` | No | A link to this catalog on Scryfall's API |

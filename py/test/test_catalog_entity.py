@@ -48,9 +48,13 @@ class TestCatalogEntity:
 
         # LOAD
         catalog_ref01_ent = client.Catalog(None)
-        catalog_ref01_match_dt0 = {}
+        catalog_ref01_match_dt0 = {
+            "id": catalog_ref01_data["id"],
+        }
         catalog_ref01_data_dt0_loaded = catalog_ref01_ent.load(catalog_ref01_match_dt0, None)
-        assert catalog_ref01_data_dt0_loaded is not None
+        catalog_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(catalog_ref01_data_dt0_loaded))
+        assert catalog_ref01_data_dt0_load_result is not None
+        assert catalog_ref01_data_dt0_load_result["id"] == catalog_ref01_data["id"]
 
 
 

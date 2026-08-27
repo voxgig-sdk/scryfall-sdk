@@ -61,13 +61,19 @@ func TestCatalogEntity(t *testing.T) {
 
 		// LOAD
 		catalogRef01Ent := client.Catalog(nil)
-		catalogRef01MatchDt0 := map[string]any{}
+		catalogRef01MatchDt0 := map[string]any{
+			"id": catalogRef01Data["id"],
+		}
 		catalogRef01DataDt0Loaded, err := catalogRef01Ent.Load(catalogRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if catalogRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		catalogRef01DataDt0LoadResult := core.ToMapAny(entityData(catalogRef01DataDt0Loaded))
+		if catalogRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if catalogRef01DataDt0LoadResult["id"] != catalogRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

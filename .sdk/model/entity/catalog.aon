@@ -12,6 +12,11 @@ main: kit: entity: catalog: {
       type: "`$ARRAY`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "object"
       req: false
       short: "The object type"
@@ -30,6 +35,11 @@ main: kit: entity: catalog: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "catalog"
   op: {

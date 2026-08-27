@@ -258,6 +258,7 @@ class CardSymbolListListMatch
 class Catalog
 {
     public ?array $data = null;
+    public ?string $id = null;
     public ?string $object = null;
     public ?int $total_values = null;
     public ?string $uri = null;

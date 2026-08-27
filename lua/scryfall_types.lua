@@ -217,6 +217,7 @@
 
 ---@class Catalog
 ---@field data? table
+---@field id? string
 ---@field object? string
 ---@field total_values? number
 ---@field uri? string

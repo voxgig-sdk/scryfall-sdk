@@ -425,6 +425,7 @@ API path: `/symbology`
 | Field | Description |
 | --- | --- |
 | `data` | An array of datapoints |
+| `id` |  |
 | `object` | The object type |
 | `total_values` | The number of items in the data array |
 | `uri` | A link to this catalog on Scryfall's API |
@@ -707,6 +708,7 @@ Create an instance: `const catalog = client.Catalog()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `any[]` | An array of datapoints |
+| `id` | `string` |  |
 | `object` | `string` | The object type |
 | `total_values` | `number` | The number of items in the data array |
 | `uri` | `string` | A link to this catalog on Scryfall's API |

@@ -816,6 +816,9 @@ CardSymbolListListMatch = Struct.new(
 # @!attribute [rw] data
 #   @return [Array, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] object
 #   @return [String, nil]
 #
@@ -826,6 +829,7 @@ CardSymbolListListMatch = Struct.new(
 #   @return [String, nil]
 Catalog = Struct.new(
   :data,
+  :id,
   :object,
   :total_values,
   :uri,

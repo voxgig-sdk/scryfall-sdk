@@ -3,24 +3,24 @@
     "catalog": {
       "CATALOG00": {
         "data": [],
-        "object": "s29",
-        "total_values": "s2a",
-        "uri": "s2b",
-        "id": "CATALOG00"
+        "id": "CATALOG00",
+        "object": "s34",
+        "total_values": "s35",
+        "uri": "s36"
       },
       "CATALOG01": {
         "data": [],
-        "object": "s51",
-        "total_values": "s52",
-        "uri": "s53",
-        "id": "CATALOG01"
+        "id": "CATALOG01",
+        "object": "s66",
+        "total_values": "s67",
+        "uri": "s68"
       },
       "CATALOG02": {
         "data": [],
-        "object": "s79",
-        "total_values": "s7a",
-        "uri": "s7b",
-        "id": "CATALOG02"
+        "id": "CATALOG02",
+        "object": "s98",
+        "total_values": "s99",
+        "uri": "s9a"
       }
     }
   },
@@ -28,9 +28,9 @@
     "catalog": {
       "catalog_ref01": {
         "data": [],
-        "object": "sa1",
-        "total_values": "sa2",
-        "uri": "sa3"
+        "object": "sca",
+        "total_values": "scb",
+        "uri": "scc"
       }
     }
   }

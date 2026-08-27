@@ -28,6 +28,7 @@ module ScryfallConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -768,6 +769,10 @@ module ScryfallConfig
               "name" => "data",
               "short" => "An array of datapoints",
               "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "object",

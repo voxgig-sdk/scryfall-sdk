@@ -59,9 +59,12 @@ describe('CatalogEntity', async () => {
 
     let catalog_ref01_data = Object.values(setup.data.existing.catalog)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const catalog_ref01_ent = client.Catalog()
+    const catalog_ref01_match_dt0: any = {}
+    catalog_ref01_match_dt0.id = catalog_ref01_data.id
+    const catalog_ref01_data_dt0 = (await catalog_ref01_ent.load(catalog_ref01_match_dt0)).data()
+    assert(catalog_ref01_data_dt0.id === catalog_ref01_data.id)
 
 
   })

@@ -431,6 +431,7 @@ catalog = client.Catalog()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `list` | No | An array of datapoints |
+| `id` | `str` | No |  |
 | `object` | `str` | No | The object type |
 | `total_values` | `int` | No | The number of items in the data array |
 | `uri` | `str` | No | A link to this catalog on Scryfall's API |

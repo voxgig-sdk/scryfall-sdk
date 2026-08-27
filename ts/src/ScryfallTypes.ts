@@ -233,6 +233,7 @@ export interface CardSymbolListListMatch {
 
 export interface Catalog {
   data?: any[]
+  id?: string
   object?: string
   total_values?: number
   uri?: string

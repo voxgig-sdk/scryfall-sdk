@@ -41,9 +41,13 @@ class CatalogEntityTest < Minitest::Test
 
     # LOAD
     catalog_ref01_ent = client.Catalog(nil)
-    catalog_ref01_match_dt0 = {}
+    catalog_ref01_match_dt0 = {
+      "id" => catalog_ref01_data["id"],
+    }
     catalog_ref01_data_dt0_loaded = catalog_ref01_ent.load(catalog_ref01_match_dt0, nil)
-    assert !catalog_ref01_data_dt0_loaded.nil?
+    catalog_ref01_data_dt0_load_result = Helpers.to_map(catalog_ref01_data_dt0_loaded.respond_to?(:data_get) ? catalog_ref01_data_dt0_loaded.data_get : catalog_ref01_data_dt0_loaded)
+    assert !catalog_ref01_data_dt0_load_result.nil?
+    assert_equal catalog_ref01_data_dt0_load_result["id"], catalog_ref01_data["id"]
 
   end
 end

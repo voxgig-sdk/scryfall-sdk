@@ -48,9 +48,13 @@ class CatalogEntityTest extends TestCase
 
         // LOAD
         $catalog_ref01_ent = $client->Catalog(null);
-        $catalog_ref01_match_dt0 = [];
+        $catalog_ref01_match_dt0 = [
+            "id" => $catalog_ref01_data["id"],
+        ];
         $catalog_ref01_data_dt0_loaded = $catalog_ref01_ent->load($catalog_ref01_match_dt0, null);
-        $this->assertNotNull($catalog_ref01_data_dt0_loaded);
+        $catalog_ref01_data_dt0_load_result = Helpers::to_map(is_object($catalog_ref01_data_dt0_loaded) && method_exists($catalog_ref01_data_dt0_loaded, 'data_get') ? $catalog_ref01_data_dt0_loaded->data_get() : $catalog_ref01_data_dt0_loaded);
+        $this->assertNotNull($catalog_ref01_data_dt0_load_result);
+        $this->assertEquals($catalog_ref01_data_dt0_load_result["id"], $catalog_ref01_data["id"]);
 
     }
 }

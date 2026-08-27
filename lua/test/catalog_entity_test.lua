@@ -44,10 +44,14 @@ describe("CatalogEntity", function()
 
     -- LOAD
     local catalog_ref01_ent = client:Catalog(nil)
-    local catalog_ref01_match_dt0 = {}
+    local catalog_ref01_match_dt0 = {
+      id = catalog_ref01_data["id"],
+    }
     local catalog_ref01_data_dt0_loaded, err = catalog_ref01_ent:load(catalog_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(catalog_ref01_data_dt0_loaded)
+    local catalog_ref01_data_dt0_load_result = helpers.to_map(type(catalog_ref01_data_dt0_loaded) == 'table' and catalog_ref01_data_dt0_loaded.data_get and catalog_ref01_data_dt0_loaded:data_get() or catalog_ref01_data_dt0_loaded)
+    assert.is_not_nil(catalog_ref01_data_dt0_load_result)
+    assert.are.equal(catalog_ref01_data_dt0_load_result["id"], catalog_ref01_data["id"])
 
   end)
 end)

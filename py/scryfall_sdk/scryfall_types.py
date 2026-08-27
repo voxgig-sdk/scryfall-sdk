@@ -244,6 +244,7 @@ class CardSymbolListListMatch(TypedDict, total=False):
 
 class Catalog(TypedDict, total=False):
     data: list
+    id: str
     object: str
     total_values: int
     uri: str

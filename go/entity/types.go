@@ -246,6 +246,7 @@ type CardSymbolListListMatch struct {
 // Catalog is the typed data model for the catalog entity.
 type Catalog struct {
 	Data *[]any `json:"data,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Object *string `json:"object,omitempty"`
 	TotalValues *int `json:"total_values,omitempty"`
 	Uri *string `json:"uri,omitempty"`
