@@ -68,31 +68,9 @@ export interface CardLoadMatch {
 }
 
 export interface CardListMatch {
-  artist?: string
-  cmc?: number
-  collector_number?: string
-  color_identity?: any[]
-  colors?: any[]
-  id?: string
-  image_uris?: Record<string, any>
-  lang?: string
-  layout?: string
-  legalities?: Record<string, any>
-  loyalty?: string
-  mana_cost?: string
-  name?: string
-  oracle_id?: string
-  oracle_text?: string
-  power?: string
-  prices?: Record<string, any>
-  rarity?: string
-  released_at?: string
-  scryfall_uri?: string
+  exact?: string
+  fuzzy?: string
   set?: string
-  set_name?: string
-  toughness?: string
-  type_line?: string
-  uri?: string
 
   // Selects a custom action instead of the plain list:
   //   'named' | 'random'
@@ -136,37 +114,12 @@ export interface CardList {
 }
 
 export interface CardListListMatch {
-  artist?: string
-  cmc?: number
-  collector_number?: string
-  color_identity?: any[]
-  colors?: any[]
-  data?: any[]
-  has_more?: boolean
-  id?: string
-  identifiers?: any[]
-  image_uris?: Record<string, any>
-  lang?: string
-  layout?: string
-  legalities?: Record<string, any>
-  loyalty?: string
-  mana_cost?: string
-  name?: string
-  next_page?: string
-  object?: string
-  oracle_id?: string
-  oracle_text?: string
-  power?: string
-  prices?: Record<string, any>
-  rarity?: string
-  released_at?: string
-  scryfall_uri?: string
-  set?: string
-  set_name?: string
-  total_cards?: number
-  toughness?: string
-  type_line?: string
-  uri?: string
+  dir?: string
+  include_extra?: boolean
+  order?: string
+  page?: number
+  q: string
+  unique?: string
 }
 
 export interface CardListCreateData {
@@ -254,13 +207,7 @@ export interface ManaCost {
 }
 
 export interface ManaCostListMatch {
-  cmc?: number
-  colorless?: boolean
-  colors?: any[]
-  cost?: string
-  monocolored?: boolean
-  multicolored?: boolean
-  object?: string
+  cost: string
 }
 
 export interface Migration {
@@ -274,13 +221,7 @@ export interface Migration {
 }
 
 export interface MigrationListMatch {
-  id?: string
-  migration_strategy?: string
-  new_scryfall_id?: string
-  object?: string
-  old_scryfall_id?: string
-  performed_at?: string
-  uri?: string
+  page?: number
 }
 
 export interface Ruling {

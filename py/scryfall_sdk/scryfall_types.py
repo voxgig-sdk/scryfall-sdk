@@ -79,31 +79,9 @@ class CardLoadMatch(TypedDict):
 
 
 class CardListMatch(TypedDict, total=False):
-    artist: str
-    cmc: float
-    collector_number: str
-    color_identity: list
-    colors: list
-    id: str
-    image_uris: dict
-    lang: str
-    layout: str
-    legalities: dict
-    loyalty: str
-    mana_cost: str
-    name: str
-    oracle_id: str
-    oracle_text: str
-    power: str
-    prices: dict
-    rarity: str
-    released_at: str
-    scryfall_uri: str
+    exact: str
+    fuzzy: str
     set: str
-    set_name: str
-    toughness: str
-    type_line: str
-    uri: str
 
 
 class CardListRequired(TypedDict):
@@ -143,38 +121,16 @@ class CardList(CardListRequired, total=False):
     uri: str
 
 
-class CardListListMatch(TypedDict, total=False):
-    artist: str
-    cmc: float
-    collector_number: str
-    color_identity: list
-    colors: list
-    data: list
-    has_more: bool
-    id: str
-    identifiers: list
-    image_uris: dict
-    lang: str
-    layout: str
-    legalities: dict
-    loyalty: str
-    mana_cost: str
-    name: str
-    next_page: str
-    object: str
-    oracle_id: str
-    oracle_text: str
-    power: str
-    prices: dict
-    rarity: str
-    released_at: str
-    scryfall_uri: str
-    set: str
-    set_name: str
-    total_cards: int
-    toughness: str
-    type_line: str
-    uri: str
+class CardListListMatchRequired(TypedDict):
+    q: str
+
+
+class CardListListMatch(CardListListMatchRequired, total=False):
+    dir: str
+    include_extra: bool
+    order: str
+    page: int
+    unique: str
 
 
 class CardListCreateDataRequired(TypedDict):
@@ -264,14 +220,8 @@ class ManaCost(TypedDict, total=False):
     object: str
 
 
-class ManaCostListMatch(TypedDict, total=False):
-    cmc: float
-    colorless: bool
-    colors: list
+class ManaCostListMatch(TypedDict):
     cost: str
-    monocolored: bool
-    multicolored: bool
-    object: str
 
 
 class Migration(TypedDict, total=False):
@@ -285,13 +235,7 @@ class Migration(TypedDict, total=False):
 
 
 class MigrationListMatch(TypedDict, total=False):
-    id: str
-    migration_strategy: str
-    new_scryfall_id: str
-    object: str
-    old_scryfall_id: str
-    performed_at: str
-    uri: str
+    page: int
 
 
 class Ruling(TypedDict, total=False):

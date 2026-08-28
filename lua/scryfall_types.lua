@@ -64,31 +64,9 @@
 ---@field id string
 
 ---@class CardListMatch
----@field artist? string
----@field cmc? number
----@field collector_number? string
----@field color_identity? table
----@field colors? table
----@field id? string
----@field image_uris? table
----@field lang? string
----@field layout? string
----@field legalities? table
----@field loyalty? string
----@field mana_cost? string
----@field name? string
----@field oracle_id? string
----@field oracle_text? string
----@field power? string
----@field prices? table
----@field rarity? string
----@field released_at? string
----@field scryfall_uri? string
+---@field exact? string
+---@field fuzzy? string
 ---@field set? string
----@field set_name? string
----@field toughness? string
----@field type_line? string
----@field uri? string
 
 ---@class CardList
 ---@field artist? string
@@ -124,37 +102,12 @@
 ---@field uri? string
 
 ---@class CardListListMatch
----@field artist? string
----@field cmc? number
----@field collector_number? string
----@field color_identity? table
----@field colors? table
----@field data? table
----@field has_more? boolean
----@field id? string
----@field identifiers? table
----@field image_uris? table
----@field lang? string
----@field layout? string
----@field legalities? table
----@field loyalty? string
----@field mana_cost? string
----@field name? string
----@field next_page? string
----@field object? string
----@field oracle_id? string
----@field oracle_text? string
----@field power? string
----@field prices? table
----@field rarity? string
----@field released_at? string
----@field scryfall_uri? string
----@field set? string
----@field set_name? string
----@field total_cards? number
----@field toughness? string
----@field type_line? string
----@field uri? string
+---@field dir? string
+---@field include_extra? boolean
+---@field order? string
+---@field page? number
+---@field q string
+---@field unique? string
 
 ---@class CardListCreateData
 ---@field artist? string
@@ -235,13 +188,7 @@
 ---@field object? string
 
 ---@class ManaCostListMatch
----@field cmc? number
----@field colorless? boolean
----@field colors? table
----@field cost? string
----@field monocolored? boolean
----@field multicolored? boolean
----@field object? string
+---@field cost string
 
 ---@class Migration
 ---@field id? string
@@ -253,13 +200,7 @@
 ---@field uri? string
 
 ---@class MigrationListMatch
----@field id? string
----@field migration_strategy? string
----@field new_scryfall_id? string
----@field object? string
----@field old_scryfall_id? string
----@field performed_at? string
----@field uri? string
+---@field page? number
 
 ---@class Ruling
 ---@field comment? string

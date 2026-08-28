@@ -223,106 +223,18 @@ CardLoadMatch = Struct.new(
 
 # Request payload for Card#list.
 #
-# @!attribute [rw] artist
+# @!attribute [rw] exact
 #   @return [String, nil]
 #
-# @!attribute [rw] cmc
-#   @return [Float, nil]
-#
-# @!attribute [rw] collector_number
-#   @return [String, nil]
-#
-# @!attribute [rw] color_identity
-#   @return [Array, nil]
-#
-# @!attribute [rw] colors
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] image_uris
-#   @return [Hash, nil]
-#
-# @!attribute [rw] lang
-#   @return [String, nil]
-#
-# @!attribute [rw] layout
-#   @return [String, nil]
-#
-# @!attribute [rw] legalities
-#   @return [Hash, nil]
-#
-# @!attribute [rw] loyalty
-#   @return [String, nil]
-#
-# @!attribute [rw] mana_cost
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] oracle_id
-#   @return [String, nil]
-#
-# @!attribute [rw] oracle_text
-#   @return [String, nil]
-#
-# @!attribute [rw] power
-#   @return [String, nil]
-#
-# @!attribute [rw] prices
-#   @return [Hash, nil]
-#
-# @!attribute [rw] rarity
-#   @return [String, nil]
-#
-# @!attribute [rw] released_at
-#   @return [String, nil]
-#
-# @!attribute [rw] scryfall_uri
+# @!attribute [rw] fuzzy
 #   @return [String, nil]
 #
 # @!attribute [rw] set
 #   @return [String, nil]
-#
-# @!attribute [rw] set_name
-#   @return [String, nil]
-#
-# @!attribute [rw] toughness
-#   @return [String, nil]
-#
-# @!attribute [rw] type_line
-#   @return [String, nil]
-#
-# @!attribute [rw] uri
-#   @return [String, nil]
 CardListMatch = Struct.new(
-  :artist,
-  :cmc,
-  :collector_number,
-  :color_identity,
-  :colors,
-  :id,
-  :image_uris,
-  :lang,
-  :layout,
-  :legalities,
-  :loyalty,
-  :mana_cost,
-  :name,
-  :oracle_id,
-  :oracle_text,
-  :power,
-  :prices,
-  :rarity,
-  :released_at,
-  :scryfall_uri,
+  :exact,
+  :fuzzy,
   :set,
-  :set_name,
-  :toughness,
-  :type_line,
-  :uri,
   keyword_init: true
 )
 
@@ -457,130 +369,30 @@ CardList = Struct.new(
 
 # Request payload for CardList#list.
 #
-# @!attribute [rw] artist
+# @!attribute [rw] dir
 #   @return [String, nil]
 #
-# @!attribute [rw] cmc
-#   @return [Float, nil]
-#
-# @!attribute [rw] collector_number
-#   @return [String, nil]
-#
-# @!attribute [rw] color_identity
-#   @return [Array, nil]
-#
-# @!attribute [rw] colors
-#   @return [Array, nil]
-#
-# @!attribute [rw] data
-#   @return [Array, nil]
-#
-# @!attribute [rw] has_more
+# @!attribute [rw] include_extra
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] order
 #   @return [String, nil]
 #
-# @!attribute [rw] identifiers
-#   @return [Array, nil]
-#
-# @!attribute [rw] image_uris
-#   @return [Hash, nil]
-#
-# @!attribute [rw] lang
-#   @return [String, nil]
-#
-# @!attribute [rw] layout
-#   @return [String, nil]
-#
-# @!attribute [rw] legalities
-#   @return [Hash, nil]
-#
-# @!attribute [rw] loyalty
-#   @return [String, nil]
-#
-# @!attribute [rw] mana_cost
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] next_page
-#   @return [String, nil]
-#
-# @!attribute [rw] object
-#   @return [String, nil]
-#
-# @!attribute [rw] oracle_id
-#   @return [String, nil]
-#
-# @!attribute [rw] oracle_text
-#   @return [String, nil]
-#
-# @!attribute [rw] power
-#   @return [String, nil]
-#
-# @!attribute [rw] prices
-#   @return [Hash, nil]
-#
-# @!attribute [rw] rarity
-#   @return [String, nil]
-#
-# @!attribute [rw] released_at
-#   @return [String, nil]
-#
-# @!attribute [rw] scryfall_uri
-#   @return [String, nil]
-#
-# @!attribute [rw] set
-#   @return [String, nil]
-#
-# @!attribute [rw] set_name
-#   @return [String, nil]
-#
-# @!attribute [rw] total_cards
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] toughness
-#   @return [String, nil]
+# @!attribute [rw] q
+#   @return [String]
 #
-# @!attribute [rw] type_line
-#   @return [String, nil]
-#
-# @!attribute [rw] uri
+# @!attribute [rw] unique
 #   @return [String, nil]
 CardListListMatch = Struct.new(
-  :artist,
-  :cmc,
-  :collector_number,
-  :color_identity,
-  :colors,
-  :data,
-  :has_more,
-  :id,
-  :identifiers,
-  :image_uris,
-  :lang,
-  :layout,
-  :legalities,
-  :loyalty,
-  :mana_cost,
-  :name,
-  :next_page,
-  :object,
-  :oracle_id,
-  :oracle_text,
-  :power,
-  :prices,
-  :rarity,
-  :released_at,
-  :scryfall_uri,
-  :set,
-  :set_name,
-  :total_cards,
-  :toughness,
-  :type_line,
-  :uri,
+  :dir,
+  :include_extra,
+  :order,
+  :page,
+  :q,
+  :unique,
   keyword_init: true
 )
 
@@ -880,34 +692,10 @@ ManaCost = Struct.new(
 
 # Request payload for ManaCost#list.
 #
-# @!attribute [rw] cmc
-#   @return [Float, nil]
-#
-# @!attribute [rw] colorless
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] colors
-#   @return [Array, nil]
-#
 # @!attribute [rw] cost
-#   @return [String, nil]
-#
-# @!attribute [rw] monocolored
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] multicolored
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] object
-#   @return [String, nil]
+#   @return [String]
 ManaCostListMatch = Struct.new(
-  :cmc,
-  :colorless,
-  :colors,
   :cost,
-  :monocolored,
-  :multicolored,
-  :object,
   keyword_init: true
 )
 
@@ -946,34 +734,10 @@ Migration = Struct.new(
 
 # Request payload for Migration#list.
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] migration_strategy
-#   @return [String, nil]
-#
-# @!attribute [rw] new_scryfall_id
-#   @return [String, nil]
-#
-# @!attribute [rw] object
-#   @return [String, nil]
-#
-# @!attribute [rw] old_scryfall_id
-#   @return [String, nil]
-#
-# @!attribute [rw] performed_at
-#   @return [String, nil]
-#
-# @!attribute [rw] uri
-#   @return [String, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 MigrationListMatch = Struct.new(
-  :id,
-  :migration_strategy,
-  :new_scryfall_id,
-  :object,
-  :old_scryfall_id,
-  :performed_at,
-  :uri,
+  :page,
   keyword_init: true
 )
 

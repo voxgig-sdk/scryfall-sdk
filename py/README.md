@@ -602,7 +602,7 @@ Create an instance: `card_list = client.CardList()`
 #### Example: List
 
 ```python
-card_lists = client.CardList().list()
+card_lists = client.CardList().list({"q": "example"})
 ```
 
 #### Example: Create
@@ -699,7 +699,7 @@ Create an instance: `mana_cost = client.ManaCost()`
 #### Example: List
 
 ```python
-mana_costs = client.ManaCost().list()
+mana_costs = client.ManaCost().list({"cost": "example"})
 ```
 
 
@@ -797,6 +797,29 @@ set = client.Set().load({"id": "set_id"})
 ```python
 sets = client.Set().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

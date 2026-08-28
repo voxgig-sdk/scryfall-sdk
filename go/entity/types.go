@@ -81,31 +81,9 @@ type CardLoadMatch struct {
 
 // CardListMatch is the typed request payload for Card.ListTyped.
 type CardListMatch struct {
-	Artist *string `json:"artist,omitempty"`
-	Cmc *float64 `json:"cmc,omitempty"`
-	CollectorNumber *string `json:"collector_number,omitempty"`
-	ColorIdentity *[]any `json:"color_identity,omitempty"`
-	Colors *[]any `json:"colors,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageUris *map[string]any `json:"image_uris,omitempty"`
-	Lang *string `json:"lang,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	Legalities *map[string]any `json:"legalities,omitempty"`
-	Loyalty *string `json:"loyalty,omitempty"`
-	ManaCost *string `json:"mana_cost,omitempty"`
-	Name *string `json:"name,omitempty"`
-	OracleId *string `json:"oracle_id,omitempty"`
-	OracleText *string `json:"oracle_text,omitempty"`
-	Power *string `json:"power,omitempty"`
-	Prices *map[string]any `json:"prices,omitempty"`
-	Rarity *string `json:"rarity,omitempty"`
-	ReleasedAt *string `json:"released_at,omitempty"`
-	ScryfallUri *string `json:"scryfall_uri,omitempty"`
+	Exact *string `json:"exact,omitempty"`
+	Fuzzy *string `json:"fuzzy,omitempty"`
 	Set *string `json:"set,omitempty"`
-	SetName *string `json:"set_name,omitempty"`
-	Toughness *string `json:"toughness,omitempty"`
-	TypeLine *string `json:"type_line,omitempty"`
-	Uri *string `json:"uri,omitempty"`
 }
 
 // CardList is the typed data model for the card_list entity.
@@ -145,37 +123,12 @@ type CardList struct {
 
 // CardListListMatch is the typed request payload for CardList.ListTyped.
 type CardListListMatch struct {
-	Artist *string `json:"artist,omitempty"`
-	Cmc *float64 `json:"cmc,omitempty"`
-	CollectorNumber *string `json:"collector_number,omitempty"`
-	ColorIdentity *[]any `json:"color_identity,omitempty"`
-	Colors *[]any `json:"colors,omitempty"`
-	Data *[]any `json:"data,omitempty"`
-	HasMore *bool `json:"has_more,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Identifiers *[]any `json:"identifiers,omitempty"`
-	ImageUris *map[string]any `json:"image_uris,omitempty"`
-	Lang *string `json:"lang,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	Legalities *map[string]any `json:"legalities,omitempty"`
-	Loyalty *string `json:"loyalty,omitempty"`
-	ManaCost *string `json:"mana_cost,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NextPage *string `json:"next_page,omitempty"`
-	Object *string `json:"object,omitempty"`
-	OracleId *string `json:"oracle_id,omitempty"`
-	OracleText *string `json:"oracle_text,omitempty"`
-	Power *string `json:"power,omitempty"`
-	Prices *map[string]any `json:"prices,omitempty"`
-	Rarity *string `json:"rarity,omitempty"`
-	ReleasedAt *string `json:"released_at,omitempty"`
-	ScryfallUri *string `json:"scryfall_uri,omitempty"`
-	Set *string `json:"set,omitempty"`
-	SetName *string `json:"set_name,omitempty"`
-	TotalCards *int `json:"total_cards,omitempty"`
-	Toughness *string `json:"toughness,omitempty"`
-	TypeLine *string `json:"type_line,omitempty"`
-	Uri *string `json:"uri,omitempty"`
+	Dir *string `json:"dir,omitempty"`
+	IncludeExtra *bool `json:"include_extra,omitempty"`
+	Order *string `json:"order,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Q string `json:"q"`
+	Unique *string `json:"unique,omitempty"`
 }
 
 // CardListCreateData is the typed request payload for CardList.CreateTyped.
@@ -270,13 +223,7 @@ type ManaCost struct {
 
 // ManaCostListMatch is the typed request payload for ManaCost.ListTyped.
 type ManaCostListMatch struct {
-	Cmc *float64 `json:"cmc,omitempty"`
-	Colorless *bool `json:"colorless,omitempty"`
-	Colors *[]any `json:"colors,omitempty"`
-	Cost *string `json:"cost,omitempty"`
-	Monocolored *bool `json:"monocolored,omitempty"`
-	Multicolored *bool `json:"multicolored,omitempty"`
-	Object *string `json:"object,omitempty"`
+	Cost string `json:"cost"`
 }
 
 // Migration is the typed data model for the migration entity.
@@ -292,13 +239,7 @@ type Migration struct {
 
 // MigrationListMatch is the typed request payload for Migration.ListTyped.
 type MigrationListMatch struct {
-	Id *string `json:"id,omitempty"`
-	MigrationStrategy *string `json:"migration_strategy,omitempty"`
-	NewScryfallId *string `json:"new_scryfall_id,omitempty"`
-	Object *string `json:"object,omitempty"`
-	OldScryfallId *string `json:"old_scryfall_id,omitempty"`
-	PerformedAt *string `json:"performed_at,omitempty"`
-	Uri *string `json:"uri,omitempty"`
+	Page *int `json:"page,omitempty"`
 }
 
 // Ruling is the typed data model for the ruling entity.
