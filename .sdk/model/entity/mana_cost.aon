@@ -69,9 +69,13 @@ main: kit: entity: mana_cost: {
           }
           method: "GET"
           orig: "/symbology/parse-mana"
-          parts: [
-            "symbology"
-            "parse-mana"
+          segments: [
+            {
+              lit: "symbology"
+            }
+            {
+              lit: "parse-mana"
+            }
           ]
           select: {
             exist: [

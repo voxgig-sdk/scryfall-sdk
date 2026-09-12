@@ -24,12 +24,14 @@ main: kit: entity: set: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uri"
       name: "icon_svg_uri"
       req: false
       short: "A URI to an SVG file for this set's icon"
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "A unique ID for this set"
@@ -42,18 +44,21 @@ main: kit: entity: set: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "released_at"
       req: false
       short: "The date the set was released"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "scryfall_uri"
       req: false
       short: "A link to this set's page on Scryfall's website"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "search_uri"
       req: false
       short: "A link to search for cards in this set on Scryfall's API"
@@ -66,6 +71,7 @@ main: kit: entity: set: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "uri"
       req: false
       short: "A link to this set object on Scryfall's API"
@@ -86,8 +92,10 @@ main: kit: entity: set: {
         {
           method: "GET"
           orig: "/sets"
-          parts: [
-            "sets"
+          segments: [
+            {
+              lit: "sets"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -114,15 +122,19 @@ main: kit: entity: set: {
           }
           method: "GET"
           orig: "/sets/{code}"
-          parts: [
-            "sets"
-            "{id}"
-          ]
           rename: {
             param: {
               code: "id"
             }
           }
+          segments: [
+            {
+              lit: "sets"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -147,9 +159,13 @@ main: kit: entity: set: {
           }
           method: "GET"
           orig: "/sets/{id}"
-          parts: [
-            "sets"
-            "{id}"
+          segments: [
+            {
+              lit: "sets"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

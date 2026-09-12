@@ -6,6 +6,7 @@ main: kit: entity: migration: {
 
   fields: [
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "A unique ID for this migration"
@@ -18,6 +19,7 @@ main: kit: entity: migration: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "new_scryfall_id"
       req: false
       short: "The updated Scryfall ID"
@@ -30,18 +32,21 @@ main: kit: entity: migration: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "old_scryfall_id"
       req: false
       short: "The original Scryfall ID"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "performed_at"
       req: false
       short: "The date this migration was performed"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "uri"
       req: false
       short: "A link to this migration on Scryfall's API"
@@ -74,8 +79,10 @@ main: kit: entity: migration: {
           }
           method: "GET"
           orig: "/migrations"
-          parts: [
-            "migrations"
+          segments: [
+            {
+              lit: "migrations"
+            }
           ]
           select: {
             exist: [

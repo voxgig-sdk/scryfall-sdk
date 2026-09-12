@@ -36,6 +36,7 @@ main: kit: entity: card: {
       type: "`$ARRAY`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "A unique ID for this card in Scryfall's database"
@@ -84,6 +85,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "oracle_id"
       req: false
       short: "A unique ID for this card's oracle identity"
@@ -114,12 +116,14 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "released_at"
       req: false
       short: "The date this card was first released"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "scryfall_uri"
       req: false
       short: "A link to this card's page on Scryfall's website"
@@ -150,6 +154,7 @@ main: kit: entity: card: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "uri"
       req: false
       short: "A link to this card object on Scryfall's API"
@@ -198,9 +203,13 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/cards/named"
-          parts: [
-            "cards"
-            "named"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              lit: "named"
+            }
           ]
           select: {
             "$action": "named"
@@ -229,9 +238,13 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/cards/random"
-          parts: [
-            "cards"
-            "random"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              lit: "random"
+            }
           ]
           select: {
             "$action": "random"
@@ -264,9 +277,13 @@ main: kit: entity: card: {
           }
           method: "GET"
           orig: "/cards/{id}"
-          parts: [
-            "cards"
-            "{id}"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -55,11 +55,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "download_uri",
             ["short"] = "The URI that hosts this bulk file",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "A unique ID for this bulk data file",
             ["type"] = "`$STRING`",
@@ -85,10 +87,15 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updated_at",
             ["short"] = "The time this file was last updated",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "bulk_data",
         ["op"] = {
@@ -101,13 +108,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bulk-data",
-                ["parts"] = {
-                  "bulk-data",
+                ["segments"] = {
+                  {
+                    ["lit"] = "bulk-data",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "bulk-data",
                 },
               },
             },
@@ -131,9 +143,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bulk-data/{id}",
-                ["parts"] = {
-                  "bulk-data",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "bulk-data",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -143,6 +159,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "bulk-data",
+                  "{id}",
                 },
               },
             },
@@ -180,6 +200,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "A unique ID for this card in Scryfall's database",
             ["type"] = "`$STRING`",
@@ -220,6 +241,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "oracle_id",
             ["short"] = "A unique ID for this card's oracle identity",
             ["type"] = "`$STRING`",
@@ -245,11 +267,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "released_at",
             ["short"] = "The date this card was first released",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "scryfall_uri",
             ["short"] = "A link to this card's page on Scryfall's website",
             ["type"] = "`$STRING`",
@@ -275,10 +299,15 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "uri",
             ["short"] = "A link to this card object on Scryfall's API",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "card",
         ["op"] = {
@@ -315,9 +344,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/named",
-                ["parts"] = {
-                  "cards",
-                  "named",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cards",
+                  },
+                  {
+                    ["lit"] = "named",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "named",
@@ -330,6 +363,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cards",
+                  "named",
                 },
               },
               {
@@ -346,9 +383,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/random",
-                ["parts"] = {
-                  "cards",
-                  "random",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cards",
+                  },
+                  {
+                    ["lit"] = "random",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "random",
@@ -359,6 +400,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cards",
+                  "random",
                 },
               },
             },
@@ -383,9 +428,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}",
-                ["parts"] = {
-                  "cards",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cards",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -395,6 +444,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cards",
+                  "{id}",
                 },
               },
             },
@@ -442,6 +495,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "A unique ID for this card in Scryfall's database",
             ["type"] = "`$STRING`",
@@ -487,6 +541,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "next_page",
             ["short"] = "The URL for the next page of results",
             ["type"] = "`$STRING`",
@@ -497,6 +552,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "oracle_id",
             ["short"] = "A unique ID for this card's oracle identity",
             ["type"] = "`$STRING`",
@@ -522,11 +578,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "released_at",
             ["short"] = "The date this card was first released",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "scryfall_uri",
             ["short"] = "A link to this card's page on Scryfall's website",
             ["type"] = "`$STRING`",
@@ -557,10 +615,15 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "uri",
             ["short"] = "A link to this card object on Scryfall's API",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "card_list",
         ["op"] = {
@@ -573,14 +636,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/cards/collection",
-                ["parts"] = {
-                  "cards",
-                  "collection",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cards",
+                  },
+                  {
+                    ["lit"] = "collection",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cards",
+                  "collection",
                 },
               },
             },
@@ -640,9 +711,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/search",
-                ["parts"] = {
-                  "cards",
-                  "search",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cards",
+                  },
+                  {
+                    ["lit"] = "search",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -657,6 +732,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "cards",
+                  "search",
                 },
               },
             },
@@ -709,6 +788,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "svg_uri",
             ["short"] = "A URI to an SVG image for this symbol",
             ["type"] = "`$STRING`",
@@ -735,13 +815,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/symbology",
-                ["parts"] = {
-                  "symbology",
+                ["segments"] = {
+                  {
+                    ["lit"] = "symbology",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "symbology",
                 },
               },
             },
@@ -773,10 +858,15 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "uri",
             ["short"] = "A link to this catalog on Scryfall's API",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "catalog",
         ["op"] = {
@@ -799,13 +889,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/catalog/{catalog_name}",
-                ["parts"] = {
-                  "catalog",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["catalog_name"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "catalog",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -816,6 +910,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "catalog",
+                  "{id}",
                 },
               },
             },
@@ -885,9 +983,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/symbology/parse-mana",
-                ["parts"] = {
-                  "symbology",
-                  "parse-mana",
+                ["segments"] = {
+                  {
+                    ["lit"] = "symbology",
+                  },
+                  {
+                    ["lit"] = "parse-mana",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -897,6 +999,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.colors`",
+                },
+                ["parts"] = {
+                  "symbology",
+                  "parse-mana",
                 },
               },
             },
@@ -909,6 +1015,7 @@ local function make_config()
       ["migration"] = {
         ["fields"] = {
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "A unique ID for this migration",
             ["type"] = "`$STRING`",
@@ -919,6 +1026,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "new_scryfall_id",
             ["short"] = "The updated Scryfall ID",
             ["type"] = "`$STRING`",
@@ -929,20 +1037,27 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "old_scryfall_id",
             ["short"] = "The original Scryfall ID",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "performed_at",
             ["short"] = "The date this migration was performed",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "uri",
             ["short"] = "A link to this migration on Scryfall's API",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "migration",
         ["op"] = {
@@ -965,8 +1080,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/migrations",
-                ["parts"] = {
-                  "migrations",
+                ["segments"] = {
+                  {
+                    ["lit"] = "migrations",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -976,6 +1093,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "migrations",
                 },
               },
             },
@@ -998,11 +1118,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "oracle_id",
             ["short"] = "The Oracle ID of the card this ruling applies to",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "published_at",
             ["short"] = "The date this ruling was published",
             ["type"] = "`$STRING`",
@@ -1034,14 +1156,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cards/{id}/rulings",
-                ["parts"] = {
-                  "cards",
-                  "{card_id}",
-                  "rulings",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["id"] = "card_id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "cards",
+                  },
+                  {
+                    ["var"] = "card_id",
+                  },
+                  {
+                    ["lit"] = "rulings",
                   },
                 },
                 ["select"] = {
@@ -1052,6 +1180,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "cards",
+                  "{card_id}",
+                  "rulings",
                 },
               },
             },
@@ -1083,11 +1216,13 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "icon_svg_uri",
             ["short"] = "A URI to an SVG file for this set's icon",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uuid",
             ["name"] = "id",
             ["short"] = "A unique ID for this set",
             ["type"] = "`$STRING`",
@@ -1098,16 +1233,19 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "released_at",
             ["short"] = "The date the set was released",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "scryfall_uri",
             ["short"] = "A link to this set's page on Scryfall's website",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "search_uri",
             ["short"] = "A link to search for cards in this set on Scryfall's API",
             ["type"] = "`$STRING`",
@@ -1118,10 +1256,15 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "uri",
             ["short"] = "A link to this set object on Scryfall's API",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "set",
         ["op"] = {
@@ -1134,13 +1277,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sets",
-                ["parts"] = {
-                  "sets",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sets",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "sets",
                 },
               },
             },
@@ -1165,13 +1313,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sets/{code}",
-                ["parts"] = {
-                  "sets",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["code"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "sets",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -1182,6 +1334,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sets",
+                  "{id}",
                 },
               },
               {
@@ -1199,9 +1355,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/sets/{id}",
-                ["parts"] = {
-                  "sets",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "sets",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1211,6 +1371,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "sets",
+                  "{id}",
                 },
               },
             },

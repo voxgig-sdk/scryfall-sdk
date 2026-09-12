@@ -48,6 +48,7 @@ main: kit: entity: card_list: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "A unique ID for this card in Scryfall's database"
@@ -101,6 +102,7 @@ main: kit: entity: card_list: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "next_page"
       req: false
       short: "The URL for the next page of results"
@@ -113,6 +115,7 @@ main: kit: entity: card_list: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "oracle_id"
       req: false
       short: "A unique ID for this card's oracle identity"
@@ -143,12 +146,14 @@ main: kit: entity: card_list: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "released_at"
       req: false
       short: "The date this card was first released"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "scryfall_uri"
       req: false
       short: "A link to this card's page on Scryfall's website"
@@ -185,6 +190,7 @@ main: kit: entity: card_list: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "uri"
       req: false
       short: "A link to this card object on Scryfall's API"
@@ -205,9 +211,13 @@ main: kit: entity: card_list: {
         {
           method: "POST"
           orig: "/cards/collection"
-          parts: [
-            "cards"
-            "collection"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              lit: "collection"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -274,9 +284,13 @@ main: kit: entity: card_list: {
           }
           method: "GET"
           orig: "/cards/search"
-          parts: [
-            "cards"
-            "search"
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [

@@ -98,7 +98,7 @@ func TestCardSymbolListEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		cardSymbolListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.card_symbol_list", setup.data)))
+		cardSymbolListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.card_symbol_list")))
 		var cardSymbolListRef01Data map[string]any
 		if len(cardSymbolListRef01DataRaw) > 0 {
 			cardSymbolListRef01Data = core.ToMapAny(cardSymbolListRef01DataRaw[0][1])
@@ -147,7 +147,7 @@ func card_symbol_listBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"card_symbol_list01", "card_symbol_list02", "card_symbol_list03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -175,10 +175,22 @@ func card_symbol_listBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["SCRYFALL_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewScryfallSDK(core.ToMapAny(mergedOpts))
 	}

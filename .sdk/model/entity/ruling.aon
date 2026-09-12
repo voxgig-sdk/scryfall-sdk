@@ -18,12 +18,14 @@ main: kit: entity: ruling: {
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "oracle_id"
       req: false
       short: "The Oracle ID of the card this ruling applies to"
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "published_at"
       req: false
       short: "The date this ruling was published"
@@ -56,16 +58,22 @@ main: kit: entity: ruling: {
           }
           method: "GET"
           orig: "/cards/{id}/rulings"
-          parts: [
-            "cards"
-            "{card_id}"
-            "rulings"
-          ]
           rename: {
             param: {
               id: "card_id"
             }
           }
+          segments: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "rulings"
+            }
+          ]
           select: {
             exist: [
               "card_id"

@@ -54,6 +54,7 @@ main: kit: entity: card_symbol_list: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "uri"
       name: "svg_uri"
       req: false
       short: "A URI to an SVG image for this symbol"
@@ -81,8 +82,10 @@ main: kit: entity: card_symbol_list: {
         {
           method: "GET"
           orig: "/symbology"
-          parts: [
-            "symbology"
+          segments: [
+            {
+              lit: "symbology"
+            }
           ]
           transform: {
             req: "`reqdata`"

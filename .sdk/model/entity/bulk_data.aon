@@ -24,12 +24,14 @@ main: kit: entity: bulk_data: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "download_uri"
       req: false
       short: "The URI that hosts this bulk file"
       type: "`$STRING`"
     }
     {
+      format: "uuid"
       name: "id"
       req: false
       short: "A unique ID for this bulk data file"
@@ -60,6 +62,7 @@ main: kit: entity: bulk_data: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "updated_at"
       req: false
       short: "The time this file was last updated"
@@ -80,8 +83,10 @@ main: kit: entity: bulk_data: {
         {
           method: "GET"
           orig: "/bulk-data"
-          parts: [
-            "bulk-data"
+          segments: [
+            {
+              lit: "bulk-data"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -107,9 +112,13 @@ main: kit: entity: bulk_data: {
           }
           method: "GET"
           orig: "/bulk-data/{id}"
-          parts: [
-            "bulk-data"
-            "{id}"
+          segments: [
+            {
+              lit: "bulk-data"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

@@ -29,6 +29,7 @@ main: kit: entity: catalog: {
       type: "`$INTEGER`"
     }
     {
+      format: "uri"
       name: "uri"
       req: false
       short: "A link to this catalog on Scryfall's API"
@@ -60,15 +61,19 @@ main: kit: entity: catalog: {
           }
           method: "GET"
           orig: "/catalog/{catalog_name}"
-          parts: [
-            "catalog"
-            "{id}"
-          ]
           rename: {
             param: {
               catalog_name: "id"
             }
           }
+          segments: [
+            {
+              lit: "catalog"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

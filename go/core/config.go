@@ -59,11 +59,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "download_uri",
 						"short": "The URI that hosts this bulk file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "A unique ID for this bulk data file",
 						"type": "`$STRING`",
@@ -89,10 +91,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "updated_at",
 						"short": "The time this file was last updated",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "bulk_data",
 				"op": map[string]any{
@@ -105,13 +112,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/bulk-data",
-								"parts": []any{
-									"bulk-data",
+								"segments": []any{
+									map[string]any{
+										"lit": "bulk-data",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"bulk-data",
 								},
 							},
 						},
@@ -135,9 +147,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/bulk-data/{id}",
-								"parts": []any{
-									"bulk-data",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "bulk-data",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -147,6 +163,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"bulk-data",
+									"{id}",
 								},
 							},
 						},
@@ -184,6 +204,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "A unique ID for this card in Scryfall's database",
 						"type": "`$STRING`",
@@ -224,6 +245,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "oracle_id",
 						"short": "A unique ID for this card's oracle identity",
 						"type": "`$STRING`",
@@ -249,11 +271,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "released_at",
 						"short": "The date this card was first released",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "scryfall_uri",
 						"short": "A link to this card's page on Scryfall's website",
 						"type": "`$STRING`",
@@ -279,10 +303,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "uri",
 						"short": "A link to this card object on Scryfall's API",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "card",
 				"op": map[string]any{
@@ -319,9 +348,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cards/named",
-								"parts": []any{
-									"cards",
-									"named",
+								"segments": []any{
+									map[string]any{
+										"lit": "cards",
+									},
+									map[string]any{
+										"lit": "named",
+									},
 								},
 								"select": map[string]any{
 									"$action": "named",
@@ -334,6 +367,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cards",
+									"named",
 								},
 							},
 							map[string]any{
@@ -350,9 +387,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cards/random",
-								"parts": []any{
-									"cards",
-									"random",
+								"segments": []any{
+									map[string]any{
+										"lit": "cards",
+									},
+									map[string]any{
+										"lit": "random",
+									},
 								},
 								"select": map[string]any{
 									"$action": "random",
@@ -363,6 +404,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cards",
+									"random",
 								},
 							},
 						},
@@ -387,9 +432,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cards/{id}",
-								"parts": []any{
-									"cards",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "cards",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -399,6 +448,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cards",
+									"{id}",
 								},
 							},
 						},
@@ -446,6 +499,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "A unique ID for this card in Scryfall's database",
 						"type": "`$STRING`",
@@ -491,6 +545,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "next_page",
 						"short": "The URL for the next page of results",
 						"type": "`$STRING`",
@@ -501,6 +556,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "oracle_id",
 						"short": "A unique ID for this card's oracle identity",
 						"type": "`$STRING`",
@@ -526,11 +582,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "released_at",
 						"short": "The date this card was first released",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "scryfall_uri",
 						"short": "A link to this card's page on Scryfall's website",
 						"type": "`$STRING`",
@@ -561,10 +619,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "uri",
 						"short": "A link to this card object on Scryfall's API",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "card_list",
 				"op": map[string]any{
@@ -577,14 +640,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/cards/collection",
-								"parts": []any{
-									"cards",
-									"collection",
+								"segments": []any{
+									map[string]any{
+										"lit": "cards",
+									},
+									map[string]any{
+										"lit": "collection",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cards",
+									"collection",
 								},
 							},
 						},
@@ -644,9 +715,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cards/search",
-								"parts": []any{
-									"cards",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "cards",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -661,6 +736,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"cards",
+									"search",
 								},
 							},
 						},
@@ -713,6 +792,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "svg_uri",
 						"short": "A URI to an SVG image for this symbol",
 						"type": "`$STRING`",
@@ -739,13 +819,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/symbology",
-								"parts": []any{
-									"symbology",
+								"segments": []any{
+									map[string]any{
+										"lit": "symbology",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"symbology",
 								},
 							},
 						},
@@ -777,10 +862,15 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "uri",
 						"short": "A link to this catalog on Scryfall's API",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "catalog",
 				"op": map[string]any{
@@ -803,13 +893,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/catalog/{catalog_name}",
-								"parts": []any{
-									"catalog",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"catalog_name": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "catalog",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -820,6 +914,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"catalog",
+									"{id}",
 								},
 							},
 						},
@@ -889,9 +987,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/symbology/parse-mana",
-								"parts": []any{
-									"symbology",
-									"parse-mana",
+								"segments": []any{
+									map[string]any{
+										"lit": "symbology",
+									},
+									map[string]any{
+										"lit": "parse-mana",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -901,6 +1003,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.colors`",
+								},
+								"parts": []any{
+									"symbology",
+									"parse-mana",
 								},
 							},
 						},
@@ -913,6 +1019,7 @@ func MakeConfig() map[string]any {
 			"migration": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "A unique ID for this migration",
 						"type": "`$STRING`",
@@ -923,6 +1030,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "new_scryfall_id",
 						"short": "The updated Scryfall ID",
 						"type": "`$STRING`",
@@ -933,20 +1041,27 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "old_scryfall_id",
 						"short": "The original Scryfall ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "performed_at",
 						"short": "The date this migration was performed",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "uri",
 						"short": "A link to this migration on Scryfall's API",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "migration",
 				"op": map[string]any{
@@ -969,8 +1084,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/migrations",
-								"parts": []any{
-									"migrations",
+								"segments": []any{
+									map[string]any{
+										"lit": "migrations",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -980,6 +1097,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"migrations",
 								},
 							},
 						},
@@ -1002,11 +1122,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "oracle_id",
 						"short": "The Oracle ID of the card this ruling applies to",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "published_at",
 						"short": "The date this ruling was published",
 						"type": "`$STRING`",
@@ -1038,14 +1160,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cards/{id}/rulings",
-								"parts": []any{
-									"cards",
-									"{card_id}",
-									"rulings",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"id": "card_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "cards",
+									},
+									map[string]any{
+										"var": "card_id",
+									},
+									map[string]any{
+										"lit": "rulings",
 									},
 								},
 								"select": map[string]any{
@@ -1056,6 +1184,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"cards",
+									"{card_id}",
+									"rulings",
 								},
 							},
 						},
@@ -1087,11 +1220,13 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "icon_svg_uri",
 						"short": "A URI to an SVG file for this set's icon",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uuid",
 						"name": "id",
 						"short": "A unique ID for this set",
 						"type": "`$STRING`",
@@ -1102,16 +1237,19 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "released_at",
 						"short": "The date the set was released",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "scryfall_uri",
 						"short": "A link to this set's page on Scryfall's website",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "search_uri",
 						"short": "A link to search for cards in this set on Scryfall's API",
 						"type": "`$STRING`",
@@ -1122,10 +1260,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "uri",
 						"short": "A link to this set object on Scryfall's API",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "set",
 				"op": map[string]any{
@@ -1138,13 +1281,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sets",
-								"parts": []any{
-									"sets",
+								"segments": []any{
+									map[string]any{
+										"lit": "sets",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"sets",
 								},
 							},
 						},
@@ -1169,13 +1317,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sets/{code}",
-								"parts": []any{
-									"sets",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"code": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "sets",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -1186,6 +1338,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"sets",
+									"{id}",
 								},
 							},
 							map[string]any{
@@ -1203,9 +1359,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/sets/{id}",
-								"parts": []any{
-									"sets",
-									"{id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "sets",
+									},
+									map[string]any{
+										"var": "id",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1215,6 +1375,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"sets",
+									"{id}",
 								},
 							},
 						},
@@ -1226,6 +1390,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (
