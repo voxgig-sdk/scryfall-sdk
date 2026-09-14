@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { ScryfallSDK } from '@voxgig-sdk/scryfall'
+import { ScryfallSDK } from '@voxgig-sdk/scryfall-sdk'
 
 const client = new ScryfallSDK()
 ```
@@ -927,7 +927,7 @@ scryfall/
 Import the SDK from the package root:
 
 ```ts
-import { ScryfallSDK } from '@voxgig-sdk/scryfall'
+import { ScryfallSDK } from '@voxgig-sdk/scryfall-sdk'
 ```
 
 ### Entity state

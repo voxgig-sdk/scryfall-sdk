@@ -105,7 +105,7 @@ local results, err = client:BulkData():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
+| TypeScript | `@voxgig-sdk/scryfall-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
 | Python | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
 | PHP | `voxgig-sdk/scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/scryfall-sdk/go` | `go get github.com/voxgig-sdk/scryfall-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:BulkData():list()
 ### TypeScript
 
 ```ts
-import { ScryfallSDK } from '@voxgig-sdk/scryfall'
+import { ScryfallSDK } from '@voxgig-sdk/scryfall-sdk'
 
 const client = new ScryfallSDK()
 
