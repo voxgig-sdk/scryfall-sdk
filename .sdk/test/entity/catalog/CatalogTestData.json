@@ -5,21 +5,21 @@
         "data": [],
         "id": "CATALOG00",
         "object": "s34",
-        "total_values": "s35",
+        "total_values": 53,
         "uri": "s36"
       },
       "CATALOG01": {
         "data": [],
         "id": "CATALOG01",
         "object": "s66",
-        "total_values": "s67",
+        "total_values": 103,
         "uri": "s68"
       },
       "CATALOG02": {
         "data": [],
         "id": "CATALOG02",
         "object": "s98",
-        "total_values": "s99",
+        "total_values": 153,
         "uri": "s9a"
       }
     }
@@ -29,8 +29,172 @@
       "catalog_ref01": {
         "data": [],
         "object": "sca",
-        "total_values": "scb",
+        "total_values": 203,
         "uri": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /catalog/{catalog_name}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCatalog",
+        "parameters": [
+          {
+            "description": "The catalog type to retrieve",
+            "in": "path",
+            "name": "catalog_name",
+            "required": true,
+            "schema": {
+              "enum": [
+                "card-names",
+                "artist-names",
+                "word-bank",
+                "creature-types",
+                "planeswalker-types",
+                "land-types",
+                "artifact-types",
+                "enchantment-types",
+                "spell-types",
+                "powers",
+                "toughnesses",
+                "loyalties",
+                "watermarks",
+                "keyword-abilities",
+                "keyword-actions",
+                "ability-words"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A Catalog object contains an array of Magic datapoints",
+                  "properties": {
+                    "data": {
+                      "description": "An array of datapoints",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "catalog"
+                      ],
+                      "type": "string"
+                    },
+                    "total_values": {
+                      "description": "The number of items in the data array",
+                      "type": "integer"
+                    },
+                    "uri": {
+                      "description": "A link to this catalog on Scryfall's API",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Catalog values"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Catalog not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
       }
     }
   }

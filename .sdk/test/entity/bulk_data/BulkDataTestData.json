@@ -9,7 +9,7 @@
         "id": "BULK_DATA00",
         "name": "s69",
         "object": "s6a",
-        "size": "s6b",
+        "size": 107,
         "type": "s6c",
         "updated_at": "s6d"
       },
@@ -21,7 +21,7 @@
         "id": "BULK_DATA01",
         "name": "scd",
         "object": "sce",
-        "size": "scf",
+        "size": 207,
         "type": "sd0",
         "updated_at": "sd1"
       },
@@ -33,7 +33,7 @@
         "id": "BULK_DATA02",
         "name": "s131",
         "object": "s132",
-        "size": "s133",
+        "size": 307,
         "type": "s134",
         "updated_at": "s135"
       }
@@ -48,9 +48,314 @@
         "download_uri": "s193",
         "name": "s195",
         "object": "s196",
-        "size": "s197",
+        "size": 407,
         "type": "s198",
         "updated_at": "s199"
+      }
+    }
+  },
+  "requests": {
+    "GET /bulk-data": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBulkData",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A List object containing BulkData objects",
+                  "properties": {
+                    "data": {
+                      "description": "An array of BulkData objects",
+                      "items": {
+                        "description": "A Bulk Data object contains information about a bulk data file",
+                        "properties": {
+                          "content_encoding": {
+                            "description": "The Content-Encoding encoding for this file",
+                            "type": "string"
+                          },
+                          "content_type": {
+                            "description": "The MIME type of this file",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A human-readable description for this file",
+                            "type": "string"
+                          },
+                          "download_uri": {
+                            "description": "The URI that hosts this bulk file",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "A unique ID for this bulk data file",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "A human-readable name for this file",
+                            "type": "string"
+                          },
+                          "object": {
+                            "description": "The object type",
+                            "enum": [
+                              "bulk_data"
+                            ],
+                            "type": "string"
+                          },
+                          "size": {
+                            "description": "The size of this file in bytes",
+                            "type": "integer"
+                          },
+                          "type": {
+                            "description": "The type of bulk data",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The time this file was last updated",
+                            "format": "date-time",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "has_more": {
+                      "description": "True if this list is paginated and has more pages",
+                      "type": "boolean"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "list"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of bulk data files"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    },
+    "GET /bulk-data/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getBulkDataById",
+        "parameters": [
+          {
+            "description": "The Scryfall ID of the bulk data file",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A Bulk Data object contains information about a bulk data file",
+                  "properties": {
+                    "content_encoding": {
+                      "description": "The Content-Encoding encoding for this file",
+                      "type": "string"
+                    },
+                    "content_type": {
+                      "description": "The MIME type of this file",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "A human-readable description for this file",
+                      "type": "string"
+                    },
+                    "download_uri": {
+                      "description": "The URI that hosts this bulk file",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "A unique ID for this bulk data file",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "A human-readable name for this file",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "bulk_data"
+                      ],
+                      "type": "string"
+                    },
+                    "size": {
+                      "description": "The size of this file in bytes",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "The type of bulk data",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time this file was last updated",
+                      "format": "date-time",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bulk data file information"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bulk data file not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
       }
     }
   }

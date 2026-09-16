@@ -37,5 +37,175 @@
         "source": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /cards/{id}/rulings": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCardRulings",
+        "parameters": [
+          {
+            "description": "The Scryfall ID of the card",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A List object containing Ruling objects",
+                  "properties": {
+                    "data": {
+                      "description": "An array of Ruling objects",
+                      "items": {
+                        "description": "Rulings represent Oracle rulings and errata issued by Wizards of the Coast",
+                        "properties": {
+                          "comment": {
+                            "description": "The text of the ruling",
+                            "type": "string"
+                          },
+                          "object": {
+                            "description": "The object type",
+                            "enum": [
+                              "ruling"
+                            ],
+                            "type": "string"
+                          },
+                          "oracle_id": {
+                            "description": "The Oracle ID of the card this ruling applies to",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "published_at": {
+                            "description": "The date this ruling was published",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "source": {
+                            "description": "The source of this ruling",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "has_more": {
+                      "description": "True if this list is paginated and has more pages",
+                      "type": "boolean"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "list"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of rulings"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Card not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    }
   }
 }

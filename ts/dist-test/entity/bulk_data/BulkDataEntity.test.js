@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.SCRYFALL_TEST_LIVE;
         for (const op of ['list', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'bulk_data.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'bulk_data.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set SCRYFALL_TEST_BULK_DATA_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "content_encoding", "req": false, "short": "The Content-Encoding encoding for this file", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "content_type", "req": false, "short": "The MIME type of this file", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "description", "req": false, "short": "A human-readable description for this file", "type": "`$STRING`", "index$": 2 }, { "active": true, "format": "uri", "name": "download_uri", "req": false, "short": "The URI that hosts this bulk file", "type": "`$STRING`", "index$": 3 }, { "active": true, "format": "uuid", "name": "id", "req": false, "short": "A unique ID for this bulk data file", "type": "`$STRING`", "index$": 4 }, { "active": true, "name": "name", "req": false, "short": "A human-readable name for this file", "type": "`$STRING`", "index$": 5 }, { "active": true, "name": "object", "req": false, "short": "The object type", "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "size", "req": false, "short": "The size of this file in bytes", "type": "`$INTEGER`", "index$": 7 }, { "active": true, "name": "type", "req": false, "short": "The type of bulk data", "type": "`$STRING`", "index$": 8 }, { "active": true, "format": "date-time", "name": "updated_at", "req": false, "short": "The time this file was last updated", "type": "`$STRING`", "index$": 9 }], "id": { "field": "id", "name": "id" }, "name": "bulk_data", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": {}, "contract": { "id": "GET /bulk-data", "json": "{\"operationId\":\"getBulkData\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing BulkData objects\",\"properties\":{\"data\":{\"description\":\"An array of BulkData objects\",\"items\":{\"description\":\"A Bulk Data object contains information about a bulk data file\",\"properties\":{\"content_encoding\":{\"description\":\"The Content-Encoding encoding for this file\",\"type\":\"string\"},\"content_type\":{\"description\":\"The MIME type of this file\",\"type\":\"string\"},\"description\":{\"description\":\"A human-readable description for this file\",\"type\":\"string\"},\"download_uri\":{\"description\":\"The URI that hosts this bulk file\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this bulk data file\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"A human-readable name for this file\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"bulk_data\"],\"type\":\"string\"},\"size\":{\"description\":\"The size of this file in bytes\",\"type\":\"integer\"},\"type\":{\"description\":\"The type of bulk data\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time this file was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of bulk data files\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/bulk-data", "segments": [{ "lit": "bulk-data" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "id", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /bulk-data/{id}", "json": "{\"operationId\":\"getBulkDataById\",\"parameters\":[{\"description\":\"The Scryfall ID of the bulk data file\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Bulk Data object contains information about a bulk data file\",\"properties\":{\"content_encoding\":{\"description\":\"The Content-Encoding encoding for this file\",\"type\":\"string\"},\"content_type\":{\"description\":\"The MIME type of this file\",\"type\":\"string\"},\"description\":{\"description\":\"A human-readable description for this file\",\"type\":\"string\"},\"download_uri\":{\"description\":\"The URI that hosts this bulk file\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this bulk data file\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"A human-readable name for this file\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"bulk_data\"],\"type\":\"string\"},\"size\":{\"description\":\"The size of this file in bytes\",\"type\":\"integer\"},\"type\":{\"description\":\"The type of bulk data\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time this file was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bulk data file information\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bulk data file not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/bulk-data/{id}", "segments": [{ "lit": "bulk-data" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "bulk_data", "name__orig": "bulk_data", "Name": "BulkData", "name_": "bulk_data", "name-": "bulk-data", "NAME": "BULK_DATA", "index$": 0 }, { "active": true, "entity": "bulk_data", "key$": "BasicBulkDataFlow", "kind": "basic", "name": "BasicBulkDataFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "bulk_data_ref01" } }], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "bulk_data_ref01", "srcdatavar": "bulk_data_ref01_data", "suffix": "_dt0" }, "match": { "id": "bulk_data01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-bulk_data_ref01" } }], "index$": 1 }] }, 'BulkData');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -106,12 +104,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['SCRYFALL_TEST_BULK_DATA_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'SCRYFALL_TEST_BULK_DATA_ENTID': idmap,
         'SCRYFALL_TEST_LIVE': 'FALSE',
@@ -119,7 +111,13 @@ function basicSetup(extra) {
     });
     idmap = env['SCRYFALL_TEST_BULK_DATA_ENTID'];
     const live = 'TRUE' === env.SCRYFALL_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['SCRYFALL_TEST_BULK_DATA_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.ScryfallSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -130,7 +128,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -142,7 +141,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.SCRYFALL_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

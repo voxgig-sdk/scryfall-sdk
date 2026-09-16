@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "bulk_data": {
           "active": true,
@@ -119,6 +183,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /bulk-data",
+                    "json": "{\"operationId\":\"getBulkData\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing BulkData objects\",\"properties\":{\"data\":{\"description\":\"An array of BulkData objects\",\"items\":{\"description\":\"A Bulk Data object contains information about a bulk data file\",\"properties\":{\"content_encoding\":{\"description\":\"The Content-Encoding encoding for this file\",\"type\":\"string\"},\"content_type\":{\"description\":\"The MIME type of this file\",\"type\":\"string\"},\"description\":{\"description\":\"A human-readable description for this file\",\"type\":\"string\"},\"download_uri\":{\"description\":\"The URI that hosts this bulk file\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this bulk data file\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"A human-readable name for this file\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"bulk_data\"],\"type\":\"string\"},\"size\":{\"description\":\"The size of this file in bytes\",\"type\":\"integer\"},\"type\":{\"description\":\"The type of bulk data\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time this file was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of bulk data files\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/bulk-data",
@@ -152,6 +222,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /bulk-data/{id}",
+                    "json": "{\"operationId\":\"getBulkDataById\",\"parameters\":[{\"description\":\"The Scryfall ID of the bulk data file\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Bulk Data object contains information about a bulk data file\",\"properties\":{\"content_encoding\":{\"description\":\"The Content-Encoding encoding for this file\",\"type\":\"string\"},\"content_type\":{\"description\":\"The MIME type of this file\",\"type\":\"string\"},\"description\":{\"description\":\"A human-readable description for this file\",\"type\":\"string\"},\"download_uri\":{\"description\":\"The URI that hosts this bulk file\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this bulk data file\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"A human-readable name for this file\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"bulk_data\"],\"type\":\"string\"},\"size\":{\"description\":\"The size of this file in bytes\",\"type\":\"integer\"},\"type\":{\"description\":\"The type of bulk data\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time this file was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bulk data file information\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bulk data file not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -411,6 +487,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /cards/named",
+                    "json": "{\"operationId\":\"getCardByName\",\"parameters\":[{\"description\":\"The exact card name to search for\",\"example\":\"Lightning Bolt\",\"in\":\"query\",\"name\":\"exact\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A fuzzy card name to search for\",\"example\":\"aust com\",\"in\":\"query\",\"name\":\"fuzzy\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A set code to limit the search to one set\",\"example\":\"m19\",\"in\":\"query\",\"name\":\"set\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Card found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Card not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/cards/named",
@@ -448,6 +530,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /cards/random",
+                    "json": "{\"operationId\":\"getRandomCard\",\"parameters\":[{\"description\":\"An optional fulltext search query to filter the pool of random cards\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Random card\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -491,6 +579,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /cards/{id}",
+                    "json": "{\"operationId\":\"getCardById\",\"parameters\":[{\"description\":\"The Scryfall ID of the card\",\"example\":\"683a5707-cddb-494d-9b41-51b4584ded69\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Card found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Card not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -762,6 +856,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /cards/collection",
+                    "json": "{\"operationId\":\"getCardCollection\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"identifiers\":{\"items\":{\"properties\":{\"collector_number\":{\"type\":\"string\"},\"id\":{\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"set\":{\"type\":\"string\"}},\"type\":\"object\"},\"maxItems\":75,\"type\":\"array\"}},\"required\":[\"identifiers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Card objects\",\"properties\":{\"data\":{\"description\":\"An array of the requested objects\",\"items\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"},\"total_cards\":{\"description\":\"The total number of cards found\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Collection of cards\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/cards/collection",
@@ -844,6 +944,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /cards/search",
+                    "json": "{\"operationId\":\"searchCards\",\"parameters\":[{\"description\":\"The fulltext search query\",\"example\":\"c:red pow:3\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The strategy for omitting similar cards\",\"in\":\"query\",\"name\":\"unique\",\"required\":false,\"schema\":{\"default\":\"cards\",\"enum\":[\"cards\",\"art\",\"prints\"],\"type\":\"string\"}},{\"description\":\"The method to sort returned cards\",\"in\":\"query\",\"name\":\"order\",\"required\":false,\"schema\":{\"default\":\"name\",\"enum\":[\"name\",\"set\",\"released\",\"rarity\",\"color\",\"usd\",\"tix\",\"eur\",\"cmc\",\"power\",\"toughness\",\"edhrec\",\"artist\"],\"type\":\"string\"}},{\"description\":\"The direction to sort cards\",\"in\":\"query\",\"name\":\"dir\",\"required\":false,\"schema\":{\"default\":\"auto\",\"enum\":[\"auto\",\"asc\",\"desc\"],\"type\":\"string\"}},{\"description\":\"If true, extra cards (tokens, planes, etc) will be included\",\"in\":\"query\",\"name\":\"include_extras\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"The page number to return\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Card objects\",\"properties\":{\"data\":{\"description\":\"An array of the requested objects\",\"items\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"},\"total_cards\":{\"description\":\"The total number of cards found\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful search results\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid search query\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -972,6 +1078,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /symbology",
+                    "json": "{\"operationId\":\"getAllSymbols\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing CardSymbol objects\",\"properties\":{\"data\":{\"description\":\"An array of CardSymbol objects\",\"items\":{\"description\":\"A Card Symbol object represents a illustrated symbol that may appear in card's mana cost or Oracle text\",\"properties\":{\"appears_in_mana_costs\":{\"description\":\"True if this symbol appears in mana costs\",\"type\":\"boolean\"},\"cmc\":{\"description\":\"The converted mana cost represented by this symbol\",\"nullable\":true,\"type\":\"number\"},\"colors\":{\"description\":\"The colors of this symbol\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"english\":{\"description\":\"An English textual description of the symbol\",\"type\":\"string\"},\"funny\":{\"description\":\"True if this symbol is only used on funny cards\",\"type\":\"boolean\"},\"loose_variant\":{\"description\":\"An alternate version of this symbol\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"card_symbol\"],\"type\":\"string\"},\"represents_mana\":{\"description\":\"True if this is a mana symbol\",\"type\":\"boolean\"},\"svg_uri\":{\"description\":\"A URI to an SVG image for this symbol\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"symbol\":{\"description\":\"The plaintext symbol\",\"type\":\"string\"},\"transposable\":{\"description\":\"True if it's possible to write this symbol backwards\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of all card symbols\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/symbology",
@@ -1058,6 +1170,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /catalog/{catalog_name}",
+                    "json": "{\"operationId\":\"getCatalog\",\"parameters\":[{\"description\":\"The catalog type to retrieve\",\"in\":\"path\",\"name\":\"catalog_name\",\"required\":true,\"schema\":{\"enum\":[\"card-names\",\"artist-names\",\"word-bank\",\"creature-types\",\"planeswalker-types\",\"land-types\",\"artifact-types\",\"enchantment-types\",\"spell-types\",\"powers\",\"toughnesses\",\"loyalties\",\"watermarks\",\"keyword-abilities\",\"keyword-actions\",\"ability-words\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Catalog object contains an array of Magic datapoints\",\"properties\":{\"data\":{\"description\":\"An array of datapoints\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"catalog\"],\"type\":\"string\"},\"total_values\":{\"description\":\"The number of items in the data array\",\"type\":\"integer\"},\"uri\":{\"description\":\"A link to this catalog on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Catalog values\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Catalog not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1168,6 +1286,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /symbology/parse-mana",
+                    "json": "{\"operationId\":\"parseManaCost\",\"parameters\":[{\"description\":\"The mana cost string to parse\",\"example\":\"{2}{U}{U}\",\"in\":\"query\",\"name\":\"cost\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A ManaCost object represents a parsed mana cost\",\"properties\":{\"cmc\":{\"description\":\"The converted mana cost\",\"type\":\"number\"},\"colorless\":{\"description\":\"True if this mana cost is colorless\",\"type\":\"boolean\"},\"colors\":{\"description\":\"The colors in this mana cost\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cost\":{\"description\":\"The normalized cost\",\"type\":\"string\"},\"monocolored\":{\"description\":\"True if this mana cost is monocolored\",\"type\":\"boolean\"},\"multicolored\":{\"description\":\"True if this mana cost is multicolored\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"mana_cost\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Parsed mana cost\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Invalid mana cost\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1283,6 +1407,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /migrations",
+                    "json": "{\"operationId\":\"getCardMigrations\",\"parameters\":[{\"description\":\"The page number to return\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Migration objects\",\"properties\":{\"data\":{\"description\":\"An array of Migration objects\",\"items\":{\"description\":\"A Migration object describes a change in Scryfall's database\",\"properties\":{\"id\":{\"description\":\"A unique ID for this migration\",\"format\":\"uuid\",\"type\":\"string\"},\"migration_strategy\":{\"description\":\"The type of migration strategy\",\"type\":\"string\"},\"new_scryfall_id\":{\"description\":\"The updated Scryfall ID\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"migration\"],\"type\":\"string\"},\"old_scryfall_id\":{\"description\":\"The original Scryfall ID\",\"format\":\"uuid\",\"type\":\"string\"},\"performed_at\":{\"description\":\"The date this migration was performed\",\"format\":\"date-time\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this migration on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of card migrations\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/migrations",
@@ -1371,6 +1501,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /cards/{id}/rulings",
+                    "json": "{\"operationId\":\"getCardRulings\",\"parameters\":[{\"description\":\"The Scryfall ID of the card\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Ruling objects\",\"properties\":{\"data\":{\"description\":\"An array of Ruling objects\",\"items\":{\"description\":\"Rulings represent Oracle rulings and errata issued by Wizards of the Coast\",\"properties\":{\"comment\":{\"description\":\"The text of the ruling\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"ruling\"],\"type\":\"string\"},\"oracle_id\":{\"description\":\"The Oracle ID of the card this ruling applies to\",\"format\":\"uuid\",\"type\":\"string\"},\"published_at\":{\"description\":\"The date this ruling was published\",\"format\":\"date\",\"type\":\"string\"},\"source\":{\"description\":\"The source of this ruling\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of rulings\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Card not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1515,6 +1651,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /sets",
+                    "json": "{\"operationId\":\"getAllSets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Set objects\",\"properties\":{\"data\":{\"description\":\"An array of Set objects\",\"items\":{\"description\":\"A Set object represents a group of related Magic cards\",\"properties\":{\"card_count\":{\"description\":\"The number of cards in this set\",\"type\":\"integer\"},\"code\":{\"description\":\"The unique three to five-letter code for this set\",\"type\":\"string\"},\"digital\":{\"description\":\"True if this set is only available digitally\",\"type\":\"boolean\"},\"icon_svg_uri\":{\"description\":\"A URI to an SVG file for this set's icon\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this set\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"The English name of the set\",\"type\":\"string\"},\"released_at\":{\"description\":\"The date the set was released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this set's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"search_uri\":{\"description\":\"A link to search for cards in this set on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"},\"set_type\":{\"description\":\"The type of set\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this set object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of all sets\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/sets",
@@ -1549,6 +1691,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /sets/{code}",
+                    "json": "{\"operationId\":\"getSetByCode\",\"parameters\":[{\"description\":\"The three to five-letter set code\",\"example\":\"m19\",\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Set object represents a group of related Magic cards\",\"properties\":{\"card_count\":{\"description\":\"The number of cards in this set\",\"type\":\"integer\"},\"code\":{\"description\":\"The unique three to five-letter code for this set\",\"type\":\"string\"},\"digital\":{\"description\":\"True if this set is only available digitally\",\"type\":\"boolean\"},\"icon_svg_uri\":{\"description\":\"A URI to an SVG file for this set's icon\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this set\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"The English name of the set\",\"type\":\"string\"},\"released_at\":{\"description\":\"The date the set was released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this set's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"search_uri\":{\"description\":\"A link to search for cards in this set on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"},\"set_type\":{\"description\":\"The type of set\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this set object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Set found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Set not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -1590,6 +1738,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /sets/{id}",
+                    "json": "{\"operationId\":\"getSetById\",\"parameters\":[{\"description\":\"The Scryfall ID of the set\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Set object represents a group of related Magic cards\",\"properties\":{\"card_count\":{\"description\":\"The number of cards in this set\",\"type\":\"integer\"},\"code\":{\"description\":\"The unique three to five-letter code for this set\",\"type\":\"string\"},\"digital\":{\"description\":\"True if this set is only available digitally\",\"type\":\"boolean\"},\"icon_svg_uri\":{\"description\":\"A URI to an SVG file for this set's icon\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this set\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"The English name of the set\",\"type\":\"string\"},\"released_at\":{\"description\":\"The date the set was released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this set's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"search_uri\":{\"description\":\"A link to search for cards in this set on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"},\"set_type\":{\"description\":\"The type of set\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this set object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Set found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Set not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/sets/{id}",
@@ -1620,13 +1774,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -1716,6 +2080,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -2064,6 +2524,48 @@
         }
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -2618,6 +3120,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2659,7 +3162,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

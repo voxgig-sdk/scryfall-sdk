@@ -42,5 +42,163 @@
         "object": "s11e"
       }
     }
+  },
+  "requests": {
+    "GET /symbology/parse-mana": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "parseManaCost",
+        "parameters": [
+          {
+            "description": "The mana cost string to parse",
+            "example": "{2}{U}{U}",
+            "in": "query",
+            "name": "cost",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A ManaCost object represents a parsed mana cost",
+                  "properties": {
+                    "cmc": {
+                      "description": "The converted mana cost",
+                      "type": "number"
+                    },
+                    "colorless": {
+                      "description": "True if this mana cost is colorless",
+                      "type": "boolean"
+                    },
+                    "colors": {
+                      "description": "The colors in this mana cost",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "cost": {
+                      "description": "The normalized cost",
+                      "type": "string"
+                    },
+                    "monocolored": {
+                      "description": "True if this mana cost is monocolored",
+                      "type": "boolean"
+                    },
+                    "multicolored": {
+                      "description": "True if this mana cost is multicolored",
+                      "type": "boolean"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "mana_cost"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Parsed mana cost"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid mana cost"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    }
   }
 }

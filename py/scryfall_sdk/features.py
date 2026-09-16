@@ -1,12 +1,18 @@
 # Scryfall SDK feature factory
 
 from scryfall_sdk.feature.base_feature import ScryfallBaseFeature
+from scryfall_sdk.feature.ratelimit_feature import ScryfallRatelimitFeature
+from scryfall_sdk.feature.retry_feature import ScryfallRetryFeature
 from scryfall_sdk.feature.test_feature import ScryfallTestFeature
+from scryfall_sdk.feature.timeout_feature import ScryfallTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: ScryfallBaseFeature(),
+    "ratelimit": lambda: ScryfallRatelimitFeature(),
+    "retry": lambda: ScryfallRetryFeature(),
     "test": lambda: ScryfallTestFeature(),
+    "timeout": lambda: ScryfallTimeoutFeature(),
 }
 
 

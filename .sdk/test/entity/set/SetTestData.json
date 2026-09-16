@@ -2,7 +2,7 @@
   "existing": {
     "set": {
       "SET00": {
-        "card_count": "s6e",
+        "card_count": 110,
         "code": "s6f",
         "digital": true,
         "icon_svg_uri": "s71",
@@ -15,7 +15,7 @@
         "uri": "s78"
       },
       "SET01": {
-        "card_count": "sdc",
+        "card_count": 220,
         "code": "sdd",
         "digital": true,
         "icon_svg_uri": "sdf",
@@ -28,7 +28,7 @@
         "uri": "se6"
       },
       "SET02": {
-        "card_count": "s14a",
+        "card_count": 330,
         "code": "s14b",
         "digital": true,
         "icon_svg_uri": "s14d",
@@ -45,7 +45,7 @@
   "new": {
     "set": {
       "set_ref01": {
-        "card_count": "s1b8",
+        "card_count": 440,
         "code": "s1b9",
         "digital": true,
         "icon_svg_uri": "s1bb",
@@ -55,6 +55,491 @@
         "search_uri": "s1c0",
         "set_type": "s1c1",
         "uri": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "GET /sets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAllSets",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A List object containing Set objects",
+                  "properties": {
+                    "data": {
+                      "description": "An array of Set objects",
+                      "items": {
+                        "description": "A Set object represents a group of related Magic cards",
+                        "properties": {
+                          "card_count": {
+                            "description": "The number of cards in this set",
+                            "type": "integer"
+                          },
+                          "code": {
+                            "description": "The unique three to five-letter code for this set",
+                            "type": "string"
+                          },
+                          "digital": {
+                            "description": "True if this set is only available digitally",
+                            "type": "boolean"
+                          },
+                          "icon_svg_uri": {
+                            "description": "A URI to an SVG file for this set's icon",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "A unique ID for this set",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The English name of the set",
+                            "type": "string"
+                          },
+                          "released_at": {
+                            "description": "The date the set was released",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "scryfall_uri": {
+                            "description": "A link to this set's page on Scryfall's website",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "search_uri": {
+                            "description": "A link to search for cards in this set on Scryfall's API",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "set_type": {
+                            "description": "The type of set",
+                            "type": "string"
+                          },
+                          "uri": {
+                            "description": "A link to this set object on Scryfall's API",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "has_more": {
+                      "description": "True if this list is paginated and has more pages",
+                      "type": "boolean"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "list"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of all sets"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    },
+    "GET /sets/{code}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSetByCode",
+        "parameters": [
+          {
+            "description": "The three to five-letter set code",
+            "example": "m19",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A Set object represents a group of related Magic cards",
+                  "properties": {
+                    "card_count": {
+                      "description": "The number of cards in this set",
+                      "type": "integer"
+                    },
+                    "code": {
+                      "description": "The unique three to five-letter code for this set",
+                      "type": "string"
+                    },
+                    "digital": {
+                      "description": "True if this set is only available digitally",
+                      "type": "boolean"
+                    },
+                    "icon_svg_uri": {
+                      "description": "A URI to an SVG file for this set's icon",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "A unique ID for this set",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The English name of the set",
+                      "type": "string"
+                    },
+                    "released_at": {
+                      "description": "The date the set was released",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "scryfall_uri": {
+                      "description": "A link to this set's page on Scryfall's website",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "search_uri": {
+                      "description": "A link to search for cards in this set on Scryfall's API",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "set_type": {
+                      "description": "The type of set",
+                      "type": "string"
+                    },
+                    "uri": {
+                      "description": "A link to this set object on Scryfall's API",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Set found"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Set not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    },
+    "GET /sets/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSetById",
+        "parameters": [
+          {
+            "description": "The Scryfall ID of the set",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A Set object represents a group of related Magic cards",
+                  "properties": {
+                    "card_count": {
+                      "description": "The number of cards in this set",
+                      "type": "integer"
+                    },
+                    "code": {
+                      "description": "The unique three to five-letter code for this set",
+                      "type": "string"
+                    },
+                    "digital": {
+                      "description": "True if this set is only available digitally",
+                      "type": "boolean"
+                    },
+                    "icon_svg_uri": {
+                      "description": "A URI to an SVG file for this set's icon",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "A unique ID for this set",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The English name of the set",
+                      "type": "string"
+                    },
+                    "released_at": {
+                      "description": "The date the set was released",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "scryfall_uri": {
+                      "description": "A link to this set's page on Scryfall's website",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "search_uri": {
+                      "description": "A link to search for cards in this set on Scryfall's API",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "set_type": {
+                      "description": "The type of set",
+                      "type": "string"
+                    },
+                    "uri": {
+                      "description": "A link to this set object on Scryfall's API",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Set found"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Set not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
       }
     }
   }

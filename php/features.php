@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Scryfall SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class ScryfallFeatures
@@ -14,8 +17,14 @@ class ScryfallFeatures
         switch ($name) {
             case "base":
                 return new ScryfallBaseFeature();
+            case "ratelimit":
+                return new ScryfallRatelimitFeature();
+            case "retry":
+                return new ScryfallRetryFeature();
             case "test":
                 return new ScryfallTestFeature();
+            case "timeout":
+                return new ScryfallTimeoutFeature();
             default:
                 return new ScryfallBaseFeature();
         }
@@ -31,7 +40,10 @@ class ScryfallFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

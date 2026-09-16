@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `test` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -210,11 +210,11 @@ $client = new ScryfallSDK();
 
 // List all bulkdatas (returns an array; throws on error)
 $bulkdatas = $client->BulkData()->list();
-print_r($bulkdatas);
+print_r(array_map(fn($item) => $item->data_get(), $bulkdatas));
 
 // Load a specific bulkdata (returns the ENTITY; call data_get() for the record; throws on error)
 $bulkdata = $client->BulkData()->load(["id" => "example_id"]);
-print_r($bulkdata);
+print_r($bulkdata->data_get());
 ```
 
 ### Golang
@@ -363,7 +363,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
+| **RatelimitFeature** | Client-side rate limiting via a token bucket |
+| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
 | **TestFeature** | In-memory mock transport for testing without a live server |
+| **TimeoutFeature** | Per-request timeout with transport abort |
 
 Pass custom features via the `extend` option at construction time.
 

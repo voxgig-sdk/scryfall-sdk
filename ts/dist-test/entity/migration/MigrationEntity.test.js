@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.SCRYFALL_TEST_LIVE;
         for (const op of ['list']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'migration.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'migration.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set SCRYFALL_TEST_MIGRATION_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "format": "uuid", "name": "id", "req": false, "short": "A unique ID for this migration", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "migration_strategy", "req": false, "short": "The type of migration strategy", "type": "`$STRING`", "index$": 1 }, { "active": true, "format": "uuid", "name": "new_scryfall_id", "req": false, "short": "The updated Scryfall ID", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "object", "req": false, "short": "The object type", "type": "`$STRING`", "index$": 3 }, { "active": true, "format": "uuid", "name": "old_scryfall_id", "req": false, "short": "The original Scryfall ID", "type": "`$STRING`", "index$": 4 }, { "active": true, "format": "date-time", "name": "performed_at", "req": false, "short": "The date this migration was performed", "type": "`$STRING`", "index$": 5 }, { "active": true, "format": "uri", "name": "uri", "req": false, "short": "A link to this migration on Scryfall's API", "type": "`$STRING`", "index$": 6 }], "id": { "field": "id", "name": "id" }, "name": "migration", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "query": [{ "active": true, "example": 1, "kind": "query", "name": "page", "orig": "page", "reqd": false, "type": "`$INTEGER`", "index$": 0 }] }, "contract": { "id": "GET /migrations", "json": "{\"operationId\":\"getCardMigrations\",\"parameters\":[{\"description\":\"The page number to return\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Migration objects\",\"properties\":{\"data\":{\"description\":\"An array of Migration objects\",\"items\":{\"description\":\"A Migration object describes a change in Scryfall's database\",\"properties\":{\"id\":{\"description\":\"A unique ID for this migration\",\"format\":\"uuid\",\"type\":\"string\"},\"migration_strategy\":{\"description\":\"The type of migration strategy\",\"type\":\"string\"},\"new_scryfall_id\":{\"description\":\"The updated Scryfall ID\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"migration\"],\"type\":\"string\"},\"old_scryfall_id\":{\"description\":\"The original Scryfall ID\",\"format\":\"uuid\",\"type\":\"string\"},\"performed_at\":{\"description\":\"The date this migration was performed\",\"format\":\"date-time\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this migration on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of card migrations\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/migrations", "segments": [{ "lit": "migrations" }], "select": { "exist": ["page"] }, "transform": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "migration", "name__orig": "migration", "Name": "Migration", "name_": "migration", "name-": "migration", "NAME": "MIGRATION", "index$": 6 }, { "active": true, "entity": "migration", "key$": "BasicMigrationFlow", "kind": "basic", "name": "BasicMigrationFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "migration_ref01" } }], "index$": 0 }] }, 'Migration');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['SCRYFALL_TEST_MIGRATION_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'SCRYFALL_TEST_MIGRATION_ENTID': idmap,
         'SCRYFALL_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['SCRYFALL_TEST_MIGRATION_ENTID'];
     const live = 'TRUE' === env.SCRYFALL_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['SCRYFALL_TEST_MIGRATION_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.ScryfallSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.SCRYFALL_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

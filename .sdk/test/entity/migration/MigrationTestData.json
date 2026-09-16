@@ -41,5 +41,151 @@
         "uri": "s11e"
       }
     }
+  },
+  "requests": {
+    "GET /migrations": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCardMigrations",
+        "parameters": [
+          {
+            "description": "The page number to return",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A List object containing Migration objects",
+                  "properties": {
+                    "data": {
+                      "description": "An array of Migration objects",
+                      "items": {
+                        "description": "A Migration object describes a change in Scryfall's database",
+                        "properties": {
+                          "id": {
+                            "description": "A unique ID for this migration",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "migration_strategy": {
+                            "description": "The type of migration strategy",
+                            "type": "string"
+                          },
+                          "new_scryfall_id": {
+                            "description": "The updated Scryfall ID",
+                            "format": "uuid",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "object": {
+                            "description": "The object type",
+                            "enum": [
+                              "migration"
+                            ],
+                            "type": "string"
+                          },
+                          "old_scryfall_id": {
+                            "description": "The original Scryfall ID",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "performed_at": {
+                            "description": "The date this migration was performed",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "uri": {
+                            "description": "A link to this migration on Scryfall's API",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "has_more": {
+                      "description": "True if this list is paginated and has more pages",
+                      "type": "boolean"
+                    },
+                    "next_page": {
+                      "description": "The URL for the next page of results",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "list"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of card migrations"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An Error object represents a failure to complete an API request",
+                  "properties": {
+                    "code": {
+                      "description": "A computer-friendly error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "A human-readable error message",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The object type",
+                      "enum": [
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "An HTTP status code",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "A classification of the error type",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Non-failure warnings",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    }
   }
 }
