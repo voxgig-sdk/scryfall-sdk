@@ -105,12 +105,12 @@ local results, err = client:BulkData():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/scryfall-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
-| Python | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
-| PHP | `voxgig-sdk/scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
+| TypeScript | `@voxgig-sdk/scryfall-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/tags) |
+| Python | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/tags) |
+| PHP | `voxgig-sdk/scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/scryfall-sdk/go` | `go get github.com/voxgig-sdk/scryfall-sdk/go@latest` |
-| Ruby | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
-| Lua | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/releases) |
+| Ruby | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/tags) |
+| Lua | `voxgig-sdk-scryfall` | publish pending — [install from git tag](https://github.com/voxgig-sdk/scryfall-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/scryfall-sdk/go-cli` | `go install github.com/voxgig-sdk/scryfall-sdk/go-cli/cmd/scryfall@latest` |
 | Go MCP server | `github.com/voxgig-sdk/scryfall-sdk/go-mcp` | `go get github.com/voxgig-sdk/scryfall-sdk/go-mcp@latest` |
 

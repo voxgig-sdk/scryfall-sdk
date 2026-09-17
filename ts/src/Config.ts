@@ -127,33 +127,33 @@ class Config {
 
     entity: {
       
-      bulk_data: {
-      },
-
-      card: {
-      },
-
-      card_list: {
-      },
-
-      card_symbol_list: {
-      },
-
-      catalog: {
-      },
-
-      mana_cost: {
-      },
-
-      migration: {
-      },
-
-      ruling: {
-      },
-
-      set: {
-      },
-
+        bulk_data: {
+        },
+  
+        card: {
+        },
+  
+        card_list: {
+        },
+  
+        card_symbol_list: {
+        },
+  
+        catalog: {
+        },
+  
+        mana_cost: {
+        },
+  
+        migration: {
+        },
+  
+        ruling: {
+        },
+  
+        set: {
+        },
+  
     }
   }
 
