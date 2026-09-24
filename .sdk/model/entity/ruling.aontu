@@ -1,0 +1,106 @@
+# Entity: ruling
+
+main: kit: entity: ruling: {
+
+  alias: field: {}
+
+  fields: {
+    comment: {
+      h: "Comment"
+      n: "comment"
+      r: false
+      sh: "The text of the ruling"
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type"
+      t: "`$STRING`"
+    }
+    oracle_id: {
+      fo: "uuid"
+      h: "Oracle Id"
+      n: "oracle_id"
+      r: false
+      sh: "The Oracle ID of the card this ruling applies to"
+      t: "`$STRING`"
+    }
+    published_at: {
+      fo: "date"
+      h: "Published At"
+      n: "published_at"
+      r: false
+      sh: "The date this ruling was published"
+      t: "`$STRING`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: false
+      sh: "The source of this ruling"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "ruling"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /cards/{id}/rulings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "card_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/{id}/rulings"
+          q: {
+            exist: [
+              "card_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "card_id"
+            }
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              var: "card_id"
+            }
+            {
+              lit: "rulings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.card")]
+  ]
+
+}

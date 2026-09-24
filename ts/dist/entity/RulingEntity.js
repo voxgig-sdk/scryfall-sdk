@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RulingEntity = void 0;
 const ScryfallEntityBase_1 = require("../ScryfallEntityBase");
-// TODO: needs Entity superclass
 class RulingEntity extends ScryfallEntityBase_1.ScryfallEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

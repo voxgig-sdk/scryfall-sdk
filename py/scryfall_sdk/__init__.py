@@ -325,10 +325,10 @@ class ScryfallSDK:
         return CardListEntity(self, data)
 
 
-    def CardSymbolList(self, data=None) -> "CardSymbolListEntity":
-        """Entity factory: client.CardSymbolList().list() / client.CardSymbolList().load({"id": ...})."""
-        from scryfall_sdk.entity.card_symbol_list_entity import CardSymbolListEntity
-        return CardSymbolListEntity(self, data)
+    def CardSymbol(self, data=None) -> "CardSymbolEntity":
+        """Entity factory: client.CardSymbol().list() / client.CardSymbol().load({"id": ...})."""
+        from scryfall_sdk.entity.card_symbol_entity import CardSymbolEntity
+        return CardSymbolEntity(self, data)
 
 
     def Catalog(self, data=None) -> "CatalogEntity":
@@ -391,7 +391,7 @@ if TYPE_CHECKING:
     from scryfall_sdk.entity.bulk_data_entity import BulkDataEntity
     from scryfall_sdk.entity.card_entity import CardEntity
     from scryfall_sdk.entity.card_list_entity import CardListEntity
-    from scryfall_sdk.entity.card_symbol_list_entity import CardSymbolListEntity
+    from scryfall_sdk.entity.card_symbol_entity import CardSymbolEntity
     from scryfall_sdk.entity.catalog_entity import CatalogEntity
     from scryfall_sdk.entity.mana_cost_entity import ManaCostEntity
     from scryfall_sdk.entity.migration_entity import MigrationEntity

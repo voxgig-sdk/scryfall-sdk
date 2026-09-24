@@ -20,7 +20,7 @@ import (
 const prompt = "scryfall"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "bulk_data card card_list card_symbol_list catalog mana_cost migration ruling set"
+const entitiesHelp = "bulk_data card card_list card_symbol catalog mana_cost migration ruling set"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

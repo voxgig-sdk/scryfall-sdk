@@ -19,7 +19,6 @@ import type {
   ManaCostListMatch,
 } from '../ScryfallTypes'
 
-// TODO: needs Entity superclass
 class ManaCostEntity extends ScryfallEntityBase<ManaCost> {
 
   constructor(client: ScryfallSDK, entopts: any) {

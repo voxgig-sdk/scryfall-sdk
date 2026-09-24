@@ -1,0 +1,117 @@
+# Entity: card_symbol
+
+main: kit: entity: card_symbol: {
+
+  alias: field: {}
+
+  fields: {
+    appears_in_mana_costs: {
+      h: "Appears In Mana Costs"
+      n: "appears_in_mana_costs"
+      r: false
+      sh: "True if this symbol appears in mana costs"
+      t: "`$BOOLEAN`"
+    }
+    cmc: {
+      h: "Cmc"
+      n: "cmc"
+      r: false
+      sh: "The converted mana cost represented by this symbol"
+      t: "`$NUMBER`"
+    }
+    colors: {
+      h: "Colors"
+      n: "colors"
+      r: false
+      sh: "The colors of this symbol"
+      t: "`$ARRAY`"
+    }
+    english: {
+      h: "English"
+      n: "english"
+      r: false
+      sh: "An English textual description of the symbol"
+      t: "`$STRING`"
+    }
+    funny: {
+      h: "Funny"
+      n: "funny"
+      r: false
+      sh: "True if this symbol is only used on funny cards"
+      t: "`$BOOLEAN`"
+    }
+    loose_variant: {
+      h: "Loose Variant"
+      n: "loose_variant"
+      r: false
+      sh: "An alternate version of this symbol"
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type"
+      t: "`$STRING`"
+    }
+    represents_mana: {
+      h: "Represents Mana"
+      n: "represents_mana"
+      r: false
+      sh: "True if this is a mana symbol"
+      t: "`$BOOLEAN`"
+    }
+    svg_uri: {
+      fo: "uri"
+      h: "Svg Uri"
+      n: "svg_uri"
+      r: false
+      sh: "A URI to an SVG image for this symbol"
+      t: "`$STRING`"
+    }
+    symbol: {
+      h: "Symbol"
+      n: "symbol"
+      r: false
+      sh: "The plaintext symbol"
+      t: "`$STRING`"
+    }
+    transposable: {
+      h: "Transposable"
+      n: "transposable"
+      r: false
+      sh: "True if it's possible to write this symbol backwards"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "card_symbol"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /symbology"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/symbology"
+          s: [
+            {
+              lit: "symbology"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

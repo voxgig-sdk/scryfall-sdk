@@ -53,9 +53,9 @@ Create a new `CardEntity` instance. Pass `None` for no initial data.
 
 Create a new `CardListEntity` instance. Pass `None` for no initial data.
 
-#### `CardSymbolList(data=None)`
+#### `CardSymbol(data=None)`
 
-Create a new `CardSymbolListEntity` instance. Pass `None` for no initial data.
+Create a new `CardSymbolEntity` instance. Pass `None` for no initial data.
 
 #### `Catalog(data=None)`
 
@@ -357,10 +357,10 @@ Return the entity name.
 
 ---
 
-## CardSymbolListEntity
+## CardSymbolEntity
 
 ```python
-card_symbol_list = client.CardSymbolList()
+card_symbol = client.CardSymbol()
 ```
 
 ### Fields
@@ -386,9 +386,9 @@ card_symbol_list = client.CardSymbolList()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CardSymbolList().list()
-for card_symbol_list in results:
-    print(card_symbol_list)
+results = client.CardSymbol().list()
+for card_symbol in results:
+    print(card_symbol)
 ```
 
 ### Common Methods
@@ -411,7 +411,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `CardSymbolListEntity` instance with the same options.
+Create a new `CardSymbolEntity` instance with the same options.
 
 #### `get_name() -> str`
 

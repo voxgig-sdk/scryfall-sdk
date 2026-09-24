@@ -19,7 +19,6 @@ import type {
   MigrationListMatch,
 } from '../ScryfallTypes'
 
-// TODO: needs Entity superclass
 class MigrationEntity extends ScryfallEntityBase<Migration> {
 
   constructor(client: ScryfallSDK, entopts: any) {

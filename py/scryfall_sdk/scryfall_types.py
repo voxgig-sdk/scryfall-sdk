@@ -1,7 +1,7 @@
 # Typed models for the Scryfall SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -170,7 +170,7 @@ class CardListCreateData(CardListCreateDataRequired, total=False):
     uri: str
 
 
-class CardSymbolList(TypedDict, total=False):
+class CardSymbol(TypedDict, total=False):
     appears_in_mana_costs: bool
     cmc: float
     colors: list
@@ -184,7 +184,7 @@ class CardSymbolList(TypedDict, total=False):
     transposable: bool
 
 
-class CardSymbolListListMatch(TypedDict, total=False):
+class CardSymbolListMatch(TypedDict, total=False):
     appears_in_mana_costs: bool
     cmc: float
     colors: list

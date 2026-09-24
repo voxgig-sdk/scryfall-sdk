@@ -79,7 +79,7 @@ _ENTITIES = {
     "BulkData": "bulk_data",
     "Card": "card",
     "CardList": "card_list",
-    "CardSymbolList": "card_symbol_list",
+    "CardSymbol": "card_symbol",
     "Catalog": "catalog",
     "ManaCost": "mana_cost",
     "Migration": "migration",

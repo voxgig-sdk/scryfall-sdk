@@ -2,8 +2,8 @@
 
 # Typed models for the Scryfall SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
@@ -525,7 +525,7 @@ CardListCreateData = Struct.new(
   keyword_init: true
 )
 
-# CardSymbolList entity data model.
+# CardSymbol entity data model.
 #
 # @!attribute [rw] appears_in_mana_costs
 #   @return [Boolean, nil]
@@ -559,7 +559,7 @@ CardListCreateData = Struct.new(
 #
 # @!attribute [rw] transposable
 #   @return [Boolean, nil]
-CardSymbolList = Struct.new(
+CardSymbol = Struct.new(
   :appears_in_mana_costs,
   :cmc,
   :colors,
@@ -574,7 +574,7 @@ CardSymbolList = Struct.new(
   keyword_init: true
 )
 
-# Request payload for CardSymbolList#list.
+# Request payload for CardSymbol#list.
 #
 # @!attribute [rw] appears_in_mana_costs
 #   @return [Boolean, nil]
@@ -608,7 +608,7 @@ CardSymbolList = Struct.new(
 #
 # @!attribute [rw] transposable
 #   @return [Boolean, nil]
-CardSymbolListListMatch = Struct.new(
+CardSymbolListMatch = Struct.new(
   :appears_in_mana_costs,
   :cmc,
   :colors,

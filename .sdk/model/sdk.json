@@ -24,87 +24,163 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "bulk_data": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "content_encoding",
-              "req": false,
-              "short": "The Content-Encoding encoding for this file",
-              "type": "`$STRING`"
+          "fields": {
+            "content_encoding": {
+              "a": true,
+              "h": "Content Encoding",
+              "n": "content_encoding",
+              "r": false,
+              "sh": "The Content-Encoding encoding for this file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "content_type",
-              "req": false,
-              "short": "The MIME type of this file",
-              "type": "`$STRING`"
+            "content_type": {
+              "a": true,
+              "h": "Content Type",
+              "n": "content_type",
+              "r": false,
+              "sh": "The MIME type of this file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "A human-readable description for this file",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "A human-readable description for this file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "download_uri",
-              "req": false,
-              "short": "The URI that hosts this bulk file",
-              "type": "`$STRING`"
+            "download_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Download Uri",
+              "n": "download_uri",
+              "r": false,
+              "sh": "The URI that hosts this bulk file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "id",
-              "req": false,
-              "short": "A unique ID for this bulk data file",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "A unique ID for this bulk data file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "A human-readable name for this file",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "A human-readable name for this file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "size",
-              "req": false,
-              "short": "The size of this file in bytes",
-              "type": "`$INTEGER`"
+            "size": {
+              "a": true,
+              "h": "Size",
+              "n": "size",
+              "r": false,
+              "sh": "The size of this file in bytes",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "The type of bulk data",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "The type of bulk data",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "updated_at",
-              "req": false,
-              "short": "The time this file was last updated",
-              "type": "`$STRING`"
+            "updated_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Updated At",
+              "n": "updated_at",
+              "r": false,
+              "sh": "The time this file was last updated",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -116,24 +192,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /bulk-data",
-                    "json": "{\"operationId\":\"getBulkData\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing BulkData objects\",\"properties\":{\"data\":{\"description\":\"An array of BulkData objects\",\"items\":{\"description\":\"A Bulk Data object contains information about a bulk data file\",\"properties\":{\"content_encoding\":{\"description\":\"The Content-Encoding encoding for this file\",\"type\":\"string\"},\"content_type\":{\"description\":\"The MIME type of this file\",\"type\":\"string\"},\"description\":{\"description\":\"A human-readable description for this file\",\"type\":\"string\"},\"download_uri\":{\"description\":\"The URI that hosts this bulk file\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this bulk data file\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"A human-readable name for this file\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"bulk_data\"],\"type\":\"string\"},\"size\":{\"description\":\"The size of this file in bytes\",\"type\":\"integer\"},\"type\":{\"description\":\"The type of bulk data\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time this file was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of bulk data files\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/bulk-data",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/bulk-data",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "bulk-data"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -145,29 +221,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /bulk-data/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /bulk-data/{id}",
-                    "json": "{\"operationId\":\"getBulkDataById\",\"parameters\":[{\"description\":\"The Scryfall ID of the bulk data file\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Bulk Data object contains information about a bulk data file\",\"properties\":{\"content_encoding\":{\"description\":\"The Content-Encoding encoding for this file\",\"type\":\"string\"},\"content_type\":{\"description\":\"The MIME type of this file\",\"type\":\"string\"},\"description\":{\"description\":\"A human-readable description for this file\",\"type\":\"string\"},\"download_uri\":{\"description\":\"The URI that hosts this bulk file\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this bulk data file\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"A human-readable name for this file\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"bulk_data\"],\"type\":\"string\"},\"size\":{\"description\":\"The size of this file in bytes\",\"type\":\"integer\"},\"type\":{\"description\":\"The type of bulk data\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time this file was last updated\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bulk data file information\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bulk data file not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/bulk-data/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/bulk-data/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "bulk-data"
                     },
@@ -175,12 +256,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -197,188 +273,213 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "artist",
-              "req": false,
-              "short": "The name of the illustrator of this card",
-              "type": "`$STRING`"
+          "fields": {
+            "artist": {
+              "a": true,
+              "h": "Artist",
+              "n": "artist",
+              "r": false,
+              "sh": "The name of the illustrator of this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "cmc",
-              "req": false,
-              "short": "The card's converted mana cost",
-              "type": "`$NUMBER`"
+            "cmc": {
+              "a": true,
+              "h": "Cmc",
+              "n": "cmc",
+              "r": false,
+              "sh": "The card's converted mana cost",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "collector_number",
-              "req": false,
-              "short": "This card's collector number",
-              "type": "`$STRING`"
+            "collector_number": {
+              "a": true,
+              "h": "Collector Number",
+              "n": "collector_number",
+              "r": false,
+              "sh": "This card's collector number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "color_identity",
-              "req": false,
-              "short": "This card's color identity",
-              "type": "`$ARRAY`"
+            "color_identity": {
+              "a": true,
+              "h": "Color Identity",
+              "n": "color_identity",
+              "r": false,
+              "sh": "This card's color identity",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "colors",
-              "req": false,
-              "short": "This card's colors",
-              "type": "`$ARRAY`"
+            "colors": {
+              "a": true,
+              "h": "Colors",
+              "n": "colors",
+              "r": false,
+              "sh": "This card's colors",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "id",
-              "req": false,
-              "short": "A unique ID for this card in Scryfall's database",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "A unique ID for this card in Scryfall's database",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "image_uris",
-              "req": false,
-              "short": "An object containing URIs to this card's imagery",
-              "type": "`$OBJECT`"
+            "image_uris": {
+              "a": true,
+              "h": "Image Uris",
+              "n": "image_uris",
+              "r": false,
+              "sh": "An object containing URIs to this card's imagery",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "lang",
-              "req": false,
-              "short": "The language code for this printing",
-              "type": "`$STRING`"
+            "lang": {
+              "a": true,
+              "h": "Lang",
+              "n": "lang",
+              "r": false,
+              "sh": "The language code for this printing",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "layout",
-              "req": false,
-              "short": "A code for this card's layout",
-              "type": "`$STRING`"
+            "layout": {
+              "a": true,
+              "h": "Layout",
+              "n": "layout",
+              "r": false,
+              "sh": "A code for this card's layout",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "legalities",
-              "req": false,
-              "short": "An object describing the legality of this card",
-              "type": "`$OBJECT`"
+            "legalities": {
+              "a": true,
+              "h": "Legalities",
+              "n": "legalities",
+              "r": false,
+              "sh": "An object describing the legality of this card",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "loyalty",
-              "req": false,
-              "short": "This card's loyalty (for planeswalkers)",
-              "type": "`$STRING`"
+            "loyalty": {
+              "a": true,
+              "h": "Loyalty",
+              "n": "loyalty",
+              "r": false,
+              "sh": "This card's loyalty (for planeswalkers)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "mana_cost",
-              "req": false,
-              "short": "The mana cost for this card",
-              "type": "`$STRING`"
+            "mana_cost": {
+              "a": true,
+              "h": "Mana Cost",
+              "n": "mana_cost",
+              "r": false,
+              "sh": "The mana cost for this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "The name of this card",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "The name of this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "oracle_id",
-              "req": false,
-              "short": "A unique ID for this card's oracle identity",
-              "type": "`$STRING`"
+            "oracle_id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Oracle Id",
+              "n": "oracle_id",
+              "r": false,
+              "sh": "A unique ID for this card's oracle identity",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "oracle_text",
-              "req": false,
-              "short": "The Oracle text for this card",
-              "type": "`$STRING`"
+            "oracle_text": {
+              "a": true,
+              "h": "Oracle Text",
+              "n": "oracle_text",
+              "r": false,
+              "sh": "The Oracle text for this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "power",
-              "req": false,
-              "short": "This card's power (for creatures)",
-              "type": "`$STRING`"
+            "power": {
+              "a": true,
+              "h": "Power",
+              "n": "power",
+              "r": false,
+              "sh": "This card's power (for creatures)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "prices",
-              "req": false,
-              "short": "An object containing daily price information for this card",
-              "type": "`$OBJECT`"
+            "prices": {
+              "a": true,
+              "h": "Prices",
+              "n": "prices",
+              "r": false,
+              "sh": "An object containing daily price information for this card",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "rarity",
-              "req": false,
-              "short": "This card's rarity",
-              "type": "`$STRING`"
+            "rarity": {
+              "a": true,
+              "h": "Rarity",
+              "n": "rarity",
+              "r": false,
+              "sh": "This card's rarity",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "released_at",
-              "req": false,
-              "short": "The date this card was first released",
-              "type": "`$STRING`"
+            "released_at": {
+              "a": true,
+              "fo": "date",
+              "h": "Released At",
+              "n": "released_at",
+              "r": false,
+              "sh": "The date this card was first released",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "scryfall_uri",
-              "req": false,
-              "short": "A link to this card's page on Scryfall's website",
-              "type": "`$STRING`"
+            "scryfall_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Scryfall Uri",
+              "n": "scryfall_uri",
+              "r": false,
+              "sh": "A link to this card's page on Scryfall's website",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "set",
-              "req": false,
-              "short": "This card's set code",
-              "type": "`$STRING`"
+            "set": {
+              "a": true,
+              "h": "Set",
+              "n": "set",
+              "r": false,
+              "sh": "This card's set code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "set_name",
-              "req": false,
-              "short": "This card's full set name",
-              "type": "`$STRING`"
+            "set_name": {
+              "a": true,
+              "h": "Set Name",
+              "n": "set_name",
+              "r": false,
+              "sh": "This card's full set name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "toughness",
-              "req": false,
-              "short": "This card's toughness (for creatures)",
-              "type": "`$STRING`"
+            "toughness": {
+              "a": true,
+              "h": "Toughness",
+              "n": "toughness",
+              "r": false,
+              "sh": "This card's toughness (for creatures)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type_line",
-              "req": false,
-              "short": "The type line of this card",
-              "type": "`$STRING`"
+            "type_line": {
+              "a": true,
+              "h": "Type Line",
+              "n": "type_line",
+              "r": false,
+              "sh": "The type line of this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "uri",
-              "req": false,
-              "short": "A link to this card object on Scryfall's API",
-              "type": "`$STRING`"
+            "uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Uri",
+              "n": "uri",
+              "r": false,
+              "sh": "A link to this card object on Scryfall's API",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -390,56 +491,47 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cards/named",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "Lightning Bolt",
-                        "kind": "query",
-                        "name": "exact",
-                        "orig": "exact",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "Lightning Bolt",
+                        "k": "query",
+                        "n": "exact",
+                        "or": "exact",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "aust com",
-                        "kind": "query",
-                        "name": "fuzzy",
-                        "orig": "fuzzy",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "aust com",
+                        "k": "query",
+                        "n": "fuzzy",
+                        "or": "fuzzy",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "m19",
-                        "kind": "query",
-                        "name": "set",
-                        "orig": "set",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "m19",
+                        "k": "query",
+                        "n": "set",
+                        "or": "set",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cards/named",
-                    "json": "{\"operationId\":\"getCardByName\",\"parameters\":[{\"description\":\"The exact card name to search for\",\"example\":\"Lightning Bolt\",\"in\":\"query\",\"name\":\"exact\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A fuzzy card name to search for\",\"example\":\"aust com\",\"in\":\"query\",\"name\":\"fuzzy\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"A set code to limit the search to one set\",\"example\":\"m19\",\"in\":\"query\",\"name\":\"set\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Card found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Card not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cards/named",
-                  "segments": [
-                    {
-                      "lit": "cards"
-                    },
-                    {
-                      "lit": "named"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cards/named",
+                  "q": {
                     "$action": "named",
                     "exist": [
                       "exact",
@@ -447,35 +539,50 @@
                       "set"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "cards"
+                    },
+                    {
+                      "lit": "named"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cards/random",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "q",
-                        "orig": "q",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cards/random",
-                    "json": "{\"operationId\":\"getRandomCard\",\"parameters\":[{\"description\":\"An optional fulltext search query to filter the pool of random cards\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Random card\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cards/random",
+                  "q": {
+                    "$action": "random",
+                    "exist": [
+                      "q"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cards/random",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cards"
                     },
@@ -483,13 +590,7 @@
                       "lit": "random"
                     }
                   ],
-                  "select": {
-                    "$action": "random",
-                    "exist": [
-                      "q"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -501,30 +602,35 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cards/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "683a5707-cddb-494d-9b41-51b4584ded69",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "683a5707-cddb-494d-9b41-51b4584ded69",
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cards/{id}",
-                    "json": "{\"operationId\":\"getCardById\",\"parameters\":[{\"description\":\"The Scryfall ID of the card\",\"example\":\"683a5707-cddb-494d-9b41-51b4584ded69\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Card found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Card not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cards/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cards/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cards"
                     },
@@ -532,12 +638,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -554,230 +655,261 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "artist",
-              "req": false,
-              "short": "The name of the illustrator of this card",
-              "type": "`$STRING`"
+          "fields": {
+            "artist": {
+              "a": true,
+              "h": "Artist",
+              "n": "artist",
+              "r": false,
+              "sh": "The name of the illustrator of this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "cmc",
-              "req": false,
-              "short": "The card's converted mana cost",
-              "type": "`$NUMBER`"
+            "cmc": {
+              "a": true,
+              "h": "Cmc",
+              "n": "cmc",
+              "r": false,
+              "sh": "The card's converted mana cost",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "collector_number",
-              "req": false,
-              "short": "This card's collector number",
-              "type": "`$STRING`"
+            "collector_number": {
+              "a": true,
+              "h": "Collector Number",
+              "n": "collector_number",
+              "r": false,
+              "sh": "This card's collector number",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "color_identity",
-              "req": false,
-              "short": "This card's color identity",
-              "type": "`$ARRAY`"
+            "color_identity": {
+              "a": true,
+              "h": "Color Identity",
+              "n": "color_identity",
+              "r": false,
+              "sh": "This card's color identity",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "colors",
-              "req": false,
-              "short": "This card's colors",
-              "type": "`$ARRAY`"
+            "colors": {
+              "a": true,
+              "h": "Colors",
+              "n": "colors",
+              "r": false,
+              "sh": "This card's colors",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "short": "An array of the requested objects",
-              "type": "`$ARRAY`"
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "sh": "An array of the requested objects",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "has_more",
-              "req": false,
-              "short": "True if this list is paginated and has more pages",
-              "type": "`$BOOLEAN`"
+            "has_more": {
+              "a": true,
+              "h": "Has More",
+              "n": "has_more",
+              "r": false,
+              "sh": "True if this list is paginated and has more pages",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "id",
-              "req": false,
-              "short": "A unique ID for this card in Scryfall's database",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "A unique ID for this card in Scryfall's database",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "identifiers",
-              "req": true,
-              "type": "`$ARRAY`"
+            "identifiers": {
+              "a": true,
+              "h": "Identifiers",
+              "n": "identifiers",
+              "r": true,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "image_uris",
-              "req": false,
-              "short": "An object containing URIs to this card's imagery",
-              "type": "`$OBJECT`"
+            "image_uris": {
+              "a": true,
+              "h": "Image Uris",
+              "n": "image_uris",
+              "r": false,
+              "sh": "An object containing URIs to this card's imagery",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "lang",
-              "req": false,
-              "short": "The language code for this printing",
-              "type": "`$STRING`"
+            "lang": {
+              "a": true,
+              "h": "Lang",
+              "n": "lang",
+              "r": false,
+              "sh": "The language code for this printing",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "layout",
-              "req": false,
-              "short": "A code for this card's layout",
-              "type": "`$STRING`"
+            "layout": {
+              "a": true,
+              "h": "Layout",
+              "n": "layout",
+              "r": false,
+              "sh": "A code for this card's layout",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "legalities",
-              "req": false,
-              "short": "An object describing the legality of this card",
-              "type": "`$OBJECT`"
+            "legalities": {
+              "a": true,
+              "h": "Legalities",
+              "n": "legalities",
+              "r": false,
+              "sh": "An object describing the legality of this card",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "loyalty",
-              "req": false,
-              "short": "This card's loyalty (for planeswalkers)",
-              "type": "`$STRING`"
+            "loyalty": {
+              "a": true,
+              "h": "Loyalty",
+              "n": "loyalty",
+              "r": false,
+              "sh": "This card's loyalty (for planeswalkers)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "mana_cost",
-              "req": false,
-              "short": "The mana cost for this card",
-              "type": "`$STRING`"
+            "mana_cost": {
+              "a": true,
+              "h": "Mana Cost",
+              "n": "mana_cost",
+              "r": false,
+              "sh": "The mana cost for this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "The name of this card",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "The name of this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "next_page",
-              "req": false,
-              "short": "The URL for the next page of results",
-              "type": "`$STRING`"
+            "next_page": {
+              "a": true,
+              "fo": "uri",
+              "h": "Next Page",
+              "n": "next_page",
+              "r": false,
+              "sh": "The URL for the next page of results",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "oracle_id",
-              "req": false,
-              "short": "A unique ID for this card's oracle identity",
-              "type": "`$STRING`"
+            "oracle_id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Oracle Id",
+              "n": "oracle_id",
+              "r": false,
+              "sh": "A unique ID for this card's oracle identity",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "oracle_text",
-              "req": false,
-              "short": "The Oracle text for this card",
-              "type": "`$STRING`"
+            "oracle_text": {
+              "a": true,
+              "h": "Oracle Text",
+              "n": "oracle_text",
+              "r": false,
+              "sh": "The Oracle text for this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "power",
-              "req": false,
-              "short": "This card's power (for creatures)",
-              "type": "`$STRING`"
+            "power": {
+              "a": true,
+              "h": "Power",
+              "n": "power",
+              "r": false,
+              "sh": "This card's power (for creatures)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "prices",
-              "req": false,
-              "short": "An object containing daily price information for this card",
-              "type": "`$OBJECT`"
+            "prices": {
+              "a": true,
+              "h": "Prices",
+              "n": "prices",
+              "r": false,
+              "sh": "An object containing daily price information for this card",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "rarity",
-              "req": false,
-              "short": "This card's rarity",
-              "type": "`$STRING`"
+            "rarity": {
+              "a": true,
+              "h": "Rarity",
+              "n": "rarity",
+              "r": false,
+              "sh": "This card's rarity",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "released_at",
-              "req": false,
-              "short": "The date this card was first released",
-              "type": "`$STRING`"
+            "released_at": {
+              "a": true,
+              "fo": "date",
+              "h": "Released At",
+              "n": "released_at",
+              "r": false,
+              "sh": "The date this card was first released",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "scryfall_uri",
-              "req": false,
-              "short": "A link to this card's page on Scryfall's website",
-              "type": "`$STRING`"
+            "scryfall_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Scryfall Uri",
+              "n": "scryfall_uri",
+              "r": false,
+              "sh": "A link to this card's page on Scryfall's website",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "set",
-              "req": false,
-              "short": "This card's set code",
-              "type": "`$STRING`"
+            "set": {
+              "a": true,
+              "h": "Set",
+              "n": "set",
+              "r": false,
+              "sh": "This card's set code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "set_name",
-              "req": false,
-              "short": "This card's full set name",
-              "type": "`$STRING`"
+            "set_name": {
+              "a": true,
+              "h": "Set Name",
+              "n": "set_name",
+              "r": false,
+              "sh": "This card's full set name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "total_cards",
-              "req": false,
-              "short": "The total number of cards found",
-              "type": "`$INTEGER`"
+            "total_cards": {
+              "a": true,
+              "h": "Total Cards",
+              "n": "total_cards",
+              "r": false,
+              "sh": "The total number of cards found",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "toughness",
-              "req": false,
-              "short": "This card's toughness (for creatures)",
-              "type": "`$STRING`"
+            "toughness": {
+              "a": true,
+              "h": "Toughness",
+              "n": "toughness",
+              "r": false,
+              "sh": "This card's toughness (for creatures)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type_line",
-              "req": false,
-              "short": "The type line of this card",
-              "type": "`$STRING`"
+            "type_line": {
+              "a": true,
+              "h": "Type Line",
+              "n": "type_line",
+              "r": false,
+              "sh": "The type line of this card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "uri",
-              "req": false,
-              "short": "A link to this card object on Scryfall's API",
-              "type": "`$STRING`"
+            "uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Uri",
+              "n": "uri",
+              "r": false,
+              "sh": "A link to this card object on Scryfall's API",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -789,18 +921,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /cards/collection",
-                    "json": "{\"operationId\":\"getCardCollection\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"identifiers\":{\"items\":{\"properties\":{\"collector_number\":{\"type\":\"string\"},\"id\":{\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"set\":{\"type\":\"string\"}},\"type\":\"object\"},\"maxItems\":75,\"type\":\"array\"}},\"required\":[\"identifiers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Card objects\",\"properties\":{\"data\":{\"description\":\"An array of the requested objects\",\"items\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"},\"total_cards\":{\"description\":\"The total number of cards found\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Collection of cards\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/cards/collection",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/cards/collection",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cards"
                     },
@@ -808,8 +941,7 @@
                       "lit": "collection"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -821,83 +953,74 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cards/search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "auto",
-                        "kind": "query",
-                        "name": "dir",
-                        "orig": "dir",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "auto",
+                        "k": "query",
+                        "n": "dir",
+                        "or": "dir",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": false,
-                        "kind": "query",
-                        "name": "include_extra",
-                        "orig": "include_extra",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "include_extra",
+                        "or": "include_extra",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       },
                       {
-                        "active": true,
-                        "example": "name",
-                        "kind": "query",
-                        "name": "order",
-                        "orig": "order",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "name",
+                        "k": "query",
+                        "n": "order",
+                        "or": "order",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": "c:red pow:3",
-                        "kind": "query",
-                        "name": "q",
-                        "orig": "q",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "c:red pow:3",
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "cards",
-                        "kind": "query",
-                        "name": "unique",
-                        "orig": "unique",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "cards",
+                        "k": "query",
+                        "n": "unique",
+                        "or": "unique",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cards/search",
-                    "json": "{\"operationId\":\"searchCards\",\"parameters\":[{\"description\":\"The fulltext search query\",\"example\":\"c:red pow:3\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The strategy for omitting similar cards\",\"in\":\"query\",\"name\":\"unique\",\"required\":false,\"schema\":{\"default\":\"cards\",\"enum\":[\"cards\",\"art\",\"prints\"],\"type\":\"string\"}},{\"description\":\"The method to sort returned cards\",\"in\":\"query\",\"name\":\"order\",\"required\":false,\"schema\":{\"default\":\"name\",\"enum\":[\"name\",\"set\",\"released\",\"rarity\",\"color\",\"usd\",\"tix\",\"eur\",\"cmc\",\"power\",\"toughness\",\"edhrec\",\"artist\"],\"type\":\"string\"}},{\"description\":\"The direction to sort cards\",\"in\":\"query\",\"name\":\"dir\",\"required\":false,\"schema\":{\"default\":\"auto\",\"enum\":[\"auto\",\"asc\",\"desc\"],\"type\":\"string\"}},{\"description\":\"If true, extra cards (tokens, planes, etc) will be included\",\"in\":\"query\",\"name\":\"include_extras\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"The page number to return\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Card objects\",\"properties\":{\"data\":{\"description\":\"An array of the requested objects\",\"items\":{\"description\":\"Card objects represent individual Magic: The Gathering cards\",\"properties\":{\"artist\":{\"description\":\"The name of the illustrator of this card\",\"type\":\"string\"},\"cmc\":{\"description\":\"The card's converted mana cost\",\"type\":\"number\"},\"collector_number\":{\"description\":\"This card's collector number\",\"type\":\"string\"},\"color_identity\":{\"description\":\"This card's color identity\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"colors\":{\"description\":\"This card's colors\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"A unique ID for this card in Scryfall's database\",\"format\":\"uuid\",\"type\":\"string\"},\"image_uris\":{\"description\":\"An object containing URIs to this card's imagery\",\"properties\":{\"art_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"border_crop\":{\"format\":\"uri\",\"type\":\"string\"},\"large\":{\"format\":\"uri\",\"type\":\"string\"},\"normal\":{\"format\":\"uri\",\"type\":\"string\"},\"png\":{\"format\":\"uri\",\"type\":\"string\"},\"small\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"lang\":{\"description\":\"The language code for this printing\",\"type\":\"string\"},\"layout\":{\"description\":\"A code for this card's layout\",\"type\":\"string\"},\"legalities\":{\"additionalProperties\":{\"enum\":[\"legal\",\"not_legal\",\"restricted\",\"banned\"],\"type\":\"string\"},\"description\":\"An object describing the legality of this card\",\"type\":\"object\"},\"loyalty\":{\"description\":\"This card's loyalty (for planeswalkers)\",\"type\":\"string\"},\"mana_cost\":{\"description\":\"The mana cost for this card\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this card\",\"type\":\"string\"},\"oracle_id\":{\"description\":\"A unique ID for this card's oracle identity\",\"format\":\"uuid\",\"type\":\"string\"},\"oracle_text\":{\"description\":\"The Oracle text for this card\",\"type\":\"string\"},\"power\":{\"description\":\"This card's power (for creatures)\",\"type\":\"string\"},\"prices\":{\"description\":\"An object containing daily price information for this card\",\"properties\":{\"eur\":{\"nullable\":true,\"type\":\"string\"},\"tix\":{\"nullable\":true,\"type\":\"string\"},\"usd\":{\"nullable\":true,\"type\":\"string\"},\"usd_foil\":{\"nullable\":true,\"type\":\"string\"}},\"type\":\"object\"},\"rarity\":{\"description\":\"This card's rarity\",\"enum\":[\"common\",\"uncommon\",\"rare\",\"mythic\",\"special\",\"bonus\"],\"type\":\"string\"},\"released_at\":{\"description\":\"The date this card was first released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this card's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"set\":{\"description\":\"This card's set code\",\"type\":\"string\"},\"set_name\":{\"description\":\"This card's full set name\",\"type\":\"string\"},\"toughness\":{\"description\":\"This card's toughness (for creatures)\",\"type\":\"string\"},\"type_line\":{\"description\":\"The type line of this card\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this card object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"},\"total_cards\":{\"description\":\"The total number of cards found\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful search results\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid search query\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cards/search",
-                  "segments": [
-                    {
-                      "lit": "cards"
-                    },
-                    {
-                      "lit": "search"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cards/search",
+                  "q": {
                     "exist": [
                       "dir",
                       "include_extra",
@@ -907,7 +1030,16 @@
                       "unique"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "cards"
+                    },
+                    {
+                      "lit": "search"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -919,116 +1051,127 @@
             "ancestors": []
           }
         },
-        "card_symbol_list": {
+        "card_symbol": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "appears_in_mana_costs",
-              "req": false,
-              "short": "True if this symbol appears in mana costs",
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "appears_in_mana_costs": {
+              "a": true,
+              "h": "Appears In Mana Costs",
+              "n": "appears_in_mana_costs",
+              "r": false,
+              "sh": "True if this symbol appears in mana costs",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "cmc",
-              "req": false,
-              "short": "The converted mana cost represented by this symbol",
-              "type": "`$NUMBER`"
+            "cmc": {
+              "a": true,
+              "h": "Cmc",
+              "n": "cmc",
+              "r": false,
+              "sh": "The converted mana cost represented by this symbol",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "colors",
-              "req": false,
-              "short": "The colors of this symbol",
-              "type": "`$ARRAY`"
+            "colors": {
+              "a": true,
+              "h": "Colors",
+              "n": "colors",
+              "r": false,
+              "sh": "The colors of this symbol",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "english",
-              "req": false,
-              "short": "An English textual description of the symbol",
-              "type": "`$STRING`"
+            "english": {
+              "a": true,
+              "h": "English",
+              "n": "english",
+              "r": false,
+              "sh": "An English textual description of the symbol",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "funny",
-              "req": false,
-              "short": "True if this symbol is only used on funny cards",
-              "type": "`$BOOLEAN`"
+            "funny": {
+              "a": true,
+              "h": "Funny",
+              "n": "funny",
+              "r": false,
+              "sh": "True if this symbol is only used on funny cards",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "loose_variant",
-              "req": false,
-              "short": "An alternate version of this symbol",
-              "type": "`$STRING`"
+            "loose_variant": {
+              "a": true,
+              "h": "Loose Variant",
+              "n": "loose_variant",
+              "r": false,
+              "sh": "An alternate version of this symbol",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "represents_mana",
-              "req": false,
-              "short": "True if this is a mana symbol",
-              "type": "`$BOOLEAN`"
+            "represents_mana": {
+              "a": true,
+              "h": "Represents Mana",
+              "n": "represents_mana",
+              "r": false,
+              "sh": "True if this is a mana symbol",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "svg_uri",
-              "req": false,
-              "short": "A URI to an SVG image for this symbol",
-              "type": "`$STRING`"
+            "svg_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Svg Uri",
+              "n": "svg_uri",
+              "r": false,
+              "sh": "A URI to an SVG image for this symbol",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "symbol",
-              "req": false,
-              "short": "The plaintext symbol",
-              "type": "`$STRING`"
+            "symbol": {
+              "a": true,
+              "h": "Symbol",
+              "n": "symbol",
+              "r": false,
+              "sh": "The plaintext symbol",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "transposable",
-              "req": false,
-              "short": "True if it's possible to write this symbol backwards",
-              "type": "`$BOOLEAN`"
+            "transposable": {
+              "a": true,
+              "h": "Transposable",
+              "n": "transposable",
+              "r": false,
+              "sh": "True if it's possible to write this symbol backwards",
+              "t": "`$BOOLEAN`"
             }
-          ],
-          "name": "card_symbol_list",
+          },
+          "name": "card_symbol",
           "op": {
             "list": {
               "input": "data",
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /symbology",
-                    "json": "{\"operationId\":\"getAllSymbols\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing CardSymbol objects\",\"properties\":{\"data\":{\"description\":\"An array of CardSymbol objects\",\"items\":{\"description\":\"A Card Symbol object represents a illustrated symbol that may appear in card's mana cost or Oracle text\",\"properties\":{\"appears_in_mana_costs\":{\"description\":\"True if this symbol appears in mana costs\",\"type\":\"boolean\"},\"cmc\":{\"description\":\"The converted mana cost represented by this symbol\",\"nullable\":true,\"type\":\"number\"},\"colors\":{\"description\":\"The colors of this symbol\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"english\":{\"description\":\"An English textual description of the symbol\",\"type\":\"string\"},\"funny\":{\"description\":\"True if this symbol is only used on funny cards\",\"type\":\"boolean\"},\"loose_variant\":{\"description\":\"An alternate version of this symbol\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"card_symbol\"],\"type\":\"string\"},\"represents_mana\":{\"description\":\"True if this is a mana symbol\",\"type\":\"boolean\"},\"svg_uri\":{\"description\":\"A URI to an SVG image for this symbol\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"symbol\":{\"description\":\"The plaintext symbol\",\"type\":\"string\"},\"transposable\":{\"description\":\"True if it's possible to write this symbol backwards\",\"type\":\"boolean\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of all card symbols\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/symbology",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/symbology",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "symbology"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1045,43 +1188,48 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "short": "An array of datapoints",
-              "type": "`$ARRAY`"
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "sh": "An array of datapoints",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "total_values",
-              "req": false,
-              "short": "The number of items in the data array",
-              "type": "`$INTEGER`"
+            "total_values": {
+              "a": true,
+              "h": "Total Values",
+              "n": "total_values",
+              "r": false,
+              "sh": "The number of items in the data array",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "uri",
-              "req": false,
-              "short": "A link to this catalog on Scryfall's API",
-              "type": "`$STRING`"
+            "uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Uri",
+              "n": "uri",
+              "r": false,
+              "sh": "A link to this catalog on Scryfall's API",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1093,34 +1241,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /catalog/{catalog_name}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "catalog_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "catalog_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /catalog/{catalog_name}",
-                    "json": "{\"operationId\":\"getCatalog\",\"parameters\":[{\"description\":\"The catalog type to retrieve\",\"in\":\"path\",\"name\":\"catalog_name\",\"required\":true,\"schema\":{\"enum\":[\"card-names\",\"artist-names\",\"word-bank\",\"creature-types\",\"planeswalker-types\",\"land-types\",\"artifact-types\",\"enchantment-types\",\"spell-types\",\"powers\",\"toughnesses\",\"loyalties\",\"watermarks\",\"keyword-abilities\",\"keyword-actions\",\"ability-words\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Catalog object contains an array of Magic datapoints\",\"properties\":{\"data\":{\"description\":\"An array of datapoints\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"catalog\"],\"type\":\"string\"},\"total_values\":{\"description\":\"The number of items in the data array\",\"type\":\"integer\"},\"uri\":{\"description\":\"A link to this catalog on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Catalog values\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Catalog not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/catalog/{catalog_name}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/catalog/{catalog_name}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "catalog_name": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "catalog"
                     },
@@ -1128,12 +1280,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1150,57 +1297,64 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "cmc",
-              "req": false,
-              "short": "The converted mana cost",
-              "type": "`$NUMBER`"
+          "fields": {
+            "cmc": {
+              "a": true,
+              "h": "Cmc",
+              "n": "cmc",
+              "r": false,
+              "sh": "The converted mana cost",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "colorless",
-              "req": false,
-              "short": "True if this mana cost is colorless",
-              "type": "`$BOOLEAN`"
+            "colorless": {
+              "a": true,
+              "h": "Colorless",
+              "n": "colorless",
+              "r": false,
+              "sh": "True if this mana cost is colorless",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "colors",
-              "req": false,
-              "short": "The colors in this mana cost",
-              "type": "`$ARRAY`"
+            "colors": {
+              "a": true,
+              "h": "Colors",
+              "n": "colors",
+              "r": false,
+              "sh": "The colors in this mana cost",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "cost",
-              "req": false,
-              "short": "The normalized cost",
-              "type": "`$STRING`"
+            "cost": {
+              "a": true,
+              "h": "Cost",
+              "n": "cost",
+              "r": false,
+              "sh": "The normalized cost",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "monocolored",
-              "req": false,
-              "short": "True if this mana cost is monocolored",
-              "type": "`$BOOLEAN`"
+            "monocolored": {
+              "a": true,
+              "h": "Monocolored",
+              "n": "monocolored",
+              "r": false,
+              "sh": "True if this mana cost is monocolored",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "multicolored",
-              "req": false,
-              "short": "True if this mana cost is multicolored",
-              "type": "`$BOOLEAN`"
+            "multicolored": {
+              "a": true,
+              "h": "Multicolored",
+              "n": "multicolored",
+              "r": false,
+              "sh": "True if this mana cost is multicolored",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "mana_cost",
           "op": {
             "list": {
@@ -1208,30 +1362,35 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /symbology/parse-mana",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "{2}{U}{U}",
-                        "kind": "query",
-                        "name": "cost",
-                        "orig": "cost",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "{2}{U}{U}",
+                        "k": "query",
+                        "n": "cost",
+                        "or": "cost",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /symbology/parse-mana",
-                    "json": "{\"operationId\":\"parseManaCost\",\"parameters\":[{\"description\":\"The mana cost string to parse\",\"example\":\"{2}{U}{U}\",\"in\":\"query\",\"name\":\"cost\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A ManaCost object represents a parsed mana cost\",\"properties\":{\"cmc\":{\"description\":\"The converted mana cost\",\"type\":\"number\"},\"colorless\":{\"description\":\"True if this mana cost is colorless\",\"type\":\"boolean\"},\"colors\":{\"description\":\"The colors in this mana cost\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"cost\":{\"description\":\"The normalized cost\",\"type\":\"string\"},\"monocolored\":{\"description\":\"True if this mana cost is monocolored\",\"type\":\"boolean\"},\"multicolored\":{\"description\":\"True if this mana cost is multicolored\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"mana_cost\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Parsed mana cost\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Invalid mana cost\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/symbology/parse-mana",
+                  "q": {
+                    "exist": [
+                      "cost"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/symbology/parse-mana",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "symbology"
                     },
@@ -1239,12 +1398,7 @@
                       "lit": "parse-mana"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "cost"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.colors`"
                   }
@@ -1261,62 +1415,69 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "id",
-              "req": false,
-              "short": "A unique ID for this migration",
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "A unique ID for this migration",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "migration_strategy",
-              "req": false,
-              "short": "The type of migration strategy",
-              "type": "`$STRING`"
+            "migration_strategy": {
+              "a": true,
+              "h": "Migration Strategy",
+              "n": "migration_strategy",
+              "r": false,
+              "sh": "The type of migration strategy",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "new_scryfall_id",
-              "req": false,
-              "short": "The updated Scryfall ID",
-              "type": "`$STRING`"
+            "new_scryfall_id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "New Scryfall Id",
+              "n": "new_scryfall_id",
+              "r": false,
+              "sh": "The updated Scryfall ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "old_scryfall_id",
-              "req": false,
-              "short": "The original Scryfall ID",
-              "type": "`$STRING`"
+            "old_scryfall_id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Old Scryfall Id",
+              "n": "old_scryfall_id",
+              "r": false,
+              "sh": "The original Scryfall ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "performed_at",
-              "req": false,
-              "short": "The date this migration was performed",
-              "type": "`$STRING`"
+            "performed_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Performed At",
+              "n": "performed_at",
+              "r": false,
+              "sh": "The date this migration was performed",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "uri",
-              "req": false,
-              "short": "A link to this migration on Scryfall's API",
-              "type": "`$STRING`"
+            "uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Uri",
+              "n": "uri",
+              "r": false,
+              "sh": "A link to this migration on Scryfall's API",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1328,40 +1489,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /migrations",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /migrations",
-                    "json": "{\"operationId\":\"getCardMigrations\",\"parameters\":[{\"description\":\"The page number to return\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Migration objects\",\"properties\":{\"data\":{\"description\":\"An array of Migration objects\",\"items\":{\"description\":\"A Migration object describes a change in Scryfall's database\",\"properties\":{\"id\":{\"description\":\"A unique ID for this migration\",\"format\":\"uuid\",\"type\":\"string\"},\"migration_strategy\":{\"description\":\"The type of migration strategy\",\"type\":\"string\"},\"new_scryfall_id\":{\"description\":\"The updated Scryfall ID\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"migration\"],\"type\":\"string\"},\"old_scryfall_id\":{\"description\":\"The original Scryfall ID\",\"format\":\"uuid\",\"type\":\"string\"},\"performed_at\":{\"description\":\"The date this migration was performed\",\"format\":\"date-time\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this migration on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"next_page\":{\"description\":\"The URL for the next page of results\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of card migrations\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/migrations",
-                  "segments": [
-                    {
-                      "lit": "migrations"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/migrations",
+                  "q": {
                     "exist": [
                       "page"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "migrations"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1378,45 +1539,50 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "comment",
-              "req": false,
-              "short": "The text of the ruling",
-              "type": "`$STRING`"
+          "fields": {
+            "comment": {
+              "a": true,
+              "h": "Comment",
+              "n": "comment",
+              "r": false,
+              "sh": "The text of the ruling",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "object",
-              "req": false,
-              "short": "The object type",
-              "type": "`$STRING`"
+            "object": {
+              "a": true,
+              "h": "Object",
+              "n": "object",
+              "r": false,
+              "sh": "The object type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "oracle_id",
-              "req": false,
-              "short": "The Oracle ID of the card this ruling applies to",
-              "type": "`$STRING`"
+            "oracle_id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Oracle Id",
+              "n": "oracle_id",
+              "r": false,
+              "sh": "The Oracle ID of the card this ruling applies to",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "published_at",
-              "req": false,
-              "short": "The date this ruling was published",
-              "type": "`$STRING`"
+            "published_at": {
+              "a": true,
+              "fo": "date",
+              "h": "Published At",
+              "n": "published_at",
+              "r": false,
+              "sh": "The date this ruling was published",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "source",
-              "req": false,
-              "short": "The source of this ruling",
-              "type": "`$STRING`"
+            "source": {
+              "a": true,
+              "h": "Source",
+              "n": "source",
+              "r": false,
+              "sh": "The source of this ruling",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "ruling",
           "op": {
             "list": {
@@ -1424,34 +1590,38 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cards/{id}/rulings",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "card_id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "card_id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cards/{id}/rulings",
-                    "json": "{\"operationId\":\"getCardRulings\",\"parameters\":[{\"description\":\"The Scryfall ID of the card\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Ruling objects\",\"properties\":{\"data\":{\"description\":\"An array of Ruling objects\",\"items\":{\"description\":\"Rulings represent Oracle rulings and errata issued by Wizards of the Coast\",\"properties\":{\"comment\":{\"description\":\"The text of the ruling\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"ruling\"],\"type\":\"string\"},\"oracle_id\":{\"description\":\"The Oracle ID of the card this ruling applies to\",\"format\":\"uuid\",\"type\":\"string\"},\"published_at\":{\"description\":\"The date this ruling was published\",\"format\":\"date\",\"type\":\"string\"},\"source\":{\"description\":\"The source of this ruling\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of rulings\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Card not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cards/{id}/rulings",
+                  "q": {
+                    "exist": [
+                      "card_id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cards/{id}/rulings",
-                  "rename": {
+                  "r": {
                     "param": {
                       "id": "card_id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "cards"
                     },
@@ -1462,12 +1632,7 @@
                       "lit": "rulings"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "card_id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1478,7 +1643,7 @@
           "relations": {
             "ancestors": [
               [
-                "card"
+                "$.main.kit.entity.card"
               ]
             ]
           }
@@ -1488,91 +1653,102 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "card_count",
-              "req": false,
-              "short": "The number of cards in this set",
-              "type": "`$INTEGER`"
+          "fields": {
+            "card_count": {
+              "a": true,
+              "h": "Card Count",
+              "n": "card_count",
+              "r": false,
+              "sh": "The number of cards in this set",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "code",
-              "req": false,
-              "short": "The unique three to five-letter code for this set",
-              "type": "`$STRING`"
+            "code": {
+              "a": true,
+              "h": "Code",
+              "n": "code",
+              "r": false,
+              "sh": "The unique three to five-letter code for this set",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "digital",
-              "req": false,
-              "short": "True if this set is only available digitally",
-              "type": "`$BOOLEAN`"
+            "digital": {
+              "a": true,
+              "h": "Digital",
+              "n": "digital",
+              "r": false,
+              "sh": "True if this set is only available digitally",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "icon_svg_uri",
-              "req": false,
-              "short": "A URI to an SVG file for this set's icon",
-              "type": "`$STRING`"
+            "icon_svg_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Icon Svg Uri",
+              "n": "icon_svg_uri",
+              "r": false,
+              "sh": "A URI to an SVG file for this set's icon",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uuid",
-              "name": "id",
-              "req": false,
-              "short": "A unique ID for this set",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "fo": "uuid",
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "A unique ID for this set",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "The English name of the set",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "The English name of the set",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "released_at",
-              "req": false,
-              "short": "The date the set was released",
-              "type": "`$STRING`"
+            "released_at": {
+              "a": true,
+              "fo": "date",
+              "h": "Released At",
+              "n": "released_at",
+              "r": false,
+              "sh": "The date the set was released",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "scryfall_uri",
-              "req": false,
-              "short": "A link to this set's page on Scryfall's website",
-              "type": "`$STRING`"
+            "scryfall_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Scryfall Uri",
+              "n": "scryfall_uri",
+              "r": false,
+              "sh": "A link to this set's page on Scryfall's website",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "search_uri",
-              "req": false,
-              "short": "A link to search for cards in this set on Scryfall's API",
-              "type": "`$STRING`"
+            "search_uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Search Uri",
+              "n": "search_uri",
+              "r": false,
+              "sh": "A link to search for cards in this set on Scryfall's API",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "set_type",
-              "req": false,
-              "short": "The type of set",
-              "type": "`$STRING`"
+            "set_type": {
+              "a": true,
+              "h": "Set Type",
+              "n": "set_type",
+              "r": false,
+              "sh": "The type of set",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "uri",
-              "req": false,
-              "short": "A link to this set object on Scryfall's API",
-              "type": "`$STRING`"
+            "uri": {
+              "a": true,
+              "fo": "uri",
+              "h": "Uri",
+              "n": "uri",
+              "r": false,
+              "sh": "A link to this set object on Scryfall's API",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1584,24 +1760,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /sets",
-                    "json": "{\"operationId\":\"getAllSets\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A List object containing Set objects\",\"properties\":{\"data\":{\"description\":\"An array of Set objects\",\"items\":{\"description\":\"A Set object represents a group of related Magic cards\",\"properties\":{\"card_count\":{\"description\":\"The number of cards in this set\",\"type\":\"integer\"},\"code\":{\"description\":\"The unique three to five-letter code for this set\",\"type\":\"string\"},\"digital\":{\"description\":\"True if this set is only available digitally\",\"type\":\"boolean\"},\"icon_svg_uri\":{\"description\":\"A URI to an SVG file for this set's icon\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this set\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"The English name of the set\",\"type\":\"string\"},\"released_at\":{\"description\":\"The date the set was released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this set's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"search_uri\":{\"description\":\"A link to search for cards in this set on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"},\"set_type\":{\"description\":\"The type of set\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this set object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"True if this list is paginated and has more pages\",\"type\":\"boolean\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"list\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"List of all sets\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/sets",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/sets",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "sets"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1613,35 +1789,39 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /sets/{code}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "m19",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "code",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "m19",
+                        "k": "param",
+                        "n": "id",
+                        "or": "code",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /sets/{code}",
-                    "json": "{\"operationId\":\"getSetByCode\",\"parameters\":[{\"description\":\"The three to five-letter set code\",\"example\":\"m19\",\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Set object represents a group of related Magic cards\",\"properties\":{\"card_count\":{\"description\":\"The number of cards in this set\",\"type\":\"integer\"},\"code\":{\"description\":\"The unique three to five-letter code for this set\",\"type\":\"string\"},\"digital\":{\"description\":\"True if this set is only available digitally\",\"type\":\"boolean\"},\"icon_svg_uri\":{\"description\":\"A URI to an SVG file for this set's icon\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this set\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"The English name of the set\",\"type\":\"string\"},\"released_at\":{\"description\":\"The date the set was released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this set's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"search_uri\":{\"description\":\"A link to search for cards in this set on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"},\"set_type\":{\"description\":\"The type of set\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this set object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Set found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Set not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/sets/{code}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/sets/{code}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "code": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "sets"
                     },
@@ -1649,40 +1829,40 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /sets/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /sets/{id}",
-                    "json": "{\"operationId\":\"getSetById\",\"parameters\":[{\"description\":\"The Scryfall ID of the set\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"format\":\"uuid\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A Set object represents a group of related Magic cards\",\"properties\":{\"card_count\":{\"description\":\"The number of cards in this set\",\"type\":\"integer\"},\"code\":{\"description\":\"The unique three to five-letter code for this set\",\"type\":\"string\"},\"digital\":{\"description\":\"True if this set is only available digitally\",\"type\":\"boolean\"},\"icon_svg_uri\":{\"description\":\"A URI to an SVG file for this set's icon\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"A unique ID for this set\",\"format\":\"uuid\",\"type\":\"string\"},\"name\":{\"description\":\"The English name of the set\",\"type\":\"string\"},\"released_at\":{\"description\":\"The date the set was released\",\"format\":\"date\",\"type\":\"string\"},\"scryfall_uri\":{\"description\":\"A link to this set's page on Scryfall's website\",\"format\":\"uri\",\"type\":\"string\"},\"search_uri\":{\"description\":\"A link to search for cards in this set on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"},\"set_type\":{\"description\":\"The type of set\",\"type\":\"string\"},\"uri\":{\"description\":\"A link to this set object on Scryfall's API\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Set found\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Set not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An Error object represents a failure to complete an API request\",\"properties\":{\"code\":{\"description\":\"A computer-friendly error code\",\"type\":\"string\"},\"details\":{\"description\":\"A human-readable error message\",\"type\":\"string\"},\"object\":{\"description\":\"The object type\",\"enum\":[\"error\"],\"type\":\"string\"},\"status\":{\"description\":\"An HTTP status code\",\"type\":\"integer\"},\"type\":{\"description\":\"A classification of the error type\",\"type\":\"string\"},\"warnings\":{\"description\":\"Non-failure warnings\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/sets/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/sets/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "sets"
                     },
@@ -1690,12 +1870,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -2124,13 +2299,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2140,19 +2315,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "bulk_data_ref01",
                 "srcdatavar": "bulk_data_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "bulk_data01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2172,13 +2347,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2188,19 +2363,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "card_ref01",
                 "srcdatavar": "card_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "card01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2220,24 +2395,24 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "card_list_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             },
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2248,26 +2423,26 @@
             }
           ]
         },
-        "BasicCardSymbolListFlow": {
+        "BasicCardSymbolFlow": {
           "active": true,
-          "entity": "card_symbol_list",
-          "key$": "BasicCardSymbolListFlow",
+          "entity": "card_symbol",
+          "key$": "BasicCardSymbolFlow",
           "kind": "basic",
-          "name": "BasicCardSymbolListFlow",
+          "name": "BasicCardSymbolFlow",
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "card_symbol_list_ref01"
+                    "ref": "card_symbol_ref01"
                   }
                 }
               ]
@@ -2283,19 +2458,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "catalog_ref01",
                 "srcdatavar": "catalog_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "catalog01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2315,13 +2490,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2341,13 +2516,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2367,15 +2542,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "card_id": "card01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2395,13 +2570,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2411,19 +2586,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "set_ref01",
                 "srcdatavar": "set_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "set01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

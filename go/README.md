@@ -230,7 +230,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `BulkData` | `(data map[string]any) ScryfallEntity` | Create a BulkData entity instance. |
 | `Card` | `(data map[string]any) ScryfallEntity` | Create a Card entity instance. |
 | `CardList` | `(data map[string]any) ScryfallEntity` | Create a CardList entity instance. |
-| `CardSymbolList` | `(data map[string]any) ScryfallEntity` | Create a CardSymbolList entity instance. |
+| `CardSymbol` | `(data map[string]any) ScryfallEntity` | Create a CardSymbol entity instance. |
 | `Catalog` | `(data map[string]any) ScryfallEntity` | Create a Catalog entity instance. |
 | `ManaCost` | `(data map[string]any) ScryfallEntity` | Create a ManaCost entity instance. |
 | `Migration` | `(data map[string]any) ScryfallEntity` | Create a Migration entity instance. |
@@ -367,7 +367,7 @@ Operations: Create, List.
 
 API path: `/cards/collection`
 
-#### CardSymbolList
+#### CardSymbol
 
 | Field | Description |
 | --- | --- |
@@ -651,9 +651,9 @@ fmt.Println(result)
 ```
 
 
-### CardSymbolList
+### CardSymbol
 
-Create an instance: `cardSymbolList := client.CardSymbolList(nil)`
+Create an instance: `cardSymbol := client.CardSymbol(nil)`
 
 #### Operations
 
@@ -680,11 +680,11 @@ Create an instance: `cardSymbolList := client.CardSymbolList(nil)`
 #### Example: List
 
 ```go
-cardSymbolLists, err := client.CardSymbolList(nil).List(nil, nil)
+cardSymbols, err := client.CardSymbol(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cardSymbolLists) // the array of records
+fmt.Println(cardSymbols) // the array of records
 ```
 
 

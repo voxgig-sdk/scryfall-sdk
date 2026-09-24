@@ -111,7 +111,7 @@ def make_config():
                 "bulk_data": {},
                 "card": {},
                 "card_list": {},
-                "card_symbol_list": {},
+                "card_symbol": {},
                 "catalog": {},
                 "mana_cost": {},
                 "migration": {},
@@ -124,56 +124,66 @@ def make_config():
         "fields": [
           {
             "name": "content_encoding",
-            "short": "The Content-Encoding encoding for this file",
+            "title": "Content Encoding",
             "type": "`$STRING`",
+            "short": "The Content-Encoding encoding for this file",
           },
           {
             "name": "content_type",
-            "short": "The MIME type of this file",
+            "title": "Content Type",
             "type": "`$STRING`",
+            "short": "The MIME type of this file",
           },
           {
             "name": "description",
+            "title": "Description",
+            "type": "`$STRING`",
             "short": "A human-readable description for this file",
-            "type": "`$STRING`",
           },
           {
-            "format": "uri",
             "name": "download_uri",
-            "short": "The URI that hosts this bulk file",
+            "title": "Download Uri",
             "type": "`$STRING`",
+            "short": "The URI that hosts this bulk file",
+            "format": "uri",
           },
           {
-            "format": "uuid",
             "name": "id",
-            "short": "A unique ID for this bulk data file",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this bulk data file",
+            "format": "uuid",
           },
           {
             "name": "name",
-            "short": "A human-readable name for this file",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "A human-readable name for this file",
           },
           {
             "name": "object",
-            "short": "The object type",
+            "title": "Object",
             "type": "`$STRING`",
+            "short": "The object type",
           },
           {
             "name": "size",
-            "short": "The size of this file in bytes",
+            "title": "Size",
             "type": "`$INTEGER`",
+            "short": "The size of this file in bytes",
           },
           {
             "name": "type",
-            "short": "The type of bulk data",
+            "title": "Type",
             "type": "`$STRING`",
+            "short": "The type of bulk data",
           },
           {
-            "format": "date-time",
             "name": "updated_at",
-            "short": "The time this file was last updated",
+            "title": "Updated At",
             "type": "`$STRING`",
+            "short": "The time this file was last updated",
+            "format": "date-time",
           },
         ],
         "id": {
@@ -187,7 +197,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/bulk-data",
@@ -196,14 +205,16 @@ def make_config():
                     "lit": "bulk-data",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "bulk-data",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "bulk-data",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -212,17 +223,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/bulk-data/{id}",
@@ -234,19 +234,31 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "bulk-data",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "bulk-data",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -259,133 +271,158 @@ def make_config():
         "fields": [
           {
             "name": "artist",
-            "short": "The name of the illustrator of this card",
+            "title": "Artist",
             "type": "`$STRING`",
+            "short": "The name of the illustrator of this card",
           },
           {
             "name": "cmc",
-            "short": "The card's converted mana cost",
+            "title": "Cmc",
             "type": "`$NUMBER`",
+            "short": "The card's converted mana cost",
           },
           {
             "name": "collector_number",
-            "short": "This card's collector number",
+            "title": "Collector Number",
             "type": "`$STRING`",
+            "short": "This card's collector number",
           },
           {
             "name": "color_identity",
-            "short": "This card's color identity",
+            "title": "Color Identity",
             "type": "`$ARRAY`",
+            "short": "This card's color identity",
           },
           {
             "name": "colors",
-            "short": "This card's colors",
+            "title": "Colors",
             "type": "`$ARRAY`",
+            "short": "This card's colors",
           },
           {
-            "format": "uuid",
             "name": "id",
-            "short": "A unique ID for this card in Scryfall's database",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this card in Scryfall's database",
+            "format": "uuid",
           },
           {
             "name": "image_uris",
-            "short": "An object containing URIs to this card's imagery",
+            "title": "Image Uris",
             "type": "`$OBJECT`",
+            "short": "An object containing URIs to this card's imagery",
           },
           {
             "name": "lang",
-            "short": "The language code for this printing",
+            "title": "Lang",
             "type": "`$STRING`",
+            "short": "The language code for this printing",
           },
           {
             "name": "layout",
-            "short": "A code for this card's layout",
+            "title": "Layout",
             "type": "`$STRING`",
+            "short": "A code for this card's layout",
           },
           {
             "name": "legalities",
-            "short": "An object describing the legality of this card",
+            "title": "Legalities",
             "type": "`$OBJECT`",
+            "short": "An object describing the legality of this card",
           },
           {
             "name": "loyalty",
-            "short": "This card's loyalty (for planeswalkers)",
+            "title": "Loyalty",
             "type": "`$STRING`",
+            "short": "This card's loyalty (for planeswalkers)",
           },
           {
             "name": "mana_cost",
-            "short": "The mana cost for this card",
+            "title": "Mana Cost",
             "type": "`$STRING`",
+            "short": "The mana cost for this card",
           },
           {
             "name": "name",
-            "short": "The name of this card",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "The name of this card",
           },
           {
-            "format": "uuid",
             "name": "oracle_id",
-            "short": "A unique ID for this card's oracle identity",
+            "title": "Oracle Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this card's oracle identity",
+            "format": "uuid",
           },
           {
             "name": "oracle_text",
-            "short": "The Oracle text for this card",
+            "title": "Oracle Text",
             "type": "`$STRING`",
+            "short": "The Oracle text for this card",
           },
           {
             "name": "power",
-            "short": "This card's power (for creatures)",
+            "title": "Power",
             "type": "`$STRING`",
+            "short": "This card's power (for creatures)",
           },
           {
             "name": "prices",
-            "short": "An object containing daily price information for this card",
+            "title": "Prices",
             "type": "`$OBJECT`",
+            "short": "An object containing daily price information for this card",
           },
           {
             "name": "rarity",
+            "title": "Rarity",
+            "type": "`$STRING`",
             "short": "This card's rarity",
-            "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "released_at",
-            "short": "The date this card was first released",
+            "title": "Released At",
             "type": "`$STRING`",
+            "short": "The date this card was first released",
+            "format": "date",
           },
           {
-            "format": "uri",
             "name": "scryfall_uri",
-            "short": "A link to this card's page on Scryfall's website",
+            "title": "Scryfall Uri",
             "type": "`$STRING`",
+            "short": "A link to this card's page on Scryfall's website",
+            "format": "uri",
           },
           {
             "name": "set",
-            "short": "This card's set code",
+            "title": "Set",
             "type": "`$STRING`",
+            "short": "This card's set code",
           },
           {
             "name": "set_name",
-            "short": "This card's full set name",
+            "title": "Set Name",
             "type": "`$STRING`",
+            "short": "This card's full set name",
           },
           {
             "name": "toughness",
-            "short": "This card's toughness (for creatures)",
+            "title": "Toughness",
             "type": "`$STRING`",
+            "short": "This card's toughness (for creatures)",
           },
           {
             "name": "type_line",
-            "short": "The type line of this card",
+            "title": "Type Line",
             "type": "`$STRING`",
+            "short": "The type line of this card",
           },
           {
-            "format": "uri",
             "name": "uri",
-            "short": "A link to this card object on Scryfall's API",
+            "title": "Uri",
             "type": "`$STRING`",
+            "short": "A link to this card object on Scryfall's API",
+            "format": "uri",
           },
         ],
         "id": {
@@ -399,31 +436,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "Lightning Bolt",
-                      "kind": "query",
-                      "name": "exact",
-                      "orig": "exact",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "aust com",
-                      "kind": "query",
-                      "name": "fuzzy",
-                      "orig": "fuzzy",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "m19",
-                      "kind": "query",
-                      "name": "set",
-                      "orig": "set",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/named",
@@ -435,6 +447,40 @@ def make_config():
                     "lit": "named",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "named",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "exact",
+                      "orig": "exact",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "Lightning Bolt",
+                    },
+                    {
+                      "name": "fuzzy",
+                      "orig": "fuzzy",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "aust com",
+                    },
+                    {
+                      "name": "set",
+                      "orig": "set",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "m19",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "named",
                   "exist": [
@@ -443,26 +489,8 @@ def make_config():
                     "set",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "named",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "q",
-                      "orig": "q",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/random",
@@ -474,20 +502,31 @@ def make_config():
                     "lit": "random",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "random",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "q",
+                      "orig": "q",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "random",
                   "exist": [
                     "q",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "random",
-                ],
               },
             ],
           },
@@ -496,18 +535,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "683a5707-cddb-494d-9b41-51b4584ded69",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}",
@@ -519,19 +546,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "683a5707-cddb-494d-9b41-51b4584ded69",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cards",
-                  "{id}",
-                ],
               },
             ],
           },
@@ -544,164 +584,195 @@ def make_config():
         "fields": [
           {
             "name": "artist",
-            "short": "The name of the illustrator of this card",
+            "title": "Artist",
             "type": "`$STRING`",
+            "short": "The name of the illustrator of this card",
           },
           {
             "name": "cmc",
-            "short": "The card's converted mana cost",
+            "title": "Cmc",
             "type": "`$NUMBER`",
+            "short": "The card's converted mana cost",
           },
           {
             "name": "collector_number",
-            "short": "This card's collector number",
+            "title": "Collector Number",
             "type": "`$STRING`",
+            "short": "This card's collector number",
           },
           {
             "name": "color_identity",
-            "short": "This card's color identity",
+            "title": "Color Identity",
             "type": "`$ARRAY`",
+            "short": "This card's color identity",
           },
           {
             "name": "colors",
-            "short": "This card's colors",
+            "title": "Colors",
             "type": "`$ARRAY`",
+            "short": "This card's colors",
           },
           {
             "name": "data",
-            "short": "An array of the requested objects",
+            "title": "Data",
             "type": "`$ARRAY`",
+            "short": "An array of the requested objects",
           },
           {
             "name": "has_more",
-            "short": "True if this list is paginated and has more pages",
+            "title": "Has More",
             "type": "`$BOOLEAN`",
+            "short": "True if this list is paginated and has more pages",
           },
           {
-            "format": "uuid",
             "name": "id",
-            "short": "A unique ID for this card in Scryfall's database",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this card in Scryfall's database",
+            "format": "uuid",
           },
           {
             "name": "identifiers",
-            "req": True,
+            "title": "Identifiers",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "image_uris",
-            "short": "An object containing URIs to this card's imagery",
+            "title": "Image Uris",
             "type": "`$OBJECT`",
+            "short": "An object containing URIs to this card's imagery",
           },
           {
             "name": "lang",
-            "short": "The language code for this printing",
+            "title": "Lang",
             "type": "`$STRING`",
+            "short": "The language code for this printing",
           },
           {
             "name": "layout",
-            "short": "A code for this card's layout",
+            "title": "Layout",
             "type": "`$STRING`",
+            "short": "A code for this card's layout",
           },
           {
             "name": "legalities",
-            "short": "An object describing the legality of this card",
+            "title": "Legalities",
             "type": "`$OBJECT`",
+            "short": "An object describing the legality of this card",
           },
           {
             "name": "loyalty",
-            "short": "This card's loyalty (for planeswalkers)",
+            "title": "Loyalty",
             "type": "`$STRING`",
+            "short": "This card's loyalty (for planeswalkers)",
           },
           {
             "name": "mana_cost",
-            "short": "The mana cost for this card",
+            "title": "Mana Cost",
             "type": "`$STRING`",
+            "short": "The mana cost for this card",
           },
           {
             "name": "name",
-            "short": "The name of this card",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "The name of this card",
           },
           {
-            "format": "uri",
             "name": "next_page",
-            "short": "The URL for the next page of results",
+            "title": "Next Page",
             "type": "`$STRING`",
+            "short": "The URL for the next page of results",
+            "format": "uri",
           },
           {
             "name": "object",
-            "short": "The object type",
+            "title": "Object",
             "type": "`$STRING`",
+            "short": "The object type",
           },
           {
-            "format": "uuid",
             "name": "oracle_id",
-            "short": "A unique ID for this card's oracle identity",
+            "title": "Oracle Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this card's oracle identity",
+            "format": "uuid",
           },
           {
             "name": "oracle_text",
-            "short": "The Oracle text for this card",
+            "title": "Oracle Text",
             "type": "`$STRING`",
+            "short": "The Oracle text for this card",
           },
           {
             "name": "power",
-            "short": "This card's power (for creatures)",
+            "title": "Power",
             "type": "`$STRING`",
+            "short": "This card's power (for creatures)",
           },
           {
             "name": "prices",
-            "short": "An object containing daily price information for this card",
+            "title": "Prices",
             "type": "`$OBJECT`",
+            "short": "An object containing daily price information for this card",
           },
           {
             "name": "rarity",
+            "title": "Rarity",
+            "type": "`$STRING`",
             "short": "This card's rarity",
-            "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "released_at",
-            "short": "The date this card was first released",
+            "title": "Released At",
             "type": "`$STRING`",
+            "short": "The date this card was first released",
+            "format": "date",
           },
           {
-            "format": "uri",
             "name": "scryfall_uri",
-            "short": "A link to this card's page on Scryfall's website",
+            "title": "Scryfall Uri",
             "type": "`$STRING`",
+            "short": "A link to this card's page on Scryfall's website",
+            "format": "uri",
           },
           {
             "name": "set",
-            "short": "This card's set code",
+            "title": "Set",
             "type": "`$STRING`",
+            "short": "This card's set code",
           },
           {
             "name": "set_name",
-            "short": "This card's full set name",
+            "title": "Set Name",
             "type": "`$STRING`",
+            "short": "This card's full set name",
           },
           {
             "name": "total_cards",
-            "short": "The total number of cards found",
+            "title": "Total Cards",
             "type": "`$INTEGER`",
+            "short": "The total number of cards found",
           },
           {
             "name": "toughness",
-            "short": "This card's toughness (for creatures)",
+            "title": "Toughness",
             "type": "`$STRING`",
+            "short": "This card's toughness (for creatures)",
           },
           {
             "name": "type_line",
-            "short": "The type line of this card",
+            "title": "Type Line",
             "type": "`$STRING`",
+            "short": "The type line of this card",
           },
           {
-            "format": "uri",
             "name": "uri",
-            "short": "A link to this card object on Scryfall's API",
+            "title": "Uri",
             "type": "`$STRING`",
+            "short": "A link to this card object on Scryfall's API",
+            "format": "uri",
           },
         ],
         "id": {
@@ -715,7 +786,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/cards/collection",
@@ -727,15 +797,17 @@ def make_config():
                     "lit": "collection",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cards",
                   "collection",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -744,53 +816,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "auto",
-                      "kind": "query",
-                      "name": "dir",
-                      "orig": "dir",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "include_extra",
-                      "orig": "include_extra",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "name",
-                      "kind": "query",
-                      "name": "order",
-                      "orig": "order",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": "c:red pow:3",
-                      "kind": "query",
-                      "name": "q",
-                      "orig": "q",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "cards",
-                      "kind": "query",
-                      "name": "unique",
-                      "orig": "unique",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/search",
@@ -802,6 +827,62 @@ def make_config():
                     "lit": "search",
                   },
                 ],
+                "parts": [
+                  "cards",
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "dir",
+                      "orig": "dir",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "auto",
+                    },
+                    {
+                      "name": "include_extra",
+                      "orig": "include_extra",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "order",
+                      "orig": "order",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "name",
+                    },
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                    {
+                      "name": "q",
+                      "orig": "q",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "c:red pow:3",
+                    },
+                    {
+                      "name": "unique",
+                      "orig": "unique",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "cards",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "dir",
@@ -812,14 +893,6 @@ def make_config():
                     "unique",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "cards",
-                  "search",
-                ],
               },
             ],
           },
@@ -828,73 +901,83 @@ def make_config():
           "ancestors": [],
         },
       },
-      "card_symbol_list": {
+      "card_symbol": {
         "fields": [
           {
             "name": "appears_in_mana_costs",
-            "short": "True if this symbol appears in mana costs",
+            "title": "Appears In Mana Costs",
             "type": "`$BOOLEAN`",
+            "short": "True if this symbol appears in mana costs",
           },
           {
             "name": "cmc",
-            "short": "The converted mana cost represented by this symbol",
+            "title": "Cmc",
             "type": "`$NUMBER`",
+            "short": "The converted mana cost represented by this symbol",
           },
           {
             "name": "colors",
-            "short": "The colors of this symbol",
+            "title": "Colors",
             "type": "`$ARRAY`",
+            "short": "The colors of this symbol",
           },
           {
             "name": "english",
-            "short": "An English textual description of the symbol",
+            "title": "English",
             "type": "`$STRING`",
+            "short": "An English textual description of the symbol",
           },
           {
             "name": "funny",
-            "short": "True if this symbol is only used on funny cards",
+            "title": "Funny",
             "type": "`$BOOLEAN`",
+            "short": "True if this symbol is only used on funny cards",
           },
           {
             "name": "loose_variant",
-            "short": "An alternate version of this symbol",
+            "title": "Loose Variant",
             "type": "`$STRING`",
+            "short": "An alternate version of this symbol",
           },
           {
             "name": "object",
-            "short": "The object type",
+            "title": "Object",
             "type": "`$STRING`",
+            "short": "The object type",
           },
           {
             "name": "represents_mana",
-            "short": "True if this is a mana symbol",
+            "title": "Represents Mana",
             "type": "`$BOOLEAN`",
+            "short": "True if this is a mana symbol",
           },
           {
-            "format": "uri",
             "name": "svg_uri",
-            "short": "A URI to an SVG image for this symbol",
+            "title": "Svg Uri",
             "type": "`$STRING`",
+            "short": "A URI to an SVG image for this symbol",
+            "format": "uri",
           },
           {
             "name": "symbol",
-            "short": "The plaintext symbol",
+            "title": "Symbol",
             "type": "`$STRING`",
+            "short": "The plaintext symbol",
           },
           {
             "name": "transposable",
-            "short": "True if it's possible to write this symbol backwards",
+            "title": "Transposable",
             "type": "`$BOOLEAN`",
+            "short": "True if it's possible to write this symbol backwards",
           },
         ],
-        "name": "card_symbol_list",
+        "name": "card_symbol",
         "op": {
           "list": {
             "input": "data",
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/symbology",
@@ -903,14 +986,16 @@ def make_config():
                     "lit": "symbology",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "symbology",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "symbology",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -923,28 +1008,33 @@ def make_config():
         "fields": [
           {
             "name": "data",
-            "short": "An array of datapoints",
+            "title": "Data",
             "type": "`$ARRAY`",
+            "short": "An array of datapoints",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
             "name": "object",
-            "short": "The object type",
+            "title": "Object",
             "type": "`$STRING`",
+            "short": "The object type",
           },
           {
             "name": "total_values",
-            "short": "The number of items in the data array",
+            "title": "Total Values",
             "type": "`$INTEGER`",
+            "short": "The number of items in the data array",
           },
           {
-            "format": "uri",
             "name": "uri",
-            "short": "A link to this catalog on Scryfall's API",
+            "title": "Uri",
             "type": "`$STRING`",
+            "short": "A link to this catalog on Scryfall's API",
+            "format": "uri",
           },
         ],
         "id": {
@@ -958,25 +1048,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "catalog_name",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/catalog/{catalog_name}",
-                "rename": {
-                  "param": {
-                    "catalog_name": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "catalog",
@@ -985,19 +1059,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "catalog",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "catalog_name": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "catalog",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "catalog_name",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1010,38 +1100,45 @@ def make_config():
         "fields": [
           {
             "name": "cmc",
-            "short": "The converted mana cost",
+            "title": "Cmc",
             "type": "`$NUMBER`",
+            "short": "The converted mana cost",
           },
           {
             "name": "colorless",
-            "short": "True if this mana cost is colorless",
+            "title": "Colorless",
             "type": "`$BOOLEAN`",
+            "short": "True if this mana cost is colorless",
           },
           {
             "name": "colors",
-            "short": "The colors in this mana cost",
+            "title": "Colors",
             "type": "`$ARRAY`",
+            "short": "The colors in this mana cost",
           },
           {
             "name": "cost",
-            "short": "The normalized cost",
+            "title": "Cost",
             "type": "`$STRING`",
+            "short": "The normalized cost",
           },
           {
             "name": "monocolored",
-            "short": "True if this mana cost is monocolored",
+            "title": "Monocolored",
             "type": "`$BOOLEAN`",
+            "short": "True if this mana cost is monocolored",
           },
           {
             "name": "multicolored",
-            "short": "True if this mana cost is multicolored",
+            "title": "Multicolored",
             "type": "`$BOOLEAN`",
+            "short": "True if this mana cost is multicolored",
           },
           {
             "name": "object",
-            "short": "The object type",
+            "title": "Object",
             "type": "`$STRING`",
+            "short": "The object type",
           },
         ],
         "name": "mana_cost",
@@ -1051,18 +1148,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "{2}{U}{U}",
-                      "kind": "query",
-                      "name": "cost",
-                      "orig": "cost",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/symbology/parse-mana",
@@ -1074,19 +1159,32 @@ def make_config():
                     "lit": "parse-mana",
                   },
                 ],
+                "parts": [
+                  "symbology",
+                  "parse-mana",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.colors`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cost",
+                      "orig": "cost",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "{2}{U}{U}",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "cost",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.colors`",
-                },
-                "parts": [
-                  "symbology",
-                  "parse-mana",
-                ],
               },
             ],
           },
@@ -1098,44 +1196,51 @@ def make_config():
       "migration": {
         "fields": [
           {
-            "format": "uuid",
             "name": "id",
-            "short": "A unique ID for this migration",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this migration",
+            "format": "uuid",
           },
           {
             "name": "migration_strategy",
-            "short": "The type of migration strategy",
+            "title": "Migration Strategy",
             "type": "`$STRING`",
+            "short": "The type of migration strategy",
           },
           {
-            "format": "uuid",
             "name": "new_scryfall_id",
-            "short": "The updated Scryfall ID",
+            "title": "New Scryfall Id",
             "type": "`$STRING`",
+            "short": "The updated Scryfall ID",
+            "format": "uuid",
           },
           {
             "name": "object",
+            "title": "Object",
+            "type": "`$STRING`",
             "short": "The object type",
-            "type": "`$STRING`",
           },
           {
-            "format": "uuid",
             "name": "old_scryfall_id",
+            "title": "Old Scryfall Id",
+            "type": "`$STRING`",
             "short": "The original Scryfall ID",
-            "type": "`$STRING`",
+            "format": "uuid",
           },
           {
-            "format": "date-time",
             "name": "performed_at",
-            "short": "The date this migration was performed",
+            "title": "Performed At",
             "type": "`$STRING`",
+            "short": "The date this migration was performed",
+            "format": "date-time",
           },
           {
-            "format": "uri",
             "name": "uri",
-            "short": "A link to this migration on Scryfall's API",
+            "title": "Uri",
             "type": "`$STRING`",
+            "short": "A link to this migration on Scryfall's API",
+            "format": "uri",
           },
         ],
         "id": {
@@ -1149,17 +1254,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "page",
-                      "orig": "page",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/migrations",
@@ -1168,18 +1262,30 @@ def make_config():
                     "lit": "migrations",
                   },
                 ],
+                "parts": [
+                  "migrations",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "page",
+                      "orig": "page",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "page",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "migrations",
-                ],
               },
             ],
           },
@@ -1192,30 +1298,35 @@ def make_config():
         "fields": [
           {
             "name": "comment",
-            "short": "The text of the ruling",
+            "title": "Comment",
             "type": "`$STRING`",
+            "short": "The text of the ruling",
           },
           {
             "name": "object",
+            "title": "Object",
+            "type": "`$STRING`",
             "short": "The object type",
-            "type": "`$STRING`",
           },
           {
-            "format": "uuid",
             "name": "oracle_id",
-            "short": "The Oracle ID of the card this ruling applies to",
+            "title": "Oracle Id",
             "type": "`$STRING`",
+            "short": "The Oracle ID of the card this ruling applies to",
+            "format": "uuid",
           },
           {
-            "format": "date",
             "name": "published_at",
-            "short": "The date this ruling was published",
+            "title": "Published At",
             "type": "`$STRING`",
+            "short": "The date this ruling was published",
+            "format": "date",
           },
           {
             "name": "source",
-            "short": "The source of this ruling",
+            "title": "Source",
             "type": "`$STRING`",
+            "short": "The source of this ruling",
           },
         ],
         "name": "ruling",
@@ -1225,25 +1336,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "card_id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cards/{id}/rulings",
-                "rename": {
-                  "param": {
-                    "id": "card_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "cards",
@@ -1255,20 +1350,36 @@ def make_config():
                     "lit": "rulings",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "card_id",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
                 "parts": [
                   "cards",
                   "{card_id}",
                   "rulings",
                 ],
+                "rename": {
+                  "param": {
+                    "id": "card_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "card_id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "card_id",
+                  ],
+                },
               },
             ],
           },
@@ -1276,7 +1387,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "card",
+              "$.main.kit.entity.card",
             ],
           ],
         },
@@ -1285,64 +1396,75 @@ def make_config():
         "fields": [
           {
             "name": "card_count",
-            "short": "The number of cards in this set",
+            "title": "Card Count",
             "type": "`$INTEGER`",
+            "short": "The number of cards in this set",
           },
           {
             "name": "code",
-            "short": "The unique three to five-letter code for this set",
+            "title": "Code",
             "type": "`$STRING`",
+            "short": "The unique three to five-letter code for this set",
           },
           {
             "name": "digital",
-            "short": "True if this set is only available digitally",
+            "title": "Digital",
             "type": "`$BOOLEAN`",
+            "short": "True if this set is only available digitally",
           },
           {
-            "format": "uri",
             "name": "icon_svg_uri",
-            "short": "A URI to an SVG file for this set's icon",
+            "title": "Icon Svg Uri",
             "type": "`$STRING`",
+            "short": "A URI to an SVG file for this set's icon",
+            "format": "uri",
           },
           {
-            "format": "uuid",
             "name": "id",
-            "short": "A unique ID for this set",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "A unique ID for this set",
+            "format": "uuid",
           },
           {
             "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
             "short": "The English name of the set",
-            "type": "`$STRING`",
           },
           {
-            "format": "date",
             "name": "released_at",
+            "title": "Released At",
+            "type": "`$STRING`",
             "short": "The date the set was released",
-            "type": "`$STRING`",
+            "format": "date",
           },
           {
-            "format": "uri",
             "name": "scryfall_uri",
-            "short": "A link to this set's page on Scryfall's website",
+            "title": "Scryfall Uri",
             "type": "`$STRING`",
+            "short": "A link to this set's page on Scryfall's website",
+            "format": "uri",
           },
           {
-            "format": "uri",
             "name": "search_uri",
-            "short": "A link to search for cards in this set on Scryfall's API",
+            "title": "Search Uri",
             "type": "`$STRING`",
+            "short": "A link to search for cards in this set on Scryfall's API",
+            "format": "uri",
           },
           {
             "name": "set_type",
-            "short": "The type of set",
+            "title": "Set Type",
             "type": "`$STRING`",
+            "short": "The type of set",
           },
           {
-            "format": "uri",
             "name": "uri",
-            "short": "A link to this set object on Scryfall's API",
+            "title": "Uri",
             "type": "`$STRING`",
+            "short": "A link to this set object on Scryfall's API",
+            "format": "uri",
           },
         ],
         "id": {
@@ -1356,7 +1478,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/sets",
@@ -1365,14 +1486,16 @@ def make_config():
                     "lit": "sets",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "sets",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "sets",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -1381,26 +1504,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "m19",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "code",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/sets/{code}",
-                "rename": {
-                  "param": {
-                    "code": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "sets",
@@ -1409,32 +1515,38 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "sets",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "code": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "sets",
-                  "{id}",
-                ],
-              },
-              {
                 "args": {
                   "params": [
                     {
-                      "kind": "param",
                       "name": "id",
-                      "orig": "id",
-                      "reqd": True,
+                      "orig": "code",
                       "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "m19",
                     },
                   ],
                 },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+              },
+              {
                 "kind": "http",
                 "method": "GET",
                 "orig": "/sets/{id}",
@@ -1446,19 +1558,31 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "sets",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "sets",
-                  "{id}",
-                ],
               },
             ],
           },

@@ -395,21 +395,21 @@ class ScryfallSDK
     }
 
 
-    private $_card_symbol_list = null;
+    private $_card_symbol = null;
 
-    // Canonical facade: $client->CardSymbolList()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->card_symbol_list()
+    // Canonical facade: $client->CardSymbol()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->card_symbol()
     // resolves here too.
-    public function CardSymbolList($data = null)
+    public function CardSymbol($data = null)
     {
-        require_once __DIR__ . '/entity/card_symbol_list_entity.php';
+        require_once __DIR__ . '/entity/card_symbol_entity.php';
         if ($data === null) {
-            if ($this->_card_symbol_list === null) {
-                $this->_card_symbol_list = new CardSymbolListEntity($this, null);
+            if ($this->_card_symbol === null) {
+                $this->_card_symbol = new CardSymbolEntity($this, null);
             }
-            return $this->_card_symbol_list;
+            return $this->_card_symbol;
         }
-        return new CardSymbolListEntity($this, $data);
+        return new CardSymbolEntity($this, $data);
     }
 
 

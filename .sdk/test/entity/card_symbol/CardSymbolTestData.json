@@ -1,0 +1,69 @@
+{
+  "existing": {
+    "card_symbol": {
+      "CARD_SYMBOL00": {
+        "appears_in_mana_costs": true,
+        "cmc": 111,
+        "colors": [],
+        "english": "s71",
+        "funny": true,
+        "loose_variant": "s73",
+        "object": "s74",
+        "represents_mana": false,
+        "svg_uri": "s76",
+        "symbol": "s77",
+        "transposable": true
+      },
+      "CARD_SYMBOL01": {
+        "appears_in_mana_costs": true,
+        "cmc": 221,
+        "colors": [],
+        "english": "sdf",
+        "funny": true,
+        "loose_variant": "se1",
+        "object": "se2",
+        "represents_mana": false,
+        "svg_uri": "se4",
+        "symbol": "se5",
+        "transposable": true
+      },
+      "CARD_SYMBOL02": {
+        "appears_in_mana_costs": true,
+        "cmc": 331,
+        "colors": [],
+        "english": "s14d",
+        "funny": true,
+        "loose_variant": "s14f",
+        "object": "s150",
+        "represents_mana": false,
+        "svg_uri": "s152",
+        "symbol": "s153",
+        "transposable": true
+      }
+    }
+  },
+  "new": {
+    "card_symbol": {
+      "card_symbol_ref01": {
+        "appears_in_mana_costs": true,
+        "cmc": 441,
+        "colors": [],
+        "english": "s1bb",
+        "funny": true,
+        "loose_variant": "s1bd",
+        "object": "s1be",
+        "represents_mana": false,
+        "svg_uri": "s1c0",
+        "symbol": "s1c1",
+        "transposable": true
+      }
+    }
+  },
+  "requests": {
+    "GET /symbology": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

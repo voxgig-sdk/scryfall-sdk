@@ -18,7 +18,7 @@ var NewCardEntityFunc func(client *ScryfallSDK, entopts map[string]any) Scryfall
 
 var NewCardListEntityFunc func(client *ScryfallSDK, entopts map[string]any) ScryfallEntity
 
-var NewCardSymbolListEntityFunc func(client *ScryfallSDK, entopts map[string]any) ScryfallEntity
+var NewCardSymbolEntityFunc func(client *ScryfallSDK, entopts map[string]any) ScryfallEntity
 
 var NewCatalogEntityFunc func(client *ScryfallSDK, entopts map[string]any) ScryfallEntity
 

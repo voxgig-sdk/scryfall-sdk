@@ -53,9 +53,9 @@ Create a new `CardEntity` instance. Pass `null` for no initial data.
 
 Create a new `CardListEntity` instance. Pass `null` for no initial data.
 
-#### `CardSymbolList($data = null)`
+#### `CardSymbol($data = null)`
 
-Create a new `CardSymbolListEntity` instance. Pass `null` for no initial data.
+Create a new `CardSymbolEntity` instance. Pass `null` for no initial data.
 
 #### `Catalog($data = null)`
 
@@ -359,10 +359,10 @@ Return the entity name.
 
 ---
 
-## CardSymbolListEntity
+## CardSymbolEntity
 
 ```php
-$card_symbol_list = $client->CardSymbolList();
+$card_symbol = $client->CardSymbol();
 ```
 
 ### Fields
@@ -388,7 +388,7 @@ $card_symbol_list = $client->CardSymbolList();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->CardSymbolList()->list();
+$results = $client->CardSymbol()->list();
 ```
 
 ### Common Methods
@@ -409,9 +409,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): CardSymbolListEntity`
+#### `make(): CardSymbolEntity`
 
-Create a new `CardSymbolListEntity` instance with the same client and
+Create a new `CardSymbolEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

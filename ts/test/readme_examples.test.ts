@@ -37,7 +37,7 @@ const SDK_NAME = 'ScryfallSDK'
 
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = {"entity":{"bulk_data":{"test01":{"id":"test01"}},"card":{"test01":{"id":"test01"}},"card_list":{"test01":{"id":"test01"}},"card_symbol_list":{"test01":{"id":"test01"}},"catalog":{"test01":{"id":"test01"}},"mana_cost":{"test01":{"id":"test01"}},"migration":{"test01":{"id":"test01"}},"ruling":{"test01":{"id":"test01"}},"set":{"test01":{"id":"test01"}}}}
+const TEST_SEED = {"entity":{"bulk_data":{"test01":{"id":"test01"}},"card":{"test01":{"id":"test01"}},"card_list":{"test01":{"id":"test01"}},"card_symbol":{"test01":{"id":"test01"}},"catalog":{"test01":{"id":"test01"}},"mana_cost":{"test01":{"id":"test01"}},"migration":{"test01":{"id":"test01"}},"ruling":{"test01":{"id":"test01"}},"set":{"test01":{"id":"test01"}}}}
 const SEED_ARG = JSON.stringify(TEST_SEED)
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')'
 

@@ -391,15 +391,15 @@ function ScryfallSDK:CardList(data)
 end
 
 
--- Idiomatic facade: client:CardSymbolList():list() / client:CardSymbolList():load({ id = ... })
+-- Idiomatic facade: client:CardSymbol():list() / client:CardSymbol():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function ScryfallSDK:CardSymbolList(data)
-  local EntityMod = require("entity.card_symbol_list_entity")
+function ScryfallSDK:CardSymbol(data)
+  local EntityMod = require("entity.card_symbol_entity")
   if data == nil then
-    if self._card_symbol_list == nil then
-      self._card_symbol_list = EntityMod.new(self, nil)
+    if self._card_symbol == nil then
+      self._card_symbol = EntityMod.new(self, nil)
     end
-    return self._card_symbol_list
+    return self._card_symbol
   end
   return EntityMod.new(self, data)
 end

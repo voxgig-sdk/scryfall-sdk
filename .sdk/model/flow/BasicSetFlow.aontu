@@ -1,0 +1,44 @@
+# BasicSetFlow
+
+main: kit: flow: BasicSetFlow:
+{
+  entity: "set",
+  kind: "basic",
+  name: "BasicSetFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "set_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "set_ref01",
+        srcdatavar: "set_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "set01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-set_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSetFlow"
+}

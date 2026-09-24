@@ -174,7 +174,7 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 The 9 entities this SDK exposes (any is valid as `<entity>`):
 
-bulk_data card card_list card_symbol_list catalog mana_cost migration ruling set
+bulk_data card card_list card_symbol catalog mana_cost migration ruling set
 
 ## Explanation
 

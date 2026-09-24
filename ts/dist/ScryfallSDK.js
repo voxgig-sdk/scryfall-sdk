@@ -5,7 +5,7 @@ exports.SDK = exports.ScryfallSDK = exports.ScryfallEntityBase = exports.BaseFea
 const BulkDataEntity_1 = require("./entity/BulkDataEntity");
 const CardEntity_1 = require("./entity/CardEntity");
 const CardListEntity_1 = require("./entity/CardListEntity");
-const CardSymbolListEntity_1 = require("./entity/CardSymbolListEntity");
+const CardSymbolEntity_1 = require("./entity/CardSymbolEntity");
 const CatalogEntity_1 = require("./entity/CatalogEntity");
 const ManaCostEntity_1 = require("./entity/ManaCostEntity");
 const MigrationEntity_1 = require("./entity/MigrationEntity");
@@ -92,7 +92,6 @@ class ScryfallSDK {
             ctrl: fetchargs.ctrl || {},
         }, this._rootctx);
         const options = this._options;
-        // Build spec directly from SDK options + user-provided fetch args.
         const spec = {
             base: options.base,
             prefix: options.prefix,
@@ -106,14 +105,12 @@ class ScryfallSDK {
             step: 'start',
         };
         ctx.spec = spec;
-        // Merge user-provided headers over SDK defaults.
         if (fetchargs.headers) {
             const uheaders = fetchargs.headers;
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
         }
-        // Apply SDK auth (apikey, auth prefix, etc.)
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
             return authResult;
@@ -188,18 +185,6 @@ class ScryfallSDK {
             return { ok: false, err };
         }
     }
-    // Raw GraphQL access: the pressure valve that makes the generated
-    // surface's deliberate omissions (per-call selection sets, typed filter
-    // builders, batching, subscriptions) livable — the whole schema stays
-    // reachable.
-    //
-    // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-    // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-    // HTTP 200 as a top-level `errors` array, so status alone would report a
-    // failed query as ok.
-    //
-    // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-    // ratelimit or paging features apply.
     async graphql(query, variables, ctrl) {
         const options = this._options;
         if (!options.allow.op.includes('graphql')) {
@@ -254,12 +239,12 @@ class ScryfallSDK {
         const self = this;
         return new CardListEntity_1.CardListEntity(self, entopts);
     }
-    // Entity access: `client.CardSymbolList().list()` / `client.CardSymbolList().load({ id })`.
+    // Entity access: `client.CardSymbol().list()` / `client.CardSymbol().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    CardSymbolList(entopts) {
+    CardSymbol(entopts) {
         const self = this;
-        return new CardSymbolListEntity_1.CardSymbolListEntity(self, entopts);
+        return new CardSymbolEntity_1.CardSymbolEntity(self, entopts);
     }
     // Entity access: `client.Catalog().list()` / `client.Catalog().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

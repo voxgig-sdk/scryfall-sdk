@@ -1,0 +1,115 @@
+# Entity: migration
+
+main: kit: entity: migration: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "A unique ID for this migration"
+      t: "`$STRING`"
+    }
+    migration_strategy: {
+      h: "Migration Strategy"
+      n: "migration_strategy"
+      r: false
+      sh: "The type of migration strategy"
+      t: "`$STRING`"
+    }
+    new_scryfall_id: {
+      fo: "uuid"
+      h: "New Scryfall Id"
+      n: "new_scryfall_id"
+      r: false
+      sh: "The updated Scryfall ID"
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type"
+      t: "`$STRING`"
+    }
+    old_scryfall_id: {
+      fo: "uuid"
+      h: "Old Scryfall Id"
+      n: "old_scryfall_id"
+      r: false
+      sh: "The original Scryfall ID"
+      t: "`$STRING`"
+    }
+    performed_at: {
+      fo: "date-time"
+      h: "Performed At"
+      n: "performed_at"
+      r: false
+      sh: "The date this migration was performed"
+      t: "`$STRING`"
+    }
+    uri: {
+      fo: "uri"
+      h: "Uri"
+      n: "uri"
+      r: false
+      sh: "A link to this migration on Scryfall's API"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "migration"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /migrations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/migrations"
+          q: {
+            exist: [
+              "page"
+            ]
+          }
+          s: [
+            {
+              lit: "migrations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

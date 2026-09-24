@@ -59,9 +59,9 @@ Create a new `Card` entity instance. Pass `nil` for no initial data.
 
 Create a new `CardList` entity instance. Pass `nil` for no initial data.
 
-#### `CardSymbolList(data map[string]any) ScryfallEntity`
+#### `CardSymbol(data map[string]any) ScryfallEntity`
 
-Create a new `CardSymbolList` entity instance. Pass `nil` for no initial data.
+Create a new `CardSymbol` entity instance. Pass `nil` for no initial data.
 
 #### `Catalog(data map[string]any) ScryfallEntity`
 
@@ -373,11 +373,11 @@ Return the entity name.
 
 ---
 
-## CardSymbolListEntity
+## CardSymbolEntity
 
 ```go
-cardSymbolList := client.CardSymbolList(nil)
-fmt.Println(cardSymbolList.GetName()) // "card_symbol_list"
+cardSymbol := client.CardSymbol(nil)
+fmt.Println(cardSymbol.GetName()) // "card_symbol"
 ```
 
 ### Fields
@@ -403,7 +403,7 @@ fmt.Println(cardSymbolList.GetName()) // "card_symbol_list"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.CardSymbolList(nil).List(nil, nil)
+results, err := client.CardSymbol(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -424,7 +424,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `CardSymbolListEntity` instance with the same client and
+Create a new `CardSymbolEntity` instance with the same client and
 options.
 
 #### `GetName() string`

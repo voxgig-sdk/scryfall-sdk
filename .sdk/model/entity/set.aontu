@@ -1,0 +1,212 @@
+# Entity: set
+
+main: kit: entity: set: {
+
+  alias: field: {}
+
+  fields: {
+    card_count: {
+      h: "Card Count"
+      n: "card_count"
+      r: false
+      sh: "The number of cards in this set"
+      t: "`$INTEGER`"
+    }
+    code: {
+      h: "Code"
+      n: "code"
+      r: false
+      sh: "The unique three to five-letter code for this set"
+      t: "`$STRING`"
+    }
+    digital: {
+      h: "Digital"
+      n: "digital"
+      r: false
+      sh: "True if this set is only available digitally"
+      t: "`$BOOLEAN`"
+    }
+    icon_svg_uri: {
+      fo: "uri"
+      h: "Icon Svg Uri"
+      n: "icon_svg_uri"
+      r: false
+      sh: "A URI to an SVG file for this set's icon"
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "A unique ID for this set"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The English name of the set"
+      t: "`$STRING`"
+    }
+    released_at: {
+      fo: "date"
+      h: "Released At"
+      n: "released_at"
+      r: false
+      sh: "The date the set was released"
+      t: "`$STRING`"
+    }
+    scryfall_uri: {
+      fo: "uri"
+      h: "Scryfall Uri"
+      n: "scryfall_uri"
+      r: false
+      sh: "A link to this set's page on Scryfall's website"
+      t: "`$STRING`"
+    }
+    search_uri: {
+      fo: "uri"
+      h: "Search Uri"
+      n: "search_uri"
+      r: false
+      sh: "A link to search for cards in this set on Scryfall's API"
+      t: "`$STRING`"
+    }
+    set_type: {
+      h: "Set Type"
+      n: "set_type"
+      r: false
+      sh: "The type of set"
+      t: "`$STRING`"
+    }
+    uri: {
+      fo: "uri"
+      h: "Uri"
+      n: "uri"
+      r: false
+      sh: "A link to this set object on Scryfall's API"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "set"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /sets"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/sets"
+          s: [
+            {
+              lit: "sets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /sets/{code}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "m19"
+                k: "param"
+                n: "id"
+                or: "code"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/sets/{code}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              code: "id"
+            }
+          }
+          s: [
+            {
+              lit: "sets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /sets/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/sets/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "sets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

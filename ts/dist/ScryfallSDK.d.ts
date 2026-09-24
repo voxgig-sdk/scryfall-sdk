@@ -1,7 +1,7 @@
 import { BulkDataEntity } from './entity/BulkDataEntity';
 import { CardEntity } from './entity/CardEntity';
 import { CardListEntity } from './entity/CardListEntity';
-import { CardSymbolListEntity } from './entity/CardSymbolListEntity';
+import { CardSymbolEntity } from './entity/CardSymbolEntity';
 import { CatalogEntity } from './entity/CatalogEntity';
 import { ManaCostEntity } from './entity/ManaCostEntity';
 import { MigrationEntity } from './entity/MigrationEntity';
@@ -55,7 +55,7 @@ declare class ScryfallSDK {
     BulkData(entopts?: Record<string, any>): BulkDataEntity;
     Card(entopts?: Record<string, any>): CardEntity;
     CardList(entopts?: Record<string, any>): CardListEntity;
-    CardSymbolList(entopts?: Record<string, any>): CardSymbolListEntity;
+    CardSymbol(entopts?: Record<string, any>): CardSymbolEntity;
     Catalog(entopts?: Record<string, any>): CatalogEntity;
     ManaCost(entopts?: Record<string, any>): ManaCostEntity;
     Migration(entopts?: Record<string, any>): MigrationEntity;

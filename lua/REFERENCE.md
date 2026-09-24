@@ -52,9 +52,9 @@ Create a new `Card` entity instance. Pass `nil` for no initial data.
 
 Create a new `CardList` entity instance. Pass `nil` for no initial data.
 
-#### `CardSymbolList(data)`
+#### `CardSymbol(data)`
 
-Create a new `CardSymbolList` entity instance. Pass `nil` for no initial data.
+Create a new `CardSymbol` entity instance. Pass `nil` for no initial data.
 
 #### `Catalog(data)`
 
@@ -357,10 +357,10 @@ Return the entity name.
 
 ---
 
-## CardSymbolListEntity
+## CardSymbolEntity
 
 ```lua
-local card_symbol_list = client:CardSymbolList(nil)
+local card_symbol = client:CardSymbol(nil)
 ```
 
 ### Fields
@@ -386,7 +386,7 @@ local card_symbol_list = client:CardSymbolList(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CardSymbolList():list()
+local results, err = client:CardSymbol():list()
 ```
 
 ### Common Methods
@@ -409,7 +409,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `CardSymbolListEntity` instance with the same client and
+Create a new `CardSymbolEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

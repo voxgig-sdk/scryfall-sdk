@@ -84,9 +84,9 @@ Create a new `CardList` entity instance.
 
 **Returns:** `CardListEntity` instance.
 
-#### `CardSymbolList(data?: object)`
+#### `CardSymbol(data?: object)`
 
-Create a new `CardSymbolList` entity instance.
+Create a new `CardSymbol` entity instance.
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ Create a new `CardSymbolList` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `CardSymbolListEntity` instance.
+**Returns:** `CardSymbolEntity` instance.
 
 #### `Catalog(data?: object)`
 
@@ -462,10 +462,10 @@ Return a copy of the entity options.
 
 ---
 
-## CardSymbolListEntity
+## CardSymbolEntity
 
 ```ts
-const card_symbol_list = client.CardSymbolList()
+const card_symbol = client.CardSymbol()
 ```
 
 ### Fields
@@ -491,7 +491,7 @@ const card_symbol_list = client.CardSymbolList()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CardSymbolList().list()
+const results = await client.CardSymbol().list()
 ```
 
 ### Common Methods
@@ -508,7 +508,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `CardSymbolListEntity` instance with the same client and
+Create a new `CardSymbolEntity` instance with the same client and
 options.
 
 #### `client()`

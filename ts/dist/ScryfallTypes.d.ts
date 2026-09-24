@@ -136,7 +136,7 @@ export interface CardListCreateData {
     type_line?: string;
     uri?: string;
 }
-export interface CardSymbolList {
+export interface CardSymbol {
     appears_in_mana_costs?: boolean;
     cmc?: number;
     colors?: any[];
@@ -149,7 +149,7 @@ export interface CardSymbolList {
     symbol?: string;
     transposable?: boolean;
 }
-export interface CardSymbolListListMatch {
+export interface CardSymbolListMatch {
     appears_in_mana_costs?: boolean;
     cmc?: number;
     colors?: any[];

@@ -50,8 +50,8 @@ func init() {
 	core.NewCardListEntityFunc = func(client *core.ScryfallSDK, entopts map[string]any) core.ScryfallEntity {
 		return entity.NewCardListEntity(client, entopts)
 	}
-	core.NewCardSymbolListEntityFunc = func(client *core.ScryfallSDK, entopts map[string]any) core.ScryfallEntity {
-		return entity.NewCardSymbolListEntity(client, entopts)
+	core.NewCardSymbolEntityFunc = func(client *core.ScryfallSDK, entopts map[string]any) core.ScryfallEntity {
+		return entity.NewCardSymbolEntity(client, entopts)
 	}
 	core.NewCatalogEntityFunc = func(client *core.ScryfallSDK, entopts map[string]any) core.ScryfallEntity {
 		return entity.NewCatalogEntity(client, entopts)

@@ -1,0 +1,357 @@
+# Entity: card_list
+
+main: kit: entity: card_list: {
+
+  alias: field: {}
+
+  fields: {
+    artist: {
+      h: "Artist"
+      n: "artist"
+      r: false
+      sh: "The name of the illustrator of this card"
+      t: "`$STRING`"
+    }
+    cmc: {
+      h: "Cmc"
+      n: "cmc"
+      r: false
+      sh: "The card's converted mana cost"
+      t: "`$NUMBER`"
+    }
+    collector_number: {
+      h: "Collector Number"
+      n: "collector_number"
+      r: false
+      sh: "This card's collector number"
+      t: "`$STRING`"
+    }
+    color_identity: {
+      h: "Color Identity"
+      n: "color_identity"
+      r: false
+      sh: "This card's color identity"
+      t: "`$ARRAY`"
+    }
+    colors: {
+      h: "Colors"
+      n: "colors"
+      r: false
+      sh: "This card's colors"
+      t: "`$ARRAY`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "An array of the requested objects"
+      t: "`$ARRAY`"
+    }
+    has_more: {
+      h: "Has More"
+      n: "has_more"
+      r: false
+      sh: "True if this list is paginated and has more pages"
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "A unique ID for this card in Scryfall's database"
+      t: "`$STRING`"
+    }
+    identifiers: {
+      h: "Identifiers"
+      n: "identifiers"
+      r: true
+      t: "`$ARRAY`"
+    }
+    image_uris: {
+      h: "Image Uris"
+      n: "image_uris"
+      r: false
+      sh: "An object containing URIs to this card's imagery"
+      t: "`$OBJECT`"
+    }
+    lang: {
+      h: "Lang"
+      n: "lang"
+      r: false
+      sh: "The language code for this printing"
+      t: "`$STRING`"
+    }
+    layout: {
+      h: "Layout"
+      n: "layout"
+      r: false
+      sh: "A code for this card's layout"
+      t: "`$STRING`"
+    }
+    legalities: {
+      h: "Legalities"
+      n: "legalities"
+      r: false
+      sh: "An object describing the legality of this card"
+      t: "`$OBJECT`"
+    }
+    loyalty: {
+      h: "Loyalty"
+      n: "loyalty"
+      r: false
+      sh: "This card's loyalty (for planeswalkers)"
+      t: "`$STRING`"
+    }
+    mana_cost: {
+      h: "Mana Cost"
+      n: "mana_cost"
+      r: false
+      sh: "The mana cost for this card"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of this card"
+      t: "`$STRING`"
+    }
+    next_page: {
+      fo: "uri"
+      h: "Next Page"
+      n: "next_page"
+      r: false
+      sh: "The URL for the next page of results"
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type"
+      t: "`$STRING`"
+    }
+    oracle_id: {
+      fo: "uuid"
+      h: "Oracle Id"
+      n: "oracle_id"
+      r: false
+      sh: "A unique ID for this card's oracle identity"
+      t: "`$STRING`"
+    }
+    oracle_text: {
+      h: "Oracle Text"
+      n: "oracle_text"
+      r: false
+      sh: "The Oracle text for this card"
+      t: "`$STRING`"
+    }
+    power: {
+      h: "Power"
+      n: "power"
+      r: false
+      sh: "This card's power (for creatures)"
+      t: "`$STRING`"
+    }
+    prices: {
+      h: "Prices"
+      n: "prices"
+      r: false
+      sh: "An object containing daily price information for this card"
+      t: "`$OBJECT`"
+    }
+    rarity: {
+      h: "Rarity"
+      n: "rarity"
+      r: false
+      sh: "This card's rarity"
+      t: "`$STRING`"
+    }
+    released_at: {
+      fo: "date"
+      h: "Released At"
+      n: "released_at"
+      r: false
+      sh: "The date this card was first released"
+      t: "`$STRING`"
+    }
+    scryfall_uri: {
+      fo: "uri"
+      h: "Scryfall Uri"
+      n: "scryfall_uri"
+      r: false
+      sh: "A link to this card's page on Scryfall's website"
+      t: "`$STRING`"
+    }
+    set: {
+      h: "Set"
+      n: "set"
+      r: false
+      sh: "This card's set code"
+      t: "`$STRING`"
+    }
+    set_name: {
+      h: "Set Name"
+      n: "set_name"
+      r: false
+      sh: "This card's full set name"
+      t: "`$STRING`"
+    }
+    total_cards: {
+      h: "Total Cards"
+      n: "total_cards"
+      r: false
+      sh: "The total number of cards found"
+      t: "`$INTEGER`"
+    }
+    toughness: {
+      h: "Toughness"
+      n: "toughness"
+      r: false
+      sh: "This card's toughness (for creatures)"
+      t: "`$STRING`"
+    }
+    type_line: {
+      h: "Type Line"
+      n: "type_line"
+      r: false
+      sh: "The type line of this card"
+      t: "`$STRING`"
+    }
+    uri: {
+      fo: "uri"
+      h: "Uri"
+      n: "uri"
+      r: false
+      sh: "A link to this card object on Scryfall's API"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "card_list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /cards/collection"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/cards/collection"
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              lit: "collection"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /cards/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "auto"
+                k: "query"
+                n: "dir"
+                or: "dir"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "include_extra"
+                or: "include_extra"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "name"
+                k: "query"
+                n: "order"
+                or: "order"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "c:red pow:3"
+                k: "query"
+                n: "q"
+                or: "q"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "cards"
+                k: "query"
+                n: "unique"
+                or: "unique"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cards/search"
+          q: {
+            exist: [
+              "dir"
+              "include_extra"
+              "order"
+              "page"
+              "q"
+              "unique"
+            ]
+          }
+          s: [
+            {
+              lit: "cards"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -53,9 +53,9 @@ Create a new `Card` entity instance. Pass `nil` for no initial data.
 
 Create a new `CardList` entity instance. Pass `nil` for no initial data.
 
-#### `CardSymbolList(data = nil)`
+#### `CardSymbol(data = nil)`
 
-Create a new `CardSymbolList` entity instance. Pass `nil` for no initial data.
+Create a new `CardSymbol` entity instance. Pass `nil` for no initial data.
 
 #### `Catalog(data = nil)`
 
@@ -360,10 +360,10 @@ Return the entity name.
 
 ---
 
-## CardSymbolListEntity
+## CardSymbolEntity
 
 ```ruby
-card_symbol_list = client.CardSymbolList
+card_symbol = client.CardSymbol
 ```
 
 ### Fields
@@ -389,7 +389,7 @@ card_symbol_list = client.CardSymbolList
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CardSymbolList.list
+results = client.CardSymbol.list
 ```
 
 ### Common Methods
@@ -412,7 +412,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `CardSymbolListEntity` instance with the same client and
+Create a new `CardSymbolEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

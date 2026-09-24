@@ -1,0 +1,32 @@
+# BasicCatalogFlow
+
+main: kit: flow: BasicCatalogFlow:
+{
+  entity: "catalog",
+  kind: "basic",
+  name: "BasicCatalogFlow",
+  step: [
+    {
+      i: {
+        ref: "catalog_ref01",
+        srcdatavar: "catalog_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "catalog01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-catalog_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCatalogFlow"
+}

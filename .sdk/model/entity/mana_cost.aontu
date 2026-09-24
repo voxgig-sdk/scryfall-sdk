@@ -1,0 +1,108 @@
+# Entity: mana_cost
+
+main: kit: entity: mana_cost: {
+
+  alias: field: {}
+
+  fields: {
+    cmc: {
+      h: "Cmc"
+      n: "cmc"
+      r: false
+      sh: "The converted mana cost"
+      t: "`$NUMBER`"
+    }
+    colorless: {
+      h: "Colorless"
+      n: "colorless"
+      r: false
+      sh: "True if this mana cost is colorless"
+      t: "`$BOOLEAN`"
+    }
+    colors: {
+      h: "Colors"
+      n: "colors"
+      r: false
+      sh: "The colors in this mana cost"
+      t: "`$ARRAY`"
+    }
+    cost: {
+      h: "Cost"
+      n: "cost"
+      r: false
+      sh: "The normalized cost"
+      t: "`$STRING`"
+    }
+    monocolored: {
+      h: "Monocolored"
+      n: "monocolored"
+      r: false
+      sh: "True if this mana cost is monocolored"
+      t: "`$BOOLEAN`"
+    }
+    multicolored: {
+      h: "Multicolored"
+      n: "multicolored"
+      r: false
+      sh: "True if this mana cost is multicolored"
+      t: "`$BOOLEAN`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "mana_cost"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /symbology/parse-mana"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "{2}{U}{U}"
+                k: "query"
+                n: "cost"
+                or: "cost"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/symbology/parse-mana"
+          q: {
+            exist: [
+              "cost"
+            ]
+          }
+          s: [
+            {
+              lit: "symbology"
+            }
+            {
+              lit: "parse-mana"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.colors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,7 +1,7 @@
 // Typed models for the Scryfall SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
@@ -156,7 +156,7 @@ export interface CardListCreateData {
   uri?: string
 }
 
-export interface CardSymbolList {
+export interface CardSymbol {
   appears_in_mana_costs?: boolean
   cmc?: number
   colors?: any[]
@@ -170,7 +170,7 @@ export interface CardSymbolList {
   transposable?: boolean
 }
 
-export interface CardSymbolListListMatch {
+export interface CardSymbolListMatch {
   appears_in_mana_costs?: boolean
   cmc?: number
   colors?: any[]

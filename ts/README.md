@@ -238,7 +238,7 @@ new ScryfallSDK(options?: {
 | `BulkData(data?)` | `BulkDataEntity` | Create a BulkData entity instance. |
 | `Card(data?)` | `CardEntity` | Create a Card entity instance. |
 | `CardList(data?)` | `CardListEntity` | Create a CardList entity instance. |
-| `CardSymbolList(data?)` | `CardSymbolListEntity` | Create a CardSymbolList entity instance. |
+| `CardSymbol(data?)` | `CardSymbolEntity` | Create a CardSymbol entity instance. |
 | `Catalog(data?)` | `CatalogEntity` | Create a Catalog entity instance. |
 | `ManaCost(data?)` | `ManaCostEntity` | Create a ManaCost entity instance. |
 | `Migration(data?)` | `MigrationEntity` | Create a Migration entity instance. |
@@ -405,7 +405,7 @@ Operations: create, list.
 
 API path: `/cards/collection`
 
-#### CardSymbolList
+#### CardSymbol
 
 | Field | Description |
 | --- | --- |
@@ -665,9 +665,9 @@ const card_list = await client.CardList().create({
 ```
 
 
-### CardSymbolList
+### CardSymbol
 
-Create an instance: `const card_symbol_list = client.CardSymbolList()`
+Create an instance: `const card_symbol = client.CardSymbol()`
 
 #### Operations
 
@@ -694,7 +694,7 @@ Create an instance: `const card_symbol_list = client.CardSymbolList()`
 #### Example: List
 
 ```ts
-const card_symbol_lists = await client.CardSymbolList().list()
+const card_symbols = await client.CardSymbol().list()
 ```
 
 

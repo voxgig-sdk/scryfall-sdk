@@ -19,7 +19,6 @@ import type {
   RulingListMatch,
 } from '../ScryfallTypes'
 
-// TODO: needs Entity superclass
 class RulingEntity extends ScryfallEntityBase<Ruling> {
 
   constructor(client: ScryfallSDK, entopts: any) {

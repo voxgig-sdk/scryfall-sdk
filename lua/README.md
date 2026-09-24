@@ -43,7 +43,7 @@ local bulkdatas, err = client:BulkData():list()
 if err then error(err) end
 
 for _, item in ipairs(bulkdatas) do
-  print(item["id"], item["content_encoding"])
+  print(item["id"])
 end
 ```
 
@@ -202,7 +202,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `BulkData` | `(data) -> BulkDataEntity` | Create a BulkData entity instance. |
 | `Card` | `(data) -> CardEntity` | Create a Card entity instance. |
 | `CardList` | `(data) -> CardListEntity` | Create a CardList entity instance. |
-| `CardSymbolList` | `(data) -> CardSymbolListEntity` | Create a CardSymbolList entity instance. |
+| `CardSymbol` | `(data) -> CardSymbolEntity` | Create a CardSymbol entity instance. |
 | `Catalog` | `(data) -> CatalogEntity` | Create a Catalog entity instance. |
 | `ManaCost` | `(data) -> ManaCostEntity` | Create a ManaCost entity instance. |
 | `Migration` | `(data) -> MigrationEntity` | Create a Migration entity instance. |
@@ -339,7 +339,7 @@ Operations: Create, List.
 
 API path: `/cards/collection`
 
-#### CardSymbolList
+#### CardSymbol
 
 | Field | Description |
 | --- | --- |
@@ -599,9 +599,9 @@ local card_list, err = client:CardList():create({
 ```
 
 
-### CardSymbolList
+### CardSymbol
 
-Create an instance: `local card_symbol_list = client:CardSymbolList(nil)`
+Create an instance: `local card_symbol = client:CardSymbol(nil)`
 
 #### Operations
 
@@ -628,7 +628,7 @@ Create an instance: `local card_symbol_list = client:CardSymbolList(nil)`
 #### Example: List
 
 ```lua
-local card_symbol_lists, err = client:CardSymbolList():list()
+local card_symbols, err = client:CardSymbol():list()
 ```
 
 

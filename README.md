@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -171,7 +171,7 @@ The API exposes 9 entities:
 | **BulkData** | The BulkData entity (list, load). | `/bulk-data` |
 | **Card** | The Card entity (list, load). | `/cards/named` |
 | **CardList** | The CardList entity (create, list). | `/cards/search` |
-| **CardSymbolList** | The CardSymbolList entity (list). | `/symbology` |
+| **CardSymbol** | The CardSymbol entity (list). | `/symbology` |
 | **Catalog** | The Catalog entity (load). | `/catalog/{catalog_name}` |
 | **ManaCost** | The ManaCost entity (list). | `/symbology/parse-mana` |
 | **Migration** | The Migration entity (list). | `/migrations` |

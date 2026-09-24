@@ -310,10 +310,10 @@ class ScryfallSDK
   end
 
 
-  # Canonical facade: client.CardSymbolList.list / client.CardSymbolList.load({ "id" => ... })
-  def CardSymbolList(data = nil)
-    require_relative 'entity/card_symbol_list_entity'
-    CardSymbolListEntity.new(self, data)
+  # Canonical facade: client.CardSymbol.list / client.CardSymbol.load({ "id" => ... })
+  def CardSymbol(data = nil)
+    require_relative 'entity/card_symbol_entity'
+    CardSymbolEntity.new(self, data)
   end
 
 

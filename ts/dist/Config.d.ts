@@ -72,7 +72,7 @@ declare class Config {
             bulk_data: {};
             card: {};
             card_list: {};
-            card_symbol_list: {};
+            card_symbol: {};
             catalog: {};
             mana_cost: {};
             migration: {};
@@ -84,14 +84,16 @@ declare class Config {
         bulk_data: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             })[];
             id: {
                 field: string;
@@ -103,34 +105,26 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {};
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {};
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {};
+                        select: {};
                     }[];
                 };
                 load: {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            params: {
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
@@ -141,14 +135,24 @@ declare class Config {
                             var: string;
                             lit?: undefined;
                         })[];
-                        select: {
-                            exist: string[];
-                        };
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -159,14 +163,16 @@ declare class Config {
         card: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             })[];
             id: {
                 field: string;
@@ -178,70 +184,62 @@ declare class Config {
                     input: string;
                     name: string;
                     points: ({
+                        kind: string;
+                        method: string;
+                        orig: string;
+                        segments: {
+                            lit: string;
+                        }[];
+                        parts: string[];
+                        rename: {};
+                        transform: {
+                            req: string;
+                            res: string;
+                        };
                         args: {
                             query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
                                 example: string;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                type: string;
                             }[];
                         };
+                        select: {
+                            $action: string;
+                            exist: string[];
+                        };
+                    } | {
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {
-                            $action: string;
-                            exist: string[];
-                        };
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
-                    } | {
                         args: {
                             query: {
-                                kind: string;
                                 name: string;
                                 orig: string;
                                 type: string;
+                                kind: string;
                             }[];
                         };
-                        kind: string;
-                        method: string;
-                        orig: string;
-                        segments: {
-                            lit: string;
-                        }[];
                         select: {
                             $action: string;
                             exist: string[];
                         };
-                        transform: {
-                            req: string;
-                            res: string;
-                        };
-                        parts: string[];
                     })[];
                 };
                 load: {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            params: {
-                                example: string;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
@@ -252,14 +250,25 @@ declare class Config {
                             var: string;
                             lit?: undefined;
                         })[];
-                        select: {
-                            exist: string[];
-                        };
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                                example: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -270,20 +279,23 @@ declare class Config {
         card_list: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
                 req?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
                 req?: undefined;
             } | {
                 name: string;
-                req: boolean;
+                title: string;
                 type: string;
+                req: boolean;
                 short?: undefined;
                 format?: undefined;
             })[];
@@ -297,70 +309,72 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {};
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {};
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {};
+                        select: {};
                     }[];
                 };
                 list: {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            query: ({
-                                example: string;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                type: string;
-                                reqd?: undefined;
-                            } | {
-                                example: boolean;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                type: string;
-                                reqd?: undefined;
-                            } | {
-                                example: number;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                type: string;
-                                reqd?: undefined;
-                            } | {
-                                example: string;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            })[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {
-                            exist: string[];
-                        };
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: string;
+                                reqd?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: boolean;
+                                reqd?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                                reqd?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                                example: string;
+                            })[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -368,17 +382,19 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        card_symbol_list: {
+        card_symbol: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             })[];
             name: string;
             op: {
@@ -386,19 +402,20 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {};
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {};
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {};
+                        select: {};
                     }[];
                 };
             };
@@ -409,19 +426,22 @@ declare class Config {
         catalog: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             } | {
                 name: string;
+                title: string;
                 type: string;
                 short?: undefined;
                 format?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             })[];
             id: {
                 field: string;
@@ -433,23 +453,9 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            params: {
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
-                        rename: {
-                            param: {
-                                catalog_name: string;
-                            };
-                        };
                         segments: ({
                             lit: string;
                             var?: undefined;
@@ -457,14 +463,28 @@ declare class Config {
                             var: string;
                             lit?: undefined;
                         })[];
-                        select: {
-                            exist: string[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                catalog_name: string;
+                            };
                         };
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -475,8 +495,9 @@ declare class Config {
         mana_cost: {
             fields: {
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
             }[];
             name: string;
             op: {
@@ -484,30 +505,31 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            query: {
-                                example: string;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {
-                            exist: string[];
-                        };
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                                example: string;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -517,14 +539,16 @@ declare class Config {
         };
         migration: {
             fields: ({
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             } | {
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             })[];
             id: {
@@ -537,29 +561,30 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            query: {
-                                example: number;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {
-                            exist: string[];
-                        };
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            query: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example: number;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -570,14 +595,16 @@ declare class Config {
         ruling: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             })[];
             name: string;
             op: {
@@ -585,23 +612,9 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {
-                            params: {
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
-                        rename: {
-                            param: {
-                                id: string;
-                            };
-                        };
                         segments: ({
                             lit: string;
                             var?: undefined;
@@ -609,14 +622,28 @@ declare class Config {
                             var: string;
                             lit?: undefined;
                         })[];
-                        select: {
-                            exist: string[];
+                        parts: string[];
+                        rename: {
+                            param: {
+                                id: string;
+                            };
                         };
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     }[];
                 };
             };
@@ -627,14 +654,16 @@ declare class Config {
         set: {
             fields: ({
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
                 format?: undefined;
             } | {
-                format: string;
                 name: string;
-                short: string;
+                title: string;
                 type: string;
+                short: string;
+                format: string;
             })[];
             id: {
                 field: string;
@@ -646,68 +675,60 @@ declare class Config {
                     input: string;
                     name: string;
                     points: {
-                        args: {};
                         kind: string;
                         method: string;
                         orig: string;
                         segments: {
                             lit: string;
                         }[];
-                        select: {};
+                        parts: string[];
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
+                        args: {};
+                        select: {};
                     }[];
                 };
                 load: {
                     input: string;
                     name: string;
                     points: ({
-                        args: {
-                            params: {
-                                example: string;
-                                kind: string;
-                                name: string;
-                                orig: string;
-                                reqd: boolean;
-                                type: string;
-                            }[];
-                        };
                         kind: string;
                         method: string;
                         orig: string;
+                        segments: ({
+                            lit: string;
+                            var?: undefined;
+                        } | {
+                            var: string;
+                            lit?: undefined;
+                        })[];
+                        parts: string[];
                         rename: {
                             param: {
                                 code: string;
                             };
                         };
-                        segments: ({
-                            lit: string;
-                            var?: undefined;
-                        } | {
-                            var: string;
-                            lit?: undefined;
-                        })[];
-                        select: {
-                            exist: string[];
-                        };
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
-                    } | {
                         args: {
                             params: {
-                                kind: string;
                                 name: string;
                                 orig: string;
-                                reqd: boolean;
                                 type: string;
+                                kind: string;
+                                reqd: boolean;
+                                example: string;
                             }[];
                         };
+                        select: {
+                            exist: string[];
+                        };
+                    } | {
                         kind: string;
                         method: string;
                         orig: string;
@@ -718,15 +739,26 @@ declare class Config {
                             var: string;
                             lit?: undefined;
                         })[];
-                        select: {
-                            exist: string[];
+                        parts: string[];
+                        rename: {
+                            param?: undefined;
                         };
                         transform: {
                             req: string;
                             res: string;
                         };
-                        parts: string[];
-                        rename?: undefined;
+                        args: {
+                            params: {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd: boolean;
+                            }[];
+                        };
+                        select: {
+                            exist: string[];
+                        };
                     })[];
                 };
             };

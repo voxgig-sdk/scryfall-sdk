@@ -1,0 +1,159 @@
+# Entity: bulk_data
+
+main: kit: entity: bulk_data: {
+
+  alias: field: {}
+
+  fields: {
+    content_encoding: {
+      h: "Content Encoding"
+      n: "content_encoding"
+      r: false
+      sh: "The Content-Encoding encoding for this file"
+      t: "`$STRING`"
+    }
+    content_type: {
+      h: "Content Type"
+      n: "content_type"
+      r: false
+      sh: "The MIME type of this file"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "A human-readable description for this file"
+      t: "`$STRING`"
+    }
+    download_uri: {
+      fo: "uri"
+      h: "Download Uri"
+      n: "download_uri"
+      r: false
+      sh: "The URI that hosts this bulk file"
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "A unique ID for this bulk data file"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "A human-readable name for this file"
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type"
+      t: "`$STRING`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      sh: "The size of this file in bytes"
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of bulk data"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time this file was last updated"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bulk_data"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /bulk-data"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/bulk-data"
+          s: [
+            {
+              lit: "bulk-data"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /bulk-data/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/bulk-data/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "bulk-data"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
